@@ -3,33 +3,25 @@
 </script>
 
 <script>
-	import Counter from '$lib/Counter.svelte';
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Sextou!</title>
 </svelte:head>
 
 <section>
-	<h1>
-		<div class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
-		</div>
+	<img src="sextou_kv.png" />
 
-		to your new<br />SvelteKit app
-	</h1>
+	<br/><br/>
 
-	<h2>
-		try editing <strong>src/routes/index.svelte</strong>
-	</h2>
-
-	<Counter />
+	VEM AÍ, com as melhores opções da noite.
 </section>
 
 <style>
+	* {
+		color: white;
+	}
+
 	section {
 		display: flex;
 		flex-direction: column;
@@ -47,13 +39,5 @@
 		width: 100%;
 		height: 0;
 		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
 	}
 </style>
