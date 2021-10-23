@@ -10,63 +10,47 @@
 </svelte:head>
 
 <section>
-	<img src="sextou_kv.png" />
+	<div class="container">
+		<img class="logo" src="sextou_kv.png" />
+	</div>
 
-	<br/><br/>
-
-	VEM AÍ, com as melhores opções da noite.
 </section>
 
 <section id="main">
-	<div class="container flex-between">
+	<div class="container">
 
 		<div class="event-card">
-			<img class="event-cover img-fluid" src="http://localhost:1337/uploads/bk_circo_card_0f1c088d4f.jpg" />
+			<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
 
-			<div class="title-date-cover">	
+			<div class="title-date-block">	
 				<p class="event-title">BK no Circo Voador</p>
-				<p class="event-date">11/Dez</p>
-			</div>
+				<p class="event-date">11 de Dezembro</p>
 
-			<div class="tag">
-				<ul>
-					<li class="item">Centro</li>
-					<li class="item">Lapa</li>
-				</ul>
+				<div class="tag">
+					<ul>
+						<li class="item">Centro</li>
+						<li class="item">Lapa</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="event-card">
+			<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
+
+			<div class="title-date-block">	
+				<p class="event-title">BK no Circo Voador</p>
+				<p class="event-date">11 de Dezembro</p>
+
+				<div class="tag">
+					<ul>
+						<li class="item">Centro</li>
+						<li class="item">Lapa</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		
-		<div class="event-card">
-			<img class="event-cover img-fluid" src="http://localhost:1337/uploads/bk_circo_card_0f1c088d4f.jpg" />
-
-			<div class="title-date-cover">	
-				<p class="event-title">BK no Circo Voador</p>
-				<p class="event-date">11/Dez</p>
-			</div>
-
-			<div class="tag">
-				<ul>
-					<li class="item">Centro</li>
-					<li class="item">Lapa</li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="event-card">
-			<img class="event-cover img-fluid" src="http://localhost:1337/uploads/bk_circo_card_0f1c088d4f.jpg" />
-
-			<div class="title-date-cover">	
-				<p class="event-title">BK no Circo Voador</p>
-				<p class="event-date">11/Dez</p>
-			</div>
-
-			<div class="tag">
-				<ul>
-					<li class="item">Centro</li>
-					<li class="item">Lapa</li>
-				</ul>
-			</div>
-		</div>
 	</div>
 </section>
 
@@ -109,65 +93,79 @@
 		justify-content: space-between;
 		flex-wrap: wrap;
 	}
+
+	.container {
+		width: 100%;
+		border: 1px dotted red;
+	}
 	
+	// App
+	.logo {
+		margin: 50px auto;
+		display: block;
+		width: 500px;
+	}
+
 	#main {
 		width: 100%;
-		background-color: rgb(255 255 255 / 30%);
-		// background-color: white;
-		padding: 20px;
-
-		.container {
-			width: 100%;
-		}
 
 		.event-card {
-			width: 360px;
-			// width: 32%;
+			position: relative;
+			// width: 360px;
 			color: black;
-			background-color: white;
-			border: 5px solid black;
-		}
 
-		.title-date-cover {
-			border-top: 5px solid black;
-			border-bottom: 5px solid black;
 			display: flex;
     	align-items: center;
+			margin-bottom: 30px;
+		}
+
+		.event-cover {
+			border-radius: 25px;
+			width:300px;
+			display: inline-block;
+		}
+
+		.title-date-block {
+			width: 100%;
+			height: 100%;
+			display: inline-block;
+			border-radius: 10px;
+			margin-left: -50px;
+			padding: 20px 15px;
+
+			// background-color: #778DA9;
+			background: rgb(65,90,119);
+			background: linear-gradient(0deg, rgba(13,27,42,1) 0%, rgba(65,90,119,1) 43%);
 		}
 
 		.event-title {
-			color: black;
-			font-size: 25px;
+			color: #E0E1DD;
+			font-size: 42px;
 			font-weight: bold;
-
-			border-right: 5px solid black;
-
 			display: block;
-			width: 75%;
-			padding: 5px;
 		}
+
 		.event-date {
 			display: block;
-			width: 25%;
-
-			color: black;
-			text-align: center;
+			color: #E0E1DD;
 			font-size: 20px;
+			margin: 0px 0 20px;
 		}
 
 		.tag {
-			padding: 10px;
+			padding: 0;
 
 			.item {
-				background-color: #232ED1;
 				color: #E0E1DD;
-				padding: 5px;
-				border: 3px solid black;
-				margin-right: 20px;
-				font-size: 22px;
+				padding: 5px 10px;
+				border: 2px solid #89D2DC;
+				border-radius: 50px;
+				margin-right: 10px;
+				font-size: 18px;
 
 				&:hover {			
-		    	opacity: .8;
+		    	background-color: #89D2DC;
+					cursor: pointer;
 				}
 			}
 		}

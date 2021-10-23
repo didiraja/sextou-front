@@ -21,7 +21,7 @@
 		max-width: 1024px; */
 		margin: 0 auto;
 		box-sizing: border-box;
-		width: 1200px;
+		width: 1000px;
 	}
 
 	footer {
