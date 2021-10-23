@@ -1,3 +1,5 @@
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+
 @import '@fontsource/fira-mono';
 
 :root {
@@ -21,7 +23,7 @@ body {
 	margin: 0;
 	background-image: url('sextou_bg.jpg');
 	color: white;
-} 
+}
 
 body::before {
 	content: '';
