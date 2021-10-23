@@ -2,7 +2,15 @@
 	export const prerender = true;
 </script>
 
-<script>
+<script lang="ts">
+	import Button, { Label, Icon } from '@smui/button';
+	import Card, {
+    Content,
+    PrimaryAction,
+    Actions,
+    Media,
+    MediaContent,
+  } from '@smui/card';
 </script>
 
 <svelte:head>
@@ -20,35 +28,92 @@
 	<div class="container">
 
 		<div class="event-card">
-			<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
+			<Card>
+				<Content>
+					<p class="event-title mdc-typography--headline4">BK no Circo Voador</p>
+					<p class="event-date">11 de Dezembro</p>
+					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
+				</Content>
+				<Actions>
+					<Button>
+						<Label>Centro</Label>
+					</Button>
+					<Button>
+						<Label>Lapa</Label>
+					</Button>
+				</Actions>
 
-			<div class="title-date-block">	
-				<p class="event-title">BK no Circo Voador</p>
+				<Actions>
+					<Button variant="unelevated">
+						<Icon class="material-icons">bookmark_border</Icon>
+						<Label>Comprar Ingressos</Label>
+					</Button>
+				</Actions>
+			</Card>
+
+			<Card>
+				<Content>
+					<p class="event-title mdc-typography--headline4">BK no Circo Voador</p>
+					<p class="event-date">11 de Dezembro</p>
+					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
+				</Content>
+				<Actions>
+					<Button>
+						<Label>Centro</Label>
+					</Button>
+					<Button>
+						<Label>Lapa</Label>
+					</Button>
+				</Actions>
+
+				<Actions>
+					<Button variant="unelevated">
+						<Icon class="material-icons">bookmark_border</Icon>
+						<Label>Comprar Ingressos</Label>
+					</Button>
+				</Actions>
+			</Card>
+			<Card>
+				<Content>
+					<p class="event-title mdc-typography--headline4">BK no Circo Voador</p>
+					<p class="event-date">11 de Dezembro</p>
+					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
+				</Content>
+				<Actions>
+					<Button>
+						<Label>Centro</Label>
+					</Button>
+					<Button>
+						<Label>Lapa</Label>
+					</Button>
+				</Actions>
+
+				<Actions>
+					<Button variant="unelevated">
+						<Icon class="material-icons">bookmark_border</Icon>
+						<Label>Comprar Ingressos</Label>
+					</Button>
+				</Actions>
+			</Card>
+
+			<!-- <img class="event-cover img-fluid" src="https://loremflickr.com/420/340" /> -->
+
+			<!-- <div class="title-date-block">	
+				<p class="event-title mdc-typography--headline4">BK no Circo Voador</p>
 				<p class="event-date">11 de Dezembro</p>
 
 				<div class="tag">
+					
+
+					<br/>
+
+					
 					<ul>
 						<li class="item">Centro</li>
 						<li class="item">Lapa</li>
-					</ul>
+					</ul> 
 				</div>
-			</div>
-		</div>
-
-		<div class="event-card">
-			<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
-
-			<div class="title-date-block">	
-				<p class="event-title">BK no Circo Voador</p>
-				<p class="event-date">11 de Dezembro</p>
-
-				<div class="tag">
-					<ul>
-						<li class="item">Centro</li>
-						<li class="item">Lapa</li>
-					</ul>
-				</div>
-			</div>
+			</div> -->
 		</div>
 		
 	</div>
@@ -112,8 +177,6 @@
 		.event-card {
 			position: relative;
 			// width: 360px;
-			color: black;
-
 			display: flex;
     	align-items: center;
 			margin-bottom: 30px;
@@ -130,7 +193,7 @@
 			height: 100%;
 			display: inline-block;
 			border-radius: 10px;
-			margin-left: -50px;
+			// margin-left: -50px;
 			padding: 20px 15px;
 
 			// background-color: #778DA9;
@@ -140,8 +203,7 @@
 
 		.event-title {
 			color: #E0E1DD;
-			font-size: 42px;
-			font-weight: bold;
+			font-weight: 500;
 			display: block;
 		}
 
