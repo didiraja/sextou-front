@@ -25,7 +25,7 @@
 </section>
 
 <section id="main">
-	<div class="container no-padding" style="display: flex; justify-content: space-between; align-items: start;">
+	<div class="container no-padding container-flex">
 
 		<!-- <img class="event-cover img-fluid" src="https://loremflickr.com/420/340" /> -->
 
@@ -53,7 +53,7 @@
 					<p class="event-date">11 de Dezembro</p>
 					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
 				</Content>
-				<Actions>
+				<Actions class="card-action--no-padding">
 					<Button>
 						<Label>Centro</Label>
 					</Button>
@@ -62,7 +62,7 @@
 					</Button>
 				</Actions>
 
-				<Actions>
+				<Actions class="card-action-bottom">
 					<Button variant="unelevated">
 						<Icon class="material-icons">bookmark_border</Icon>
 						<Label>Comprar Ingressos</Label>
@@ -78,16 +78,16 @@
 					<p class="event-date">11 de Dezembro</p>
 					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
 				</Content>
-				<Actions>
+				<Actions class="card-action--no-padding">
 					<Button>
-						<Label>Centro</Label>
+						<Label>Zona Norte</Label>
 					</Button>
 					<Button>
-						<Label>Lapa</Label>
+						<Label>Irajá</Label>
 					</Button>
 				</Actions>
 
-				<Actions>
+				<Actions class="card-action-bottom">
 					<Button variant="unelevated">
 						<Icon class="material-icons">bookmark_border</Icon>
 						<Label>Comprar Ingressos</Label>
@@ -103,7 +103,57 @@
 					<p class="event-date">11 de Dezembro</p>
 					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
 				</Content>
-				<Actions>
+				<Actions class="card-action--no-padding">
+					<Button>
+						<Label>Zona Sul</Label>
+					</Button>
+					<Button>
+						<Label>Copacabana</Label>
+					</Button>
+				</Actions>
+
+				<Actions class="card-action-bottom">
+					<Button variant="unelevated">
+						<Icon class="material-icons">bookmark_border</Icon>
+						<Label>Comprar Ingressos</Label>
+					</Button>
+				</Actions>
+			</Card>
+		</div>
+
+		<div class="event-card">
+			<Card>
+				<Content>
+					<p class="event-title mdc-typography--headline4">BK no Circo Voador</p>
+					<p class="event-date">11 de Dezembro</p>
+					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
+				</Content>
+				<Actions class="card-action--no-padding">
+					<Button>
+						<Label>Baixada</Label>
+					</Button>
+					<Button>
+						<Label>Caxias</Label>
+					</Button>
+				</Actions>
+
+				<Actions class="card-action-bottom">
+					<Button variant="unelevated">
+						<Icon class="material-icons">bookmark_border</Icon>
+						<Label>Comprar Ingressos</Label>
+					</Button>
+				</Actions>
+			</Card>
+		</div>
+
+		<div class="event-card">
+			<Card>
+				<Content>
+					<p class="event-title mdc-typography--headline4">Outro Evento</p>
+					<p class="event-date">11 de Dezembro</p>
+					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
+				</Content>
+				<Actions class="card-action--no-padding">
 					<Button>
 						<Label>Centro</Label>
 					</Button>
@@ -112,7 +162,32 @@
 					</Button>
 				</Actions>
 
-				<Actions>
+				<Actions class="card-action-bottom">
+					<Button variant="unelevated">
+						<Icon class="material-icons">bookmark_border</Icon>
+						<Label>Comprar Ingressos</Label>
+					</Button>
+				</Actions>
+			</Card>
+		</div>
+
+		<div class="event-card">
+			<Card>
+				<Content>
+					<p class="event-title mdc-typography--headline4">Outro Evento</p>
+					<p class="event-date">11 de Dezembro</p>
+					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
+				</Content>
+				<Actions class="card-action--no-padding">
+					<Button>
+						<Label>Centro</Label>
+					</Button>
+					<Button>
+						<Label>Lapa</Label>
+					</Button>
+				</Actions>
+
+				<Actions class="card-action-bottom">
 					<Button variant="unelevated">
 						<Icon class="material-icons">bookmark_border</Icon>
 						<Label>Comprar Ingressos</Label>
@@ -158,19 +233,20 @@
 		max-width: 100%;
 	}
 
-	.flex-between {
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-	}
-
-	.container {
-		width: 100%;
-		border: 1px dotted red;
-	}
-
 	.no-padding {
 		padding: 0;
+	}
+	
+	.container {
+		width: 100%;
+		// border: 1px dotted red;
+	}
+	
+	.container-flex {
+		display: flex;
+		justify-content: space-between;
+		align-items: start;
+		flex-wrap: wrap;
 	}
 	
 	// App
@@ -190,10 +266,17 @@
 			margin-bottom: 30px;
 			width: 32%;
 
-			// customize paddings
-			// .mdc-card {
+			:global(.card-action--no-padding) {
+				padding: 0 8px;
+			}
 
-			// }
+			:global(.mdc-card__actions) {
+				min-height: 1px;
+			}
+
+			:global(.card-action-bottom) {
+				padding-bottom: 16px;
+			}
 		}
 
 		.event-cover {
@@ -225,26 +308,9 @@
 		.event-date {
 			display: block;
 			color: #E0E1DD;
-			font-size: 20px;
+			font-size: 18px;
 			margin: 0px 0 20px;
 		}
 
-		.tag {
-			padding: 0;
-
-			.item {
-				color: #E0E1DD;
-				padding: 5px 10px;
-				border: 2px solid #89D2DC;
-				border-radius: 50px;
-				margin-right: 10px;
-				font-size: 18px;
-
-				&:hover {			
-		    	background-color: #89D2DC;
-					cursor: pointer;
-				}
-			}
-		}
 	}
 </style>
