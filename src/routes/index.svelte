@@ -25,7 +25,26 @@
 </section>
 
 <section id="main">
-	<div class="container">
+	<div class="container no-padding" style="display: flex; justify-content: space-between; align-items: start;">
+
+		<!-- <img class="event-cover img-fluid" src="https://loremflickr.com/420/340" /> -->
+
+			<!-- <div class="title-date-block">	
+				<p class="event-title mdc-typography--headline4">BK no Circo Voador</p>
+				<p class="event-date">11 de Dezembro</p>
+
+				<div class="tag">
+					
+
+					<br/>
+
+					
+					<ul>
+						<li class="item">Centro</li>
+						<li class="item">Lapa</li>
+					</ul> 
+				</div>
+			</div> -->
 
 		<div class="event-card">
 			<Card>
@@ -50,10 +69,12 @@
 					</Button>
 				</Actions>
 			</Card>
+		</div>
 
+		<div class="event-card">
 			<Card>
 				<Content>
-					<p class="event-title mdc-typography--headline4">BK no Circo Voador</p>
+					<p class="event-title mdc-typography--headline4">Outro Evento</p>
 					<p class="event-date">11 de Dezembro</p>
 					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
 				</Content>
@@ -73,9 +94,12 @@
 					</Button>
 				</Actions>
 			</Card>
+		</div>
+
+		<div class="event-card">
 			<Card>
 				<Content>
-					<p class="event-title mdc-typography--headline4">BK no Circo Voador</p>
+					<p class="event-title mdc-typography--headline4">Outro Evento</p>
 					<p class="event-date">11 de Dezembro</p>
 					<img class="event-cover img-fluid" src="https://loremflickr.com/420/340" />
 				</Content>
@@ -95,25 +119,6 @@
 					</Button>
 				</Actions>
 			</Card>
-
-			<!-- <img class="event-cover img-fluid" src="https://loremflickr.com/420/340" /> -->
-
-			<!-- <div class="title-date-block">	
-				<p class="event-title mdc-typography--headline4">BK no Circo Voador</p>
-				<p class="event-date">11 de Dezembro</p>
-
-				<div class="tag">
-					
-
-					<br/>
-
-					
-					<ul>
-						<li class="item">Centro</li>
-						<li class="item">Lapa</li>
-					</ul> 
-				</div>
-			</div> -->
 		</div>
 		
 	</div>
@@ -163,6 +168,10 @@
 		width: 100%;
 		border: 1px dotted red;
 	}
+
+	.no-padding {
+		padding: 0;
+	}
 	
 	// App
 	.logo {
@@ -176,10 +185,15 @@
 
 		.event-card {
 			position: relative;
-			// width: 360px;
 			display: flex;
     	align-items: center;
 			margin-bottom: 30px;
+			width: 32%;
+
+			// customize paddings
+			// .mdc-card {
+
+			// }
 		}
 
 		.event-cover {
@@ -203,6 +217,7 @@
 
 		.event-title {
 			color: #E0E1DD;
+			font-size: 30px;
 			font-weight: 500;
 			display: block;
 		}
