@@ -10,14 +10,28 @@
 	<title>Sextou!</title>
 </svelte:head>
 
-<section>
-	<div class="container">
+<section id="header">
+	<div class="container no-padding">
 		<img class="logo" src="sextou_kv.png" />
 	</div>
 
 </section>
 
 <section id="main">
+	<div class="container" style="display: flex; justify-content: space-evenly;">
+			<EventCard
+			highlight
+			eventTitle="Evento Destaque"
+			eventPlace={['Zona Oeste','Barra']}
+			/>
+
+			<EventCard
+			highlight
+			eventTitle="Evento Destaque 2"
+			eventPlace={['Zona Oeste','Recreio']}
+			/>
+	</div>
+
 	<div class="container no-padding container-flex">
 		{#each Array.from(Array(7).keys()) as evento, index}
 			<EventCard
@@ -29,10 +43,18 @@
 </section>
 
 <style lang="scss">
+	#header {
+		background: url('sextou_banner_01.png') no-repeat;
+		background-size: cover;
+		background-position: bottom center;
+
+		margin-bottom: 100px;
+	}
+
 	.logo {
-		margin: 50px auto;
-		display: block;
-		width: 500px;
+		margin: 0 auto;
+    display: block;
+    padding: 100px 0;
 	}
 
 	#main {
