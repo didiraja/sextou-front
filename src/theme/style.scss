@@ -1,0 +1,53 @@
+// Only my custom CSS
+	// Reset
+	* {
+		box-sizing: border-box;
+	}
+
+	p {
+		line-height: initial;
+		margin: 0;
+	}
+
+	section {
+		width: 100%;
+	}
+
+	h1 {
+		width: 100%;
+	}
+
+	ul {
+		margin: 0;
+    padding: 0;
+	}
+
+	li {
+		display: inline-block;
+	}
+
+// Utils
+.img-fluid {
+  max-width: 100%;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  // border: 1px dotted red;
+}
+
+.container-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+body {
+  background-color: #1E1E1E;
+  background-image: url('sextou_paper.jpg');
+}
