@@ -28,38 +28,44 @@
 <div class="event-card" class:highlight>
   <Card>
     <Content>
-      <p class="event-title mdc-typography--headline4">{eventTitle}</p>
-      <p class="event-date">{eventDate}</p>
       <img class="event-cover img-fluid" src={eventCover} />
+      <p class="event-date">{eventDate}</p>
+      <p class="event-title mdc-typography--headline4">{eventTitle}</p>
     </Content>
-    <Actions class="card-action--no-padding">
-      <Button>
-        <Label>{eventPlace[0]}</Label>
-      </Button>
-      <Button>
-        <Label>{eventPlace[1]}</Label>
-      </Button>
-    </Actions>
 
-    <Actions class="card-action-bottom">
-      <Button variant="unelevated">
-        <Icon class="material-icons">bookmark_border</Icon>
-        <Label>Comprar Ingressos</Label>
-      </Button>
-    </Actions>
+    <div class="action-wrapper">  
+      <Actions class="card-action--no-padding">
+        <Button>
+          <Label>{eventPlace[0]}</Label>
+        </Button>
+        <Button>
+          <Label>{eventPlace[1]}</Label>
+        </Button>
+      </Actions>
+      
+      <Actions class="card-action-bottom">
+        <Button variant="unelevated">
+          <Icon class="material-icons">bookmark_border</Icon>
+          <Label>Comprar Ingressos</Label>
+        </Button>
+      </Actions>
+    </div>
   </Card>
 </div>
 
 <style lang="scss">
   .event-card {
     position: relative;
-    display: flex;
-    align-items: center;
     margin-bottom: 30px;
-    max-width: 32%;
+    width: 32%;
+    min-height: 530px;
 
     :global(.card-action--no-padding) {
       padding: 0 8px;
+    }
+
+    :global(.mdc-card) {
+      height: 100%;
     }
 
     :global(.mdc-card__actions) {
@@ -80,7 +86,6 @@
 
 		.event-cover {
 			border-radius: 25px;
-			width:300px;
 			display: inline-block;
 		}
 
@@ -95,7 +100,12 @@
 			display: block;
 			color: #E0E1DD;
 			font-size: 18px;
-			margin: 0px 0 20px;
+			margin: 10px 0 0;
 		}
+
+    .action-wrapper {
+      position: absolute;
+      bottom: 0;
+    }
   }
 </style>

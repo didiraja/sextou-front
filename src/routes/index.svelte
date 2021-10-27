@@ -17,6 +17,13 @@
 
 </section>
 
+<section>
+	<div class="container">
+		<div class="search-block" />
+	</div>
+
+</section>
+
 <section id="main">
 	<div class="container" style="display: flex; justify-content: space-evenly;">
 			<EventCard
@@ -27,7 +34,7 @@
 
 			<EventCard
 			highlight
-			eventTitle="Evento Destaque 2"
+			eventTitle="Evento Destaque 2 ultra power"
 			eventPlace={['Zona Oeste','Recreio']}
 			/>
 	</div>
@@ -44,7 +51,7 @@
 
 <style lang="scss">
 	#header {
-		background: url('sextou_banner_01.png') no-repeat;
+		background: url('sextou_banner.jpg') no-repeat;
 		background-size: cover;
 		background-position: bottom center;
 
@@ -55,6 +62,13 @@
 		margin: 0 auto;
     display: block;
     padding: 100px 0;
+	}
+
+	.search-block {
+		background: #eff;
+		width: 100%;
+		height: 100px;
+		border-radius: 10px;
 	}
 
 	#main {

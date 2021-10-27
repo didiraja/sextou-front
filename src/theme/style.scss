@@ -11,6 +11,7 @@
 
 	section {
 		width: 100%;
+    position:relative;
 	}
 
 	h1 {
@@ -38,13 +39,12 @@
 .container {
   width: 1200px;
   margin: 0 auto;
-  border: 1px dotted red;
+  // border: 1px dotted red;
 }
 
 .container-flex {
   display: flex;
   justify-content: space-between;
-  align-items: start;
   flex-wrap: wrap;
 }
 
