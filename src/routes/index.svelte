@@ -85,18 +85,20 @@
 		background-size: cover;
 		background-position: bottom center;
 
-		margin-bottom: 100px;
+		margin-bottom: 50px;
 	}
 
 	.logo {
 		margin: 0 auto;
     display: block;
-    padding: 100px 0;
+    padding: 50px 0 100px;
 	}
 
 	.search-block {
 		background: #eff;
-		width: 80vw;
+		background: linear-gradient(0deg, #a8a8a8 0%, #f7f7f8 100%);
+		// width: 80vw;
+		width: 100%;
     height: 100px;
     border-radius: 40px;
     margin: 0 auto;
