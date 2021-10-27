@@ -4,8 +4,12 @@
 
 <script lang="ts">
 	import EventCard from '../components/EventCard.svelte';
+	import Button, { Label } from '@smui/button';
 	import Textfield from '@smui/textfield';
+	import IconText from '@smui/textfield/icon';
   import HelperText from '@smui/textfield/helper-text/index';
+	import Select, { Option } from '@smui/select';
+  import IconSelect from '@smui/select/icon';
 </script>
 
 <svelte:head>
@@ -17,9 +21,34 @@
 		<img class="logo" src="sextou_kv.png" />
 
 		<div class="search-block mdc-elevation--z24">
-			<Textfield class="mdc-elevation--z1" variant="filled" value="" label="Procure um evento...">
-				<!-- <HelperText persistent slot="helper">Ex: Artista no Circo</HelperText> -->
+			<Textfield label="Início" value="" variant="filled" class="mdc-elevation--z1">
+				<IconText class="material-icons" slot="leadingIcon">event</IconText>
 			</Textfield>
+
+			<Textfield label="Fim" value="" variant="filled" class="mdc-elevation--z1">
+				<IconText class="material-icons" slot="leadingIcon">event</IconText>
+			</Textfield>
+
+			<Select label="Região" value="" variant="filled" class="mdc-elevation--z1">
+				<IconSelect class="material-icons" slot="leadingIcon">event</IconSelect>
+				<Option value="" />
+				<Option value="zn">Zona Norte</Option>
+				<Option value="zs">Zona Sul</Option>
+				<Option value="zo">Zona Oeste</Option>
+			</Select>
+
+			<Select label="Bairro" value="" variant="filled" class="mdc-elevation--z1">
+				<IconSelect class="material-icons" slot="leadingIcon">event</IconSelect>
+				<Option value="" />
+				<Option value="lapa">Lapa</Option>
+				<Option value="botafogo">Botafogo</Option>
+				<Option value="iraja">Irajá</Option>
+				<Option value="meier">Méier</Option>
+			</Select>
+
+			<Button variant="raised">
+				<Label>Buscar</Label>
+			</Button>
 		</div>
 	</div>
 

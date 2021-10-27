@@ -56,6 +56,9 @@ body {
 
 // Material UI
 $primary-color: #ff3e00;
+$white-pallete: #E0E1DD;
+
+
 .mdc-text-field {
 	--mdc-theme-primary: $primary-color;
 }
@@ -65,19 +68,30 @@ $primary-color: #ff3e00;
 	color: $primary-color;
 }
 
-.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label,
+.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
 	color: $primary-color;
 }
 
-.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+.mdc-text-field--filled:not(.mdc-text-field--disabled), .mdc-select--filled:not(.mdc-select--disabled) .mdc-select__anchor {
 	// background-color: transparent;
 	background-color: rgba(black, 0.1);
 }
 
-.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before,
+.mdc-select--filled:not(.mdc-select--disabled) .mdc-line-ripple::before {
 	border-bottom: 0;
 }
 
-.mdc-text-field--filled .mdc-line-ripple::after {
+.mdc-text-field--filled .mdc-line-ripple::after,
+.mdc-select--filled:not(.mdc-select--disabled) .mdc-line-ripple::after {
 	border-bottom-color: $primary-color;
+}
+
+.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-select__dropdown-icon {
+	fill: $primary-color;
+}
+
+.mdc-menu-surface {
+	background-color: $white-pallete;
 }
