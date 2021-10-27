@@ -39,6 +39,7 @@
 .container {
   width: 1200px;
   margin: 0 auto;
+	position:relative;
   // border: 1px dotted red;
 }
 
@@ -51,4 +52,32 @@
 body {
   background-color: #1E1E1E;
   background-image: url('sextou_paper.jpg');
+}
+
+// Material UI
+$primary-color: #ff3e00;
+.mdc-text-field {
+	--mdc-theme-primary: $primary-color;
+}
+
+
+.mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text {
+	color: $primary-color;
+}
+
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+	color: $primary-color;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+	// background-color: transparent;
+	background-color: rgba(black, 0.1);
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+	border-bottom: 0;
+}
+
+.mdc-text-field--filled .mdc-line-ripple::after {
+	border-bottom-color: $primary-color;
 }

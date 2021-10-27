@@ -25,7 +25,7 @@
   export let eventTicket;
 </script>
 
-<div class="event-card" class:highlight>
+<div class="event-card mdc-elevation--z10" class:highlight>
   <Card>
     <Content>
       <img class="event-cover img-fluid" src={eventCover} />

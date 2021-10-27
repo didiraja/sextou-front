@@ -18,6 +18,7 @@
 		"@smui/icon-button": "^5.0.0-beta.7",
 		"@smui/layout-grid": "^5.0.0-beta.7",
 		"@smui/paper": "^5.0.0-beta.7",
+		"@smui/textfield": "^5.0.0-beta.7",
 		"@sveltejs/kit": "next",
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
