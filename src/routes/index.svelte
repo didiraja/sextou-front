@@ -4,70 +4,50 @@
 
 <script lang="ts">
 	import EventCard from '../components/EventCard.svelte';
+	import SearchBlock from '../components/SearchBlock.svelte';
 	import Button, { Label } from '@smui/button';
-	import Textfield from '@smui/textfield';
-	import IconText from '@smui/textfield/icon';
-  import HelperText from '@smui/textfield/helper-text/index';
-	import Select, { Option } from '@smui/select';
-  import IconSelect from '@smui/select/icon';
+	import Paper, { Title, Subtitle, Content } from '@smui/paper';
+
+	export let showEvent = true;
 </script>
 
 <svelte:head>
-	<title>Sextou!</title>
+	<title>Sextou! - beta</title>
 </svelte:head>
 
 <section id="header">
 	<div class="container no-padding">
 		<img class="logo" src="sextou_kv.png" />
 
-		<div class="search-block mdc-elevation--z24">
-			<Textfield label="Início" value="" variant="filled" class="mdc-elevation--z1">
-				<IconText class="material-icons" slot="leadingIcon">event</IconText>
-			</Textfield>
-
-			<Textfield label="Fim" value="" variant="filled" class="mdc-elevation--z1">
-				<IconText class="material-icons" slot="leadingIcon">event</IconText>
-			</Textfield>
-
-			<Select label="Região" value="" variant="filled" class="mdc-elevation--z1">
-				<IconSelect class="material-icons" slot="leadingIcon">event</IconSelect>
-				<Option value="" />
-				<Option value="zn">Zona Norte</Option>
-				<Option value="zs">Zona Sul</Option>
-				<Option value="zo">Zona Oeste</Option>
-			</Select>
-
-			<Select label="Bairro" value="" variant="filled" class="mdc-elevation--z1">
-				<IconSelect class="material-icons" slot="leadingIcon">event</IconSelect>
-				<Option value="" />
-				<Option value="lapa">Lapa</Option>
-				<Option value="botafogo">Botafogo</Option>
-				<Option value="iraja">Irajá</Option>
-				<Option value="meier">Méier</Option>
-			</Select>
-
-			<Button variant="raised">
-				<Label>Buscar</Label>
-			</Button>
-		</div>
+		<SearchBlock />
 	</div>
 
 </section>
 
 <section id="main">
 	<div class="container" style="display: flex; justify-content: space-evenly;">
+		
 			<EventCard
 				highlight
 				eventTitle="Evento Destaque"
 				eventPlace={['Zona Oeste','Barra']}
+				on:click={() => showEvent = !showEvent}
 			/>
-
+			
 			<EventCard
 				highlight
 				eventTitle="Evento Destaque 2 ultra power"
 				eventPlace={['Zona Oeste','Recreio']}
 			/>
-	</div>
+				
+			{#if showEvent}
+				<Paper class="event-modal">
+					<Title>Paper</Title>
+					<Subtitle>This is a sheet of paper.</Subtitle>
+					<Content>Paper is used to build an elevated surface.</Content>
+				</Paper>
+			{/if}
+		</div>
 
 	<div class="container no-padding container-flex">
 		{#each Array.from(Array(7).keys()) as evento, index}
@@ -78,6 +58,7 @@
 		{/each}
 	</div>
 </section>
+
 
 <style lang="scss">
 	#header {
@@ -94,20 +75,18 @@
     padding: 50px 0 100px;
 	}
 
-	.search-block {
-		background: #eff;
-		background: linear-gradient(0deg, #a8a8a8 0%, #f7f7f8 100%);
-		// width: 80vw;
-		width: 100%;
-    height: 100px;
-    border-radius: 40px;
-    margin: 0 auto;
-		padding: 15px 30px;
-		position: absolute;
-		bottom: -50px;
-	}
-
 	#main {
 		width: 100%;
+	}
+
+	:global(.event-modal) {
+		position: fixed;
+    min-width: 800px;
+    top: 30px;
+		z-index: 9;
+		// Elevation 24
+		box-shadow: 0px 11px 15px -7px rgba(#E0E1DD, 0.2),
+		0px 24px 38px 3px rgba(#E0E1DD, 0.12),
+		0px 9px 46px 8px rgba(#E0E1DD, 0.12);
 	}
 </style>

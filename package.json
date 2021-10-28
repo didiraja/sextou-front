@@ -17,6 +17,7 @@
 		"@smui/card": "^5.0.0-beta.7",
 		"@smui/icon-button": "^5.0.0-beta.7",
 		"@smui/layout-grid": "^5.0.0-beta.7",
+		"@smui/menu-surface": "^5.0.0-beta.7",
 		"@smui/paper": "^5.0.0-beta.7",
 		"@smui/select": "^5.0.0-beta.7",
 		"@smui/textfield": "^5.0.0-beta.7",

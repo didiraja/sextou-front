@@ -14,9 +14,14 @@
 
 @use 'sass:color';
 
+// Material UI
+$primary-color: #ff3e00;
+$white-pallete: #E0E1DD;
+$black-pallete: #1E1E1E;
+
 html,
 body {
-  color: #E2E2E2;
+  color: $white-pallete;
 }
 
 a {
@@ -27,5 +32,7 @@ a:visited {
 }
 
 :root {
-  --mdc-theme-surface: #1E1E1E;
+  --mdc-theme-surface: $black-pallete;
 }
+
+@import './style.scss';

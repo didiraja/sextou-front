@@ -15,12 +15,12 @@
 	--background-without-opacity: rgba(255, 255, 255, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
+	--mdc-theme-on-surface: $white-pallete;
 }
 
 body {
 	min-height: 100vh;
 	margin: 0;
-	// background-image: url('sextou_bg.jpg');
 	background-color: #090d10;
 	color: #E0E1DD;
 }
@@ -104,5 +104,3 @@ button:focus:not(:focus-visible) {
 }
 
 @import './theme/app.scss';
-
-@import './theme/style.scss';

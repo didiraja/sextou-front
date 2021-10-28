@@ -1,3 +1,4 @@
+
 // Only my custom CSS
 	// Reset
 	* {
@@ -50,13 +51,10 @@
 }
 
 body {
-  background-color: #1E1E1E;
+  background-color: $black-pallete;
   background-image: url('sextou_paper.jpg');
 }
 
-// Material UI
-$primary-color: #ff3e00;
-$white-pallete: #E0E1DD;
 
 
 .mdc-text-field {
@@ -94,4 +92,8 @@ $white-pallete: #E0E1DD;
 
 .mdc-menu-surface {
 	background-color: $white-pallete;
+}
+
+.mdc-card, .smui-paper {
+	background-color: #1E1E1E;
 }

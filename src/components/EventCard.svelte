@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   import Button, { Label, Icon } from '@smui/button';
   import Card, {
     Content,
@@ -7,6 +8,8 @@
     Media,
     MediaContent,
   } from '@smui/card';
+
+  const dispatch = createEventDispatcher();
 
   function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
@@ -25,7 +28,7 @@
   export let eventTicket;
 </script>
 
-<div class="event-card mdc-elevation--z10" class:highlight>
+<div class="event-card mdc-elevation--z10" class:highlight on:click="{() => dispatch('click', 'open event modal')}">
   <Card>
     <Content>
       <img class="event-cover img-fluid" src={eventCover} />
