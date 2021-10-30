@@ -1,4 +1,5 @@
 <script lang="ts">
+  import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import Button, { Label } from '@smui/button';
 	import Textfield from '@smui/textfield';
 	import IconText from '@smui/textfield/icon';
