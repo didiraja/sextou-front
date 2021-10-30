@@ -28,7 +28,8 @@
 	<div class="container">
 		<p class="section-title">hype da noite</p>
 	</div>
-	<div class="container flex-highlight">
+	<!-- flex-highlight -->
+	<div class="container ">
 			<EventCard
 				highlight
 				eventTitle="Evento Destaque"
@@ -51,7 +52,8 @@
 		<p class="section-title" style="border-color: #ff3e00">principais eventos</p>
 	</div>
 
-	<div class="container no-padding container-flex">
+	<!-- no-padding container-flex -->
+	<div class="container">
 		{#each Array.from(Array(7).keys()) as evento, index}
 			<EventCard
 				eventTitle={index %2 === 0 ? "Evento Genérico mega power" : "Event Genérico"}
@@ -75,10 +77,13 @@
 		margin: 0 auto;
     display: block;
     padding: 50px 0 100px;
+		width: 260px;
 	}
 
 	#main {
 		width: 100%;
+		// search-block compensation
+		margin-top: 180px;
 	}
 
 	.flex-highlight {

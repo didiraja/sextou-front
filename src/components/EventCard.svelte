@@ -59,9 +59,12 @@
 <style lang="scss">
   .event-card {
     position: relative;
+    width: 100%;
     margin-bottom: 30px;
-    width: 32%;
-    min-height: 530px;
+    
+    // Desktop
+    // width: 32%;
+    // min-height: 530px;
 
     :global(.card-action--no-padding) {
       padding: 0 8px;
@@ -72,7 +75,8 @@
     }
 
     :global(.mdc-card__actions) {
-      min-height: 1px;
+      // Desktop 
+      // min-height: 1px;
     }
 
     :global(.card-action-bottom) {
@@ -87,10 +91,11 @@
 
       --mdc-theme-primary: #ffaa00;
 
-      &:nth-child(2) {
-        margin-left: 23px;
-        margin-right: 23px;
-      }
+      // Desktop
+      // &:nth-child(2) {
+      //   margin-left: 23px;
+      //   margin-right: 23px;
+      // }
     }
 
 		.event-cover {
@@ -113,8 +118,9 @@
 		}
 
     .action-wrapper {
-      position: absolute;
-      bottom: 0;
+      // Desktop
+      // position: absolute;
+      // bottom: 0;
     }
   }
 </style>

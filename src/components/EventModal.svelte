@@ -58,25 +58,28 @@
   $white-pallete: #E0E1DD;
 
   :global(.event-modal) {
-		position: fixed;
-    width: 800px;
-    top: 30px;
-		z-index: 9;
-		// // Elevation 24
-		// box-shadow: 0px 11px 15px -7px rgba($white-pallete, 0.2),
-		// 	0px 24px 38px 3px rgba($white-pallete, 0.12),
-		// 	0px 9px 46px 8px rgba($white-pallete, 0.12) !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    z-index: 9;
+
+    // Desktop
+    // top: 30px;
+		// z-index: 9;
 
 		p {
 			color: $white-pallete;
 		}
 		
 		.event-title {
+      font-size: 2.5em;
 			font-weight: bold;
 		}
 
 		.event-info {
-			margin: 5px 0px 15px;
+      width: 15.6em;
+      margin: 0 auto 1em;
 
 			.event-place {
 				margin: 0 10px;
