@@ -99,23 +99,24 @@
     }
 
 		.event-cover {
-			border-radius: 25px;
+			// border-radius: 25px;
 			display: inline-block;
+      margin-bottom: 0.5em;
 		}
+    
+    .event-date {
+      display: block;
+      color: #E0E1DD;
+      font-size: 1.2em;
+    }
 
 		.event-title {
-			color: #E0E1DD;
-			font-size: 30px;
-			font-weight: 500;
 			display: block;
+			color: #E0E1DD;
+			font-size: 1.9em;
+			font-weight: 500;
 		}
 
-		.event-date {
-			display: block;
-			color: #E0E1DD;
-			font-size: 18px;
-			margin: 10px 0 0;
-		}
 
     .action-wrapper {
       // Desktop

@@ -11,18 +11,13 @@
   <div class="grid-custom--main">
 
     <div class="wrapper">
-      
         <Textfield label="Início" value="" variant="filled" class="mdc-elevation--z1 grid-cell">
           <IconText class="material-icons" slot="leadingIcon">event</IconText>
         </Textfield>
       
-      
-      
         <Textfield label="Fim" value="" variant="filled" class="mdc-elevation--z1 grid-cell">
           <IconText class="material-icons" slot="leadingIcon">event</IconText>
         </Textfield>
-      
-      
       
         <Select label="Região" value="" variant="filled" class="mdc-elevation--z1 grid-cell">
           <IconSelect class="material-icons" slot="leadingIcon">event</IconSelect>
@@ -32,8 +27,6 @@
           <Option value="zo">Zona Oeste</Option>
         </Select>
       
-      
-      
         <Select label="Bairro" value="" variant="filled" class="mdc-elevation--z1 grid-cell">
           <IconSelect class="material-icons" slot="leadingIcon">event</IconSelect>
           <Option value="" />
@@ -42,7 +35,6 @@
           <Option value="iraja">Irajá</Option>
           <Option value="meier">Méier</Option>
         </Select>
-      
     </div>
   </div>
   
@@ -60,10 +52,10 @@
 		width: 100%;
     border-radius: 30px;
     margin: 0 auto;
-		padding: 15px 10px;
+		padding: 1em 0.5em;
     box-sizing: border-box;
 		position: absolute;
-		bottom: -180px;
+		bottom: -12em;
     
     // Desktop
     // border-radius: 45px;
@@ -84,7 +76,7 @@
       }
       
       :global(.grid-cell) {
-        width: 47%;
+        width: 46%;
         margin: 5px;
 
         // desktop

@@ -28,8 +28,8 @@
 	<div class="container">
 		<p class="section-title">hype da noite</p>
 	</div>
-	<!-- flex-highlight -->
-	<div class="container ">
+
+	<div class="container container-card">
 			<EventCard
 				highlight
 				eventTitle="Evento Destaque"
@@ -53,7 +53,7 @@
 	</div>
 
 	<!-- no-padding container-flex -->
-	<div class="container">
+	<div class="container container-card">
 		{#each Array.from(Array(7).keys()) as evento, index}
 			<EventCard
 				eventTitle={index %2 === 0 ? "Evento Genérico mega power" : "Event Genérico"}
@@ -76,36 +76,41 @@
 	.logo {
 		margin: 0 auto;
     display: block;
-    padding: 50px 0 100px;
-		width: 260px;
+    padding: 2em 0 4em;
+		width: 17em;
+
+		// Desktop
+    // padding: 50px 0 100px;
 	}
 
 	#main {
 		width: 100%;
 		// search-block compensation
-		margin-top: 180px;
+		margin-top: 14em;
 	}
+	
+	// container-highlight (?)
+	// Desktop
+	// display: flex;
+	// justify-content: flex-start;
 
-	.flex-highlight {
-		display: flex;
-		justify-content: flex-start;
+	.container-card {
+		padding: 0 0.3em;
+
 	}
 
 	.section-title {
 		color: #E0E1DD;
-		font-size: 60px;
+    font-size: 2em;
     font-weight: bold;
     border-left: 15px solid #ffaa00;
- 		padding-left: 20px;
-		transform: skew(350deg, 0deg);
-    margin-left: 20px;
-	}
+    padding-left: 0.5em;
+    width: 90%;
+    transform: skew(350deg, 0deg);
+    margin-left: 0.7em;
+    margin-bottom: 0.6em;
 
-	.section-bg {
-		width: 300px;
-    height: 20px;
-    background-color: #ffaa00;
-    position: absolute;
-    bottom: 40px;
+		// Desktop
+		// font-size: 60px;
 	}
 </style>
