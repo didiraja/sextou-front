@@ -95,5 +95,9 @@ body {
 }
 
 .mdc-card, .smui-paper {
-	background-color: #1E1E1E;
+	background-color:  $black-pallete;
+}
+
+.mdc-icon-button::before, .mdc-icon-button::after {
+	--mdc-ripple-color: white;
 }
