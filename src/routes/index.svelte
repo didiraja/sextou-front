@@ -8,7 +8,7 @@
 	import EventModal from '../components/EventModal.svelte';
 	import Button, { Label, Icon } from '@smui/button';
 	
-	export let showEvent = true;
+	export let showEvent = false;
 </script>
 
 <svelte:head>
@@ -25,7 +25,11 @@
 </section>
 
 <section id="main">
-	<div class="container" style="display: flex; justify-content: space-evenly;">
+	<div class="container">
+		<p class="section-title">Destaques</p>
+		<hr />
+	</div>
+	<div class="container flex-highlight">
 		
 			<EventCard
 				highlight
@@ -39,6 +43,12 @@
 				eventTitle="Evento Destaque 2 ultra power"
 				eventPlace={['Zona Oeste','Recreio']}
 			/>
+
+			<!-- <EventCard
+				highlight
+				eventTitle="Evento Destaque 2 ultra power"
+				eventPlace={['Zona Oeste','Recreio']}
+			/> -->
 				
 			{#if showEvent}
 				<EventModal on:close="{() => showEvent = false}" />
@@ -73,5 +83,14 @@
 
 	#main {
 		width: 100%;
+	}
+
+	.flex-highlight {
+		display: flex;
+		justify-content: flex-start;
+	}
+
+	.section-title {
+		color: #E0E1DD;
 	}
 </style>

@@ -81,10 +81,16 @@
 
     &.highlight {
       // #996600
-      border: 20px solid rgba(#996600, 0.4);
+      border-top: 10px solid #ffaa00;
+      // border-bottom: 10px solid #ffaa00;
       border-radius: 10px;
 
       --mdc-theme-primary: #ffaa00;
+
+      &:nth-child(2) {
+        margin-left: 23px;
+        margin-right: 23px;
+      }
     }
 
 		.event-cover {
