@@ -124,4 +124,32 @@
       // bottom: 0;
     }
   }
+  
+  @media (min-width: 768px) {
+    .event-card {
+      width: 49%;
+      height: 32em;
+      
+      
+      &.highlight {
+        width: 32%;
+        height: 27em;
+      }
+      
+      .event-title {
+        font-size: 1.6em;
+      }
+
+      .action-wrapper {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        :global(.card-action-bottom .mdc-button) {
+          width: 100%;
+        }
+
+      }
+    }
+  }
 </style>

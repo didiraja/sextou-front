@@ -40,7 +40,7 @@
   
   <div class="grid-custom--side">
     <Button variant="raised" class="btn-search">
-      <Label>Buscar</Label>
+      <Label>Buscar Evento</Label>
     </Button>
   </div>
 </div>
@@ -95,4 +95,18 @@
       }
     }
 	}
+
+  @media (min-width: 768px) {
+
+    .search-block {
+      border-radius: 20px;
+      
+      .grid-custom--main {
+        :global(.grid-cell) {
+          width: 48%;
+        }
+      }
+    }
+
+  }
 </style>

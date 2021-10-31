@@ -42,6 +42,12 @@
 				eventTitle="Evento Destaque 2 ultra power"
 				eventPlace={['Zona Oeste','Recreio']}
 			/>
+
+			<EventCard
+				highlight
+				eventTitle="Evento Destaque 2 ultra power"
+				eventPlace={['Zona Oeste','Recreio']}
+			/>
 				
 			{#if showEvent}
 				<EventModal on:close="{() => showEvent = false}" />
@@ -65,6 +71,8 @@
 
 
 <style lang="scss">
+	// Ipad
+	// @media (min-width: 768px) {
 	#header {
 		background: url('sextou_banner.jpg') no-repeat;
 		background-size: cover;
@@ -112,5 +120,24 @@
 
 		// Desktop
 		// font-size: 60px;
+	}
+
+	@media (min-width: 768px) {
+
+		.logo {
+			width: 35em;
+		}
+
+		.section-title {
+			font-size: 3em;
+		}
+
+		.container-card {
+			display: flex;
+    	justify-content: space-between;
+			flex-wrap: wrap;
+
+			padding: 0 1em;
+		}
 	}
 </style>
