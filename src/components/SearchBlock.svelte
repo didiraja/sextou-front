@@ -97,7 +97,6 @@
 	}
 
   @media (min-width: 768px) {
-
     .search-block {
       border-radius: 20px;
       
@@ -107,6 +106,28 @@
         }
       }
     }
+    
+  }
+  
+  @media (min-width: 1300px) {
+    .search-block {
+      display: flex;
 
+      .grid-custom--main {
+        width: 80%;
+        :global(.grid-cell) {
+            width: 24%;
+          }
+        }
+        
+      .grid-custom--side {
+        width: 20%;
+        
+        .btn-search {
+          width: 100%;
+        }
+      }
+    }
+    
   }
 </style>

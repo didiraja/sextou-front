@@ -152,4 +152,33 @@
       }
     }
   }
+
+  @media (min-width: 1000px) {
+    .event-card {
+      width: 32%;
+      height: 29em;
+      
+      
+      &.highlight {
+        height: 30em;
+      }
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .event-card {
+      height: 31em;
+      
+      
+      &.highlight {
+        height: 32em;
+      }
+    }
+  }
+
+  @media (min-width: 1300px) {
+    .event-card, .event-card.highlight {
+      height: 36em;
+    }
+  }
 </style>

@@ -39,13 +39,13 @@
 			
 			<EventCard
 				highlight
-				eventTitle="Evento Destaque 2 ultra power"
+				eventTitle="Evento Destaque 2 ultra power de duas linhas"
 				eventPlace={['Zona Oeste','Recreio']}
 			/>
 
 			<EventCard
 				highlight
-				eventTitle="Evento Destaque 2 ultra power"
+				eventTitle="Evento Destaque 2 ultra power de duas linhas"
 				eventPlace={['Zona Oeste','Recreio']}
 			/>
 				
@@ -62,7 +62,7 @@
 	<div class="container container-card">
 		{#each Array.from(Array(7).keys()) as evento, index}
 			<EventCard
-				eventTitle={index %2 === 0 ? "Evento Genérico mega power" : "Event Genérico"}
+				eventTitle={index %2 === 0 ? "Evento Genérico mega power de duas linhas" : "Evento Genérico"}
 				eventPlace={['Zona Sul','Copacabana']}
 			/>
 		{/each}
