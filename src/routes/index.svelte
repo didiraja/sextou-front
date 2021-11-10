@@ -71,8 +71,6 @@
 
 
 <style lang="scss">
-	// Ipad
-	// @media (min-width: 768px) {
 	#header {
 		background: url('sextou_banner.jpg') no-repeat;
 		background-size: cover;
@@ -86,9 +84,6 @@
     display: block;
     padding: 2em 0 4em;
 		width: 17em;
-
-		// Desktop
-    // padding: 50px 0 100px;
 	}
 
 	#main {
@@ -96,11 +91,6 @@
 		// search-block compensation
 		margin-top: 14em;
 	}
-	
-	// container-highlight (?)
-	// Desktop
-	// display: flex;
-	// justify-content: flex-start;
 
 	.container-card {
 		padding: 0 0.3em;
@@ -117,13 +107,9 @@
     transform: skew(350deg, 0deg);
     margin-left: 0.7em;
     margin-bottom: 0.6em;
-
-		// Desktop
-		// font-size: 60px;
 	}
 
 	@media (min-width: 768px) {
-
 		.logo {
 			width: 35em;
 		}
@@ -138,6 +124,22 @@
 			flex-wrap: wrap;
 
 			padding: 0 1em;
+		}
+	}
+
+	@media (min-width: 1300px) {
+		.logo {
+			padding: 5em 0 6em;
+			width: 40em;
+		}
+
+		#main {
+			margin-top: 8em;
+		}
+
+		.section-title {
+			margin-left: 0.3em;
+    	margin-bottom: 0em;
 		}
 	}
 </style>

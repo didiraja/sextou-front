@@ -112,9 +112,11 @@
   @media (min-width: 1300px) {
     .search-block {
       display: flex;
+      bottom: -5em;
 
       .grid-custom--main {
         width: 80%;
+
         :global(.grid-cell) {
             width: 24%;
           }
@@ -122,9 +124,10 @@
         
       .grid-custom--side {
         width: 20%;
+        padding-top: 5px;
         
-        .btn-search {
-          width: 100%;
+        :global(.btn-search) {
+          height: 90%;
         }
       }
     }
