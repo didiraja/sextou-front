@@ -18,12 +18,11 @@
 <section id="header">
 	<div class="container no-padding">
 		<img class="logo" src="sextou_kv.png" />
-
+	</div>
+	<div class="container no-padding" style="display: flex; justify-content: center;">
 		<SearchBlock />
 	</div>
-
 </section>
-
 <section id="main">
 	<div class="container">
 		<p class="section-title">hype da noite</p>
@@ -88,8 +87,6 @@
 
 	#main {
 		width: 100%;
-		// search-block compensation
-		margin-top: 14em;
 	}
 
 	.container-card {
@@ -114,6 +111,11 @@
 			width: 35em;
 		}
 
+		#main {
+			max-width: 75em;
+    	margin: 0 auto;
+		}
+
 		.section-title {
 			font-size: 3em;
 		}
@@ -133,9 +135,9 @@
 			width: 40em;
 		}
 
-		#main {
-			margin-top: 8em;
-		}
+		// #main {
+		// 	margin-top: 8em;
+		// }
 
 		.section-title {
 			margin-left: 0.3em;

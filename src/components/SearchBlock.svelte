@@ -111,8 +111,10 @@
   
   @media (min-width: 1300px) {
     .search-block {
+      width: 95%;
       display: flex;
-      bottom: -5em;
+      top: 3em;
+      position: relative;
 
       .grid-custom--main {
         width: 80%;
