@@ -3,12 +3,28 @@
 </script>
 
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import axios from 'axios';
+
 	import SearchBlock from '../components/SearchBlock.svelte';
 	import EventCard from '../components/EventCard.svelte';
 	import EventModal from '../components/EventModal.svelte';
 	import Button, { Label, Icon } from '@smui/button';
 	
 	export let showEvent = false;
+	export let events = [];
+
+	onMount(() => {
+		
+		axios.get('http://localhost:1337/events')
+			.then((response) => {
+				console.log(response.data);
+				
+				events = [...response.data];
+			})
+			.catch((error) => console.log(error));
+
+	});
 </script>
 
 <svelte:head>
@@ -59,10 +75,12 @@
 
 	<!-- no-padding container-flex -->
 	<div class="container container-card">
-		{#each Array.from(Array(7).keys()) as evento, index}
+		{#each events as event}
 			<EventCard
-				eventTitle={index %2 === 0 ? "Evento Genérico mega power de duas linhas" : "Evento Genérico"}
-				eventPlace={['Zona Sul','Copacabana']}
+				eventCover={`http://localhost:1337${event.Cover.url}`}
+				eventTitle={event.Title}
+				eventDate={event.Date}
+				eventPlace={[event.Zone.Title]}
 			/>
 		{/each}
 	</div>

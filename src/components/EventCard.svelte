@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import { onMount, createEventDispatcher } from 'svelte';
+  import { format as formatDate } from 'date-fns';
+  import { ptBR } from 'date-fns/locale';
+
   import Button, { Label, Icon } from '@smui/button';
   import Card, {
     Content,
@@ -19,20 +22,22 @@
   const month = Math.floor(getRandomArbitrary(0,11));
 
   const date = new Date(2021, month, day)
+  
 
   export let highlight = false;
-  let eventCover = 'https://loremflickr.com/420/340';
+  export let eventCover = 'https://loremflickr.com/420/340';
   export let eventTitle = 'BK no Circo Voador';
-  export let eventDate = `${date.getDay()+1} de ${date.toLocaleString('pt-BR', { month: 'long' })}`;
+  export let eventDate = `2022-02-01T23:30:00.000Z`;
   export let eventPlace = ['Centro','Lapa'];
   export let eventTicket;
+
 </script>
 
 <div class="event-card mdc-elevation--z10" class:highlight on:click="{() => dispatch('click', 'open event modal')}">
   <Card>
     <Content>
       <img class="event-cover img-fluid" src={eventCover} />
-      <p class="event-date">{eventDate}</p>
+      <p class="event-date">{formatDate(new Date(eventDate), "iii dd MMMM", { locale: ptBR })}</p>
       <p class="event-title mdc-typography--headline4">{eventTitle}</p>
     </Content>
 
@@ -40,9 +45,6 @@
       <Actions class="card-action--no-padding">
         <Button>
           <Label>{eventPlace[0]}</Label>
-        </Button>
-        <Button>
-          <Label>{eventPlace[1]}</Label>
         </Button>
       </Actions>
       
@@ -108,6 +110,7 @@
       display: block;
       color: #E0E1DD;
       font-size: 1.2em;
+      text-transform: capitalize;
     }
 
 		.event-title {
