@@ -4,25 +4,22 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import axios from 'axios';
-
+	
 	import SearchBlock from '../components/SearchBlock.svelte';
 	import EventCard from '../components/EventCard.svelte';
 	import EventModal from '../components/EventModal.svelte';
+	import { getEvents } from '../lib/requests.js';
+
 	import Button, { Label, Icon } from '@smui/button';
 	
 	export let showEvent = false;
 	export let events = [];
-
+	
 	onMount(() => {
 		
-		axios.get('http://localhost:1337/events')
-			.then((response) => {
-				console.log(response.data);
-				
-				events = [...response.data];
-			})
-			.catch((error) => console.log(error));
+		getEvents()
+		.then((res) => events = res.data)
+		.catch((e) => console.log(e));
 
 	});
 </script>
@@ -40,7 +37,7 @@
 	</div>
 </section>
 <section id="main">
-	<div class="container">
+	<!-- <div class="container">
 		<p class="section-title">hype da noite</p>
 	</div>
 
@@ -67,22 +64,24 @@
 			{#if showEvent}
 				<EventModal on:close="{() => showEvent = false}" />
 			{/if}
-		</div>
+		</div> -->
 
 	<div class="container">
 		<p class="section-title" style="border-color: #ff3e00">principais eventos</p>
-	</div>
+	</div> 
 
 	<!-- no-padding container-flex -->
 	<div class="container container-card">
-		{#each events as event}
-			<EventCard
-				eventCover={`http://localhost:1337${event.Cover.url}`}
-				eventTitle={event.Title}
-				eventDate={event.Date}
-				eventPlace={[event.Zone.Title]}
-			/>
-		{/each}
+		{#if events}
+			{#each events as event}
+				<EventCard
+					eventCover={`http://localhost:1337${event.Cover.url}`}
+					eventTitle={event.Title}
+					eventDate={event.Date}
+					eventPlace={[event.Zone.Title]}
+				/>
+			{/each}
+		{/if}
 	</div>
 </section>
 
