@@ -23,15 +23,19 @@
 
 	function openEventDetail(eventObj) {
 
+		const obj = {
+			eventCover: `http://localhost:1337${eventObj.Cover.url}`,
+			eventTitle: eventObj.Title,
+			eventDate: eventObj.Date,
+			eventZone: eventObj.Zone,
+			eventNeighborhood: eventObj.Neighborhood,
+			eventDescription: eventObj.Description,
+		}
+
+		// console.log(obj);
+
 		EventDetailsStore.update(() => {
-			return {
-				eventCover: `http://localhost:1337${eventObj.Cover.url}`,
-				eventTitle: eventObj.Title,
-				eventDate: eventObj.Date,
-				eventZone: eventObj.Zone,
-				eventNeighborhood: eventObj.Neighborhood,
-				eventDescription: eventObj.Description,
-			}		
+			return obj;	
 		});
 
 		toggleModal();

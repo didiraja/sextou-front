@@ -40,9 +40,9 @@
         </Button>
       </div>
 
-      <img class="event-cover img-fluid" src={$EventDetailsStore.eventCover} />
+      <img class="event-cover" src={$EventDetailsStore.eventCover} />
       
-      <Content>{$EventDetailsStore.eventDescription}</Content>
+      <Content ><span class="event-description">{$EventDetailsStore.eventDescription}</span></Content>
     {:else}
       <p class="event-title mdc-typography--headline3">Ocorreu algum erro, tente novamente.</p>
     {/if}
@@ -62,44 +62,101 @@
   }
 
   :global(.event-modal) {
-    width: 90%;
     margin: 10px;
-
-    // Desktop
-    // top: 30px;
-		// z-index: 9;
 
 		p {
 			color: $white-pallete;
 		}
+
+    .close {
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
 		
 		.event-title {
-      font-size: 2.5em;
+      font-size: 1.8em;;
+      line-height: 1.3em;
+
 			font-weight: bold;
       text-align: center;
 		}
 
 		.event-info {
-      width: 15.6em;
-      margin: 0 auto 1em;
-
-			.event-place {
-				margin: 0 10px;
-			}
-
-			.event-date {
-				display: inline-block;
-			}
+      display: flex;
+      flex-direction: column;
+      margin: 1em auto;
+      text-align: center;
 		}
+
+    .event-place {
+      margin: .5em 0;
+    }
+
+    .event-date {
+      display: inline-block;
+      text-transform: capitalize;
+    }
 
 		.event-cover {
-			margin-bottom: 10px;
+      width: 800px;
+      border-radius: 5px;
+      margin: 0 auto 1.5em;
+      display: block;
 		}
 
-		.close {
-			position: absolute;
-			right: 0;
-			top: 0;
-		}
+    .event-description {
+      font-size: 1.5em;
+    }
+
+    @media (min-width: 768px) {
+
+      .close {
+        right: 1.5em;
+        top: 0.5em;
+      }
+
+      .event-info {
+        width: 40em;
+        flex-flow: initial;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .event-place {
+        margin: 0;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      
+
+      .event-title {
+        font-size: 3.5em;
+      }
+      .event-info {
+        width: 80%;
+        margin: 0.3em auto 2em;
+      }
+
+      .event-date {
+        font-size: 24px;
+      }
+    }
+
+    @media (min-width: 1300px) {
+      width: 75vw;
+      margin: 2em auto 0;
+      padding: 1.5em 2em;
+    }
+
+    @media (min-width: 1400px) {
+      
+
+    }
+    
+    @media (min-width: 1600px) {
+
+    }
 	}
 </style>

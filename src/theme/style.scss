@@ -101,6 +101,17 @@ body {
 	--mdc-ripple-color: white;
 }
 
+.mdc-button {
+	padding: 1.5em 1.5em;
+}
+
 .mdc-button__label {
 	font-size: 1.5em;
+}
+
+@media (min-width: 768px) {
+
+	span.close button.mdc-icon-button {
+		font-size: 40px;
+	}
 }
