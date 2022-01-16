@@ -1,8 +1,4 @@
 <script lang="ts">
-  import { onMount, createEventDispatcher } from 'svelte';
-  import { format as formatDate } from 'date-fns';
-  import { ptBR } from 'date-fns/locale';
-
   import Button, { Label, Icon } from '@smui/button';
   import Card, {
     Content,
@@ -12,17 +8,7 @@
     MediaContent,
   } from '@smui/card';
 
-  const dispatch = createEventDispatcher();
-
-  function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  };
-
-  const day = Math.floor(getRandomArbitrary(1,31));
-  const month = Math.floor(getRandomArbitrary(0,11));
-
-  const date = new Date(2021, month, day)
-  
+  import { formatDate } from '../lib/format.js';
 
   export let highlight = false;
   export let eventCover = 'https://loremflickr.com/420/340';
@@ -33,20 +19,24 @@
 
 </script>
 
-<div class="event-card mdc-elevation--z10" class:highlight on:click="{() => dispatch('click', 'open event modal')}">
+<div class="event-card mdc-elevation--z10" class:highlight on:click>
   <Card>
     <Content>
       <img class="event-cover img-fluid" src={eventCover} />
-      <p class="event-date">{formatDate(new Date(eventDate), "iii dd MMMM", { locale: ptBR })}</p>
+      <p class="event-date">{formatDate(eventDate)}</p>
       <p class="event-title mdc-typography--headline4">{eventTitle}</p>
     </Content>
 
-    <div class="action-wrapper">  
-      <Actions class="card-action--no-padding">
-        <Button>
-          <Label>{eventPlace[0]}</Label>
-        </Button>
-      </Actions>
+    <div class="action-wrapper">
+      {#if eventPlace}
+        <Actions class="card-action--no-padding">
+          {#each eventPlace as place}  
+            <Button>
+              <Label>{place.Title}</Label>
+            </Button>
+          {/each}
+        </Actions>
+      {/if}
       
       <Actions class="card-action-bottom">
         <Button variant="unelevated">

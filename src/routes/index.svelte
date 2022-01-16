@@ -12,8 +12,13 @@
 
 	import Button, { Label, Icon } from '@smui/button';
 	
-	export let showEvent = false;
+	let showModal = false;
 	export let events = [];
+
+	function toggleModal() {
+
+		return showModal = !showModal;
+	};
 	
 	onMount(() => {
 		
@@ -37,6 +42,9 @@
 	</div>
 </section>
 <section id="main">
+
+	<!-- ### HIGHLIGHT BLOCK ### -->
+
 	<!-- <div class="container">
 		<p class="section-title">hype da noite</p>
 	</div>
@@ -46,7 +54,6 @@
 				highlight
 				eventTitle="Evento Destaque"
 				eventPlace={['Zona Oeste','Barra']}
-				on:click={() => showEvent = !showEvent}
 			/>
 			
 			<EventCard
@@ -60,11 +67,9 @@
 				eventTitle="Evento Destaque 2 ultra power de duas linhas"
 				eventPlace={['Zona Oeste','Recreio']}
 			/>
-				
-			{#if showEvent}
-				<EventModal on:close="{() => showEvent = false}" />
-			{/if}
 		</div> -->
+
+		<!-- ### HIGHLIGHT BLOCK ### -->
 
 	<div class="container">
 		<p class="section-title" style="border-color: #ff3e00">principais eventos</p>
@@ -72,17 +77,24 @@
 
 	<!-- no-padding container-flex -->
 	<div class="container container-card">
-		{#if events}
-			{#each events as event}
+		{#each events as event, index}
 				<EventCard
 					eventCover={`http://localhost:1337${event.Cover.url}`}
 					eventTitle={event.Title}
 					eventDate={event.Date}
-					eventPlace={[event.Zone.Title]}
+					eventPlace={[event.Zone]}
+					on:click={() => toggleModal(event)}
 				/>
-			{/each}
-		{/if}
+		{:else}
+			<!-- nothing to show -->
+		{/each}
 	</div>
+
+	{#if showModal}
+		<div class="container">
+			<EventModal on:close="{() => toggleModal()}" />
+		</div>
+	{/if}
 </section>
 
 

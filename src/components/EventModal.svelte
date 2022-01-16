@@ -1,61 +1,59 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  
   import IconButton from '@smui/icon-button';
 	import Paper, { Title, Subtitle, Content } from '@smui/paper';
   import Button, { Label, Icon } from '@smui/button';
+  import { EventDetailsStore } from '../store.js';
 
   const dispatch = createEventDispatcher();
 
-  function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  };
-
-  const day = Math.floor(getRandomArbitrary(1,31));
-  const month = Math.floor(getRandomArbitrary(0,11));
-
-  const date = new Date(2021, month, day)
-
-  let eventCover = 'https://loremflickr.com/800/400';
-  export let eventTitle = 'BK no Circo Voador';
-  export let eventDate = `${date.getDay()+1} de ${date.toLocaleString('pt-BR', { month: 'long' })}`;
-  export let eventPlace = ['Centro','Lapa'];
-  export let eventTicket = `https://ticket.com/${getRandomArbitrary(1565,6858)}/`;
-  export let eventDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pellentesque ex volutpat dapibus interdum. Suspendisse quis mollis ligula, in egestas urna. Sed tincidunt scelerisque metus et varius. Donec congue felis id magna molestie dapibus. Nam laoreet, metus in consequat sagittis, neque ex lobortis tellus, sed posuere lectus metus et nibh.';
 </script>
 
-<Paper class="event-modal" elevation={10}>
-  <span class="close">
-    <IconButton class="material-icons" on:click="{() => dispatch('close', 'close modal event')}">close</IconButton>
-  </span>
-
-  <p class="event-title mdc-typography--headline3">{eventTitle}</p>
-
-  <div class="event-info">
-    <p class="event-date">{eventDate}</p>
-    
-    <span class="event-place">
-      <Button>
-        <Label>{eventPlace[0]}</Label>
-      </Button>
-
-      <Button>
-        <Label>{eventPlace[1]}</Label>
-      </Button>
+<div class="backdrop" on:click|self={() => dispatch('close', 'close modal')}>
+  <Paper class="event-modal" elevation={10}>
+    <span class="close">
+      <IconButton class="material-icons" on:click="{() => dispatch('close', 'close modal')}">close</IconButton>
     </span>
-    
-    <Button variant="unelevated">
-      <Icon class="material-icons">bookmark_border</Icon>
-      <Label>Comprar Ingressos</Label>
-    </Button>
-  </div>
 
-  <img class="event-cover img-fluid" src={eventCover} />
+    <p class="event-title mdc-typography--headline3">{$EventDetailsStore.eventTitle}</p>
 
-  <Content>{eventDescription}</Content>
-</Paper>
+    <div class="event-info">
+      <p class="event-date">{$EventDetailsStore.eventDate}</p>
+      
+      <span class="event-place">
+        <Button>
+          <Label>{$EventDetailsStore.eventPlace[0]}</Label>
+        </Button>
+
+        <Button>
+          <Label>{$EventDetailsStore.eventPlace[1]}</Label>
+        </Button>
+      </span>
+      
+      <Button variant="unelevated">
+        <Icon class="material-icons">bookmark_border</Icon>
+        <Label>Comprar Ingressos</Label>
+      </Button>
+    </div>
+
+    <img class="event-cover img-fluid" src={$EventDetailsStore.eventCover} />
+
+    <Content>{$EventDetailsStore.eventDescription}</Content>
+  </Paper>
+</div>
 
 <style lang="scss">
   $white-pallete: #E0E1DD;
+
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(black, 0.8);
+  }
 
   :global(.event-modal) {
     position: fixed;
