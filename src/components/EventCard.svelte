@@ -14,7 +14,8 @@
   export let eventCover = 'https://loremflickr.com/420/340';
   export let eventTitle = 'BK no Circo Voador';
   export let eventDate = `2022-02-01T23:30:00.000Z`;
-  export let eventPlace = ['Centro','Lapa'];
+  export let eventZone = 'Lapa';
+  export let eventNeighborhood = 'Centro';
   export let eventTicket;
 
 </script>
@@ -28,15 +29,14 @@
     </Content>
 
     <div class="action-wrapper">
-      {#if eventPlace}
-        <Actions class="card-action--no-padding">
-          {#each eventPlace as place}  
-            <Button>
-              <Label>{place.Title}</Label>
-            </Button>
-          {/each}
-        </Actions>
-      {/if}
+      <Actions class="card-action--no-padding">
+        <Button>
+          <Label>{eventZone.Name}</Label>
+        </Button>
+        <Button>
+          <Label>{eventNeighborhood.Name}</Label>
+        </Button>
+      </Actions>
       
       <Actions class="card-action-bottom">
         <Button variant="unelevated">

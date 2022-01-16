@@ -5,9 +5,11 @@
 	import Paper, { Title, Subtitle, Content } from '@smui/paper';
   import Button, { Label, Icon } from '@smui/button';
   import { EventDetailsStore } from '../store.js';
+  import { formatDate } from '../lib/format.js';
 
   const dispatch = createEventDispatcher();
 
+  // $ : hasDetailToShow = $EventDetailsStore.length >= 1;
 </script>
 
 <div class="backdrop" on:click|self={() => dispatch('close', 'close modal')}>
@@ -16,30 +18,34 @@
       <IconButton class="material-icons" on:click="{() => dispatch('close', 'close modal')}">close</IconButton>
     </span>
 
-    <p class="event-title mdc-typography--headline3">{$EventDetailsStore.eventTitle}</p>
+    {#if $EventDetailsStore}
+      <p class="event-title mdc-typography--headline3">{$EventDetailsStore.eventTitle}</p>
 
-    <div class="event-info">
-      <p class="event-date">{$EventDetailsStore.eventDate}</p>
-      
-      <span class="event-place">
-        <Button>
-          <Label>{$EventDetailsStore.eventPlace[0]}</Label>
+      <div class="event-info">
+        <p class="event-date">{formatDate($EventDetailsStore.eventDate)}</p>
+        
+        <span class="event-place">
+          <Button>
+            <Label>{$EventDetailsStore.eventZone.Name}</Label>
+          </Button>
+          
+          <Button>
+            <Label>{$EventDetailsStore.eventNeighborhood.Name}</Label>
+          </Button>
+        </span>
+        
+        <Button variant="unelevated">
+          <Icon class="material-icons">bookmark_border</Icon>
+          <Label>Comprar Ingressos</Label>
         </Button>
+      </div>
 
-        <Button>
-          <Label>{$EventDetailsStore.eventPlace[1]}</Label>
-        </Button>
-      </span>
+      <img class="event-cover img-fluid" src={$EventDetailsStore.eventCover} />
       
-      <Button variant="unelevated">
-        <Icon class="material-icons">bookmark_border</Icon>
-        <Label>Comprar Ingressos</Label>
-      </Button>
-    </div>
-
-    <img class="event-cover img-fluid" src={$EventDetailsStore.eventCover} />
-
-    <Content>{$EventDetailsStore.eventDescription}</Content>
+      <Content>{$EventDetailsStore.eventDescription}</Content>
+    {:else}
+      <p class="event-title mdc-typography--headline3">Ocorreu algum erro, tente novamente.</p>
+    {/if}
   </Paper>
 </div>
 
@@ -56,11 +62,8 @@
   }
 
   :global(.event-modal) {
-    position: fixed;
-    top: 0;
-    left: 0;
+    width: 90%;
     margin: 10px;
-    z-index: 9;
 
     // Desktop
     // top: 30px;
@@ -73,6 +76,7 @@
 		.event-title {
       font-size: 2.5em;
 			font-weight: bold;
+      text-align: center;
 		}
 
 		.event-info {

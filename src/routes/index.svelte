@@ -5,6 +5,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	
+	import { EventDetailsStore } from '../store.js';
 	import SearchBlock from '../components/SearchBlock.svelte';
 	import EventCard from '../components/EventCard.svelte';
 	import EventModal from '../components/EventModal.svelte';
@@ -19,11 +20,29 @@
 
 		return showModal = !showModal;
 	};
+
+	function openEventDetail(eventObj) {
+
+		EventDetailsStore.update(() => {
+			return {
+				eventCover: `http://localhost:1337${eventObj.Cover.url}`,
+				eventTitle: eventObj.Title,
+				eventDate: eventObj.Date,
+				eventZone: eventObj.Zone,
+				eventNeighborhood: eventObj.Neighborhood,
+				eventDescription: eventObj.Description,
+			}		
+		});
+
+		toggleModal();
+	}
 	
 	onMount(() => {
 		
 		getEvents()
-		.then((res) => events = res.data)
+		.then((res) => {
+			events = res.data;
+		})
 		.catch((e) => console.log(e));
 
 	});
@@ -77,23 +96,22 @@
 
 	<!-- no-padding container-flex -->
 	<div class="container container-card">
-		{#each events as event, index}
-				<EventCard
-					eventCover={`http://localhost:1337${event.Cover.url}`}
-					eventTitle={event.Title}
-					eventDate={event.Date}
-					eventPlace={[event.Zone]}
-					on:click={() => toggleModal(event)}
-				/>
+		{#each events as event (event.id)}
+			<EventCard
+				eventCover={`http://localhost:1337${event.Cover.url}`}
+				eventTitle={event.Title}
+				eventDate={event.Date}
+				eventZone={event.Zone}
+				eventNeighborhood={event.Neighborhood}
+				on:click={() => openEventDetail(event)}
+			/>
 		{:else}
 			<!-- nothing to show -->
 		{/each}
 	</div>
 
 	{#if showModal}
-		<div class="container">
-			<EventModal on:close="{() => toggleModal()}" />
-		</div>
+		<EventModal on:close="{() => toggleModal()}" />
 	{/if}
 </section>
 
