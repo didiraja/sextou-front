@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	.layout {
+		@apply max-w-[1000px] mx-auto;
+	}
+
+	.btn {
+		@apply text-white cursor-pointer text-sm text-center font-semibold bg-blue-600 rounded-2xl px-5 py-2.5;
+	}
+}
+
+body {
+	@apply bg-zinc-900;
+	background-image: url('./sextou_bg.jpg'); 
+}
+
+#top {
+	background: url('./sextou_banner.jpg') center;
+	background-size: cover;
+}
+
