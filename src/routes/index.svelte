@@ -55,30 +55,33 @@
 	<Footer />
 
 	{#if showModal}
-		<div class="modal divide-y-[10px] divide-transparent">
+		<div class="modal">
 
-			<p class="modal-title font-black text-5xl">Festa no lugar X</p>
+			<p class="modal-title">Festa no lugar X</p>
 
-			<div class="divide-x-[10px] divide-transparent">
-					<p class="event-date inline-block">Sexta, 5 de Novembro</p>
+			<img class="w-full" src=http://placeimg.com/600/200/tech />
+
+			<div class="modal-info">
+					<p class="event-date">Sexta, 5 de Novembro</p>
 					
-					<div class="modal-tags button-pills inline-block">
+					<div class="modal-tags button-pills">
 						<button>Centro</button>
 						<button>Lapa</button>
 					</div>
 					
-					<div class="card-bottoms inline-block">
+					<div class="card-bottoms">
 						<button class="bg-amber-500 font-black text-white uppercase tracking-widest p-2 rounded-md material-shadow">Comprar Ingressos</button>
 					</div>
-			</div>
+			</div>      
 
-
-      <img class="w-full my-5" src=http://placeimg.com/600/200/tech />
-
-			<div class="modal-content text-3xl leading-normal">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque mauris sapien, vitae pellentesque est feugiat at. Mauris magna odio, molestie et efficitur in, malesuada eget turpis. Etiam ornare purus vel commodo suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer pellentesque purus euismod purus ultricies, quis pellentesque felis sagittis. Cras vulputate lacinia nulla sed fringilla. Fusce varius turpis non neque pellentesque volutpat eget blandit tellus. Pellentesque sit amet eros non elit rhoncus molestie. Aenean velit sapien, placerat ut tempus non, vehicula non sapien. Nullam iaculis elit orci, quis volutpat enim tempus id.
-
-				<!-- Nam sodales pellentesque scelerisque. Proin feugiat faucibus ipsum vitae viverra. Aliquam viverra quis massa a rhoncus. Praesent id consequat libero. Integer placerat, nisi ac rutrum aliquet, eros tortor pretium augue, a lacinia ligula turpis sed tellus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In orci eros, faucibus vitae magna rutrum, scelerisque luctus mauris. Sed dignissim purus sapien, a ullamcorper quam dapibus sit amet. Mauris placerat placerat quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque bibendum vestibulum mi, eget tempus urna tincidunt quis. Vestibulum dictum vestibulum arcu sed rhoncus. Curabitur a elit ante. Quisque ullamcorper sem id posuere pulvinar. Nunc gravida elit in suscipit eleifend. -->
+			<div class="modal-content text-xl leading-normal">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque mauris sapien, vitae pellentesque est feugiat at. Mauris magna odio, molestie et efficitur in, malesuada eget turpis. Etiam ornare purus vel commodo suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer pellentesque purus euismod purus ultricies, quis pellentesque felis sagittis. Cras vulputate lacinia nulla sed fringilla. Fusce varius turpis non neque pellentesque volutpat eget blandit tellus. Pellentesque sit amet eros non elit rhoncus molestie. Aenean velit sapien, placerat ut tempus non, vehicula non sapien. Nullam iaculis elit orci, quis volutpat enim tempus id.
+				</p>
+				
+				<p>
+					Nam sodales pellentesque scelerisque. Proin feugiat faucibus ipsum vitae viverra. Aliquam viverra quis massa a rhoncus. Praesent id consequat libero. Integer placerat, nisi ac rutrum aliquet, eros tortor pretium augue, a lacinia ligula turpis sed tellus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In orci eros, faucibus vitae magna rutrum, scelerisque luctus mauris. Sed dignissim purus sapien, a ullamcorper quam dapibus sit amet. Mauris placerat placerat quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque bibendum vestibulum mi, eget tempus urna tincidunt quis. Vestibulum dictum vestibulum arcu sed rhoncus. Curabitur a elit ante. Quisque ullamcorper sem id posuere pulvinar. 
+				</p>
 			</div>
 		</div>
 	{/if}
@@ -86,7 +89,7 @@
 
 <style lang="postcss">
 	.section-title {
-		@apply border-l-8 font-black text-white text-5xl ml-8 mb-8 pl-5 -skew-x-10;
+		@apply ml-8 mb-8 pl-5 -skew-x-10 border-l-8 font-black text-white text-5xl;
 	}
 
 	.card-grid {
@@ -94,6 +97,26 @@
 	}
 
 	.modal {
-		@apply fixed top-5 left-56 backdrop-blur-md bg-black/70 shadow-lg shadow-black/80 rounded-md w-2/3 px-5 py-5 text-white;
+		@apply fixed w-2/3 max-h-full overflow-y-auto px-5 py-5 top-5 left-56
+		bg-zinc-900 rounded-md shadow-lg shadow-black/80
+		divide-y-[20px] divide-transparent
+		text-white;
+
+		/**** Hide Scrollbar ****/
+		-ms-overflow-style: none;  /* IE and Edge */
+		scrollbar-width: none;  /* Firefox */
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		/**** end ****/
+	}
+
+	.modal-title {
+		@apply font-black leading-snug text-5xl text-center;
+	}
+
+	.modal-info {
+		@apply divide-x-[10px] divide-transparent flex justify-center	items-center;
 	}
 </style>
