@@ -1,39 +1,31 @@
-<div class="card">
+<div class="card" on:click>
   <img class="card-cover" src="http://placeimg.com/320/240/tech" alt="">
   <div class="card-date">Sexta, 5 de Novembro</div>
   <div class="card-title">Festa no lugar X</div>
-  <div class="card-tags">
+  <div class="button-pills">
     <button>Centro</button>
     <button>Lapa</button>
   </div>
-  <div class="card-bottom">
+  <div class="button-default">
     <button>Comprar Ingressos</button>
   </div>
 </div>
 
-<style type="text/postcss">
+<style lang="postcss">
   .card {
     @apply backdrop-blur-md bg-white/5 rounded-lg p-5 divide-y-[15px] divide-transparent;
-  }
-  
-  .card-cover {
-    @apply w-full rounded-lg;
-  }
 
-  .card-date {
-    @apply text-xl text-white;
-  }
+    .card-cover {
+      @apply w-full rounded-lg;
+    }
 
-  .card-title {
-    @apply text-3xl font-bold text-white;
-  }
+    .card-date {
+      @apply text-xl text-white;
+    }
 
-  .card-tags button {
-    @apply hover:bg-amber-900/30 rounded-md px-3 py-1 font-bold text-amber-500 uppercase;
-  }
-
-  .card-bottom button {
-    @apply bg-amber-500	text-white p-3 rounded-md w-full;
+    .card-title {
+      @apply text-3xl font-bold text-white;
+    }
   }
 </style>
 
