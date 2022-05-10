@@ -3,6 +3,7 @@
 	import Header from '../lib/components/layout/Header.svelte';
 	import Card from '../lib/components/Card.svelte';
 	import SearchBlock from '../lib/components/SearchBlock.svelte';
+	import Icon from '@iconify/svelte';
 
 	let showModal = true;
 	function toggleModal() {
@@ -56,6 +57,9 @@
 
 	{#if showModal}
 		<div class="modal">
+			<div class="nav-wrapper">
+				<Icon class="ml-auto text-5xl" icon="material-symbols:close" />
+			</div>
 
 			<p class="modal-title">Festa no lugar X</p>
 
@@ -70,7 +74,10 @@
 					</div>
 					
 					<div class="card-bottoms">
-						<button class="bg-amber-500 font-black text-white uppercase tracking-widest p-2 rounded-md material-shadow">Comprar Ingressos</button>
+						<button class="bg-amber-500 font-black text-white uppercase tracking-widest p-2 rounded-md material-shadow
+							flex justify-center	items-center">
+							<Icon class="mr-1 text-2xl" icon="material-symbols:airplane-ticket-rounded" /> Comprar Ingressos
+						</button>
 					</div>
 			</div>      
 
@@ -98,8 +105,8 @@
 
 	.modal {
 		@apply fixed w-2/3 max-h-full overflow-y-auto px-5 py-5 top-5 left-56
-		bg-zinc-900 rounded-md shadow-lg shadow-black/80
-		divide-y-[20px] divide-transparent
+		bg-zinc-900 rounded-md shadow-lg shadow-black/80 
+		/* divide-y-[20px] divide-transparent */
 		text-white;
 
 		/**** Hide Scrollbar ****/

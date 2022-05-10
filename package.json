@@ -20,6 +20,7 @@
 	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "^16.2.1",
+		"@iconify/svelte": "^2.2.1",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^5.20.0",
