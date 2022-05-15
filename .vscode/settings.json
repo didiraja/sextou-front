@@ -1,0 +1,11 @@
+{
+  "emmet.includeLanguages": {
+    "svelte": "html",
+  },
+  "files.associations": {
+    "*.html": "svelte",
+  },
+  "[svelte]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+}
