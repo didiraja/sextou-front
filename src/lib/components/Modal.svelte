@@ -21,14 +21,14 @@
 		<img class="modal-cover" src="http://placeimg.com/600/200/tech" />
 
 		<div class="modal-info">
-			<p class="event-date">Sexta, 5 de Novembro</p>
+			<p class="date">Sexta, 5 de Novembro</p>
 
-			<div class="modal-tags">
+			<div class="tags">
 				<Pill>Centro</Pill>
 				<Pill>Lapa</Pill>
 			</div>
 
-			<div class="card-bottoms">
+			<div class="cta">
 				<Button>
 					<Icon class="mr-1 text-2xl" icon="material-symbols:airplane-ticket-rounded" /> Comprar Ingressos
 				</Button>
@@ -62,9 +62,8 @@
 	}
 
 	.modal {
-		@apply fixed w-2/3 max-h-full overflow-y-auto px-5 py-5 top-5 left-56
+		@apply fixed w-[95%] xl:w-2/3 max-h-full overflow-y-auto top-16 left-3 xl:left-56 p-3 xl:px-5 xl:py-5
 		bg-zinc-900 rounded-md shadow-lg shadow-black/80 
-		/* divide-y-[20px] divide-transparent */
 		text-white;
 
 		/**** Hide Scrollbar ****/
@@ -77,7 +76,7 @@
 		/**** end ****/
 
 		.modal-title {
-			@apply font-black text-5xl text-center mb-5;
+			@apply mb-5 font-black text-4xl xl:text-5xl text-center;
 		}
 
 		.modal-cover {
@@ -85,7 +84,15 @@
 		}
 
 		.modal-info {
-			@apply mb-5 divide-x-[10px] divide-transparent flex justify-center items-center;
+			@apply mb-5 divide-y-[10px] xl:divide-x-[10px] divide-transparent xl:flex xl:justify-center xl:items-center;
+
+			.date {
+				@apply text-center text-3xl;
+			}
+
+			.tags {
+				@apply text-center text-xl;
+			}
 		}
 	}
 </style>

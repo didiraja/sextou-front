@@ -4,10 +4,11 @@
 	export let highlight = false;
 	export let bg = 'bg-orange-600';
 	export let color = 'text-white';
+	export let style = '';
 </script>
 
 <div class="button-default" class:highlight>
-	<button class="flex justify-center items-center {bg} {color}">
+	<button class="flex justify-center items-center {bg} {color} {style}">
 		<slot />
 	</button>
 </div>
@@ -18,7 +19,7 @@
 	}
 	.button-default {
 		button {
-			@apply font-black uppercase tracking-widest p-3 rounded-md w-full button-shadow;
+			@apply w-full rounded-md button-shadow p-3 xl:p-3 font-black uppercase tracking-widest;
 		}
 
 		&.highlight button {

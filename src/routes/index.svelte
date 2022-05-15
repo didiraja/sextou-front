@@ -18,16 +18,16 @@
 	<title>Sextou - Beta!</title>
 </svelte:head>
 
-<div class="min-h-screen">
+<div class="min-h-screen max-w-full">
 	<Header />
 
 	<section id="top" class="grid grid-cols-1">
-		<img class="mx-auto mt-32" src="/sextou_kv.png" alt="Sextou!" />
+		<img class="mx-auto mt-16 px-3 xl:mt-32" src="/sextou_kv.png" alt="Sextou!" />
 
 		<SearchBlock />
 	</section>
 
-	<main class="px-4 py-8">
+	<main class="px-4 py-4 xl:py-8">
 		<div class="highlight-events mt-6 mb-16">
 			<Title text="hype da noite" highlight />
 
@@ -62,6 +62,6 @@
 
 <style lang="postcss">
 	.card-grid {
-		@apply grid grid-cols-3 gap-6;
+		@apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6;
 	}
 </style>
