@@ -14,27 +14,10 @@
 
 body {
 	@apply bg-zinc-900;
-	background-image: url('./sextou_bg.jpg'); 
+	background-image: url('./sextou_bg.jpg');
 }
 
 #top {
 	background: url('./sextou_banner.jpg') center;
 	background-size: cover;
 }
-
-.button-pills {
-	button {
-    @apply hover:bg-amber-900/30 rounded-md px-3 py-1 font-bold text-amber-500 uppercase;
-  }
-}
-
-.button-default {
-	button {
-    @apply bg-amber-500	font-black text-white uppercase tracking-widest p-3 rounded-md w-full material-shadow;
-  }
-}
-
-.material-shadow {
-	@apply shadow-sm shadow-black;
-}
-
