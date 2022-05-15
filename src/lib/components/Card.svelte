@@ -1,3 +1,7 @@
+<script lang="ts">
+	import Icon from '@iconify/svelte';
+</script>
+
 <div class="card" on:click>
   <img class="card-cover" src="http://placeimg.com/320/240/tech" alt="">
   <div class="card-date">Sexta, 5 de Novembro</div>
@@ -7,7 +11,9 @@
     <button>Lapa</button>
   </div>
   <div class="button-default">
-    <button>Comprar Ingressos</button>
+    <button class="flex justify-center items-center">
+      <Icon class="mr-1 text-2xl" icon="material-symbols:airplane-ticket-rounded" /> Comprar Ingressos
+    </button>
   </div>
 </div>
 
