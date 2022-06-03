@@ -8,72 +8,79 @@
 </script>
 
 <div class="backdrop" on:click|self={() => dispatch('close', 'close modal')}>
-	<div class="modal">
-		<div
-			class="nav-wrapper rounded-full w-12 ml-auto hover:bg-slate-400/10 hover:cursor-pointer"
-			on:click={() => dispatch('close', 'close modal')}
-		>
-			<Icon class="text-5xl" icon="material-symbols:close" />
-		</div>
-
-		<p class="modal-title">Festa no lugar X</p>
-
-		<img class="modal-cover" src="http://placeimg.com/600/200/tech" />
-
-		<div class="modal-info">
-			<p class="date">Sexta, 5 de Novembro</p>
-
-			<div class="tags">
-				<Pill>Centro</Pill>
-				<Pill>Lapa</Pill>
+	<div class="modal-wrapper">
+		<div class="modal">
+			<div class="nav-wrapper" on:click={() => dispatch('close', 'close modal')}>
+				<Icon class="text-5xl" icon="material-symbols:close" />
 			</div>
 
-			<div class="cta">
-				<Button>
-					<Icon class="mr-1 text-2xl" icon="material-symbols:airplane-ticket-rounded" /> Comprar Ingressos
-				</Button>
+			<p class="modal-title">Festa no lugar X</p>
+
+			<img class="modal-cover" src="http://placeimg.com/600/200/tech" />
+
+			<div class="modal-info">
+				<p class="date">Sexta, 5 de Novembro</p>
+
+				<div class="tags">
+					<Pill>Centro</Pill>
+					<Pill>Lapa</Pill>
+				</div>
+
+				<div class="cta">
+					<Button>
+						<Icon class="mr-1 text-2xl" icon="material-symbols:airplane-ticket-rounded" /> Comprar Ingressos
+					</Button>
+				</div>
 			</div>
-		</div>
 
-		<div class="modal-content text-xl leading-normal">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque mauris sapien,
-				vitae pellentesque est feugiat at. Mauris magna odio, molestie et efficitur in, malesuada
-				eget turpis. Etiam ornare purus vel commodo suscipit. Pellentesque habitant morbi tristique
-				senectus et netus et malesuada fames ac turpis egestas.
-			</p>
+			<div class="modal-content text-xl leading-normal">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque mauris sapien,
+					vitae pellentesque est feugiat at. Mauris magna odio, molestie et efficitur in, malesuada
+					eget turpis. Etiam ornare purus vel commodo suscipit. Pellentesque habitant morbi
+					tristique senectus et netus et malesuada fames ac turpis egestas.
+				</p>
 
-			<br />
+				<br />
 
-			<p>
-				Integer pellentesque purus euismod purus ultricies, quis pellentesque felis sagittis. Cras
-				vulputate lacinia nulla sed fringilla. Fusce varius turpis non neque pellentesque volutpat
-				eget blandit tellus. Pellentesque sit amet eros non elit rhoncus molestie. Aenean velit
-				sapien, placerat ut tempus non, vehicula non sapien. Nullam iaculis elit orci, quis volutpat
-				enim tempus id.
-			</p>
+				<p>
+					Integer pellentesque purus euismod purus ultricies, quis pellentesque felis sagittis. Cras
+					vulputate lacinia nulla sed fringilla. Fusce varius turpis non neque pellentesque volutpat
+					eget blandit tellus. Pellentesque sit amet eros non elit rhoncus molestie. Aenean velit
+					sapien, placerat ut tempus non, vehicula non sapien. Nullam iaculis elit orci, quis
+					volutpat enim tempus id.
+				</p>
+			</div>
 		</div>
 	</div>
 </div>
 
 <style lang="postcss">
-	.backdrop {
-		@apply fixed top-0 left-0 w-full h-full bg-black/80;
-	}
-
-	.modal {
-		@apply fixed w-[95%] xl:w-2/3 max-h-full overflow-y-auto top-16 left-3 xl:left-56 p-3 xl:px-5 xl:py-5
-		bg-zinc-900 rounded-md shadow-lg shadow-black/80 
-		text-white;
-
-		/**** Hide Scrollbar ****/
+	.hide-scrollbar {
 		-ms-overflow-style: none; /* IE and Edge */
 		scrollbar-width: none; /* Firefox */
 
 		&::-webkit-scrollbar {
 			display: none;
 		}
-		/**** end ****/
+	}
+
+	.backdrop {
+		@apply fixed top-0 left-0 w-full h-full bg-black/80;
+	}
+
+	.modal-wrapper {
+		@apply w-11/12 xl:max-w-[75vw] max-h-[95vh] hide-scrollbar overflow-auto mx-auto relative top-1/2 -translate-y-2/4 rounded-lg;
+	}
+
+	.modal {
+		@apply max-h-full hide-scrollbar top-16 p-5 pt-3 xl:p-8
+		bg-zinc-900 rounded-md shadow-lg shadow-black/80 
+		text-white;
+
+		.nav-wrapper {
+			@apply rounded-full w-12 ml-auto mb-5 hover:bg-slate-400/10 hover:cursor-pointer;
+		}
 
 		.modal-title {
 			@apply mb-5 font-black text-4xl xl:text-5xl text-center;

@@ -19,7 +19,7 @@
 </svelte:head>
 
 <div class="min-h-screen max-w-full">
-	<Header />
+	<!-- <Header /> -->
 
 	<section id="top" class="grid grid-cols-1">
 		<img class="mx-auto mt-16 px-3 xl:mt-32" src="/sextou_kv.png" alt="Sextou!" />
