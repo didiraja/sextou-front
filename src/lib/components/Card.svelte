@@ -6,16 +6,18 @@
 	export let highlight = false;
 </script>
 
-<div class="card" on:click>
-	<img class="card-cover" src="http://placeimg.com/320/240/tech" alt="" />
-	<div class="card-date">Sexta, 5 de Novembro</div>
-	<div class="card-title">Festa no lugar X</div>
+<div class="card">
+	<span class="hover:cursor-pointer" on:click={() => fire('click')}>
+		<img class="card-cover" src="http://placeimg.com/320/240/tech" alt="" />
+		<div class="card-date">Sexta, 5 de Novembro</div>
+		<div class="card-title">Festa no lugar X</div>
+	</span>
 	<div>
-		<Pill {highlight}>Centro</Pill>
-		<Pill {highlight}>Lapa</Pill>
+		<Pill {highlight} on:click={() => alert('new tab | api request by neighborhood')}>Centro</Pill>
+		<Pill {highlight} on:click={() => alert('new tab | api request by neighborhood')}>Lapa</Pill>
 	</div>
 	<div>
-		<Button {highlight}>
+		<Button {highlight} on:click={() => alert('new tab | pagina de ingresso')}>
 			<Icon class="mr-1 text-2xl" icon="material-symbols:airplane-ticket-rounded" /> Comprar Ingressos
 		</Button>
 	</div>
