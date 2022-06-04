@@ -15,7 +15,7 @@
 
 <style lang="postcss">
 	.button-shadow {
-		@apply shadow-sm shadow-black;
+		/* @apply shadow-sm shadow-black; */
 	}
 	.button-default {
 		button {

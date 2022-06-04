@@ -20,7 +20,7 @@
 	.search-block {
 		@apply grid grid-cols-3 xl:grid-cols-6 gap-2
       backdrop-blur-md bg-white/10 w-10/12
-      mx-auto my-3 px-2 py-2 xl:mt-16 xl:mb-8 xl:px-5 xl:py-4 rounded-xl;
+      mx-auto my-5 p-3 xl:mt-16 xl:mb-8 xl:px-5 xl:py-4 rounded-xl;
 	}
 
 	.input-styling {

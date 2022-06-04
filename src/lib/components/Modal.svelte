@@ -7,7 +7,7 @@
 	const dispatch = createEventDispatcher();
 </script>
 
-<div class="backdrop" on:click|self={() => dispatch('close', 'close modal')}>
+<div class="backdrop z-20" on:click|self={() => dispatch('close', 'close modal')}>
 	<div class="modal-wrapper">
 		<div class="modal">
 			<div class="nav-wrapper" on:click={() => dispatch('close', 'close modal')}>
@@ -27,13 +27,13 @@
 				</div>
 
 				<div class="cta">
-					<Button>
-						<Icon class="mr-1 text-2xl" icon="material-symbols:airplane-ticket-rounded" /> Comprar Ingressos
+					<Button style="md:text-xl">
+						<Icon class="mr-1 text-3xl" icon="material-symbols:airplane-ticket-rounded" /> Comprar Ingressos
 					</Button>
 				</div>
 			</div>
 
-			<div class="modal-content text-xl leading-normal">
+			<div class="modal-content">
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque mauris sapien,
 					vitae pellentesque est feugiat at. Mauris magna odio, molestie et efficitur in, malesuada
@@ -70,11 +70,13 @@
 	}
 
 	.modal-wrapper {
-		@apply w-11/12 xl:max-w-[75vw] max-h-[95vh] hide-scrollbar overflow-auto mx-auto relative top-1/2 -translate-y-2/4 rounded-lg;
+		@apply w-11/12 xl:max-w-[75vw] max-h-[95vh] mx-auto md:mt-8
+			relative top-1/2 md:top-0 -translate-y-2/4 md:translate-y-0
+			hide-scrollbar overflow-auto rounded-lg;
 	}
 
 	.modal {
-		@apply max-h-full hide-scrollbar top-16 p-5 pt-3 xl:p-8
+		@apply max-h-full hide-scrollbar top-16 px-5 pt-3 md:p-8 xl:p-8
 		bg-zinc-900 rounded-md shadow-lg shadow-black/80 
 		text-white;
 
@@ -83,7 +85,7 @@
 		}
 
 		.modal-title {
-			@apply mb-5 font-black text-4xl xl:text-5xl text-center;
+			@apply mb-5 font-black text-4xl md:text-5xl xl:text-5xl text-center;
 		}
 
 		.modal-cover {
@@ -94,12 +96,16 @@
 			@apply mb-5 divide-y-[10px] xl:divide-x-[10px] divide-transparent xl:flex xl:justify-center xl:items-center;
 
 			.date {
-				@apply text-center text-3xl;
+				@apply text-center text-2xl md:text-3xl;
 			}
 
 			.tags {
-				@apply text-center text-xl;
+				@apply text-center text-lg md:text-xl;
 			}
+		}
+
+		.modal-content {
+			@apply text-xl leading-normal md:leading-relaxed tracking-wide;
 		}
 	}
 </style>

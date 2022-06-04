@@ -1,4 +1,4 @@
-<header class="fixed z-10 w-full backdrop-blur-md drop-shadow-md bg-white/5 p-3">
+<header class="fixed z-10 w-full backdrop-blur-sm drop-shadow-md bg-white/5 p-3">
 	<div class="header-menu w-60 ml-auto">
 		<ul class="text-white text-xl flex justify-between">
 			<li class="inline-block">
