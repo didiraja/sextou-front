@@ -1,17 +1,37 @@
-<header class="fixed z-10 w-full backdrop-blur-sm drop-shadow-md bg-white/5 p-3">
-	<div class="header-menu w-60 ml-auto">
-		<ul class="text-white text-xl flex justify-between">
-			<li class="inline-block">
-				<a class="underline hover:no-underline underline-offset-1 cursor-pointer" href="#">Home</a>
+<header class="header-wrapper">
+	<div class="header-menu">
+		<ul class="header-menu--common">
+			<li>
+				<a class="menu-item" href="#">Home</a>
 			</li>
-			<li class="inline-block">
-				<a class="underline hover:no-underline underline-offset-1 cursor-pointer" href="#"
-					>Ingressos</a
-				>
+			<li>
+				<a class="menu-item" href="#">Ingressos</a>
 			</li>
-			<li class="inline-block">
-				<a class="underline hover:no-underline underline-offset-1 cursor-pointer" href="#">Sobre</a>
+			<li>
+				<a class="menu-item" href="#">Sobre</a>
 			</li>
 		</ul>
 	</div>
 </header>
+
+<style lang="postcss">
+	.header-wrapper {
+		@apply fixed z-10 w-full backdrop-blur-sm drop-shadow-md bg-white/5 p-3;
+	}
+
+	.header-menu {
+		@apply w-60 ml-auto;
+
+		&--common {
+			@apply text-white text-xl flex justify-between;
+
+			li {
+				@apply inline-block;
+			}
+
+			.menu-item {
+				@apply underline hover:no-underline underline-offset-1 cursor-pointer;
+			}
+		}
+	}
+</style>

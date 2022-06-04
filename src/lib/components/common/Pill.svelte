@@ -5,7 +5,7 @@
 	export let color = 'text-orange-500';
 </script>
 
-<button class="button-pill {bg} {color}" class:highlight><slot /></button>
+<button class="button-pill {bg} {color}" class:highlight on:click><slot /></button>
 
 <style lang="postcss">
 	.button-pill {
