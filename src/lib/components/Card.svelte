@@ -16,13 +16,13 @@
 </script>
 
 <div class="card">
-	<span class="hover:cursor-pointer" on:click={() => fire('click')}>
+	<span class="hover:cursor-pointer" on:click>
 		<img class="card-cover" src={Cover} alt="" />
 		<div class="card-date">{event.Date}</div>
 		<div class="card-title">{event.Title}</div>
 	</span>
 
-	<div>
+	<div class="pills-wrapper">
 		{#if Zone}
 			<Pill {highlight} on:click={() => alert('new tab | api request by neighborhood')}>
 				{Zone}
@@ -51,18 +51,22 @@
 
 <style lang="postcss">
 	.card {
-		@apply backdrop-blur-md bg-white/5 rounded-lg p-5 divide-y-[15px] divide-transparent;
+		@apply backdrop-blur-md bg-white/5 rounded-lg p-5;
 
 		.card-cover {
-			@apply w-full rounded-lg;
+			@apply w-full rounded-lg mb-3;
 		}
 
 		.card-date {
-			@apply text-xl text-white;
+			@apply text-xl text-white mb-1;
 		}
 
 		.card-title {
 			@apply text-3xl font-bold text-white;
+		}
+
+		.pills-wrapper {
+			@apply my-3;
 		}
 	}
 </style>

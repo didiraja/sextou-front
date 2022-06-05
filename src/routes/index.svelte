@@ -6,9 +6,10 @@
 	import SearchBlock from '../lib/components/SearchBlock.svelte';
 	import Title from '../lib/components/common/Title.svelte';
 	import Modal from '../lib/components/Modal.svelte';
-	import { GetEvents } from '../lib/requests/index.js';
+	import { GetEvents, GetHighlights } from '../lib/requests/index.js';
 
 	let events = [];
+	let highlights = [];
 	let showModal = false;
 
 	function toggleModal() {
@@ -17,9 +18,17 @@
 
 	GetEvents()
 		.then((response) => {
-			console.log(response.data);
+			// console.log(response.data);
 
 			return (events = response.data);
+		})
+		.catch((e) => console.log(e));
+
+	GetHighlights()
+		.then((response) => {
+			// console.log(response.data);
+
+			return (highlights = response.data);
 		})
 		.catch((e) => console.log(e));
 </script>
@@ -38,17 +47,22 @@
 	</section>
 
 	<main class="main-wrapper">
-		<!-- <div class="highlight-events">
+		<div class="highlight-events">
 			<Title text="hype da noite" highlight />
 
 			<div class="card-grid">
-				<Card highlight on:click={() => toggleModal()} />
-
-				<Card highlight on:click={() => toggleModal()} />
-
-				<Card highlight on:click={() => toggleModal()} />
+				{#each highlights as event}
+					<Card
+						{event}
+						highlight
+						Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
+						Zone={event.Zone.Title}
+						Neighborhood={event.Neighborhood.Title}
+						on:click={() => toggleModal()}
+					/>
+				{/each}
 			</div>
-		</div> -->
+		</div>
 
 		<div class="main-events">
 			<Title text="principais eventos" />
