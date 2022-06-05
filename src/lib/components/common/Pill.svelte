@@ -1,6 +1,5 @@
 <script lang="ts">
 	export let highlight = false;
-	export let label = 'Lorem';
 	export let bg = 'hover:bg-orange-600/10';
 	export let color = 'text-orange-500';
 </script>
