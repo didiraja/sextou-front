@@ -8,12 +8,11 @@ const basicQuery = {
     _limit: 9,
     _publicationState:'live',
     Date_gte: (new Date().toISOString()),
-    Highlight: false
 };
 
 export const GetEvents = () => {
 
-  const querySearch = qs.stringify({...basicQuery});
+  const querySearch = qs.stringify({...basicQuery, Highlight: false});
 
   return axios.get(`${apiBaseUrl}/events?${querySearch}`);
 };
@@ -24,3 +23,18 @@ export const GetHighlights = () => {
 
   return axios.get(`${apiBaseUrl}/events?${querySearch}`);
 };
+
+export const SearchEvent = (params) => {
+
+  const querySearch = qs.stringify({
+    ...basicQuery,
+    Date_gte: (new Date(params.startDate).toISOString()),
+    Date_lte: (new Date(params.endDate).toISOString()),
+    Zone_contains: params.zoneSelected,
+    Neighborhood_contains: params.neighborhoodSelected,
+    Music_contains: params.musicSelected,
+  });
+
+  return axios.get(`${apiBaseUrl}/events?${querySearch}`);
+};
+

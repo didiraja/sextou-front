@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import Button from './common/Button.svelte';
+	import { SearchEvent } from '../requests/index.js';
 
 	export let startDate = '';
 	export let endDate = '';
@@ -10,21 +11,11 @@
 </script>
 
 <div class="search-block material-shadow">
-	<input
-		class="input-styling"
-		type="date"
-		bind:value={startDate}
-		on:change={() => console.log(startDate)}
-	/>
+	<input class="input-styling" type="date" bind:value={startDate} />
 
-	<input
-		class="input-styling"
-		type="date"
-		bind:value={endDate}
-		on:change={() => console.log(endDate)}
-	/>
+	<input class="input-styling" type="date" bind:value={endDate} />
 
-	<select id="zone" class="input-styling">
+	<select id="zone" class="input-styling" bind:value={zoneSelected}>
 		<option value="">Todos as regiões</option>
 		<option>Zona Norte</option>
 		<option>Zona Sul</option>
@@ -33,7 +24,7 @@
 		<option>Baixada</option>
 	</select>
 
-	<select id="neighborhood" class="input-styling">
+	<select id="neighborhood" class="input-styling" bind:value={neighborhoodSelected}>
 		<option value="">Todos os bairros</option>
 		<option>Irajá</option>
 		<option>Méier</option>
@@ -44,7 +35,7 @@
 		<option>Barra</option>
 	</select>
 
-	<select id="music" class="input-styling">
+	<select id="music" class="input-styling" bind:value={musicSelected}>
 		<option value="">Todos os sons</option>
 		<option>Rock</option>
 		<option>Hip-hop</option>
@@ -53,7 +44,11 @@
 	</select>
 
 	<div class="col-span-full md:col-auto">
-		<Button style="!rounded-none p-2 md:text-sm xl:text-xs">
+		<Button
+			style="!rounded-none p-2 md:text-sm xl:text-xs"
+			on:click={() =>
+				SearchEvent({ startDate, endDate, zoneSelected, neighborhoodSelected, musicSelected })}
+		>
 			<Icon class="mr-1 text-2xl" icon="material-symbols:search-rounded" /> Buscar Evento
 		</Button>
 	</div>
