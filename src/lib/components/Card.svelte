@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
+	import { readableDate } from '../utils.js';
 	import Pill from './common/Pill.svelte';
 	import Button from './common/Button.svelte';
 
@@ -18,7 +19,7 @@
 <div class="card">
 	<span class="hover:cursor-pointer" on:click>
 		<img class="card-cover" src={Cover} alt="" />
-		<div class="card-date">{event.Date}</div>
+		<div class="card-date">{readableDate(event.Date)}</div>
 		<div class="card-title">{event.Title}</div>
 	</span>
 
@@ -54,7 +55,7 @@
 		@apply backdrop-blur-md bg-white/5 rounded-lg p-5;
 
 		.card-cover {
-			@apply w-full rounded-lg mb-3;
+			@apply w-full h-60 object-cover rounded-lg mb-3;
 		}
 
 		.card-date {

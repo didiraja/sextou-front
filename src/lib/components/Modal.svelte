@@ -1,10 +1,31 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import Icon from '@iconify/svelte';
+	import { readableDate } from '../utils.js';
 	import Pill from './common/Pill.svelte';
 	import Button from './common/Button.svelte';
 
 	const dispatch = createEventDispatcher();
+
+	export let eventData = {
+		Title: 'Chá da Sonza no Vivo Rio',
+		Date: '2022-06-11T22:00:00.000Z',
+		Description: 'Digite aqui a descrição do seu evento. Aceita Rich Text.',
+		Ticket: 'Link de compra de ingressos do seu evento',
+		Zone: {
+			Title: 'Centro'
+		},
+		Neighborhood: {
+			Name: 'Lapa'
+		},
+		Cover: {
+			formats: {
+				small: {
+					url: '/uploads/small_269764360_274422204569033_7496288547142186306_n_fbcd239024.jpg'
+				}
+			}
+		}
+	};
 </script>
 
 <div class="backdrop z-20" on:click|self={() => dispatch('close', 'close modal')}>
@@ -14,16 +35,16 @@
 				<Icon class="text-5xl" icon="material-symbols:close" />
 			</div>
 
-			<p class="modal-title">Festa no lugar X</p>
+			<p class="modal-title">{eventData.Title}</p>
 
-			<img class="modal-cover" src="http://placeimg.com/600/200/tech" />
+			<img class="modal-cover" src={`http://localhost:1337${eventData.Cover.formats.small.url}`} />
 
 			<div class="modal-info">
-				<p class="date">Sexta, 5 de Novembro</p>
+				<p class="date">{readableDate(eventData.Date)}</p>
 
 				<div class="tags">
-					<Pill>Centro</Pill>
-					<Pill>Lapa</Pill>
+					<Pill>{eventData.Zone.Title}</Pill>
+					<Pill>{eventData.Neighborhood.Name}</Pill>
 				</div>
 
 				<div class="cta">
@@ -35,20 +56,7 @@
 
 			<div class="modal-content">
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque mauris sapien,
-					vitae pellentesque est feugiat at. Mauris magna odio, molestie et efficitur in, malesuada
-					eget turpis. Etiam ornare purus vel commodo suscipit. Pellentesque habitant morbi
-					tristique senectus et netus et malesuada fames ac turpis egestas.
-				</p>
-
-				<br />
-
-				<p>
-					Integer pellentesque purus euismod purus ultricies, quis pellentesque felis sagittis. Cras
-					vulputate lacinia nulla sed fringilla. Fusce varius turpis non neque pellentesque volutpat
-					eget blandit tellus. Pellentesque sit amet eros non elit rhoncus molestie. Aenean velit
-					sapien, placerat ut tempus non, vehicula non sapien. Nullam iaculis elit orci, quis
-					volutpat enim tempus id.
+					{eventData.Description}
 				</p>
 			</div>
 		</div>

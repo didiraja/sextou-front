@@ -11,8 +11,11 @@
 	let events = [];
 	let highlights = [];
 	let showModal = false;
+	let modalObject = {};
 
-	function toggleModal() {
+	function toggleModal(eventSelected) {
+		modalObject = eventSelected;
+
 		return (showModal = !showModal);
 	}
 
@@ -58,7 +61,7 @@
 						Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
 						Zone={event.Zone.Title}
 						Neighborhood={event.Neighborhood.Title}
-						on:click={() => toggleModal()}
+						on:click={() => toggleModal(event)}
 					/>
 				{/each}
 			</div>
@@ -74,7 +77,7 @@
 						Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
 						Zone={event.Zone.Title}
 						Neighborhood={event.Neighborhood.Title}
-						on:click={() => toggleModal()}
+						on:click={() => toggleModal(event)}
 					/>
 				{/each}
 			</div>
@@ -84,7 +87,7 @@
 	<Footer />
 
 	{#if showModal}
-		<Modal on:close={() => toggleModal()} />
+		<Modal eventData={modalObject} on:close={() => toggleModal()} />
 	{/if}
 </div>
 

@@ -25,6 +25,7 @@
 	/>
 
 	<select id="zone" class="input-styling">
+		<option value="">Todos as regiões</option>
 		<option>Zona Norte</option>
 		<option>Zona Sul</option>
 		<option>Zona Centro</option>
@@ -33,6 +34,7 @@
 	</select>
 
 	<select id="neighborhood" class="input-styling">
+		<option value="">Todos os bairros</option>
 		<option>Irajá</option>
 		<option>Méier</option>
 		<option>Copacabana</option>
@@ -43,6 +45,7 @@
 	</select>
 
 	<select id="music" class="input-styling">
+		<option value="">Todos os sons</option>
 		<option>Rock</option>
 		<option>Hip-hop</option>
 		<option>Funk</option>
