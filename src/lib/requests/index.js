@@ -30,9 +30,9 @@ export const SearchEvent = (params) => {
     ...basicQuery,
     Date_gte: (new Date(params.startDate).toISOString()),
     Date_lte: (new Date(params.endDate).toISOString()),
-    Zone_contains: params.zoneSelected,
-    Neighborhood_contains: params.neighborhoodSelected,
-    Music_contains: params.musicSelected,
+    ...(params.zoneSelected && { Zone: params.zoneSelected }),
+    ...(params.neighborhoodSelected && { Neighborhood: params.neighborhoodSelected }),
+    // Music: params.musicSelected,
   });
 
   return axios.get(`${apiBaseUrl}/events?${querySearch}`);

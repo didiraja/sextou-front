@@ -1,13 +1,24 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import Button from './common/Button.svelte';
+	import { Zones, Neighborhoods } from '../consts.js';
 	import { SearchEvent } from '../requests/index.js';
 
 	export let startDate = '';
 	export let endDate = '';
-	export let zoneSelected = '';
-	export let neighborhoodSelected = '';
+	export let zoneSelected = null;
+	export let neighborhoodSelected = null;
 	export let musicSelected = '';
+
+	function searchEvent(searchObj) {
+		return SearchEvent(searchObj)
+			.then((response) => {
+				console.log(response.data);
+
+				// return (events = response.data);
+			})
+			.catch((e) => console.log(e));
+	}
 </script>
 
 <div class="search-block material-shadow">
@@ -16,23 +27,17 @@
 	<input class="input-styling" type="date" bind:value={endDate} />
 
 	<select id="zone" class="input-styling" bind:value={zoneSelected}>
-		<option value="">Todos as regiões</option>
-		<option>Zona Norte</option>
-		<option>Zona Sul</option>
-		<option>Zona Centro</option>
-		<option>Zona Oeste</option>
-		<option>Baixada</option>
+		<option value={null}>Todos as regiões</option>
+		{#each Zones as zone}
+			<option value={zone.id}>{zone.name}</option>
+		{/each}
 	</select>
 
 	<select id="neighborhood" class="input-styling" bind:value={neighborhoodSelected}>
-		<option value="">Todos os bairros</option>
-		<option>Irajá</option>
-		<option>Méier</option>
-		<option>Copacabana</option>
-		<option>Botafogo</option>
-		<option>Lapa</option>
-		<option>Duque de Caxias</option>
-		<option>Barra</option>
+		<option value={null}>Todos os bairros</option>
+		{#each Neighborhoods as neighborhood}
+			<option value={neighborhood.id}>{neighborhood.name}</option>
+		{/each}
 	</select>
 
 	<select id="music" class="input-styling" bind:value={musicSelected}>
@@ -47,7 +52,7 @@
 		<Button
 			style="!rounded-none p-2 md:text-sm xl:text-xs"
 			on:click={() =>
-				SearchEvent({ startDate, endDate, zoneSelected, neighborhoodSelected, musicSelected })}
+				searchEvent({ startDate, endDate, zoneSelected, neighborhoodSelected, musicSelected })}
 		>
 			<Icon class="mr-1 text-2xl" icon="material-symbols:search-rounded" /> Buscar Evento
 		</Button>
