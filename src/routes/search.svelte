@@ -1,4 +1,5 @@
 <script lang="ts">
+	// import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
 	import PageContainer from '../components/templates/PageContainer.svelte';
 	import MainContainer from '../components/templates/MainContainer.svelte';
@@ -8,7 +9,8 @@
 	import Title from '../components/atoms/Title.svelte';
 	import { searchResults } from '../store.js';
 
-	$: events = get(searchResults);
+	$: searchObject = $searchResults;
+	$: events = searchObject.result;
 </script>
 
 <svelte:head>
@@ -19,7 +21,7 @@
 	<TopBlock />
 
 	<MainContainer>
-		<Title text="Eventos no Rio de Janeiro para sua busca" />
+		<Title text={`Eventos de ${searchObject.query.musicSelected} no Rio de Janeiro`} />
 
 		<CardGrid>
 			{#each events as event}
@@ -36,5 +38,3 @@
 		</CardGrid>
 	</MainContainer>
 </PageContainer>
-
-<style></style>

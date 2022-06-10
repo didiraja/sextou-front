@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	// import { get } from 'svelte/store';
 	import Icon from '@iconify/svelte';
 	import Button from '../atoms/Button.svelte';
 	import { Zones, Neighborhoods } from '../../lib/consts.js';
@@ -7,16 +8,19 @@
 	import { searchResults } from '../../store.js';
 
 	// TO DO: default date - whole month or weekend
-	export let startDate = '2022-09-01T00:00:00.000Z';
-	export let endDate = '2022-09-30T00:00:00.000Z';
+	export let startDate = '2022-09-01';
+	export let endDate = '2022-09-30';
 	export let zoneSelected = null;
 	export let neighborhoodSelected = null;
-	export let musicSelected = '';
+	export let musicSelected = null;
 
 	function searchEvent(searchQuery) {
 		return SearchEvent(searchQuery)
 			.then((response) => {
-				searchResults.set(response.data);
+				searchResults.set({
+					query: searchQuery,
+					result: response.data
+				});
 
 				return goto('/search');
 			})
@@ -44,7 +48,7 @@
 	</select>
 
 	<select id="music" class="input-styling" bind:value={musicSelected}>
-		<option value="">Todos os sons</option>
+		<option value={null}>Todos os sons</option>
 		<option>Rock</option>
 		<option>Hip-hop</option>
 		<option>Funk</option>
