@@ -2,14 +2,10 @@
 	import Icon from '@iconify/svelte';
 	import TopBlock from '../components/organisms/TopBlock.svelte';
 	import MainCards from '../components/organisms/MainCards.svelte';
-	import Footer from '../components/layout/Footer.svelte';
-	import Modal from '../components/Modal.svelte';
-	import { GetEvents, GetHighlights } from '../lib/requests/index.js';
-	import { eventDetails } from '../store.js';
-
-	let events = [];
-	let highlights = [];
+	import Footer from '../components/molecules/Footer.svelte';
+	import Modal from '../components/molecules/Modal.svelte';
 	let showModal = false;
+	import { eventDetails } from '../store.js';
 
 	function toggleModal(eventSelected) {
 		// sends data to eventDetails store
@@ -17,22 +13,6 @@
 
 		return (showModal = !showModal);
 	}
-
-	GetEvents()
-		.then((response) => {
-			// console.log(response.data);
-
-			return (events = response.data);
-		})
-		.catch((e) => console.log(e));
-
-	GetHighlights()
-		.then((response) => {
-			// console.log(response.data);
-
-			return (highlights = response.data);
-		})
-		.catch((e) => console.log(e));
 </script>
 
 <svelte:head>

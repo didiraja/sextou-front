@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import Icon from '@iconify/svelte';
-	import { readableDate } from '../utils.js';
-	import Pill from './atoms/Pill.svelte';
-	import Button from './atoms/Button.svelte';
+	import { readableDate } from '../../lib/utils.js';
+	import Pill from '../atoms/Pill.svelte';
+	import Button from '../atoms/Button.svelte';
 	import { eventDetails } from '../../store.js';
 
 	const dispatch = createEventDispatcher();

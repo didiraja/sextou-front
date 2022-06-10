@@ -2,6 +2,27 @@
 	import Title from '../atoms/Title.svelte';
 	import Card from '../molecules/Card.svelte';
 
+	import { GetEvents, GetHighlights } from '../../lib/requests/index.js';
+
+	let events = [];
+	let highlights = [];
+
+	GetEvents()
+		.then((response) => {
+			// console.log(response.data);
+
+			return (events = response.data);
+		})
+		.catch((e) => console.log(e));
+
+	GetHighlights()
+		.then((response) => {
+			// console.log(response.data);
+
+			return (highlights = response.data);
+		})
+		.catch((e) => console.log(e));
+
 	// TODO: create dispatch for Card click
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DefaultMetaTags from './DefaultMetaTags.svelte';
+	import DefaultMetaTags from '../molecules/DefaultMetaTags.svelte';
 </script>
 
 <DefaultMetaTags />
