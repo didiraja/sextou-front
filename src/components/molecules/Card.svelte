@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { readableDate } from '../utils.js';
-	import Pill from './common/Pill.svelte';
-	import Button from './common/Button.svelte';
+	import Pill from './atoms/Pill.svelte';
+	import Button from './atoms/Button.svelte';
 
 	export let highlight = false;
 	export let Cover = 'http://placeimg.com/320/240/tech';

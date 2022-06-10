@@ -2,30 +2,11 @@
 	import { createEventDispatcher } from 'svelte';
 	import Icon from '@iconify/svelte';
 	import { readableDate } from '../utils.js';
-	import Pill from './common/Pill.svelte';
-	import Button from './common/Button.svelte';
+	import Pill from './atoms/Pill.svelte';
+	import Button from './atoms/Button.svelte';
+	import { eventDetails } from '../../store.js';
 
 	const dispatch = createEventDispatcher();
-
-	export let eventData = {
-		Title: 'Chá da Sonza no Vivo Rio',
-		Date: '2022-06-11T22:00:00.000Z',
-		Description: 'Digite aqui a descrição do seu evento. Aceita Rich Text.',
-		Ticket: 'Link de compra de ingressos do seu evento',
-		Zone: {
-			Title: 'Centro'
-		},
-		Neighborhood: {
-			Name: 'Lapa'
-		},
-		Cover: {
-			formats: {
-				small: {
-					url: '/uploads/small_269764360_274422204569033_7496288547142186306_n_fbcd239024.jpg'
-				}
-			}
-		}
-	};
 </script>
 
 <div class="backdrop z-20" on:click|self={() => dispatch('close', 'close modal')}>
@@ -35,16 +16,19 @@
 				<Icon class="text-5xl" icon="material-symbols:close" />
 			</div>
 
-			<p class="modal-title">{eventData.Title}</p>
+			<p class="modal-title">{$eventDetails.Title}</p>
 
-			<img class="modal-cover" src={`http://localhost:1337${eventData.Cover.formats.small.url}`} />
+			<img
+				class="modal-cover"
+				src={`http://localhost:1337${$eventDetails.Cover.formats.small.url}`}
+			/>
 
 			<div class="modal-info">
-				<p class="date">{readableDate(eventData.Date)}</p>
+				<p class="date">{readableDate($eventDetails.Date)}</p>
 
 				<div class="tags">
-					<Pill>{eventData.Zone.Title}</Pill>
-					<Pill>{eventData.Neighborhood.Name}</Pill>
+					<Pill>{$eventDetails.Zone.Title}</Pill>
+					<Pill>{$eventDetails.Neighborhood.Name}</Pill>
 				</div>
 
 				<div class="cta">
@@ -56,7 +40,7 @@
 
 			<div class="modal-content">
 				<p>
-					{eventData.Description}
+					{$eventDetails.Description}
 				</p>
 			</div>
 		</div>

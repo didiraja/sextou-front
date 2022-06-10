@@ -1,9 +1,10 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import Button from './common/Button.svelte';
+	import Button from './atoms/Button.svelte';
 	import { Zones, Neighborhoods } from '../consts.js';
 	import { SearchEvent } from '../requests/index.js';
 
+	// TO DO: default date - whole month or weekend
 	export let startDate = '';
 	export let endDate = '';
 	export let zoneSelected = null;

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Layout from '$lib/components/layout/index.svelte';
+	import Layout from '../components/templates/index.svelte';
 	import '@fontsource/plus-jakarta-sans/latin.css';
 
-	import '$lib/styles/app.css';
+	import '../lib/styles/app.css';
 </script>
 
 <Layout>
