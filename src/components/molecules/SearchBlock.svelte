@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	// import { get } from 'svelte/store';
 	import Icon from '@iconify/svelte';
+	import { format } from 'date-fns';
 	import Button from '../atoms/Button.svelte';
 	import { Zones, Neighborhoods } from '../../lib/consts.js';
 	import { SearchEvent } from '../../lib/requests/index.js';
 	import { searchResults } from '../../store.js';
+	import { getWeekendDates } from '../../lib/utils.js';
 
 	// TO DO: default date - whole month or weekend
-	export let startDate = '2022-09-01';
-	export let endDate = '2022-09-30';
+	export let startDate = format(getWeekendDates().weekendStart, 'yyyy-MM-dd');
+	export let endDate = format(getWeekendDates().weekendEnd, 'yyyy-MM-dd');
 	export let zoneSelected = null;
 	export let neighborhoodSelected = null;
 	export let musicSelected = null;
