@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import Title from '../atoms/Title.svelte';
+	import CardGrid from '../templates/CardGrid.svelte';
 	import Card from '../molecules/Card.svelte';
+	import Title from '../atoms/Title.svelte';
 
 	import { GetEvents, GetHighlights } from '../../lib/requests/index.js';
 
@@ -30,7 +31,7 @@
 <div class="highlight-events">
 	<Title text="hype da noite" highlight />
 
-	<div class="card-grid">
+	<CardGrid>
 		{#each highlights as event}
 			<Card
 				{event}
@@ -41,13 +42,13 @@
 				on:click={() => dispatch('cardClick', event)}
 			/>
 		{/each}
-	</div>
+	</CardGrid>
 </div>
 
 <div class="main-events">
 	<Title text="principais eventos" />
 
-	<div class="card-grid">
+	<CardGrid>
 		{#each events as event}
 			<Card
 				{event}
@@ -57,15 +58,8 @@
 				on:click={() => dispatch('cardClick', event)}
 			/>
 		{/each}
-	</div>
+	</CardGrid>
 </div>
 
-<style>
-	.highlight-events {
-		@apply mt-6 mb-16;
-	}
-
-	.card-grid {
-		@apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6;
-	}
+<style lang="postcss">
 </style>

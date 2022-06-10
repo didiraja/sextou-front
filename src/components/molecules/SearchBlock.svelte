@@ -16,7 +16,7 @@
 	function searchEvent(searchQuery) {
 		return SearchEvent(searchQuery)
 			.then((response) => {
-				searchResults.update(() => response.data);
+				searchResults.set(response.data);
 
 				return goto('/search');
 			})
