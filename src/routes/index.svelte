@@ -7,9 +7,9 @@
 	let showModal = false;
 	import { eventDetails } from '../store.js';
 
-	function toggleModal(eventSelected) {
+	function toggleModal(eventBubble) {
 		// sends data to eventDetails store
-		if (eventSelected) eventDetails.update(() => eventSelected);
+		if (eventBubble) eventDetails.update(() => eventBubble.detail);
 
 		return (showModal = !showModal);
 	}
@@ -23,7 +23,7 @@
 	<TopBlock />
 
 	<main class="main-wrapper">
-		<MainCards />
+		<MainCards on:cardClick={(event) => toggleModal(event)} />
 	</main>
 
 	<Footer />

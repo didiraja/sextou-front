@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import Title from '../atoms/Title.svelte';
 	import Card from '../molecules/Card.svelte';
 
@@ -23,7 +24,7 @@
 		})
 		.catch((e) => console.log(e));
 
-	// TODO: create dispatch for Card click
+	const dispatch = createEventDispatcher();
 </script>
 
 <div class="highlight-events">
@@ -37,7 +38,7 @@
 				Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
 				Zone={event.Zone.Title}
 				Neighborhood={event.Neighborhood.Title}
-				on:click={() => toggleModal(event)}
+				on:click={() => dispatch('cardClick', event)}
 			/>
 		{/each}
 	</div>
@@ -53,7 +54,7 @@
 				Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
 				Zone={event.Zone.Title}
 				Neighborhood={event.Neighborhood.Title}
-				on:click={() => toggleModal(event)}
+				on:click={() => dispatch('cardClick', event)}
 			/>
 		{/each}
 	</div>

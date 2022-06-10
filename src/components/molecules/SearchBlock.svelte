@@ -1,22 +1,24 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Icon from '@iconify/svelte';
 	import Button from '../atoms/Button.svelte';
 	import { Zones, Neighborhoods } from '../../lib/consts.js';
 	import { SearchEvent } from '../../lib/requests/index.js';
+	import { searchResults } from '../../store.js';
 
 	// TO DO: default date - whole month or weekend
-	export let startDate = '';
-	export let endDate = '';
+	export let startDate = '2022-09-01T00:00:00.000Z';
+	export let endDate = '2022-09-30T00:00:00.000Z';
 	export let zoneSelected = null;
 	export let neighborhoodSelected = null;
 	export let musicSelected = '';
 
-	function searchEvent(searchObj) {
-		return SearchEvent(searchObj)
+	function searchEvent(searchQuery) {
+		return SearchEvent(searchQuery)
 			.then((response) => {
-				console.log(response.data);
+				searchResults.update(() => response.data);
 
-				// return (events = response.data);
+				return goto('/search');
 			})
 			.catch((e) => console.log(e));
 	}

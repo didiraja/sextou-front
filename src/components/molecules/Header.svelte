@@ -1,8 +1,12 @@
+<!-- <script lang="ts">
+	import { goto } from '$app/navigation';
+</script> -->
+
 <header class="header-wrapper">
 	<div class="header-menu">
 		<ul class="header-menu--common">
 			<li>
-				<a class="menu-item" href="#">Home</a>
+				<a class="menu-item" href="/">Home</a>
 			</li>
 			<li>
 				<a class="menu-item" href="#">Ingressos</a>

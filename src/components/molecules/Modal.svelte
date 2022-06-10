@@ -9,10 +9,10 @@
 	const dispatch = createEventDispatcher();
 </script>
 
-<div class="backdrop z-20" on:click|self={() => dispatch('close', 'close modal')}>
+<div class="backdrop z-20" on:click|self={() => dispatch('close')}>
 	<div class="modal-wrapper">
 		<div class="modal">
-			<div class="nav-wrapper" on:click={() => dispatch('close', 'close modal')}>
+			<div class="nav-wrapper" on:click={() => dispatch('close')}>
 				<Icon class="text-5xl" icon="material-symbols:close" />
 			</div>
 

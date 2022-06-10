@@ -20,4 +20,4 @@ export const eventDetails = writable({
   }
 });
 
-export const searchResult = writable([]);
+export const searchResults = writable([]);
