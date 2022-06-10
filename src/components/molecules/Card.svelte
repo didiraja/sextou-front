@@ -64,6 +64,12 @@
 
 		.card-title {
 			@apply text-3xl font-bold text-white;
+			/* hack to limit to 2 lines */
+			text-overflow: ellipsis;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
 		}
 
 		.pills-wrapper {

@@ -83,8 +83,4 @@
 			@apply bg-zinc-800 pb-3;
 		}
 	}
-
-	.btn-search {
-		@apply bg-orange-600 font-black text-white uppercase py-3 rounded-sm flex justify-center items-center;
-	}
 </style>
