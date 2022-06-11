@@ -5,6 +5,8 @@ import { format, isFriday,
   nextFriday,
   nextSunday } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { get } from 'svelte/store';
+import { eventDetails, appConfig } from '../store.js';
 
 export function readableDate(dateString) {
   return format(new Date(dateString), "iii',' dd 'de' MMMM", { locale: ptBR });
@@ -46,3 +48,15 @@ export function getWeekendDates() {
   };
 
 };
+
+
+export function toggleModal(eventBubble) {
+  
+  const configStore = get(appConfig);
+  
+  if (eventBubble) eventDetails.set(eventBubble);
+
+  return appConfig.set({
+    showModal: !configStore.showModal,
+  });
+}

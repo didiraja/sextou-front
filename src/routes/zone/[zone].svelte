@@ -6,6 +6,7 @@
 	import CardGrid from '../../components/templates/CardGrid.svelte';
 	import Card from '../../components/molecules/Card.svelte';
 	import { FindEventsByZone } from '../../lib/requests/index.js';
+	import { toggleModal } from '../../lib/utils.js';
 
 	const zoneIndex = Zones.findIndex((item) => item.id === Number($page.params.zone));
 
@@ -31,7 +32,7 @@
 				Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
 				Zone={event.Zone.Title}
 				Neighborhood={event.Neighborhood.Title}
-				on:click={() => dispatch('cardClick', event)}
+				on:click={() => toggleModal(event)}
 			/>
 		{:else}
 			<strong class="text-white">Nada por aqui!</strong>

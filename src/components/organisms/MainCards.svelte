@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import CardGrid from '../templates/CardGrid.svelte';
 	import Card from '../molecules/Card.svelte';
 	import Title from '../atoms/Title.svelte';
-
 	import { GetEvents, GetHighlights } from '../../lib/requests/index.js';
+	import { toggleModal } from '../../lib/utils.js';
 
 	let events = [];
 	let highlights = [];
@@ -24,8 +23,6 @@
 			return (highlights = response.data);
 		})
 		.catch((e) => console.log(e));
-
-	const dispatch = createEventDispatcher();
 </script>
 
 <div class="highlight-events">
@@ -39,7 +36,7 @@
 				Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
 				Zone={event.Zone.Title}
 				Neighborhood={event.Neighborhood.Title}
-				on:click={() => dispatch('cardClick', event)}
+				on:click={() => toggleModal(event)}
 			/>
 		{/each}
 	</CardGrid>

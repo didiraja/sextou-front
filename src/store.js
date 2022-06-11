@@ -1,5 +1,9 @@
 import { writable } from 'svelte/store';
 
+export const appConfig = writable({
+  showModal: false,
+});
+
 export const eventDetails = writable({
   Title: 'Chá da Sonza no Vivo Rio',
   Date: '2022-06-11T22:00:00.000Z',

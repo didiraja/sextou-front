@@ -4,7 +4,9 @@
 	import PageContainer from '../components/templates/PageContainer.svelte';
 	import TopBlock from '../components/organisms/TopBlock.svelte';
 	import Footer from '../components/molecules/Footer.svelte';
-
+	import Modal from '../components/molecules/Modal.svelte';
+	import { toggleModal } from '../lib/utils.js';
+	import { appConfig } from '../store.js';
 	import '../lib/styles/app.css';
 </script>
 
@@ -15,5 +17,9 @@
 		<slot />
 
 		<Footer />
+
+		{#if $appConfig.showModal}
+			<Modal on:close={() => toggleModal()} />
+		{/if}
 	</PageContainer>
 </Layout>
