@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Icon from '@iconify/svelte';
 	import { readableDate } from '../../lib/utils.js';
 	import Pill from '../atoms/Pill.svelte';
@@ -25,19 +26,19 @@
 
 	<div class="pills-wrapper">
 		{#if Zone}
-			<Pill {highlight} on:click={() => alert('new tab | api request by neighborhood')}>
+			<Pill {highlight} on:click={() => goto(`/zone/${event.Zone.id}`)}>
 				{Zone}
 			</Pill>
 		{/if}
 
 		{#if Neighborhood}
-			<Pill {highlight} on:click={() => alert('new tab | api request by neighborhood')}>
+			<Pill {highlight} on:click={() => goto(`/neighbor/${event.Neighbor.id}`)}>
 				{Neighborhood}
 			</Pill>
 		{/if}
 
 		{#if Music}
-			<Pill {highlight} on:click={() => alert('new tab | api request by neighborhood')}>
+			<Pill {highlight} on:click={() => goto(`/music/${event.Music.id}`)}>
 				{Music}
 			</Pill>
 		{/if}

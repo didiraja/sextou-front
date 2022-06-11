@@ -5,9 +5,9 @@ const apiBaseUrl = 'http://localhost:1337';
 
 const basicQuery = {
   _sort: 'Date:ASC',
-    _limit: 9,
-    _publicationState:'live',
-    Date_gte: (new Date().toISOString()),
+  _limit: 9,
+  _publicationState:'live',
+  Date_gte: (new Date().toISOString()),
 };
 
 export const GetEvents = () => {
@@ -38,3 +38,7 @@ export const SearchEvent = (params) => {
   return axios.get(`${apiBaseUrl}/events?${querySearch}`);
 };
 
+export const FindEventsByZone = (id) => {
+
+  return axios.get(`${apiBaseUrl}/zones/${id}`);
+};
