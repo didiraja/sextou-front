@@ -1,10 +1,19 @@
 <script lang="ts">
 	import Layout from '../components/templates/index.svelte';
 	import '@fontsource/plus-jakarta-sans/latin.css';
+	import PageContainer from '../components/templates/PageContainer.svelte';
+	import TopBlock from '../components/organisms/TopBlock.svelte';
+	import Footer from '../components/molecules/Footer.svelte';
 
 	import '../lib/styles/app.css';
 </script>
 
 <Layout>
-	<slot />
+	<PageContainer>
+		<TopBlock />
+
+		<slot />
+
+		<Footer />
+	</PageContainer>
 </Layout>
