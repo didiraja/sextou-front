@@ -24,4 +24,7 @@ export const eventDetails = writable({
   }
 });
 
-export const searchResults = writable({});
+export const searchResults = writable({
+  query: null,
+  result: null
+});

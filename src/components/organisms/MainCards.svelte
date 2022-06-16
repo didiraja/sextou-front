@@ -52,7 +52,7 @@
 				Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
 				Zone={event.Zone.Title}
 				Neighborhood={event.Neighborhood.Title}
-				on:click={() => dispatch('cardClick', event)}
+				on:click={() => toggleModal(event)}
 			/>
 		{/each}
 	</CardGrid>

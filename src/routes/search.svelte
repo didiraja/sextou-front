@@ -7,8 +7,8 @@
 	import { toggleModal } from '../lib/utils.js';
 	import { searchResults } from '../store.js';
 
-	$: searchObject = $searchResults;
-	$: events = searchObject.result;
+	// const searchObject = ;
+	// $: events = ;
 </script>
 
 <svelte:head>
@@ -16,23 +16,21 @@
 </svelte:head>
 
 <MainContainer>
-	<Title
-		text={`Eventos de ${
-			searchObject.query.musicSelected ? `${searchObject.query.musicSelected} no` : ''
-		} Rio de Janeiro`}
-	/>
+	<Title text={`Busca de eventos no Rio de Janeiro`} />
 
 	<CardGrid>
-		{#each events as event}
-			<Card
-				{event}
-				Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
-				Zone={event.Zone.Title}
-				Neighborhood={event.Neighborhood.Title}
-				on:click={() => toggleModal(event)}
-			/>
+		{#if $searchResults.result && $searchResults.result.length > 0}
+			{#each $searchResults.result as event}
+				<Card
+					{event}
+					Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
+					Zone={event.Zone.Title}
+					Neighborhood={event.Neighborhood.Title}
+					on:click={() => toggleModal(event)}
+				/>
+			{/each}
 		{:else}
-			<strong class="text-white">Nada por aqui!</strong>
-		{/each}
+			<p class="text-white text-xl text-center">Não tem nenhuma boa por aqui :(</p>
+		{/if}
 	</CardGrid>
 </MainContainer>

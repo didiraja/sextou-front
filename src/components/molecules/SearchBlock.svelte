@@ -8,14 +8,13 @@
 	import { searchResults } from '../../store.js';
 	import { getWeekendDates } from '../../lib/utils.js';
 
-	// TO DO: default date - whole month or weekend
 	export let startDate = format(getWeekendDates().weekendStart, 'yyyy-MM-dd');
 	export let endDate = format(getWeekendDates().weekendEnd, 'yyyy-MM-dd');
 	export let zoneSelected = null;
 	export let neighborhoodSelected = null;
 	export let musicSelected = null;
 
-	function searchEvent(searchQuery) {
+	function sendToSearchRoute(searchQuery) {
 		return SearchEvent(searchQuery)
 			.then((response) => {
 				searchResults.set({
@@ -23,7 +22,9 @@
 					result: response.data
 				});
 
-				return goto('/search');
+				// console.log($searchResults);
+
+				goto('/search');
 			})
 			.catch((e) => console.log(e));
 	}
@@ -60,7 +61,13 @@
 		<Button
 			style="!rounded-none p-2 md:text-sm xl:text-xs"
 			on:click={() =>
-				searchEvent({ startDate, endDate, zoneSelected, neighborhoodSelected, musicSelected })}
+				sendToSearchRoute({
+					startDate,
+					endDate,
+					zoneSelected,
+					neighborhoodSelected,
+					musicSelected
+				})}
 		>
 			<Icon class="mr-1 text-2xl" icon="material-symbols:search-rounded" /> Buscar Evento
 		</Button>

@@ -21,6 +21,9 @@ const config = {
 
 		handler(warning);
 	},
+	experimental: {
+    useVitePreprocess: true
+  }
 };
 
 export default config;

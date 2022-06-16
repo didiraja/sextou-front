@@ -8,6 +8,7 @@
 	import { FindEventsByZone } from '../../lib/requests/index.js';
 	import { toggleModal } from '../../lib/utils.js';
 
+	// code handle no id/zone
 	const zoneIndex = Zones.findIndex((item) => item.id === Number($page.params.zone));
 
 	let zonePage = Zones[zoneIndex];
@@ -26,16 +27,18 @@
 	<Title text={`Eventos ${zonePage.id === 3 ? 'no' : 'na'} ${zonePage.name}`} />
 
 	<CardGrid>
-		{#each events as event}
-			<Card
-				{event}
-				Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
-				Zone={event.Zone.Title}
-				Neighborhood={event.Neighborhood.Title}
-				on:click={() => toggleModal(event)}
-			/>
+		{#if events && events.length > 0}
+			{#each events as event}
+				<Card
+					{event}
+					Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
+					Zone={event.Zone.Title}
+					Neighborhood={event.Neighborhood.Title}
+					on:click={() => toggleModal(event)}
+				/>
+			{/each}
 		{:else}
 			<strong class="text-white">Nada por aqui!</strong>
-		{/each}
+		{/if}
 	</CardGrid>
 </MainContainer>
