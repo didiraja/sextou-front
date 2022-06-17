@@ -4,6 +4,7 @@
 	import Title from '../../components/atoms/Title.svelte';
 	import MainContainer from '../../components/templates/MainContainer.svelte';
 	import CardGrid from '../../components/templates/CardGrid.svelte';
+	import ErrorCard from '../../components/molecules/ErrorCard.svelte';
 	import Card from '../../components/molecules/Card.svelte';
 	import { FindEventsByZone } from '../../lib/requests/index.js';
 	import { toggleModal } from '../../lib/utils.js';
@@ -38,7 +39,7 @@
 				/>
 			{/each}
 		{:else}
-			<strong class="text-white">Nada por aqui!</strong>
+			<ErrorCard>Nenhuma boa por aqui</ErrorCard>
 		{/if}
 	</CardGrid>
 </MainContainer>

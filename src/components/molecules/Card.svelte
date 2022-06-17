@@ -14,9 +14,18 @@
 		Title: 'Festa no Lugar X',
 		Date: `2022-02-01T23:30:00.000Z`,
 		Ticket: '',
-		Zone: '',
-		Neighbor: '',
-		Music: ''
+		Zone: {
+			id: 3,
+			Title: 'Centro'
+		},
+		Neighbor: {
+			id: 2,
+			Title: 'Lapa'
+		},
+		Music: {
+			id: 4,
+			Title: 'Funk'
+		}
 	};
 </script>
 

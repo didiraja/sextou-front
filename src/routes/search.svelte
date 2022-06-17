@@ -1,14 +1,11 @@
 <script lang="ts">
-	import { get } from 'svelte/store';
 	import MainContainer from '../components/templates/MainContainer.svelte';
 	import CardGrid from '../components/templates/CardGrid.svelte';
 	import Card from '../components/molecules/Card.svelte';
+	import ErrorCard from '../components/molecules/ErrorCard.svelte';
 	import Title from '../components/atoms/Title.svelte';
 	import { toggleModal } from '../lib/utils.js';
 	import { searchResults } from '../store.js';
-
-	// const searchObject = ;
-	// $: events = ;
 </script>
 
 <svelte:head>
@@ -30,7 +27,7 @@
 				/>
 			{/each}
 		{:else}
-			<p class="text-white text-xl text-center">Não tem nenhuma boa por aqui :(</p>
+			<ErrorCard>Não achamos nenhuma boa por aqui</ErrorCard>
 		{/if}
 	</CardGrid>
 </MainContainer>

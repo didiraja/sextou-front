@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CardGrid from '../templates/CardGrid.svelte';
 	import Card from '../molecules/Card.svelte';
+	import ErrorCard from '../molecules/ErrorCard.svelte';
 	import Title from '../atoms/Title.svelte';
 	import { GetEvents, GetHighlights } from '../../lib/requests/index.js';
 	import { toggleModal } from '../../lib/utils.js';
@@ -38,6 +39,8 @@
 				Neighborhood={event.Neighborhood.Title}
 				on:click={() => toggleModal(event)}
 			/>
+		{:else}
+			<ErrorCard>Nenhum evento encontrado</ErrorCard>
 		{/each}
 	</CardGrid>
 </div>
@@ -54,6 +57,8 @@
 				Neighborhood={event.Neighborhood.Title}
 				on:click={() => toggleModal(event)}
 			/>
+		{:else}
+			<ErrorCard>Nenhum evento encontrado</ErrorCard>
 		{/each}
 	</CardGrid>
 </div>
