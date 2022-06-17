@@ -13,7 +13,10 @@
 	export let event = {
 		Title: 'Festa no Lugar X',
 		Date: `2022-02-01T23:30:00.000Z`,
-		Ticket: ''
+		Ticket: '',
+		Zone: '',
+		Neighbor: '',
+		Music: ''
 	};
 </script>
 
@@ -53,7 +56,7 @@
 
 <style lang="postcss">
 	.card {
-		@apply backdrop-blur-md bg-white/5 rounded-lg p-5;
+		@apply backdrop-blur-md bg-zinc-900 rounded-lg p-5;
 
 		.card-cover {
 			@apply w-full h-60 object-cover rounded-lg mb-3;

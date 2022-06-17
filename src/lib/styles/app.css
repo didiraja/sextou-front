@@ -14,10 +14,10 @@
 
 body {
 	@apply bg-zinc-900;
-	background-image: url('./sextou_bg.jpg');
+	background-image: url('/sextou_bg.jpg');
 }
 
 #top {
-	background: url('./sextou_banner.jpg') center;
+	background: url('/sextou_banner.jpg') center;
 	background-size: cover;
 }

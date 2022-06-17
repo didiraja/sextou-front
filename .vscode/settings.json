@@ -5,6 +5,7 @@
   },
   "files.associations": {
     "*.html": "svelte",
+    "*.css": "postcss",
   },
   "[svelte]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
