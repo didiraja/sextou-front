@@ -1,13 +1,13 @@
 {
-  "editor.formatOnSave": true,
-  "emmet.includeLanguages": {
-    "svelte": "html",
-  },
-  "files.associations": {
-    "*.html": "svelte",
-    "*.css": "postcss",
-  },
-  "[svelte]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
+	"editor.formatOnSave": true,
+	"emmet.includeLanguages": {
+		"svelte": "html"
+	},
+	"files.associations": {
+		"*.html": "svelte",
+		"*.css": "postcss"
+	},
+	"[svelte]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }

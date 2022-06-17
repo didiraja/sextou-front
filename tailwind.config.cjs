@@ -6,12 +6,12 @@ module.exports = {
 			sans: ['"Plus Jakarta Sans"', 'sans-serif']
 		},
 		container: {
-      center: true,
-    },
+			center: true
+		},
 		extend: {
 			skew: {
-				'10': '10deg',
-			},
+				10: '10deg'
+			}
 		}
 	},
 	plugins: []

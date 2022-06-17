@@ -6,8 +6,8 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: preprocess({
-    "postcss": true
-  }),
+		postcss: true
+	}),
 
 	kit: {
 		adapter: adapter()
@@ -16,14 +16,13 @@ const config = {
 	onwarn: (warning, handler) => {
 		const { code } = warning;
 
-		if (code === "css-unused-selector")
-			return;
+		if (code === 'css-unused-selector') return;
 
 		handler(warning);
 	},
 	experimental: {
-    useVitePreprocess: true
-  }
+		useVitePreprocess: true
+	}
 };
 
 export default config;
