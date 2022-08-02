@@ -1,4 +1,5 @@
 <script lang="ts">
+	import IntersectionObserver from 'svelte-intersection-observer';
 	import CardGrid from '../templates/CardGrid.svelte';
 	import Card from '../molecules/Card.svelte';
 	import ErrorCard from '../molecules/ErrorCard.svelte';
@@ -9,19 +10,19 @@
 	let events = [];
 	let highlights = [];
 
-	GetEvents()
-		.then((response) => {
-			// console.log(response.data);
-
-			return (events = response.data);
-		})
-		.catch((e) => console.log(e));
-
 	GetHighlights()
 		.then((response) => {
 			// console.log(response.data);
 
 			return (highlights = response.data);
+		})
+		.catch((e) => console.log(e));
+
+	GetEvents()
+		.then((response) => {
+			// console.log(response.data);
+
+			return (events = response.data);
 		})
 		.catch((e) => console.log(e));
 </script>
