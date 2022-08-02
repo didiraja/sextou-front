@@ -6,7 +6,7 @@
 	import Title from '../atoms/Title.svelte';
 	import { basicQuery, GetEvents, GetHighlights } from '../../lib/requests/index.js';
 	import { toggleModal } from '../../lib/utils.js';
-	import { DEFAULT_ITEMS, LOAD_ITEMS } from '../../lib/consts.js';
+	import { DEFAULT_ITEMS } from '../../lib/consts.js';
 	import Icon from '@iconify/svelte';
 	import Button from '../atoms/Button.svelte';
 

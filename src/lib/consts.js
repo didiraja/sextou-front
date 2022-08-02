@@ -1,9 +1,6 @@
 /* default: 8 */
 export const DEFAULT_ITEMS = 4;
 
-/* default: 4 */
-export const LOAD_ITEMS = 2;
-
 export const Zones = Object.freeze([
 	{
 		id: 1,
