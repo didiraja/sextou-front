@@ -1,17 +1,18 @@
 import axios from 'axios';
 import qs from 'qs';
+import { DEFAULT_ITEMS } from '../consts.js';
 
 const apiBaseUrl = 'http://localhost:1337';
 
-const basicQuery = {
+export const basicQuery = {
 	_sort: 'Date:ASC',
-	_limit: 9,
+	_limit: DEFAULT_ITEMS,
 	_publicationState: 'live',
 	Date_gte: new Date().toISOString()
 };
 
-export const GetEvents = () => {
-	const querySearch = qs.stringify({ ...basicQuery, Highlight: false });
+export const GetEvents = (queryObj = basicQuery) => {
+	const querySearch = qs.stringify({ ...queryObj });
 
 	return axios.get(`${apiBaseUrl}/events?${querySearch}`);
 };
