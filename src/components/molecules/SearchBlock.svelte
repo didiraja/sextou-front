@@ -14,7 +14,29 @@
 	export let neighborhoodSelected = null;
 	export let musicSelected = null;
 
-	function sendToSearchRoute(searchQuery) {
+	let showErrorMsg = false;
+
+	function toggleErrorBox() {
+		return (showErrorMsg = !showErrorMsg);
+	}
+
+	function showAndCleanError() {
+		toggleErrorBox();
+
+		setTimeout(() => {
+			if (showErrorMsg) return (showErrorMsg = false);
+		}, 3000);
+	}
+
+	function validateSearch(searchQuery: Object) {
+		if (endDate < startDate) return showAndCleanError();
+
+		// console.log('busca validada!');
+
+		return sendToSearchRoute(searchQuery);
+	}
+
+	function sendToSearchRoute(searchQuery: Object) {
 		return SearchEvent(searchQuery)
 			.then((response) => {
 				searchResults.set({
@@ -31,54 +53,85 @@
 </script>
 
 <div class="search-block material-shadow">
-	<input class="input-styling" type="date" bind:value={startDate} />
+	{#if showErrorMsg}
+		<div class="error-wrapper" on:click={() => toggleErrorBox()}>
+			<Icon class="inline-block text-2xl mr" icon="material-symbols:error" color="white" />
+			<p class="error-msg">A data de Fim precisa vir DEPOIS da data de Início</p>
+		</div>
+	{/if}
 
-	<input class="input-styling" type="date" bind:value={endDate} />
+	<div class="grid-wrapper">
+		<input
+			class="input-styling"
+			class:inputError={showErrorMsg}
+			type="date"
+			bind:value={startDate}
+		/>
 
-	<select id="zone" class="input-styling" bind:value={zoneSelected}>
-		<option value={null}>Todos as regiões</option>
-		{#each Zones as zone}
-			<option value={zone.id}>{zone.name}</option>
-		{/each}
-	</select>
+		<input class="input-styling" class:inputError={showErrorMsg} type="date" bind:value={endDate} />
 
-	<select id="neighborhood" class="input-styling" bind:value={neighborhoodSelected}>
-		<option value={null}>Todos os bairros</option>
-		{#each Neighborhoods as neighborhood}
-			<option value={neighborhood.id}>{neighborhood.name}</option>
-		{/each}
-	</select>
+		<select id="zone" class="input-styling" bind:value={zoneSelected}>
+			<option value={null}>Todos as regiões</option>
+			{#each Zones as zone}
+				<option value={zone.id}>{zone.name}</option>
+			{/each}
+		</select>
 
-	<select id="music" class="input-styling" bind:value={musicSelected}>
-		<option value={null}>Todos os sons</option>
-		<option>Rock</option>
-		<option>Hip-hop</option>
-		<option>Funk</option>
-		<option>EDM</option>
-	</select>
+		<select id="neighborhood" class="input-styling" bind:value={neighborhoodSelected}>
+			<option value={null}>Todos os bairros</option>
+			{#each Neighborhoods as neighborhood}
+				<option value={neighborhood.id}>{neighborhood.name}</option>
+			{/each}
+		</select>
 
-	<div class="col-span-full md:col-auto">
-		<Button
-			style="!rounded-none p-2 md:text-sm xl:text-xs"
-			on:click={() =>
-				sendToSearchRoute({
-					startDate,
-					endDate,
-					zoneSelected,
-					neighborhoodSelected,
-					musicSelected
-				})}
-		>
-			<Icon class="mr-1 text-2xl" icon="material-symbols:search-rounded" /> Buscar Evento
-		</Button>
+		<select id="music" class="input-styling" bind:value={musicSelected}>
+			<option value={null}>Todos os sons</option>
+			<option>Rock</option>
+			<option>Hip-hop</option>
+			<option>Funk</option>
+			<option>EDM</option>
+		</select>
+
+		<div class="col-span-full md:col-auto">
+			<Button
+				style="!rounded-none p-2 md:text-sm xl:text-xs"
+				on:click={() =>
+					validateSearch({
+						startDate,
+						endDate,
+						zoneSelected,
+						neighborhoodSelected,
+						musicSelected
+					})}
+			>
+				<Icon class="mr-1 text-2xl" icon="material-symbols:search-rounded" /> Buscar Evento
+			</Button>
+		</div>
 	</div>
 </div>
 
 <style lang="postcss">
 	.search-block {
-		@apply grid grid-cols-3 xl:grid-cols-6 gap-2
-      backdrop-blur-md bg-white/10 w-10/12
+		@apply relative backdrop-blur-md bg-white/10 w-10/12
       mx-auto my-5 p-3 xl:mt-16 xl:mb-8 xl:px-5 xl:py-4 rounded-xl;
+	}
+
+	.error-wrapper {
+		@apply bg-red-700/90 mb-2 px-3 py-2 shadow-sm shadow-black/50;
+		position: absolute;
+		top: 7rem;
+	}
+
+	.error-msg {
+		@apply inline-block text-base text-center text-white;
+	}
+
+	.grid-wrapper {
+		@apply grid grid-cols-3 xl:grid-cols-6 gap-2;
+	}
+
+	.inputError {
+		@apply border border-red-900;
 	}
 
 	.input-styling {
