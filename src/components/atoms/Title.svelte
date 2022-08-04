@@ -7,7 +7,9 @@
 
 <style lang="postcss">
 	.section-title {
-		@apply ml-3 xl:ml-8 mb-8 pl-3 xl:pl-5 -skew-x-10 border-l-[10px] xl:border-l-[15px] font-black text-white text-4xl xl:text-5xl;
+		@apply ml-3 xl:ml-8 mb-8 pl-3 xl:pl-5 -skew-x-10 border-l-[10px] xl:border-l-[15px]
+			font-black text-white text-4xl xl:text-5xl uppercase;
+		letter-spacing: -2px;
 
 		&.highlight {
 			@apply border-amber-400;

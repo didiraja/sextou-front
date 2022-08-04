@@ -19,7 +19,7 @@
 	}
 	.button-default {
 		button {
-			@apply w-full rounded-md button-shadow p-3 xl:p-3 font-black uppercase tracking-widest;
+			@apply w-full rounded-md button-shadow p-3 xl:p-3 font-bold uppercase tracking-widest;
 		}
 
 		&.highlight button {

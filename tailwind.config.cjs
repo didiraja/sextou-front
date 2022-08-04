@@ -3,7 +3,7 @@ module.exports = {
 	content: ['./src/**/*.html', './src/**/*.svelte'],
 	theme: {
 		fontFamily: {
-			sans: ['"Plus Jakarta Sans"', 'sans-serif']
+			sans: ['"Montserrat"', '"Raleway"', 'sans-serif']
 		},
 		container: {
 			center: true

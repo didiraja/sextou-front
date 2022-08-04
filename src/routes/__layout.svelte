@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Layout from '../components/templates/index.svelte';
-	import '@fontsource/plus-jakarta-sans/latin.css';
+	import '@fontsource/montserrat/latin.css';
+	import '@fontsource/raleway/latin.css';
 	import PageContainer from '../components/templates/PageContainer.svelte';
 	import TopBlock from '../components/organisms/TopBlock.svelte';
 	import Footer from '../components/molecules/Footer.svelte';
