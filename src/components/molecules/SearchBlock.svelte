@@ -28,7 +28,7 @@
 		}, 3000);
 	}
 
-	function validateSearch(searchQuery: Object) {
+	function validateSearch(searchQuery) {
 		if (endDate < startDate) return showAndCleanError();
 
 		// console.log('busca validada!');
@@ -36,7 +36,7 @@
 		return sendToSearchRoute(searchQuery);
 	}
 
-	function sendToSearchRoute(searchQuery: Object) {
+	function sendToSearchRoute(searchQuery) {
 		return SearchEvent(searchQuery)
 			.then((response) => {
 				searchResults.set({
