@@ -36,6 +36,6 @@ export const SearchEvent = (params) => {
 	return axios.get(`${apiBaseUrl}/events?${querySearch}`);
 };
 
-export const FindEventsByZone = (id) => {
-	return axios.get(`${apiBaseUrl}/zones/${id}`);
+export const FindEventsByCat = (category, id) => {
+	return axios.get(`${apiBaseUrl}/${category}/${id}`);
 };

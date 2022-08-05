@@ -64,3 +64,9 @@ export const Neighborhoods = Object.freeze([
 ]);
 
 export const Music = {};
+
+export const CATEGORIES = Object.freeze({
+	zones: Zones,
+	neighborhoods: Neighborhoods,
+	music: Music
+});
