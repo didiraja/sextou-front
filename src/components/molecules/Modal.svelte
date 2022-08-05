@@ -18,10 +18,7 @@
 
 			<p class="modal-title">{$eventDetails.Title}</p>
 
-			<img
-				class="modal-cover"
-				src={`http://localhost:1337${$eventDetails.Cover.formats.small.url}`}
-			/>
+			<img class="modal-cover" src={`http://localhost:1337${$eventDetails.Cover.url}`} />
 
 			<div class="modal-info">
 				<p class="date">{readableDate($eventDetails.Date)}</p>

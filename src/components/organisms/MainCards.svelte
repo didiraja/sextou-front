@@ -1,5 +1,4 @@
 <script lang="ts">
-	// import IntersectionObserver from 'svelte-intersection-observer';
 	import CardGrid from '../templates/CardGrid.svelte';
 	import Card from '../molecules/Card.svelte';
 	import ErrorCard from '../molecules/ErrorCard.svelte';
@@ -14,9 +13,6 @@
 	let highlights = [];
 	let startQuery = 0;
 	let showMoreEventsBtn = true;
-
-	// let element;
-	// let intersecting;
 
 	GetHighlights()
 		.then((response) => {
@@ -67,7 +63,7 @@
 			<Card
 				{event}
 				highlight
-				Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
+				Cover={`http://localhost:1337${event.Cover.url}`}
 				Zone={event.Zone.Title}
 				Neighborhood={event.Neighborhood.Title}
 				on:click={() => toggleModal(event)}
@@ -85,7 +81,7 @@
 		{#each events as event}
 			<Card
 				{event}
-				Cover={`http://localhost:1337${event.Cover.formats.small.url}`}
+				Cover={`http://localhost:1337${event.Cover.url}`}
 				Zone={event.Zone.Title}
 				Neighborhood={event.Neighborhood.Title}
 				on:click={() => toggleModal(event)}

@@ -18,7 +18,7 @@ export const eventDetails = writable({
 	Cover: {
 		formats: {
 			small: {
-				url: '/uploads/small_269764360_274422204569033_7496288547142186306_n_fbcd239024.jpg'
+				url: '/uploads/269764360_274422204569033_7496288547142186306_n_fbcd239024.jpg'
 			}
 		}
 	}
