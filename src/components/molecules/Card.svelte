@@ -44,7 +44,7 @@
 		{/if}
 
 		{#if Neighborhood}
-			<Pill {highlight} on:click={() => goto(`/neighbor/${event.Neighbor.id}`)}>
+			<Pill {highlight} on:click={() => goto(`/neighborhoods/${event.Neighbor.id}`)}>
 				{Neighborhood}
 			</Pill>
 		{/if}
