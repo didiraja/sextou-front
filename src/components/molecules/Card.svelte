@@ -6,25 +6,38 @@
 	import Button from '../atoms/Button.svelte';
 
 	export let highlight = false;
-	export let Cover = 'http://placeimg.com/320/240/tech';
-	export let Zone = 'Centro';
-	export let Neighborhood = 'Lapa';
-	export let Music = 'Funk';
-	export let event = {
-		Title: 'Festa no Lugar X',
-		Date: `2022-02-01T23:30:00.000Z`,
+	export let Cover = '';
+	export let Zone = '';
+	export let Neighborhood = '';
+	export let Music = '';
+
+	interface EventInterface {
+		Title: string;
+		Date: string;
+		Description: string;
+		Ticket: string;
+		Zone: object;
+		Neighborhood: object;
+		Music: object;
+		Cover: object;
+	}
+
+	export let event: EventInterface = {
+		Title: '',
+		Date: '',
+		Description: '',
 		Ticket: '',
 		Zone: {
-			id: 3,
-			Title: 'Centro'
+			id: ''
 		},
-		Neighbor: {
-			id: 2,
-			Title: 'Lapa'
+		Neighborhood: {
+			id: ''
 		},
 		Music: {
-			id: 4,
-			Title: 'Funk'
+			id: ''
+		},
+		Cover: {
+			url: ''
 		}
 	};
 </script>
@@ -36,7 +49,7 @@
 		<div class="card-title">{event.Title}</div>
 	</span>
 
-	<div class="pills-wrapper">
+	<div class="card-meta">
 		{#if Zone}
 			<Pill {highlight} on:click={() => goto(`/zone/${event.Zone.id}`)}>
 				{Zone}
@@ -44,7 +57,7 @@
 		{/if}
 
 		{#if Neighborhood}
-			<Pill {highlight} on:click={() => goto(`/neighborhoods/${event.Neighbor.id}`)}>
+			<Pill {highlight} on:click={() => goto(`/neighborhoods/${event.Neighborhood.id}`)}>
 				{Neighborhood}
 			</Pill>
 		{/if}
@@ -56,7 +69,7 @@
 		{/if}
 	</div>
 
-	<div>
+	<div class="card-bottom">
 		<Button {highlight} on:click={() => alert('new tab | pagina de ingresso')}>
 			<Icon class="mr-1 text-2xl" icon="material-symbols:airplane-ticket-rounded" /> Comprar Ingressos
 		</Button>
@@ -65,7 +78,7 @@
 
 <style lang="postcss">
 	.card {
-		@apply backdrop-blur-md bg-zinc-900 rounded-lg p-5;
+		@apply backdrop-blur-md bg-zinc-900 rounded-lg p-5 relative;
 
 		.card-cover {
 			@apply w-full h-60 object-cover rounded-lg mb-3;
@@ -85,8 +98,11 @@
 			-webkit-box-orient: vertical;
 		}
 
-		.pills-wrapper {
+		.card-meta {
 			@apply my-3;
 		}
+
+		/* .card-bottom {
+		} */
 	}
 </style>

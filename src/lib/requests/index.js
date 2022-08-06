@@ -11,6 +11,10 @@ export const basicQuery = {
 	Date_gte: new Date().toISOString()
 };
 
+export const isAPIOnline = () => {
+	return axios.get(apiBaseUrl);
+};
+
 export const GetEvents = (queryObj = basicQuery) => {
 	const querySearch = qs.stringify({ ...queryObj });
 

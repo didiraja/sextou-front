@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import Icon from '@iconify/svelte';
+
+	import { eventDetails } from '../../store.js';
+	import { readableDate } from '../../lib/utils.js';
+
 	import Pill from '../atoms/Pill.svelte';
 	import Button from '../atoms/Button.svelte';
-	import { readableDate } from '../../lib/utils.js';
-	import { eventDetails } from '../../store.js';
 
 	const dispatch = createEventDispatcher();
 </script>
@@ -18,7 +20,7 @@
 
 			<p class="modal-title">{$eventDetails.Title}</p>
 
-			<img class="modal-cover" src={`http://localhost:1337${$eventDetails.Cover.url}`} />
+			<img class="modal-cover" src={$eventDetails.Cover.url} alt="capa do evento" />
 
 			<div class="modal-info">
 				<p class="date">{readableDate($eventDetails.Date)}</p>
