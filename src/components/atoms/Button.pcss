@@ -1,0 +1,12 @@
+.button-shadow {
+  @apply shadow-sm shadow-black;
+}
+.button-default {
+  button {
+    @apply w-full rounded-md button-shadow p-3 xl:p-3 font-bold uppercase tracking-widest;
+  }
+
+  &.highlight button {
+    @apply bg-amber-500;
+  }
+}

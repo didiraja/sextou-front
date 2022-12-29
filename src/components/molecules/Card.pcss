@@ -1,0 +1,25 @@
+.card {
+  @apply backdrop-blur-md bg-zinc-900 rounded-lg p-5 relative;
+
+  .card-cover {
+    @apply w-full h-60 object-cover rounded-lg mb-3;
+  }
+
+  .card-date {
+    @apply text-xl text-white mb-1;
+  }
+
+  .card-title {
+    @apply text-3xl font-bold text-white;
+    /* hack to limit to 2 lines */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .card-meta {
+    @apply my-3;
+  }
+}
