@@ -1,4 +1,5 @@
 import { ButtonProps } from "./Button";
+import "./Pill.pcss";
 
 type PillProps = ButtonProps & {
   bg?: string;

@@ -1,5 +1,6 @@
 import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
+import "./Card.pcss";
 
 function goto(url: string) {
   return "";

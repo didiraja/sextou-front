@@ -1,4 +1,5 @@
 import { AppProps } from "../../types";
+import "./Button.pcss";
 
 export type ButtonProps = AppProps & {
   highlight?: boolean;
@@ -7,9 +8,7 @@ export type ButtonProps = AppProps & {
 const Button = ({ children, highlight }: ButtonProps) => {
   return (
     <div className={`button-default ${highlight ? "highlight" : ""}`}>
-      <button className="flex justify-center items-center {bg} {color} {style}">
-        {children}
-      </button>
+      <button>{children}</button>
     </div>
   );
 };

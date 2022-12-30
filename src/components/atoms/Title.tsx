@@ -1,4 +1,5 @@
 import { ButtonProps } from "./Button";
+import "./Title.pcss";
 
 const Title = ({ children, highlight }: ButtonProps) => {
   return (
