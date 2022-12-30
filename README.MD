@@ -6,7 +6,10 @@
 
 - ~~Svelte 3~~
 - ~~SvelteKit~~
-- Next
+- React
+- Typescript
 - Vite
 - Tailwind
+- PostCSS
+- Vitest
 - Faker
