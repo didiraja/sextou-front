@@ -21,7 +21,7 @@ export type CardProps = {
   neighborhood?: string;
   zone?: string;
   mood?: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const Card = ({ event, cover, neighborhood, zone, mood }: CardProps) => {
