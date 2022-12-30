@@ -5,14 +5,15 @@ function goto(url: string) {
   return "";
 }
 
-export type EventData = {
-  date: string;
-  title: string;
-  cover: { url: string };
-  neighborhood: { id: number; title: string };
-  zone: { id: number; title: string };
-  mood: { id: number; title: string };
-};
+export type EventData = any;
+// export type EventData = {
+//   date: string;
+//   title: string;
+//   cover: { url: string };
+//   neighborhood: { id: number; title: string };
+//   zone: { id: number; title: string };
+//   mood: { id: number; title: string };
+// };
 
 export type CardProps = {
   event: EventData;

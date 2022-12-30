@@ -1,0 +1,41 @@
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.backdrop {
+  @apply fixed top-0 left-0 w-full h-full bg-black/80;
+}
+.modal-wrapper {
+  @apply w-11/12 xl:max-w-[75vw] max-h-[95vh] mx-auto md:mt-8
+			relative top-1/2 md:top-0 -translate-y-2/4 md:translate-y-0
+			hide-scrollbar overflow-auto rounded-lg;
+}
+.modal {
+  @apply max-h-full hide-scrollbar top-16 px-5 pt-3 md:p-8 xl:p-8
+		bg-zinc-900 rounded-md shadow-lg shadow-black/80 
+		text-white;
+  .nav-wrapper {
+    @apply rounded-full w-12 ml-auto mb-5 hover:bg-slate-400/10 hover:cursor-pointer;
+  }
+  .modal-title {
+    @apply mb-5 font-black text-4xl md:text-5xl xl:text-5xl text-center;
+  }
+  .modal-cover {
+    @apply w-full mb-5;
+  }
+  .modal-info {
+    @apply mb-5 divide-y-[10px] xl:divide-x-[10px] divide-transparent xl:flex xl:justify-center xl:items-center;
+    .date {
+      @apply text-center text-2xl md:text-3xl;
+    }
+    .tags {
+      @apply text-center text-lg md:text-xl;
+    }
+  }
+  .modal-content {
+    @apply text-xl leading-normal md:leading-relaxed tracking-wide;
+  }
+}

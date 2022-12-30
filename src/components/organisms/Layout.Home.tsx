@@ -2,12 +2,38 @@ import CardGrid from "../templates/Card.Grid";
 import Card, { EventData } from "../molecules/Card";
 import ErrorCard from "../molecules/Card.Error";
 import Title from "../atoms/Title";
-import Button from "../atoms/Button";
+// import Button from "../atoms/Button";
+import { faker } from "@faker-js/faker";
 
 import { useState } from "react";
 
 function HomeCards() {
-  const [highlights, setHighlight] = useState([]);
+  const [highlights, setHighlight] = useState([
+    {
+      date: faker.date.recent().toISOString(),
+      title: faker.company.companyName(),
+      cover: { url: "http://placeimg.com/640/360/tech" },
+      neighborhood: { id: 0, title: faker.address.city() },
+      zone: { id: 1, title: faker.address.county() },
+      mood: { id: 2, title: faker.music.genre() },
+    },
+    {
+      date: faker.date.recent().toISOString(),
+      title: faker.company.companyName(),
+      cover: { url: "http://placeimg.com/640/360/tech" },
+      neighborhood: { id: 0, title: faker.address.city() },
+      zone: { id: 1, title: faker.address.county() },
+      mood: { id: 2, title: faker.music.genre() },
+    },
+    {
+      date: faker.date.recent().toISOString(),
+      title: faker.company.companyName(),
+      cover: { url: "http://placeimg.com/640/360/tech" },
+      neighborhood: { id: 0, title: faker.address.city() },
+      zone: { id: 1, title: faker.address.county() },
+      mood: { id: 2, title: faker.music.genre() },
+    },
+  ]);
   const [events, setEvent] = useState([]);
   // const [showMore, setShowMore] = useState(false);
 
@@ -25,6 +51,7 @@ function HomeCards() {
             ? highlights.map((event: EventData) => {
                 return (
                   <Card
+                    key={faker.datatype.uuid()}
                     event={event}
                     highlight
                     cover={event.cover.url}
@@ -50,6 +77,7 @@ function HomeCards() {
             ? events.map((event: EventData) => {
                 return (
                   <Card
+                    key={faker.datatype.uuid()}
                     event={event}
                     highlight
                     cover={event.cover.url}
