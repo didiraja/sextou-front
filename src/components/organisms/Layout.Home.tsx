@@ -1,54 +1,73 @@
-import CardGrid from '../templates/CardGrid.svelte';
-	import Card from '../molecules/Card.svelte';
-	import ErrorCard from '../molecules/ErrorCard.svelte';
-	import Title from '../atoms/Title.svelte';
-	import Button from '../atoms/Button.svelte';
-// import "./HomeCards.pcss";
+import CardGrid from "../templates/Card.Grid";
+import Card, { EventData } from "../molecules/Card";
+import ErrorCard from "../molecules/Card.Error";
+import Title from "../atoms/Title";
+import Button from "../atoms/Button";
+
+import { useState } from "react";
 
 function HomeCards() {
+  const [highlights, setHighlight] = useState([]);
+  const [events, setEvent] = useState([]);
+  // const [showMore, setShowMore] = useState(false);
+
   return (
-    <div class="highlight-events">
-	<Title text="hype da noite" highlight />
+    <>
+      <div className="highlight-events">
+        <Title highlight>hype da noite</Title>
 
-	<CardGrid>
-		{#each highlights as event}
-			<Card
-				{event}
-				highlight
-				Cover={coverURL(event.Cover.url)}
-				Zone={event.Zone.Title}
-				Neighborhood={event.Neighborhood.Title}
-				on:click={() => toggleModal(event)}
-			/>
-		{:else}
-			<ErrorCard>Nenhum evento encontrado</ErrorCard>
-		{/each}
-	</CardGrid>
-</div>
+        <CardGrid>
+          {!highlights.length ? (
+            <ErrorCard>Nenhum evento encontrado</ErrorCard>
+          ) : null}
 
-<div class="main-events">
-	<Title text="principais eventos" />
+          {highlights.length
+            ? highlights.map((event: EventData) => {
+                return (
+                  <Card
+                    event={event}
+                    highlight
+                    cover={event.cover.url}
+                    zone={event.zone.title}
+                    neighborhood={event.neighborhood.title}
+                    onClick={() => {}}
+                  />
+                );
+              })
+            : null}
+        </CardGrid>
+      </div>
 
-	<CardGrid>
-		{#each events as event}
-			<Card
-				{event}
-				Cover={coverURL(event.Cover.url)}
-				Zone={event.Zone.Title}
-				Neighborhood={event.Neighborhood.Title}
-				on:click={() => toggleModal(event)}
-			/>
-		{:else}
-			<ErrorCard>Nenhum evento encontrado</ErrorCard>
-		{/each}
-	</CardGrid>
+      <div className="main-events">
+        <Title>principais eventos</Title>
 
-	{#if showMoreEventsBtn}
-		<Button on:click={() => moreEvents()}>
-			<Icon class="mr-1 text-2xl" icon="ic:baseline-library-add" /> Mais eventos
-		</Button>
-	{/if}
-</div>
+        <CardGrid>
+          {!events.length ? (
+            <ErrorCard>Nenhum evento encontrado</ErrorCard>
+          ) : null}
+
+          {events.length
+            ? events.map((event: EventData) => {
+                return (
+                  <Card
+                    event={event}
+                    highlight
+                    cover={event.cover.url}
+                    zone={event.zone.title}
+                    neighborhood={event.neighborhood.title}
+                    onClick={() => {}}
+                  />
+                );
+              })
+            : null}
+        </CardGrid>
+
+        {/* {showMore ?
+          <Button on:click={() => {}}>
+            <Icon class="mr-1 text-2xl" icon="ic:baseline-library-add" /> Mais eventos
+          </Button> : null} */}
+      </div>
+    </>
   );
 }
 
