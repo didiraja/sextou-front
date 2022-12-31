@@ -5,37 +5,25 @@ import Title from "../atoms/Title";
 // import Button from "../atoms/Button";
 import { faker } from "@faker-js/faker";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Requests from "../../services/Requests";
 
 function HomeCards() {
-  const [highlights, setHighlight] = useState([
-    {
-      date: faker.date.recent().toISOString(),
-      title: faker.company.companyName(),
-      cover: { url: "http://placeimg.com/640/360/tech" },
-      neighborhood: { id: 0, title: faker.address.city() },
-      zone: { id: 1, title: faker.address.county() },
-      mood: { id: 2, title: faker.music.genre() },
-    },
-    {
-      date: faker.date.recent().toISOString(),
-      title: faker.company.companyName(),
-      cover: { url: "http://placeimg.com/640/360/tech" },
-      neighborhood: { id: 0, title: faker.address.city() },
-      zone: { id: 1, title: faker.address.county() },
-      mood: { id: 2, title: faker.music.genre() },
-    },
-    {
-      date: faker.date.recent().toISOString(),
-      title: faker.company.companyName(),
-      cover: { url: "http://placeimg.com/640/360/tech" },
-      neighborhood: { id: 0, title: faker.address.city() },
-      zone: { id: 1, title: faker.address.county() },
-      mood: { id: 2, title: faker.music.genre() },
-    },
-  ]);
+  const [highlights, setHighlight] = useState([]);
   const [events, setEvent] = useState([]);
   // const [showMore, setShowMore] = useState(false);
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const result = await Requests.getPosts();
+
+      // console.log(result.data);
+
+      setHighlight(() => result.data);
+    };
+
+    getPosts();
+  }, []);
 
   return (
     <>
@@ -51,12 +39,9 @@ function HomeCards() {
             ? highlights.map((event: EventData) => {
                 return (
                   <Card
-                    key={faker.datatype.uuid()}
-                    event={event}
                     highlight
-                    cover={event.cover.url}
-                    zone={event.zone.title}
-                    neighborhood={event.neighborhood.title}
+                    key={faker.datatype.uuid()}
+                    {...event}
                     onClick={() => {}}
                   />
                 );
