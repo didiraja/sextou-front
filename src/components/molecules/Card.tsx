@@ -60,7 +60,7 @@ const Card = ({ featured_media, acf, title, categories }: CardProps) => {
 
         setMedia(result.data.media_details.sizes.medium_large.source_url);
       } catch (e) {
-        console.log(e);
+        console.log(e.code);
       }
     };
 

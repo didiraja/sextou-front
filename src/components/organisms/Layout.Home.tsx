@@ -15,11 +15,13 @@ function HomeCards() {
 
   useEffect(() => {
     const getPosts = async () => {
-      const result = await Requests.getPosts();
-
-      // console.log(result.data);
-
-      setHighlight(() => result.data);
+      try {
+        const result = await Requests.getPosts();
+        // console.log(result.data);
+        setHighlight(() => result.data);
+      } catch (e) {
+        console.log(e.code);
+      }
     };
 
     getPosts();
