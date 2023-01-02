@@ -4,28 +4,34 @@ import Button from "../atoms/Button";
 import Requests from "../../services/Requests";
 import Date from "../../services/Date";
 import "./Card.pcss";
-import { useState, useMemo, SetStateAction } from "react";
+import { useState, useMemo, SetStateAction, useContext } from "react";
 import { AxiosResponse } from "axios";
+import { context } from "../../store";
 
 export type EventData = any;
 
 export type CardProps = {
   [key: string]: any;
-  featured_media: number;
-  acf: {
+  featured_media?: number;
+  acf?: {
     event_date: string;
     tickets: string;
   };
-  title: {
+  title?: {
     rendered: string;
   };
-  categories: [];
+  categories?: number[];
   // onClick?: () => void;
 };
 
-const Card = ({ featured_media, acf, title, categories }: CardProps) => {
+const Card = (props: CardProps) => {
+  const { featured_media, acf, title, categories } = props;
+
   const [media, setMedia] = useState();
   const [cardCategory, setCardCategories] = useState([]);
+  // const { setDetails } = useContext(context);
+
+  // setDetails(() => event);
 
   useMemo(() => {
     const grabCategories: () => Promise<void> = async () => {

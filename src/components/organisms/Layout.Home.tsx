@@ -19,7 +19,7 @@ function HomeCards() {
         const result = await Requests.getPosts();
         // console.log(result.data);
         setHighlight(() => result.data);
-      } catch (e) {
+      } catch (e: any) {
         console.log(e.code);
       }
     };
