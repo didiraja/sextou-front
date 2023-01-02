@@ -1,10 +1,10 @@
 import axios from "axios";
 
-type RequestResponse = {
-  // dynamic key and any response
-  [key: string]: any;
-  name: string;
-};
+// type RequestResponse = {
+//   // dynamic key and any response
+//   [key: string]: any;
+//   name: string;
+// };
 
 class Request {
   private url: string;

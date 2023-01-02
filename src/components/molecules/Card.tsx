@@ -2,12 +2,10 @@
 import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
 import Requests from "../../services/Requests";
+import Date from "../../services/Date";
 import "./Card.pcss";
-import { useEffect, useState, useMemo } from "react";
-
-function goto(url: string) {
-  return "";
-}
+import { useState, useMemo, SetStateAction } from "react";
+import { AxiosResponse } from "axios";
 
 export type EventData = any;
 
@@ -27,17 +25,17 @@ export type CardProps = {
 
 const Card = ({ featured_media, acf, title, categories }: CardProps) => {
   const [media, setMedia] = useState();
-  const [cardCategory, setCacat] = useState([]);
+  const [cardCategory, setCardCategories] = useState([]);
 
   useMemo(() => {
-    const grabCategories = async () => {
-      const promiseOfIds = categories.map(
+    const grabCategories: () => Promise<void> = async () => {
+      const promiseOfIds: Promise<AxiosResponse<[]>>[] = categories.map(
         async (id) => await Requests.getCatName(id)
       );
 
-      const CatsAsArr = await Promise.all(
+      const ArrayCategories: SetStateAction<string> = await Promise.all(
         promiseOfIds.map(async (promise) => {
-          const result = await promise;
+          const result: AxiosResponse<{}> = await promise;
 
           // console.log(result.data.name);
 
@@ -45,7 +43,7 @@ const Card = ({ featured_media, acf, title, categories }: CardProps) => {
         })
       );
 
-      setCacat(CatsAsArr);
+      setCardCategories(() => ArrayCategories);
     };
 
     grabCategories();
@@ -59,20 +57,20 @@ const Card = ({ featured_media, acf, title, categories }: CardProps) => {
         // console.log(result.data);
 
         setMedia(result.data.media_details.sizes.medium_large.source_url);
-      } catch (e) {
+      } catch (e: any) {
         console.log(e.code);
       }
     };
 
     getImage();
-  });
+  }, []);
 
   return (
     <div className="card">
       <span className="hover:cursor-pointer" onClick={() => {}}>
         <img className="card-cover" src={media} alt="" />
         {acf && acf.event_date ? (
-          <div className="card-date">{acf.event_date}</div>
+          <div className="card-date">{Date.readableDate(acf.event_date)}</div>
         ) : null}
         {title ? <div className="card-title">{title.rendered}</div> : null}
       </span>

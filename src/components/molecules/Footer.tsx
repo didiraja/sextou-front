@@ -5,7 +5,7 @@ const Footer = () => {
         Design e Código por{" "}
         <a href="https://twitter.com/didiraja" target="_blank">
           Dico Didiraja
-        </a>
+        </a>{" "}
         &copy; {new Date().getFullYear()}
       </p>
     </footer>
