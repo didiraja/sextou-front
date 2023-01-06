@@ -3,19 +3,26 @@ import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
 import { useContext, ContextType } from "react";
 import { ModalContext } from "../../store";
+import "./Modal.pcss";
 
 // @ts-nocheck
 const Modal = () => {
   const context: ContextType<any> = useContext(ModalContext);
+  const { setModal } = context;
+
+  function toggleModal() {
+    return setModal((modal: boolean) => !modal);
+  }
 
   // TODO: Modal content from Actions(reducer): Details, Text, anything
 
   return (
-    <div className="backdrop z-20" onClick={() => {}}>
+    <div className="backdrop z-20" onClick={toggleModal}>
       <div className="modal-wrapper">
         <div className="modal">
-          <div className="nav-wrapper" onClick={() => {}}>
-            {/* <Icon className="text-5xl" icon="material-symbols:close" /> */}
+          <div className="nav-wrapper">
+            {/*  onClick={toggleModal} */}
+            Fechar
           </div>
 
           <p className="modal-title">{context.content.title.rendered}</p>
