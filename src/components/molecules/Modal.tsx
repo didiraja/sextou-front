@@ -7,16 +7,12 @@ import "./Modal.pcss";
 
 // @ts-nocheck
 const Modal = () => {
-  const context: ContextType<any> = useContext(ModalContext);
-  const { setModal } = context;
+  const { toggleModal, content } = useContext(ModalContext);
 
-  function toggleModal() {
-    return setModal((modal: boolean) => !modal);
-  }
-
-  // TODO: Modal content from Actions(reducer): Details, Text, anything
+  // TODO: Modal content from Actions(reducer): Details || Text || anything
 
   return (
+    // TODO: onclick only on backdrop
     <div className="backdrop z-20" onClick={toggleModal}>
       <div className="modal-wrapper">
         <div className="modal">
@@ -25,21 +21,19 @@ const Modal = () => {
             Fechar
           </div>
 
-          <p className="modal-title">{context.content.title.rendered}</p>
+          <p className="modal-title">{content.title.rendered}</p>
 
           <img
             className="modal-cover"
-            src={context.content.featured_media}
+            src={content.featured_media}
             alt="capa do evento"
           />
 
           <div className="modal-info">
-            <p className="date">
-              {Date.readableDate(context.content.acf.event_date)}
-            </p>
+            <p className="date">{Date.readableDate(content.acf.event_date)}</p>
 
-            {context.content.categories
-              ? context.content.categories.map((item: string) => {
+            {content.categories
+              ? content.categories.map((item: string) => {
                   <div className="tags" key={item}>
                     <Pill>{item}</Pill>
                   </div>;
@@ -47,7 +41,7 @@ const Modal = () => {
               : null}
 
             <div className="cta">
-              <Button style="md:text-xl">
+              <Button className="md:text-xl">
                 {/* <Icon
                   className="mr-1 text-3xl"
                   icon="material-symbols:airplane-ticket-rounded"
@@ -58,7 +52,7 @@ const Modal = () => {
           </div>
 
           <div className="modal-content">
-            <p>{context.content.content.rendered}</p>
+            <p>{content.content.rendered}</p>
           </div>
         </div>
       </div>

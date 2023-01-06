@@ -13,13 +13,7 @@ function HomeCards() {
   const [events, setEvent] = useState([]);
   // const [showMore, setShowMore] = useState(false);
 
-  // todo: context to hooks
-  const context = useContext(ModalContext);
-
-  function handleModal(content: {}): void {
-    context.setContent(() => content);
-    context.setModal((modal: boolean) => !modal);
-  }
+  const { openModal } = useContext(ModalContext);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -53,7 +47,7 @@ function HomeCards() {
                     highlight
                     key={faker.datatype.uuid()}
                     {...event}
-                    onClick={(event: {}) => handleModal(event)}
+                    onClick={(event: {}) => openModal(event)}
                   />
                 );
               })

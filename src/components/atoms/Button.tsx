@@ -3,11 +3,14 @@ import "./Button.pcss";
 
 export type ButtonProps = AppProps & {
   highlight?: boolean;
+  className?: string;
 };
 
-const Button = ({ children, highlight }: ButtonProps) => {
+const Button = ({ className, children, highlight }: ButtonProps) => {
   return (
-    <div className={`button-default ${highlight ? "highlight" : ""}`}>
+    <div
+      className={`button-default ${className} ${highlight ? "highlight" : ""}`}
+    >
       <button>{children}</button>
     </div>
   );

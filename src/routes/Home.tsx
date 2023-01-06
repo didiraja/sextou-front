@@ -8,9 +8,9 @@ import { ModalContext, ModalStorage } from "../store";
 import { ContextType, useContext } from "react";
 
 function StorageWrapper() {
-  const context: ContextType<any> = useContext(ModalContext);
+  const { showModal }: ContextType<any> = useContext(ModalContext);
 
-  return <>{context.showModal ? <Modal /> : null}</>;
+  return showModal ? <Modal /> : null;
 }
 
 function Home() {

@@ -1,12 +1,10 @@
 // @ts-nocheck
 import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
-import Requests from "../../services/Requests";
 import Date from "../../services/Date";
 import "./Card.pcss";
-import { useState, useMemo, SetStateAction, useContext } from "react";
-import { AxiosResponse } from "axios";
-import { context } from "../../store";
+import useGrabMedia from "../../hooks/useGrabMedia";
+import useCategoriesList from "../../hooks/useCategoriesList";
 
 export type EventData = any;
 
@@ -25,53 +23,10 @@ export type CardProps = {
 };
 
 const Card = (props: CardProps) => {
-  console.log(props);
-
   const { featured_media, acf, title, categories } = props;
 
-  const [media, setMedia] = useState();
-  const [cardCategory, setCardCategories] = useState([]);
-  // const { setDetails } = useContext(context);
-
-  // setDetails(() => event);
-
-  useMemo(() => {
-    const grabCategories: () => Promise<void> = async () => {
-      const promiseOfIds: Promise<AxiosResponse<[]>>[] = categories.map(
-        async (id) => await Requests.getCatName(id)
-      );
-
-      const ArrayCategories: SetStateAction<string> = await Promise.all(
-        promiseOfIds.map(async (promise) => {
-          const result: AxiosResponse<{}> = await promise;
-
-          // console.log(result.data.name);
-
-          return result.data.name;
-        })
-      );
-
-      setCardCategories(() => ArrayCategories);
-    };
-
-    grabCategories();
-  }, []);
-
-  useMemo(() => {
-    const getImage = async () => {
-      try {
-        const result = await Requests.getMedia(featured_media);
-
-        // console.log(result.data);
-
-        setMedia(result.data.media_details.sizes.medium_large.source_url);
-      } catch (e: any) {
-        console.log(e.code);
-      }
-    };
-
-    getImage();
-  }, []);
+  const { media } = useGrabMedia(featured_media);
+  const { categoriesList } = useCategoriesList(categories);
 
   return (
     <div
@@ -87,8 +42,8 @@ const Card = (props: CardProps) => {
       </span>
 
       <div className="card-meta">
-        {cardCategory
-          ? cardCategory.map((label, index) => (
+        {categoriesList
+          ? categoriesList.map((label, index) => (
               <Pill highlight key={index}>
                 {label}
               </Pill>

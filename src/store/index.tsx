@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { createContext, useState } from "react";
 import { CardProps } from "../components/molecules/Card";
+import { useContext } from "react";
 
 export const INITIAL_CONTENT: CardProps = {
   title: {
@@ -24,11 +25,22 @@ export const ModalStorage = ({ children }: any) => {
   const [showModal, setModal] = useState(false);
   const [content, setContent] = useState(INITIAL_CONTENT);
 
+  function toggleModal(): void {
+    setModal((showModal) => !showModal);
+  }
+
+  function openModal(content: {}): void {
+    setContent(() => content);
+    setModal(() => true);
+  }
+
   const store = {
     showModal,
     setModal,
     content,
     setContent,
+    toggleModal,
+    openModal,
   };
 
   return (

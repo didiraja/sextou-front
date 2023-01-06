@@ -9,9 +9,9 @@ type PillProps = ButtonProps & {
 const Pill = ({ children, highlight, bg, color }: PillProps) => {
   return (
     <button
-      className={`button-pill ${highlight ? "highlight" : ""} ${
-        bg ? "bg" : ""
-      } ${color ? "color" : ""}`}
+      className={`button-pill ${highlight ? "highlight" : ""} ${bg ? bg : ""} ${
+        color ? color : ""
+      }`}
     >
       {children}
     </button>
