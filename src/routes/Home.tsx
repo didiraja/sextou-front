@@ -4,29 +4,43 @@ import MainContainer from "../components/templates/MainContainer";
 import TopBlock from "../components/organisms/TopBlock";
 import Footer from "../components/molecules/Footer";
 import Modal from "../components/molecules/Modal";
-import { useEffect, useState, useContext } from "react";
-import { ModalProvider, context } from "../store";
+import { ModalContext, ModalStorage } from "../store";
+import { ContextType, useContext } from "react";
 
 function Home() {
-  // const [modal, setModal] = useState(false);
+  const context = ModalStorage;
 
-  const { details } = useContext(context);
+  return (
+    <ModalStorage value={{ ...context }}>
+      <Wrapped />
+    </ModalStorage>
+  );
+}
 
-  console.log(details);
+function Wrapped() {
+  const context: ContextType<any> = useContext(ModalContext);
+
+  console.log(context);
 
   return (
     <PageContainer>
       <TopBlock />
 
-      {/* <button>{modal ? "Hide" : "Show"} Modal</button> */}
+      <button onClick={() => context.setModal((show: boolean) => !show)}>
+        Mostrar/Tirar Modal
+      </button>
+
+      {context.showModal ? (
+        <div className="test-context">
+          <p>{context.content.title.rendered}</p>
+        </div>
+      ) : null}
 
       <MainContainer>
         <LayoutHome />
       </MainContainer>
 
       <Footer />
-
-      <ModalProvider>{/* <Modal /> */}</ModalProvider>
     </PageContainer>
   );
 }
