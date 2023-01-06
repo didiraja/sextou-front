@@ -7,25 +7,11 @@ import Modal from "../components/molecules/Modal";
 import { ModalContext, ModalStorage } from "../store";
 import { ContextType, useContext } from "react";
 
-function Home() {
-  const context = ModalStorage;
-
-  return (
-    <ModalStorage value={{ ...context }}>
-      <Wrapped />
-    </ModalStorage>
-  );
-}
-
 function Wrapped() {
   const context: ContextType<any> = useContext(ModalContext);
 
-  console.log(context);
-
   return (
-    <PageContainer>
-      <TopBlock />
-
+    <>
       <button onClick={() => context.setModal((show: boolean) => !show)}>
         Mostrar/Tirar Modal
       </button>
@@ -35,6 +21,20 @@ function Wrapped() {
           <p>{context.content.title.rendered}</p>
         </div>
       ) : null}
+    </>
+  );
+}
+
+function Home() {
+  const modalMethods = ModalStorage;
+
+  return (
+    <PageContainer>
+      <TopBlock />
+
+      <ModalStorage value={modalMethods}>
+        <Wrapped />
+      </ModalStorage>
 
       <MainContainer>
         <LayoutHome />
