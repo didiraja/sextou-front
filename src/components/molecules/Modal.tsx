@@ -1,42 +1,57 @@
+import Date from "../../services/Date";
+import Pill from "../atoms/Pill";
+import Button from "../atoms/Button";
+import { useContext, ContextType } from "react";
+import { ModalContext } from "../../store";
+
 // @ts-nocheck
 const Modal = () => {
+  const context: ContextType<any> = useContext(ModalContext);
+
+  // TODO: Modal content from Actions(reducer): Details, Text, anything
+
   return (
-    <div class="backdrop z-20" onClick={() => {}}>
-      <div class="modal-wrapper">
-        <div class="modal">
-          <div class="nav-wrapper" onClick={() => {}}>
-            <Icon class="text-5xl" icon="material-symbols:close" />
+    <div className="backdrop z-20" onClick={() => {}}>
+      <div className="modal-wrapper">
+        <div className="modal">
+          <div className="nav-wrapper" onClick={() => {}}>
+            {/* <Icon className="text-5xl" icon="material-symbols:close" /> */}
           </div>
 
-          <p class="modal-title">{$eventDetails.Title}</p>
+          <p className="modal-title">{context.content.title.rendered}</p>
 
           <img
-            class="modal-cover"
-            src={$eventDetails.Cover.url}
+            className="modal-cover"
+            src={context.content.featured_media}
             alt="capa do evento"
           />
 
-          <div class="modal-info">
-            <p class="date">{readableDate($eventDetails.Date)}</p>
+          <div className="modal-info">
+            <p className="date">
+              {Date.readableDate(context.content.acf.event_date)}
+            </p>
 
-            <div class="tags">
-              <Pill>{$eventDetails.Zone.Title}</Pill>
-              <Pill>{$eventDetails.Neighborhood.Name}</Pill>
-            </div>
+            {context.content.categories
+              ? context.content.categories.map((item: string) => {
+                  <div className="tags" key={item}>
+                    <Pill>{item}</Pill>
+                  </div>;
+                })
+              : null}
 
-            <div class="cta">
+            <div className="cta">
               <Button style="md:text-xl">
-                <Icon
-                  class="mr-1 text-3xl"
+                {/* <Icon
+                  className="mr-1 text-3xl"
                   icon="material-symbols:airplane-ticket-rounded"
-                />{" "}
+                />{" "} */}
                 Comprar Ingressos
               </Button>
             </div>
           </div>
 
-          <div class="modal-content">
-            <p>{$eventDetails.Description}</p>
+          <div className="modal-content">
+            <p>{context.content.content.rendered}</p>
           </div>
         </div>
       </div>

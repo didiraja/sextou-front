@@ -16,11 +16,7 @@ function Wrapped() {
         Mostrar/Tirar Modal
       </button>
 
-      {context.showModal ? (
-        <div className="test-context">
-          <p>{context.content.title.rendered}</p>
-        </div>
-      ) : null}
+      {context.showModal ? <Modal /> : null}
     </>
   );
 }
