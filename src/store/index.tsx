@@ -22,11 +22,13 @@ export const ModalContext = createContext();
 
 export const ModalStorage = ({ children }: any) => {
   const [showModal, setModal] = useState(false);
+  const [content, setContent] = useState(INITIAL_CONTENT);
 
   const store = {
     showModal,
     setModal,
-    content: INITIAL_CONTENT,
+    content,
+    setContent,
   };
 
   return (

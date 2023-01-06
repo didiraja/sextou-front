@@ -4,14 +4,22 @@ import ErrorCard from "../molecules/Card.Error";
 import Title from "../atoms/Title";
 // import Button from "../atoms/Button";
 import { faker } from "@faker-js/faker";
-
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Requests from "../../services/Requests";
+import { ModalContext } from "../../store";
 
 function HomeCards() {
   const [highlights, setHighlight] = useState([]);
   const [events, setEvent] = useState([]);
   // const [showMore, setShowMore] = useState(false);
+
+  // todo: context to hooks
+  const context = useContext(ModalContext);
+
+  function handleModal(content: {}): void {
+    context.setContent(() => content);
+    context.setModal((modal: boolean) => !modal);
+  }
 
   useEffect(() => {
     const getPosts = async () => {
@@ -19,6 +27,7 @@ function HomeCards() {
         const result = await Requests.getPosts();
         // console.log(result.data);
         setHighlight(() => result.data);
+        // setEvent(() => result.data);
       } catch (e: any) {
         console.log(e.code);
       }
@@ -44,7 +53,7 @@ function HomeCards() {
                     highlight
                     key={faker.datatype.uuid()}
                     {...event}
-                    onClick={() => {}}
+                    onClick={(event: {}) => handleModal(event)}
                   />
                 );
               })
@@ -52,7 +61,7 @@ function HomeCards() {
         </CardGrid>
       </div>
 
-      <div className="main-events">
+      {/* <div className="main-events">
         <Title>principais eventos</Title>
 
         <CardGrid>
@@ -77,11 +86,11 @@ function HomeCards() {
             : null}
         </CardGrid>
 
-        {/* {showMore ?
+        {showMore ?
           <Button on:click={() => {}}>
             <Icon class="mr-1 text-2xl" icon="ic:baseline-library-add" /> Mais eventos
-          </Button> : null} */}
-      </div>
+          </Button> : null}
+      </div> */}
     </>
   );
 }

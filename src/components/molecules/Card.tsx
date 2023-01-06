@@ -25,6 +25,8 @@ export type CardProps = {
 };
 
 const Card = (props: CardProps) => {
+  console.log(props);
+
   const { featured_media, acf, title, categories } = props;
 
   const [media, setMedia] = useState();
@@ -72,7 +74,10 @@ const Card = (props: CardProps) => {
   }, []);
 
   return (
-    <div className="card">
+    <div
+      className="card hover:cursor-pointer"
+      onClick={() => props.onClick(props)}
+    >
       <span className="hover:cursor-pointer" onClick={() => {}}>
         <img className="card-cover" src={media} alt="" />
         {acf && acf.event_date ? (

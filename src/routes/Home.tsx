@@ -22,11 +22,11 @@ function Home() {
 
       <ModalStorage value={modalMethods}>
         <StorageWrapper />
-      </ModalStorage>
 
-      <MainContainer>
-        <LayoutHome />
-      </MainContainer>
+        <MainContainer>
+          <LayoutHome />
+        </MainContainer>
+      </ModalStorage>
 
       <Footer />
     </PageContainer>
