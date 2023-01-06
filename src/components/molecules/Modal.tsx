@@ -6,18 +6,28 @@ import { ModalContext } from "../../store";
 import "./Modal.pcss";
 
 // @ts-nocheck
+// TODO: Modal content from Actions(reducer): Details || Text || anything
 const Modal = () => {
   const { toggleModal, content } = useContext(ModalContext);
 
-  // TODO: Modal content from Actions(reducer): Details || Text || anything
+  function handleClick(evt) {
+    const targetClasses: string[] = [...evt.target.classList];
+    const isBackdrop: string | undefined = targetClasses.find(
+      (className: string) => className === "backdrop"
+    );
+
+    if (isBackdrop) {
+      return toggleModal();
+    }
+  }
+
+  // TODO: implement useGrabMedia and useCategoriesList
 
   return (
-    // TODO: onclick only on backdrop
-    <div className="backdrop z-20" onClick={toggleModal}>
+    <div className="backdrop z-20" onClick={handleClick}>
       <div className="modal-wrapper">
         <div className="modal">
-          <div className="nav-wrapper">
-            {/*  onClick={toggleModal} */}
+          <div className="nav-wrapper" onClick={toggleModal}>
             Fechar
           </div>
 

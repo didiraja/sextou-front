@@ -47,7 +47,7 @@ function HomeCards() {
                     highlight
                     key={faker.datatype.uuid()}
                     {...event}
-                    onClick={(event: {}) => openModal(event)}
+                    onClick={openModal}
                   />
                 );
               })
