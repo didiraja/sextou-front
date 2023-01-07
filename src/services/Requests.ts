@@ -14,8 +14,8 @@ class Request {
   }
 
   // http://sextou.local/wp-api/wp/v2/posts/
-  async getPosts() {
-    return axios.get(`${this.url}/posts`);
+  async getPosts(query: string = "") {
+    return axios.get(`${this.url}/posts?${query}`);
   }
 
   // http://sextou.local/wp-api/wp/v2/categories/1

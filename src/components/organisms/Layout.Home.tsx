@@ -23,7 +23,7 @@ function HomeCards() {
         setHighlight(() => result.data);
         // setEvent(() => result.data);
       } catch (e: any) {
-        console.log(e.code);
+        console.log("[Layout.Home getPosts Error]", e.code);
       }
     };
 
