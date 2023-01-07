@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { faker } from "@faker-js/faker";
 
 import CardGrid from "../components/templates/Card.Grid";
@@ -9,25 +9,18 @@ import useGetPosts from "../hooks/useGetPosts";
 
 const Category = () => {
   const [events, setEvents] = useState([]);
-
   const { "*": id } = useParams();
+  const navigate = useNavigate();
 
-  if (typeof Number(id) !== "number")
-    return (
-      <>
-        <h1>Página de Categorias</h1>
+  const isNumber: boolean = !Number.isNaN(Number(id));
 
-        <p>Incluiremos conteúdo aqui, mais tarde</p>
-      </>
-    );
+  const { posts } = useGetPosts(`categories=${id}`);
 
-  if (id) {
-    const { posts } = useGetPosts(`categories=${id}`);
+  useEffect(() => {
+    if (!isNumber) return navigate("/");
 
-    useEffect(() => {
-      setEvents(() => posts);
-    }, [posts]);
-  }
+    setEvents(() => posts);
+  }, [posts]);
 
   return (
     <CardGrid>

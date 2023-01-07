@@ -20,21 +20,6 @@ const Header = () => {
               Sobre
             </a>
           </li>
-          <li>
-            <a className="menu-item" href="/category">
-              Sem Categoria
-            </a>
-          </li>
-          <li>
-            <a className="menu-item" href="/category/37">
-              Categoria Real
-            </a>
-          </li>
-          <li>
-            <a className="menu-item" href="/category/99">
-              Categoria Undefined
-            </a>
-          </li>
         </ul>
       </div>
     </header>
