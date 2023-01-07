@@ -32,9 +32,9 @@ const Modal = () => {
     <div className="backdrop z-20" onClick={handleClick}>
       <div className="modal-wrapper">
         <div className="modal">
-          <div className="nav-wrapper" onClick={toggleModal}>
+          <p className="nav-wrapper" onClick={toggleModal}>
             Fechar
-          </div>
+          </p>
 
           <p className="modal-title">{content.title.rendered}</p>
 
