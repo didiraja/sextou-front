@@ -4,9 +4,13 @@
 .header-menu {
   @apply w-60 ml-auto;
   &--common {
-    @apply text-white text-xl flex justify-between;
+    @apply text-white text-xl flex /* justify-between */ justify-end;
     li {
       @apply inline-block;
+
+      & ~ li {
+        @apply ml-[1rem];
+      }
     }
     .menu-item {
       @apply underline hover:no-underline underline-offset-1 cursor-pointer;

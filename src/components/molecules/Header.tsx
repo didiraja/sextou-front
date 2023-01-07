@@ -1,3 +1,5 @@
+import "./Header.pcss";
+
 const Header = () => {
   return (
     <header className="header-wrapper">
@@ -8,13 +10,13 @@ const Header = () => {
               Home
             </a>
           </li>
-          <li>
+          {/* <li>
             <a className="menu-item" href="#">
               Ingressos
             </a>
-          </li>
+          </li> */}
           <li>
-            <a className="menu-item" href="#">
+            <a className="menu-item" href="/about">
               Sobre
             </a>
           </li>

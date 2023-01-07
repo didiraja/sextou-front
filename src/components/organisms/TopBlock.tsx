@@ -1,14 +1,14 @@
-import Header from "../molecules/Header";
+import Sextou from "../../assets/sextou.png";
+
+import "./TopBlock.pcss";
 
 const TopBlock = () => {
   return (
     <>
-      {/* <Header /> */}
-
       <section id="top" className="grid grid-cols-1">
-        {/* <img className="sextou-logo" src="/sextou_kv.png" alt="Sextou!" /> */}
+        <img className="sextou-logo" src={Sextou} alt="Sextou!" />
 
-        <p className="text-5xl text-center font-bold mt-5">Sextou!</p>
+        {/* <p className="text-5xl text-center font-bold mt-5">Sextou!</p> */}
 
         {/* <SearchBlock /> */}
       </section>

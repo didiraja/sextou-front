@@ -1,14 +1,14 @@
 import { ModalContext, ModalStorage } from "../store";
 import { ContextType, useContext } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import router from ".";
 
-import LayoutHome from "../components/organisms/Layout.Home";
 import PageContainer from "../components/templates/PageContainer";
 import MainContainer from "../components/templates/MainContainer";
 import TopBlock from "../components/organisms/TopBlock";
 import Footer from "../components/molecules/Footer";
 import Modal from "../components/molecules/Modal";
-import About from "./About";
+import Header from "../components/molecules/Header";
 
 function ModalWithContext() {
   const { showModal }: ContextType<any> = useContext(ModalContext);
@@ -16,22 +16,13 @@ function ModalWithContext() {
   return showModal ? <Modal /> : null;
 }
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <LayoutHome />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-]);
-
 function Home() {
   const modalMethods = ModalStorage;
 
   return (
     <PageContainer>
+      <Header />
+
       <TopBlock />
 
       <ModalStorage value={modalMethods}>
