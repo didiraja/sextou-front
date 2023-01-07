@@ -17,7 +17,10 @@ const useCategoriesList = (categories: number[]) => {
 
           // console.log(result.data.name);
 
-          return result.data.name;
+          return {
+            id: result.data.id,
+            label: result.data.name,
+          };
         })
       );
 

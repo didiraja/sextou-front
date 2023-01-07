@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { ModalContext } from "../../store";
 import useGrabMedia from "../../hooks/useGrabMedia";
 import useCategoriesList from "../../hooks/useCategoriesList";
+import { useNavigate } from "react-router-dom";
 import { faker } from "@faker-js/faker";
 import "./Modal.pcss";
 
@@ -14,6 +15,7 @@ const Modal = () => {
   const { toggleModal, content } = useContext(ModalContext);
   const { media } = useGrabMedia(content.featured_media);
   const { categoriesList } = useCategoriesList(content.categories);
+  // const navigate = useNavigate();
 
   function handleClick(evt) {
     const targetClasses: string[] = [...evt.target.classList];
@@ -25,8 +27,6 @@ const Modal = () => {
       return toggleModal();
     }
   }
-
-  // TODO: implement useGrabMedia and useCategoriesList
 
   return (
     <div className="backdrop z-20" onClick={handleClick}>
@@ -49,8 +49,14 @@ const Modal = () => {
 
             {content.categories ? (
               <div className="tags" key={faker.datatype.uuid()}>
-                {categoriesList.map((item: string) => (
-                  <Pill>{item}</Pill>
+                {categoriesList.map((item: {}) => (
+                  <Pill
+                    onClick={() =>
+                      window.location.replace(`/category/${item.id}`)
+                    }
+                  >
+                    {item.label}
+                  </Pill>
                 ))}
               </div>
             ) : null}

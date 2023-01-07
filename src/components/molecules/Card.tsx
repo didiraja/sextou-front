@@ -2,9 +2,10 @@
 import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
 import Date from "../../services/Date";
-import "./Card.pcss";
 import useGrabMedia from "../../hooks/useGrabMedia";
 import useCategoriesList from "../../hooks/useCategoriesList";
+import { useNavigate } from "react-router-dom";
+import "./Card.pcss";
 
 export type EventData = any;
 
@@ -19,21 +20,21 @@ export type CardProps = {
     rendered: string;
   };
   categories?: number[];
-  // onClick?: () => void;
+  onClick: void;
 };
 
 const Card = (props: CardProps) => {
   const { featured_media, acf, title, categories } = props;
-
   const { media } = useGrabMedia(featured_media);
   const { categoriesList } = useCategoriesList(categories);
+  const navigate = useNavigate();
 
   return (
-    <div
-      className="card hover:cursor-pointer"
-      onClick={() => props.onClick(props)}
-    >
-      <span className="hover:cursor-pointer" onClick={() => {}}>
+    <div className="card">
+      <span
+        className="hover:cursor-pointer"
+        onClick={() => props.onClick(props)}
+      >
         <img className="card-cover" src={media} alt="" />
         {acf && acf.event_date ? (
           <div className="card-date">{Date.readableDate(acf.event_date)}</div>
@@ -43,9 +44,13 @@ const Card = (props: CardProps) => {
 
       <div className="card-meta">
         {categoriesList
-          ? categoriesList.map((label, index) => (
-              <Pill highlight key={index}>
-                {label}
+          ? categoriesList.map((item, index) => (
+              <Pill
+                highlight
+                key={index}
+                onClick={() => navigate(`/category/${item.id}`)}
+              >
+                {item.label}
               </Pill>
             ))
           : null}
