@@ -10,12 +10,6 @@ import Footer from "../components/molecules/Footer";
 import Modal from "../components/molecules/Modal";
 import Header from "../components/molecules/Header";
 
-function ModalWithContext() {
-  const { showModal }: ContextType<any> = useContext(ModalContext);
-
-  return showModal ? <Modal /> : null;
-}
-
 function Home() {
   const modalMethods = ModalStorage;
 
@@ -26,7 +20,7 @@ function Home() {
       <TopBlock />
 
       <ModalStorage value={modalMethods}>
-        <ModalWithContext />
+        {/* <ModalWithContext /> */}
 
         <MainContainer>
           <RouterProvider router={router} />

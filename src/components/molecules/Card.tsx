@@ -27,6 +27,7 @@ const Card = (props: CardProps) => {
   const { featured_media, acf, title, categories } = props;
   const { media } = useGrabMedia(featured_media);
   const { categoriesList } = useCategoriesList(categories);
+
   const navigate = useNavigate();
 
   return (
@@ -36,15 +37,17 @@ const Card = (props: CardProps) => {
         onClick={() => props.onClick(props)}
       >
         <img className="card-cover" src={media} alt="" />
-        {acf && acf.event_date ? (
+        {acf?.event_date ? (
           <div className="card-date">{Date.readableDate(acf.event_date)}</div>
         ) : null}
         {title ? <div className="card-title">{title.rendered}</div> : null}
       </span>
 
       <div className="card-meta">
-        {categoriesList
-          ? categoriesList.map((item, index) => (
+        {categoriesList?.map((item, index) => {
+          // validate item, to prevent crash if array come with falsy values
+          if (item)
+            return (
               <Pill
                 highlight
                 key={index}
@@ -52,8 +55,8 @@ const Card = (props: CardProps) => {
               >
                 {item.label}
               </Pill>
-            ))
-          : null}
+            );
+        }) ?? null}
       </div>
 
       <div className="card-bottom">

@@ -1,20 +1,16 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Requests from "../services/Requests";
 
 const useGrabMedia = (mediaID: number) => {
   const [media, setMedia] = useState(undefined);
 
-  useMemo(() => {
+  useEffect(() => {
     const getImage = async () => {
-      try {
-        const result = await Requests.getMedia(mediaID);
+      const result = await Requests.getMedia(mediaID);
+      // console.log(result.data);
+      setMedia(result.data.media_details.sizes.medium_large.source_url);
 
-        // console.log(result.data);
-
-        setMedia(result.data.media_details.sizes.medium_large.source_url);
-      } catch (e: any) {
-        console.log(e.code);
-      }
+      return "";
     };
 
     getImage();

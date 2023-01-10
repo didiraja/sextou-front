@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 // type RequestResponse = {
 //   // dynamic key and any response
@@ -15,7 +15,13 @@ class Request {
 
   // http://sextou.local/wp-api/wp/v2/posts/
   async getPosts(query: string = "") {
-    return axios.get(`${this.url}/posts?${query}`);
+    try {
+      return axios.get(`${this.url}/posts?${query}`);
+    } catch (e: AxiosError<any>) {
+      console.log(`[getPosts Error] ${e.code} - ${e.message}`);
+
+      return [];
+    }
   }
 
   // http://sextou.local/wp-api/wp/v2/categories/1
@@ -25,7 +31,13 @@ class Request {
 
   // http://sextou.local/wp-api/wp/v2/media/33
   async getMedia(id: number) {
-    return axios.get(`${this.url}/media/${id}`);
+    try {
+      return axios.get(`${this.url}/media/${id}`);
+    } catch (e: AxiosError<any>) {
+      console.log(`[getMedia Error] ${e.code} - ${e.message}`);
+
+      return [];
+    }
   }
 }
 

@@ -7,13 +7,9 @@ const useGetPosts = (query: string = "") => {
 
   useMemo(() => {
     const getPosts = async () => {
-      try {
-        const result = await Requests.getPosts(query);
+      const result = await Requests.getPosts(query);
 
-        setPosts(() => result.data);
-      } catch (e: AxiosError<any>) {
-        console.log("[useGetPosts Error]", e.code, e.message);
-      }
+      setPosts(() => result.data);
     };
 
     getPosts();

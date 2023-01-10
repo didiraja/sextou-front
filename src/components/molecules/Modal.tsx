@@ -7,6 +7,7 @@ import useGrabMedia from "../../hooks/useGrabMedia";
 import useCategoriesList from "../../hooks/useCategoriesList";
 import { useNavigate } from "react-router-dom";
 import { faker } from "@faker-js/faker";
+import { CategoryToCardType } from "../../types";
 import "./Modal.pcss";
 
 // @ts-nocheck
@@ -15,7 +16,7 @@ const Modal = () => {
   const { toggleModal, content } = useContext(ModalContext);
   const { media } = useGrabMedia(content.featured_media);
   const { categoriesList } = useCategoriesList(content.categories);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   function handleClick(evt) {
     const targetClasses: string[] = [...evt.target.classList];
@@ -47,19 +48,18 @@ const Modal = () => {
           <div className="modal-info">
             <p className="date">{Date.readableDate(content.acf.event_date)}</p>
 
-            {content.categories ? (
-              <div className="tags" key={faker.datatype.uuid()}>
-                {categoriesList.map((item: {}) => (
+            {/* {content.categories ? (
+              <div className="tags">
+                {categoriesList.map((item: CategoryToCardType) => (
                   <Pill
-                    onClick={() =>
-                      window.location.replace(`/category/${item.id}`)
-                    }
+                    key={faker.datatype.uuid()}
+                    onClick={() => navigate(`/category/${item.id}`)}
                   >
                     {item.label}
                   </Pill>
                 ))}
               </div>
-            ) : null}
+            ) : null} */}
 
             <div className="cta">
               <Button className="md:text-xl">

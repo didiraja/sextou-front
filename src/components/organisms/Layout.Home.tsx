@@ -7,24 +7,21 @@ import { faker } from "@faker-js/faker";
 import { useContext, useEffect, useState } from "react";
 import Requests from "../../services/Requests";
 import { ModalContext } from "../../store";
+import Modal from "../molecules/Modal";
 
 function HomeCards() {
   const [highlights, setHighlight] = useState([]);
   const [events, setEvent] = useState([]);
   // const [showMore, setShowMore] = useState(false);
 
-  const { openModal } = useContext(ModalContext);
+  const { showModal, openModal } = useContext(ModalContext);
 
   useEffect(() => {
     const getPosts = async () => {
-      try {
-        const result = await Requests.getPosts();
-        // console.log(result.data);
-        setHighlight(() => result.data);
-        // setEvent(() => result.data);
-      } catch (e: any) {
-        console.log("[Layout.Home getPosts Error]", e.code);
-      }
+      const result = await Requests.getPosts();
+      // console.log(result.data);
+      setHighlight(() => result.data);
+      // setEvent(() => result.data);
     };
 
     getPosts();
@@ -32,6 +29,8 @@ function HomeCards() {
 
   return (
     <>
+      {showModal ? <Modal /> : null}
+
       <div className="highlight-events">
         <Title highlight>hype da noite</Title>
 

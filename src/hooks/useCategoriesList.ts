@@ -1,30 +1,26 @@
-import { AxiosResponse } from "axios";
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Requests from "../services/Requests";
+import { CategoryToCardType } from "../types";
 
 const useCategoriesList = (categories: number[]) => {
   const [categoriesList, setCategoriesList] = useState([]);
 
-  useMemo(() => {
+  useEffect(() => {
     const grabCategories = async () => {
-      const promiseOfIds = categories.map(
-        async (id: number) => await Requests.getCatName(id)
+      const promiseOfIds = categories.map((id: number) =>
+        Requests.getCatName(id)
       );
 
-      const ArrayCategories = await Promise.all(
-        promiseOfIds.map(async (promise: Promise<AxiosResponse>) => {
-          const result = await promise;
+      const promisesFullfilled = await Promise.all(promiseOfIds);
 
-          // console.log(result.data.name);
+      const arrayCategories = promisesFullfilled.map((item) => {
+        return {
+          id: item.data.id,
+          label: item.data.name,
+        };
+      });
 
-          return {
-            id: result.data.id,
-            label: result.data.name,
-          };
-        })
-      );
-
-      setCategoriesList(() => ArrayCategories);
+      setCategoriesList(() => arrayCategories);
     };
 
     grabCategories();

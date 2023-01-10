@@ -4,7 +4,7 @@ import "./Pill.pcss";
 type PillProps = ButtonProps & {
   bg?: string;
   color?: string;
-  onClick?: void;
+  onClick?: () => void;
 };
 
 const Pill = (props: PillProps) => {
