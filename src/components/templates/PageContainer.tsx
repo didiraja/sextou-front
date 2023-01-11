@@ -1,6 +1,6 @@
-import { AppProps } from "../../types";
+import { ChildrenOnly } from "../../types";
 
-const PageContainer = ({ children }: AppProps) => {
+const PageContainer = ({ children }: ChildrenOnly) => {
   return <div className="page-wrapper">{children}</div>;
 };
 

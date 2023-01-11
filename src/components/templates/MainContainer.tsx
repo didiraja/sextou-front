@@ -1,7 +1,7 @@
-import { AppProps } from "../../types";
+import { ChildrenOnly } from "../../types";
 import "./MainContainer.pcss";
 
-function MainContainer({ children }: AppProps): JSX.Element {
+function MainContainer({ children }: ChildrenOnly): JSX.Element {
   return <main className="main-wrapper">{children}</main>;
 }
 

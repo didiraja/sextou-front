@@ -1,7 +1,7 @@
-import { AppProps } from "../../types";
+import { ChildrenOnly } from "../../types";
 import "./Button.pcss";
 
-export type ButtonProps = AppProps & {
+export type ButtonProps = ChildrenOnly & {
   highlight?: boolean;
   className?: string;
 };

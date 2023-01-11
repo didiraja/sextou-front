@@ -1,10 +1,4 @@
-import axios, { AxiosError } from "axios";
-
-// type RequestResponse = {
-//   // dynamic key and any response
-//   [key: string]: any;
-//   name: string;
-// };
+import axios, { AxiosResponse, AxiosError } from "axios";
 
 class Request {
   private url: string;
@@ -14,10 +8,10 @@ class Request {
   }
 
   // http://sextou.local/wp-api/wp/v2/posts/
-  async getPosts(query: string = "") {
+  async getPosts(query: string = ""): Promise<AxiosResponse<any> | []> {
     try {
       return axios.get(`${this.url}/posts?${query}`);
-    } catch (e: AxiosError<any>) {
+    } catch (e: any) {
       console.log(`[getPosts Error] ${e.code} - ${e.message}`);
 
       return [];

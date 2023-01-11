@@ -1,7 +1,7 @@
-import { AppProps } from "../../types";
+import { ChildrenOnly } from "../../types";
 import "./Card.Grid.pcss";
 
-function CardGrid({ children }: AppProps): JSX.Element {
+function CardGrid({ children }: ChildrenOnly): JSX.Element {
   return <main className="card-grid">{children}</main>;
 }
 

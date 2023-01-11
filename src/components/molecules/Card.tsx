@@ -1,20 +1,18 @@
-// @ts-nocheck
+import { useNavigate } from "react-router-dom";
 import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
 import Date from "../../services/Date";
-import { useNavigate } from "react-router-dom";
+import { CategoryObject } from "../../types";
 import "./Card.pcss";
 
-export type EventData = any;
-
 export type CardProps = {
-  [key: string]: any;
+  title: string;
   cover: string;
   date_event: string;
-  tickets: string;
-  title: string;
-  categories: {}[];
-  onClick: void;
+  tickets?: any;
+  categories: Array<CategoryObject>;
+  content: string;
+  onClick?: (props: CardProps) => void;
 };
 
 const Card = (props: CardProps) => {
@@ -26,7 +24,7 @@ const Card = (props: CardProps) => {
     <div className="card">
       <span
         className="hover:cursor-pointer"
-        onClick={() => props.onClick(props)}
+        onClick={() => props.onClick?.(props)}
       >
         <img className="card-cover" src={cover} alt="" />
         {date_event ? (
@@ -36,7 +34,7 @@ const Card = (props: CardProps) => {
       </span>
 
       <div className="card-meta">
-        {categories?.map((item, index) => {
+        {categories?.map((item: CategoryObject, index: number) => {
           // validate item, to prevent crash if array come with falsy values
           if (item)
             return (

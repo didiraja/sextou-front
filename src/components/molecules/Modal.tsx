@@ -1,29 +1,36 @@
+import { useNavigate } from "react-router-dom";
+import { faker } from "@faker-js/faker";
 import Date from "../../services/Date";
+import { ModalContext, ModalContextProps } from "../../store";
 import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
 import { useContext } from "react";
-import { ModalContext } from "../../store";
-import { useNavigate } from "react-router-dom";
-import { faker } from "@faker-js/faker";
-import { CategoryToCardType } from "../../types";
+import { CardProps } from "./Card";
+import { CategoryObject } from "../../types";
 import "./Modal.pcss";
 
-// @ts-nocheck
 // TODO: Modal content from Actions(reducer): Details || Text || anything
+
 const Modal = () => {
-  const { toggleModal, content } = useContext(ModalContext);
+  const { toggleModal, content } = useContext<ModalContextProps>(ModalContext);
+
   const navigate = useNavigate();
 
-  function handleClick(evt) {
-    const targetClasses: string[] = [...evt.target.classList];
-    const isBackdrop: string | undefined = targetClasses.find(
-      (className: string) => className === "backdrop"
-    );
+  function handleClick(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const isBackdrop: boolean = evt.target === evt.currentTarget;
 
     if (isBackdrop) {
       return toggleModal();
     }
   }
+
+  // type guard
+  function isCardProps(content: any): content is CardProps {
+    return content !== undefined && typeof content === "object";
+  }
+
+  // typeguard validation
+  if (!isCardProps(content)) return null;
 
   return (
     <div className="backdrop z-20" onClick={handleClick}>
@@ -46,7 +53,7 @@ const Modal = () => {
 
             {content.categories ? (
               <div className="tags">
-                {content.categories?.map((item: CategoryToCardType) => (
+                {content.categories?.map((item: CategoryObject) => (
                   <Pill
                     key={faker.datatype.uuid()}
                     onClick={() => navigate(`/category/${item.id}`)}
