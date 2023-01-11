@@ -3,8 +3,6 @@ import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
 import { useContext } from "react";
 import { ModalContext } from "../../store";
-import useGrabMedia from "../../hooks/useGrabMedia";
-import useCategoriesList from "../../hooks/useCategoriesList";
 import { useNavigate } from "react-router-dom";
 import { faker } from "@faker-js/faker";
 import { CategoryToCardType } from "../../types";
@@ -14,8 +12,6 @@ import "./Modal.pcss";
 // TODO: Modal content from Actions(reducer): Details || Text || anything
 const Modal = () => {
   const { toggleModal, content } = useContext(ModalContext);
-  const { media } = useGrabMedia(content.featured_media);
-  const { categoriesList } = useCategoriesList(content.categories);
   const navigate = useNavigate();
 
   function handleClick(evt) {
@@ -37,29 +33,29 @@ const Modal = () => {
             Fechar
           </p>
 
-          <p className="modal-title">{content.title.rendered}</p>
+          <p className="modal-title">{content.title}</p>
 
           <img
             className="modal-cover"
-            src={media}
-            alt={content.title.rendered}
+            src={content.cover}
+            alt={content.title}
           />
 
           <div className="modal-info">
-            <p className="date">{Date.readableDate(content.acf.event_date)}</p>
+            <p className="date">{Date.readableDate(content.date_event)}</p>
 
-            {/* {content.categories ? (
+            {content.categories ? (
               <div className="tags">
-                {categoriesList.map((item: CategoryToCardType) => (
+                {content.categories?.map((item: CategoryToCardType) => (
                   <Pill
                     key={faker.datatype.uuid()}
                     onClick={() => navigate(`/category/${item.id}`)}
                   >
-                    {item.label}
+                    {item.name}
                   </Pill>
                 ))}
               </div>
-            ) : null} */}
+            ) : null}
 
             <div className="cta">
               <Button className="md:text-xl">
@@ -73,7 +69,7 @@ const Modal = () => {
           </div>
 
           <div className="modal-content">
-            <p dangerouslySetInnerHTML={{ __html: content.content.rendered }} />
+            <p dangerouslySetInnerHTML={{ __html: content.content }} />
           </div>
         </div>
       </div>
