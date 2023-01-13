@@ -71,7 +71,6 @@ function HomeCards() {
             ? events.map((event: CardProps) => {
                 return (
                   <Card
-                    highlight
                     key={faker.datatype.uuid()}
                     {...event}
                     onClick={openModal}

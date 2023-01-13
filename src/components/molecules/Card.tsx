@@ -19,7 +19,7 @@ export type CardProps = {
 };
 
 const Card = (props: CardProps) => {
-  const { cover, event_date, tickets, title, categories } = props;
+  const { highlight, cover, event_date, tickets, title, categories } = props;
 
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ const Card = (props: CardProps) => {
       </div>
 
       <div className="card-bottom">
-        <Button highlight>Comprar Ingressos</Button>
+        <Button highlight={highlight}>Comprar Ingressos</Button>
       </div>
     </div>
   );
