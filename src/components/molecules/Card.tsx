@@ -2,21 +2,23 @@ import { useNavigate } from "react-router-dom";
 import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
 import Date from "../../services/Date";
-import { CategoryObject } from "../../types";
+import { WPTermObject } from "../../types";
 import "./Card.pcss";
 
 export type CardProps = {
+  id: number;
   title: string;
+  event_date: string;
+  categories: Array<WPTermObject>;
   cover: string;
-  date_event: string;
   tickets?: any;
-  categories: Array<CategoryObject>;
   content: string;
+  description: string;
   onClick?: (props: CardProps) => void;
 };
 
 const Card = (props: CardProps) => {
-  const { cover, date_event, tickets, title, categories } = props;
+  const { cover, event_date, tickets, title, categories } = props;
 
   const navigate = useNavigate();
 
@@ -27,21 +29,21 @@ const Card = (props: CardProps) => {
         onClick={() => props.onClick?.(props)}
       >
         <img className="card-cover" src={cover} alt="" />
-        {date_event ? (
-          <div className="card-date">{Date.readableDate(date_event)}</div>
+        {event_date ? (
+          <div className="card-date">{Date.readableDate(event_date)}</div>
         ) : null}
         {title ? <div className="card-title">{title}</div> : null}
       </span>
 
       <div className="card-meta">
-        {categories?.map((item: CategoryObject, index: number) => {
+        {categories?.map((item: WPTermObject, index: number) => {
           // validate item, to prevent crash if array come with falsy values
           if (item)
             return (
               <Pill
                 highlight
                 key={index}
-                onClick={() => navigate(`/category/${item.id}`)}
+                onClick={() => navigate(`/category/${item.term_id}`)}
               >
                 {item.name}
               </Pill>

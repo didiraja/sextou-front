@@ -17,19 +17,21 @@ type ModalActions = {
 export interface ModalContextProps extends ModalState, ModalActions {}
 
 export const INITIAL_CONTENT: CardProps = {
+  id: 52,
   title: "Teste Evento no Modal",
   content:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit dolorem cum mollitia delectus perferendis laborum ipsa fugit dolore. Sequi harum inventore obcaecati, non itaque commodi placeat dolores aliquam numquam similique!",
   cover: "https://loremflickr.com/640/480/abstract",
-  date_event: "2023-01-21 00:00:00",
+  event_date: "2023-01-21 00:00:00",
   tickets: "",
   categories: [
     {
-      id: 99,
+      term_id: 99,
       name: "Teste",
       slug: "teste",
     },
   ],
+  description: "",
 };
 
 const INITIAL_CONTEXT: ModalContextProps = {

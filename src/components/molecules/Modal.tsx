@@ -6,7 +6,7 @@ import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
 import { useContext } from "react";
 import { CardProps } from "./Card";
-import { CategoryObject } from "../../types";
+import { WPTermObject } from "../../types";
 import "./Modal.pcss";
 
 // TODO: Modal content from Actions(reducer): Details || Text || anything
@@ -49,14 +49,14 @@ const Modal = () => {
           />
 
           <div className="modal-info">
-            <p className="date">{Date.readableDate(content.date_event)}</p>
+            <p className="date">{Date.readableDate(content.event_date)}</p>
 
             {content.categories ? (
               <div className="tags">
-                {content.categories?.map((item: CategoryObject) => (
+                {content.categories?.map((item: WPTermObject) => (
                   <Pill
                     key={faker.datatype.uuid()}
-                    onClick={() => navigate(`/category/${item.id}`)}
+                    onClick={() => navigate(`/category/${item.term_id}`)}
                   >
                     {item.name}
                   </Pill>
@@ -76,7 +76,7 @@ const Modal = () => {
           </div>
 
           <div className="modal-content">
-            <p dangerouslySetInnerHTML={{ __html: content.content }} />
+            <p dangerouslySetInnerHTML={{ __html: content.description }} />
           </div>
         </div>
       </div>
