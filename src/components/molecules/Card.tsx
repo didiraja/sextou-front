@@ -6,6 +6,7 @@ import { WPTermObject } from "../../types";
 import "./Card.pcss";
 
 export type CardProps = {
+  highlight?: boolean;
   id: number;
   title: string;
   event_date: string;

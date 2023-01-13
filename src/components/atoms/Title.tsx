@@ -3,11 +3,7 @@ import "./Title.pcss";
 
 const Title = ({ children, highlight }: ButtonProps) => {
   return (
-    <h1
-      className={`section-title border-orange-600 ${
-        highlight ? "highlight" : ""
-      }`}
-    >
+    <h1 className={`section-title ${highlight ? "highlight" : ""}`}>
       {children}
     </h1>
   );

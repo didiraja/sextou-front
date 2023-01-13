@@ -76,7 +76,7 @@ const Modal = () => {
           </div>
 
           <div className="modal-content">
-            {/* <p dangerouslySetInnerHTML={{ __html: content.description }} /> */}
+            <p dangerouslySetInnerHTML={{ __html: content.description }} />
           </div>
         </div>
       </div>

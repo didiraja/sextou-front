@@ -1,5 +1,5 @@
 import CardGrid from "../templates/Card.Grid";
-import Card, { EventData } from "../molecules/Card";
+import Card, { CardProps } from "../molecules/Card";
 import ErrorCard from "../molecules/Card.Error";
 import Title from "../atoms/Title";
 // import Button from "../atoms/Button";
@@ -22,8 +22,8 @@ function HomeCards() {
         const result = await Requests.getPosts();
 
         // console.log(result.data);
-        setHighlight(() => result.data);
-        // setEvent(() => result.data);
+        // setHighlight(() => result.data);
+        setEvent(() => result.data);
       } catch (e) {
         console.log(e);
       }
@@ -40,12 +40,12 @@ function HomeCards() {
         <Title highlight>hype da noite</Title>
 
         <CardGrid>
-          {!highlights.length ? (
+          {!highlights?.length ? (
             <ErrorCard>Nenhum evento encontrado</ErrorCard>
           ) : null}
 
-          {highlights.length
-            ? highlights.map((event: EventData) => {
+          {highlights?.length
+            ? highlights.map((event: CardProps) => {
                 return (
                   <Card
                     highlight
@@ -59,36 +59,28 @@ function HomeCards() {
         </CardGrid>
       </div>
 
-      {/* <div className="main-events">
+      <div className="main-events">
         <Title>principais eventos</Title>
 
         <CardGrid>
-          {!events.length ? (
+          {!events?.length ? (
             <ErrorCard>Nenhum evento encontrado</ErrorCard>
           ) : null}
 
-          {events.length
-            ? events.map((event: EventData) => {
+          {events?.length
+            ? events.map((event: CardProps) => {
                 return (
                   <Card
-                    key={faker.datatype.uuid()}
-                    event={event}
                     highlight
-                    cover={event.cover.url}
-                    zone={event.zone.title}
-                    neighborhood={event.neighborhood.title}
-                    onClick={() => {}}
+                    key={faker.datatype.uuid()}
+                    {...event}
+                    onClick={openModal}
                   />
                 );
               })
             : null}
         </CardGrid>
-
-        {showMore ?
-          <Button on:click={() => {}}>
-            <Icon class="mr-1 text-2xl" icon="ic:baseline-library-add" /> Mais eventos
-          </Button> : null}
-      </div> */}
+      </div>
     </>
   );
 }
