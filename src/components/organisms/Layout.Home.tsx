@@ -18,7 +18,7 @@ function HomeCards() {
 
   useEffect(() => {
     const getPosts = async () => {
-      const result = await Requests.getPosts();
+      const result = await Requests.getPosts("per_page=12&page=1");
       // console.log(result.data);
       setHighlight(() => result.data);
       // setEvent(() => result.data);
