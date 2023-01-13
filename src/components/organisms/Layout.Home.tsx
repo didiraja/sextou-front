@@ -18,10 +18,15 @@ function HomeCards() {
 
   useEffect(() => {
     const getPosts = async () => {
-      const result = await Requests.getPosts("per_page=12&page=1");
-      // console.log(result.data);
-      setHighlight(() => result.data);
-      // setEvent(() => result.data);
+      try {
+        const result = await Requests.getPosts();
+
+        // console.log(result.data);
+        setHighlight(() => result.data);
+        // setEvent(() => result.data);
+      } catch (e) {
+        console.log(e);
+      }
     };
 
     getPosts();

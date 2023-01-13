@@ -4,13 +4,13 @@ class Request {
   private url: string;
 
   constructor() {
-    this.url = "http://sextou.local/wp-api/wp/v2";
+    this.url = "http://sextou.local/wp-api/sextou/v1/events";
   }
 
   // http://sextou.local/wp-api/wp/v2/posts/
   async getPosts(query: string = ""): Promise<AxiosResponse<any> | []> {
     try {
-      return axios.get(`${this.url}/posts?${query}`);
+      return axios.get(`${this.url}/?after=2023-01-13${query}`);
     } catch (e: any) {
       console.log(`[getPosts Error] ${e.code} - ${e.message}`);
 

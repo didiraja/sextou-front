@@ -32,6 +32,7 @@ const Card = (props: CardProps) => {
         {event_date ? (
           <div className="card-date">{Date.readableDate(event_date)}</div>
         ) : null}
+
         {title ? <div className="card-title">{title}</div> : null}
       </span>
 
@@ -52,13 +53,7 @@ const Card = (props: CardProps) => {
       </div>
 
       <div className="card-bottom">
-        <Button highlight>
-          {/* <Icon
-            className="mr-1 text-2xl"
-            icon="material-symbols:airplane-ticket-rounded"
-          />{" "} */}
-          Comprar Ingressos
-        </Button>
+        <Button highlight>Comprar Ingressos</Button>
       </div>
     </div>
   );
