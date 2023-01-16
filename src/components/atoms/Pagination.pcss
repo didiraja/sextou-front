@@ -1,0 +1,21 @@
+.pagination {
+  @apply my-5 px-5 flex justify-center;
+
+  .button {
+    @apply inline-block;
+
+    & ~ .button {
+      @apply ml-3;
+    }
+
+    button {
+      @apply w-[initial] bg-red-500;
+    }
+
+    &.active {
+      button {
+        @apply bg-red-500/50 hover:cursor-default;
+      }
+    }
+  }
+}

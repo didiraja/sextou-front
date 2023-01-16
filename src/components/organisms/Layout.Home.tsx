@@ -2,12 +2,12 @@ import CardGrid from "../templates/Card.Grid";
 import Card, { CardProps } from "../molecules/Card";
 import ErrorCard from "../molecules/Card.Error";
 import Title from "../atoms/Title";
-// import Button from "../atoms/Button";
 import { faker } from "@faker-js/faker";
 import { useContext, useEffect, useState } from "react";
 import Requests from "../../services/Requests";
 import { ModalContext } from "../../store";
 import Modal from "../molecules/Modal";
+import Pagination from "../atoms/Pagination";
 
 function HomeCards() {
   const [highlights, setHighlight] = useState([]);
@@ -57,6 +57,11 @@ function HomeCards() {
               })
             : null}
         </CardGrid>
+
+        <Pagination
+        // onNext={() => console.log("página anterior")}
+        // onPrevious={() => console.log("próxima página")}
+        />
       </div>
 
       <div className="main-events">

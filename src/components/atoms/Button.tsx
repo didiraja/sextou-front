@@ -4,12 +4,19 @@ import "./Button.pcss";
 export type ButtonProps = ChildrenOnly & {
   highlight?: boolean;
   className?: string;
+  onClick?: () => void;
 };
 
-const Button = ({ className, children, highlight }: ButtonProps) => {
+const Button = ({
+  highlight,
+  className = "",
+  children,
+  onClick,
+}: ButtonProps) => {
   return (
     <div
-      className={`button-default ${className} ${highlight ? "highlight" : ""}`}
+      className={`button ${className} ${highlight ? "highlight" : ""}`}
+      onClick={() => onClick?.()}
     >
       <button>{children}</button>
     </div>

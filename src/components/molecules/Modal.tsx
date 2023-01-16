@@ -36,21 +36,26 @@ const Modal = () => {
     <div className="backdrop z-20" onClick={handleClick}>
       <div className="modal-wrapper">
         <div className="modal">
+          {/* CLOSE BUTTON */}
           <p className="nav-wrapper" onClick={toggleModal}>
             Fechar
           </p>
-
+          {/* TITLE */}
           <p className="modal-title">{content.title}</p>
-
-          <img
-            className="modal-cover"
-            src={content.cover}
-            alt={content.title}
-          />
-
+          {/* COVER */}
+          /* TODO: refactor block, to show featured image only with description
+          block has no image attached */
+          {/* <img
+              className="modal-cover"
+              src={content.cover}
+              alt={content.title}
+            /> */}
+          {/* INFORMATION */}
           <div className="modal-info">
+            {/* DATE */}
             <p className="date">{Date.readableDate(content.event_date)}</p>
 
+            {/* CATEGORIES */}
             {content.categories ? (
               <div className="tags">
                 {content.categories?.map((item: WPTermObject) => (
@@ -64,6 +69,7 @@ const Modal = () => {
               </div>
             ) : null}
 
+            {/* TICKETS */}
             <div className="cta">
               <Button className="md:text-xl">
                 {/* <Icon
@@ -74,8 +80,8 @@ const Modal = () => {
               </Button>
             </div>
           </div>
-
           <div className="modal-content">
+            {/* DESCRIPTION */}
             <p dangerouslySetInnerHTML={{ __html: content.description }} />
           </div>
         </div>
