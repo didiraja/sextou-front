@@ -10,6 +10,7 @@ import Modal from "../molecules/Modal";
 import Pagination from "../atoms/Pagination";
 import { GenericObject } from "../../types";
 import { AxiosResponse } from "axios";
+import usePagination from "../../hooks/usePagination";
 
 type SextouAPI = GenericObject & {
   data: {
@@ -25,10 +26,14 @@ function HomeCards() {
   const [highlights, setHighlight] = useState([]);
   const [events, setEvent] = useState([]);
 
-  // TODO: Convert pagination logic to Hook
-  // PAGINATION STATE
-  const [totalEvents, setTotalEvents] = useState(1);
-  const [activePage, setActivePage] = useState(1);
+  const {
+    totalEvents,
+    setTotalEvents,
+    activePage,
+    setActive,
+    goPrevious,
+    goNext,
+  } = usePagination();
 
   useEffect(() => {
     const getPosts = async () => {
@@ -100,9 +105,9 @@ function HomeCards() {
         <Pagination
           totalItems={totalEvents}
           page={activePage}
-          onSelectPage={(page: number) => setActivePage(() => page)}
-          onPrevious={() => setActivePage((actualPage) => actualPage - 1)}
-          onNext={() => setActivePage((actualPage) => actualPage + 1)}
+          onSelectPage={(page: number) => setActive(page)}
+          onPrevious={goPrevious}
+          onNext={goNext}
         />
       </div>
     </>
