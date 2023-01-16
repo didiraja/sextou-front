@@ -1,6 +1,8 @@
+import "./Footer.pcss";
+
 const Footer = () => {
   return (
-    <footer className="w-full p-4 text-center text-white bg-black/70">
+    <footer>
       <p className="layout">
         Design e Código por{" "}
         <a href="https://twitter.com/didiraja" target="_blank">

@@ -8,29 +8,46 @@ import Requests from "../../services/Requests";
 import { ModalContext } from "../../store";
 import Modal from "../molecules/Modal";
 import Pagination from "../atoms/Pagination";
+import { GenericObject } from "../../types";
+import { AxiosResponse } from "axios";
+
+type SextouAPI = GenericObject & {
+  data: {
+    total_posts: number;
+    posts: CardProps[];
+  };
+};
 
 function HomeCards() {
+  const { showModal, openModal } = useContext(ModalContext);
+
+  // DATA STATE
   const [highlights, setHighlight] = useState([]);
   const [events, setEvent] = useState([]);
-  // const [showMore, setShowMore] = useState(false);
 
-  const { showModal, openModal } = useContext(ModalContext);
+  // TODO: Convert pagination logic to Hook
+  // PAGINATION STATE
+  const [totalEvents, setTotalEvents] = useState(1);
+  const [activePage, setActivePage] = useState(1);
 
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const result = await Requests.getPosts();
+        const result: AxiosResponse<SextouAPI> = await Requests.getPosts(
+          `page=${activePage}`
+        );
 
         // console.log(result.data);
         // setHighlight(() => result.data);
-        setEvent(() => result.data);
+        setTotalEvents(() => result.data.total_posts);
+        setEvent(() => result.data.posts);
       } catch (e) {
         console.log(e);
       }
     };
 
     getPosts();
-  }, []);
+  }, [activePage]);
 
   return (
     <>
@@ -57,11 +74,6 @@ function HomeCards() {
               })
             : null}
         </CardGrid>
-
-        <Pagination
-        // onNext={() => console.log("página anterior")}
-        // onPrevious={() => console.log("próxima página")}
-        />
       </div>
 
       <div className="main-events">
@@ -84,6 +96,14 @@ function HomeCards() {
               })
             : null}
         </CardGrid>
+
+        <Pagination
+          totalItems={totalEvents}
+          page={activePage}
+          onSelectPage={(page: number) => setActivePage(() => page)}
+          onPrevious={() => setActivePage((actualPage) => actualPage - 1)}
+          onNext={() => setActivePage((actualPage) => actualPage + 1)}
+        />
       </div>
     </>
   );

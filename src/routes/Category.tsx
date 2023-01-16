@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 
 import CardGrid from "../components/templates/Card.Grid";
 import ErrorCard from "../components/molecules/Card.Error";
-import Card, { EventData } from "../components/molecules/Card";
+import Card from "../components/molecules/Card";
 import useGetPosts from "../hooks/useGetPosts";
 import { ModalContext } from "../store";
 

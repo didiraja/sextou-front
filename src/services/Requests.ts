@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from "axios";
-import { GenericObject } from "../types";
+import axios from "axios";
 
 class Request {
   private url: string = "http://sextou.local/wp-api/sextou/v1/events";
@@ -8,10 +7,11 @@ class Request {
   //   // this.url = ;
   // }
 
-  async getPosts(/* query: string = "" */) {
+  async getPosts(query: string = "") {
     //
     try {
-      return axios.get(`${this.url}/?after=2023-01-13`);
+      // TODO: dynamic weekend on request
+      return axios.get(`${this.url}/?after=2023-01-13&${query}`);
     } catch (e: any) {
       console.log(`[getPosts Error] ${e.code} - ${e.message}`);
 

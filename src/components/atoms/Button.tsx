@@ -4,7 +4,7 @@ import "./Button.pcss";
 export type ButtonProps = ChildrenOnly & {
   highlight?: boolean;
   className?: string;
-  onClick?: () => void;
+  onClick?: () => void | undefined;
 };
 
 const Button = ({

@@ -4,34 +4,48 @@ import Button from "./Button";
 type PaginationProps = {
   totalItems: number;
   page: number;
-  perPage: number;
+  perPage?: number;
+  onSelectPage?: (page: number) => void;
   onNext: () => void;
   onPrevious: () => void;
 };
 
 const Pagination = (props: PaginationProps) => {
-  const { totalItems = 13, page = 1, perPage = 8, onNext, onPrevious } = props;
+  const {
+    totalItems = 13,
+    page = 1,
+    perPage = 8,
+    onNext,
+    onPrevious,
+    onSelectPage,
+  } = props;
 
   const pagination = [...Array(Math.ceil(totalItems / perPage))];
 
   return (
     <div className="pagination">
-      <Button className="" onClick={() => onNext?.()}>
-        {"<"}
-      </Button>
+      {page > 1 ? (
+        <Button className="" onClick={() => onPrevious?.()}>
+          {"<"}
+        </Button>
+      ) : null}
       {pagination.map((_, index) => {
         const label = index + 1;
+        const active = label === page;
 
         return (
           <Button
-            className={`btn-page ${label === page ? "active" : ""}`}
+            className={`btn-page ${active ? "active" : ""}`}
             key={index}
+            onClick={() => (!active ? onSelectPage?.(label) : undefined)}
           >
             {label}
           </Button>
         );
       })}
-      <Button onClick={() => onPrevious?.()}>{">"}</Button>
+      {page < pagination.length ? (
+        <Button onClick={() => onNext?.()}>{">"}</Button>
+      ) : null}
     </div>
   );
 };

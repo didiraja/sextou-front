@@ -43,8 +43,8 @@ const Modal = () => {
           {/* TITLE */}
           <p className="modal-title">{content.title}</p>
           {/* COVER */}
-          /* TODO: refactor block, to show featured image only with description
-          block has no image attached */
+          {/* TODO: refactor block, to show featured image only with description
+          block has no image attached */}
           {/* <img
               className="modal-cover"
               src={content.cover}
