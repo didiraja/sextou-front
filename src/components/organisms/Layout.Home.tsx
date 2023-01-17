@@ -22,7 +22,10 @@ function HomeCards() {
 
   const { activePage, setActive, goPrevious, goNext } = usePagination();
 
-  const { total_events: totalEvents, events } = useGetEvents(queryString);
+  const { total_events: totalEvents, events } = useGetEvents(
+    "events",
+    queryString
+  );
 
   useEffect(() => {
     setQueryString((state) => {

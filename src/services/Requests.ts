@@ -8,18 +8,18 @@ export type APIParams = {
 };
 
 class Request {
-  private url: string = "http://sextou.local/wp-api/sextou/v1/events";
+  private url: string = "http://sextou.local/wp-api/sextou/v1";
 
   // constructor() {
   //   // this.url = ;
   // }
 
-  async getEvents(query: APIParams = {}) {
+  async getEvents(basename: string = "events", query: APIParams = {}) {
     const queryString = new URLSearchParams(query).toString();
 
     try {
       // TODO: dynamic weekend on request
-      return axios.get(`${this.url}/?${queryString}`);
+      return axios.get(`${this.url}/${basename}/?${queryString}`);
     } catch (e: any) {
       console.log(`[getEvents Error] ${e.code} - ${e.message}`);
 

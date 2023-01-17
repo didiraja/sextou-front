@@ -16,9 +16,10 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
-    path: "/category/*",
-    // TODO: validate * to be number only
+    path: "/category/:slug",
     element: <Category />,
+    // TODO: Custom error page for Category
+    // errorElement: <NotFound />,
   },
 ]);
 
