@@ -1,8 +1,7 @@
-import { AxiosError } from "axios";
 import { useState, useMemo } from "react";
-import Requests from "../services/Requests";
+import Requests, { APIParams } from "../services/Requests";
 
-const useGetPosts = (query: string = "") => {
+const useGetPosts = (query: APIParams = {}) => {
   const [posts, setPosts] = useState([]);
 
   useMemo(() => {

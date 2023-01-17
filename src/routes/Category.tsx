@@ -11,12 +11,16 @@ import { ModalContext } from "../store";
 const Category = () => {
   const [events, setEvents] = useState([]);
   const { "*": id } = useParams();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { openModal } = useContext(ModalContext);
 
   const isNumber: boolean = !Number.isNaN(Number(id));
 
-  const { posts } = useGetPosts(`categories=${id}`);
+  const query: APIParams = {
+    categories: id,
+  };
+
+  const { posts } = useGetPosts(query);
 
   useEffect(() => {
     if (!isNumber) return navigate("/");

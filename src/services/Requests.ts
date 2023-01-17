@@ -1,5 +1,12 @@
 import axios from "axios";
 
+export type APIParams = {
+  before?: string;
+  after?: string;
+  page?: number;
+  per_page?: number;
+};
+
 class Request {
   private url: string = "http://sextou.local/wp-api/sextou/v1/events";
 
@@ -7,11 +14,12 @@ class Request {
   //   // this.url = ;
   // }
 
-  async getPosts(query: string = "") {
-    //
+  async getPosts(query: APIParams = {}) {
+    const queryString = new URLSearchParams(query).toString();
+
     try {
       // TODO: dynamic weekend on request
-      return axios.get(`${this.url}/?after=2023-01-13&${query}`);
+      return axios.get(`${this.url}/?${queryString}`);
     } catch (e: any) {
       console.log(`[getPosts Error] ${e.code} - ${e.message}`);
 

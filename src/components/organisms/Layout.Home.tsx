@@ -4,7 +4,7 @@ import ErrorCard from "../molecules/Card.Error";
 import Title from "../atoms/Title";
 import { faker } from "@faker-js/faker";
 import { useContext, useEffect, useState } from "react";
-import Requests from "../../services/Requests";
+import Requests, { APIParams } from "../../services/Requests";
 import { ModalContext } from "../../store";
 import Modal from "../molecules/Modal";
 import Pagination from "../atoms/Pagination";
@@ -37,10 +37,12 @@ function HomeCards() {
 
   useEffect(() => {
     const getPosts = async () => {
+      const query: APIParams = {
+        page: activePage,
+      };
+
       try {
-        const result: AxiosResponse<SextouAPI> = await Requests.getPosts(
-          `page=${activePage}`
-        );
+        const result: AxiosResponse<SextouAPI> = await Requests.getPosts(query);
 
         // console.log(result.data);
         // setHighlight(() => result.data);
