@@ -104,13 +104,15 @@ function HomeCards() {
             : null}
         </CardGrid>
 
-        <Pagination
-          totalItems={totalEvents}
-          page={activePage}
-          onSelectPage={(page: number) => setActive(page)}
-          onPrevious={goPrevious}
-          onNext={goNext}
-        />
+        {!events ? (
+          <Pagination
+            totalItems={totalEvents}
+            page={activePage}
+            onSelectPage={(page: number) => setActive(page)}
+            onPrevious={goPrevious}
+            onNext={goNext}
+          />
+        ) : null}
       </div>
     </>
   );
