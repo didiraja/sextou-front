@@ -6,6 +6,13 @@ export type GenericObject = {
   [key: string]: any;
 };
 
+// type SextouAPI = GenericObject & {
+//   data: {
+//     total_posts: number;
+//     posts: CardProps[];
+//   };
+// };
+
 export type WPTermObject = {
   term_id: number;
   name: string;

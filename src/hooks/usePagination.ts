@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const usePagination = () => {
-  const [totalEvents, setTotalEvents] = useState(1);
   const [activePage, setActivePage] = useState(1);
 
   const setActive = (page: number) => {
@@ -17,8 +16,6 @@ const usePagination = () => {
   };
 
   return {
-    totalEvents,
-    setTotalEvents,
     activePage,
     setActive,
     goPrevious,

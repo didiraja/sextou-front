@@ -1,0 +1,23 @@
+import { useState, useEffect } from "react";
+import Requests, { APIParams } from "../services/Requests";
+
+const useGetEvents = (query: APIParams = {}) => {
+  const [response, setResponse] = useState([]);
+
+  useEffect(() => {
+    const getEvents = async () => {
+      const result = await Requests.getEvents(query);
+
+      setResponse(() => result.data);
+    };
+
+    getEvents();
+  }, [query]);
+
+  return {
+    events: response.posts,
+    total_events: response.total_posts,
+  };
+};
+
+export default useGetEvents;

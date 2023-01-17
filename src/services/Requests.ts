@@ -14,14 +14,14 @@ class Request {
   //   // this.url = ;
   // }
 
-  async getPosts(query: APIParams = {}) {
+  async getEvents(query: APIParams = {}) {
     const queryString = new URLSearchParams(query).toString();
 
     try {
       // TODO: dynamic weekend on request
       return axios.get(`${this.url}/?${queryString}`);
     } catch (e: any) {
-      console.log(`[getPosts Error] ${e.code} - ${e.message}`);
+      console.log(`[getEvents Error] ${e.code} - ${e.message}`);
 
       return [];
     }

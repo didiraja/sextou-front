@@ -4,56 +4,33 @@ import ErrorCard from "../molecules/Card.Error";
 import Title from "../atoms/Title";
 import { faker } from "@faker-js/faker";
 import { useContext, useEffect, useState } from "react";
-import Requests, { APIParams } from "../../services/Requests";
 import { ModalContext } from "../../store";
 import Modal from "../molecules/Modal";
 import Pagination from "../atoms/Pagination";
-import { GenericObject } from "../../types";
-import { AxiosResponse } from "axios";
 import usePagination from "../../hooks/usePagination";
-
-type SextouAPI = GenericObject & {
-  data: {
-    total_posts: number;
-    posts: CardProps[];
-  };
-};
+import useGetEvents from "../../hooks/useGetEvents";
+import Date from "../../services/Date";
 
 function HomeCards() {
   const { showModal, openModal } = useContext(ModalContext);
 
   // DATA STATE
+  const [queryString, setQueryString] = useState({
+    after: Date.todayDate(),
+  });
   const [highlights, setHighlight] = useState([]);
-  const [events, setEvent] = useState([]);
 
-  const {
-    totalEvents,
-    setTotalEvents,
-    activePage,
-    setActive,
-    goPrevious,
-    goNext,
-  } = usePagination();
+  const { activePage, setActive, goPrevious, goNext } = usePagination();
+
+  const { total_events: totalEvents, events } = useGetEvents(queryString);
 
   useEffect(() => {
-    const getPosts = async () => {
-      const query: APIParams = {
+    setQueryString((state) => {
+      return {
+        ...state,
         page: activePage,
       };
-
-      try {
-        const result: AxiosResponse<SextouAPI> = await Requests.getPosts(query);
-
-        // console.log(result.data);
-        // setHighlight(() => result.data);
-        setTotalEvents(() => result.data.total_posts);
-        setEvent(() => result.data.posts);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    getPosts();
+    });
   }, [activePage]);
 
   return (
@@ -104,15 +81,13 @@ function HomeCards() {
             : null}
         </CardGrid>
 
-        {!events ? (
-          <Pagination
-            totalItems={totalEvents}
-            page={activePage}
-            onSelectPage={(page: number) => setActive(page)}
-            onPrevious={goPrevious}
-            onNext={goNext}
-          />
-        ) : null}
+        <Pagination
+          totalItems={totalEvents}
+          page={activePage}
+          onSelectPage={(page: number) => setActive(page)}
+          onPrevious={goPrevious}
+          onNext={goNext}
+        />
       </div>
     </>
   );

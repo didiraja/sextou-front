@@ -5,11 +5,11 @@ import { faker } from "@faker-js/faker";
 import CardGrid from "../components/templates/Card.Grid";
 import ErrorCard from "../components/molecules/Card.Error";
 import Card from "../components/molecules/Card";
-import useGetPosts from "../hooks/useGetPosts";
+import useGetEvents from "../hooks/useGetEvents";
 import { ModalContext } from "../store";
+import { APIParams } from "../services/Requests";
 
 const Category = () => {
-  const [events, setEvents] = useState([]);
   const { "*": id } = useParams();
   const navigate = useNavigate();
   const { openModal } = useContext(ModalContext);
@@ -20,13 +20,11 @@ const Category = () => {
     categories: id,
   };
 
-  const { posts } = useGetPosts(query);
+  const { events } = useGetEvents(query);
 
   useEffect(() => {
     if (!isNumber) return navigate("/");
-
-    setEvents(() => posts);
-  }, [posts]);
+  }, [events]);
 
   return (
     <CardGrid>

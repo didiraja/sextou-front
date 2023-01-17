@@ -5,6 +5,7 @@ import {
   startOfWeek,
   nextFriday,
   nextSunday,
+  formatISO,
 } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
@@ -12,6 +13,10 @@ class DateClass {
   constructor() {
     this.today = startOfToday();
     this.week = startOfWeek(this.today);
+  }
+
+  todayDate() {
+    return formatISO(this.today);
   }
 
   readableDate(date: string): string {
