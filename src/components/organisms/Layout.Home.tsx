@@ -10,6 +10,7 @@ import Pagination from "../atoms/Pagination";
 import usePagination from "../../hooks/usePagination";
 import useGetEvents from "../../hooks/useGetEvents";
 import Date from "../../services/Date";
+import Requests from "../../services/Requests";
 
 function HomeCards() {
   const { showModal, openModal } = useContext(ModalContext);
@@ -18,14 +19,26 @@ function HomeCards() {
   const [queryString, setQueryString] = useState({
     after: Date.todayDate(),
   });
+
   const [highlights, setHighlight] = useState([]);
 
+  // LOADING AND PAGINATION
   const { activePage, setActive, goPrevious, goNext } = usePagination();
 
-  const { total_events: totalEvents, events } = useGetEvents(
-    "events",
-    queryString
-  );
+  const [events, setEvents] = useState([]);
+  const [totalEvents, setTotalEvents] = useState(0);
+
+  useEffect(() => {
+    const getEvents = async () => {
+      const result = await Requests.getEvents("events", queryString);
+
+      setEvents(() => result.data.posts);
+      setTotalEvents(() => result.data.total_posts);
+    };
+
+    getEvents();
+  }, [queryString]);
+  // end
 
   useEffect(() => {
     setQueryString((state) => {

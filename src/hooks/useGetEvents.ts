@@ -4,6 +4,10 @@ import Requests, { APIParams } from "../services/Requests";
 const useGetEvents = (basename: string, query: APIParams = {}) => {
   const [response, setResponse] = useState([]);
 
+  // useEffect(() => {
+  //   console.log("query", query);
+  // }, [query]);
+
   useEffect(() => {
     const getEvents = async () => {
       const result = await Requests.getEvents(basename, query);
