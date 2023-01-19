@@ -12,7 +12,7 @@ const useGetEvents = (basename: string, query: APIParams = {}) => {
     };
 
     getEvents();
-  }, [query]);
+  }, []);
 
   return {
     events: response.posts,

@@ -10,27 +10,23 @@ import { ModalContext } from "../store";
 import { APIParams } from "../services/Requests";
 
 const Category = () => {
-  const { "*": id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
   const { openModal } = useContext(ModalContext);
 
-  const isNumber: boolean = !Number.isNaN(Number(id));
+  const isNumber: boolean = !Number.isNaN(Number(slug));
 
-  const query: APIParams = {
-    categories: id,
-  };
+  const { events, total_events } = useGetEvents(`category/${slug}`);
 
-  const { events } = useGetEvents(query);
-
-  useEffect(() => {
-    if (!isNumber) return navigate("/");
-  }, [events]);
+  // useEffect(() => {
+  //   if (isNumber) return navigate("/");
+  // }, [events]);
 
   return (
     <CardGrid>
-      {!events.length ? <ErrorCard>Nenhum evento encontrado</ErrorCard> : null}
+      {!events?.length ? <ErrorCard>Nenhum evento encontrado</ErrorCard> : null}
 
-      {events.length
+      {events?.length
         ? events.map((event: EventData) => {
             return (
               <Card
