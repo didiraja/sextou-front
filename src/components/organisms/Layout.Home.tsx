@@ -3,7 +3,7 @@ import Card, { CardProps } from "../molecules/Card";
 import ErrorCard from "../molecules/Card.Error";
 import Title from "../atoms/Title";
 import { faker } from "@faker-js/faker";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { ModalContext } from "../../store";
 import Modal from "../molecules/Modal";
 import Pagination from "../atoms/Pagination";
@@ -14,6 +14,8 @@ import Requests from "../../services/Requests";
 
 function HomeCards() {
   const { showModal, openModal } = useContext(ModalContext);
+
+  const scollToRef = useRef();
 
   // DATA STATE
   const [queryString, setQueryString] = useState({
@@ -76,7 +78,7 @@ function HomeCards() {
         </CardGrid>
       </div> */}
 
-      <div className="main-events">
+      <div className="main-events" ref={scollToRef}>
         <Title>principais eventos</Title>
 
         <CardGrid>
@@ -100,7 +102,13 @@ function HomeCards() {
         <Pagination
           totalItems={totalEvents}
           page={activePage}
-          onSelectPage={(page: number) => setActive(page)}
+          onSelectPage={(page: number) => {
+            setActive(page);
+
+            scollToRef.current.scrollIntoView({
+              behavior: "smooth",
+            });
+          }}
           onPrevious={goPrevious}
           onNext={goNext}
         />

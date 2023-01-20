@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { faker } from "@faker-js/faker";
 
@@ -22,6 +22,8 @@ const Category = () => {
     if (isNumber) return navigate("/");
   }, []);
 
+  const scollToRef = useRef();
+
   // LOADING AND PAGINATION
   const { activePage, setActive, goPrevious, goNext } = usePagination();
 
@@ -44,6 +46,7 @@ const Category = () => {
 
   return (
     <>
+      <div ref={scollToRef} />
       <CardGrid>
         {!events?.length ? (
           <ErrorCard>Nenhum evento encontrado</ErrorCard>
@@ -64,7 +67,13 @@ const Category = () => {
       <Pagination
         totalItems={totalEvents}
         page={activePage}
-        onSelectPage={(page: number) => setActive(page)}
+        onSelectPage={(page: number) => {
+          setActive(page);
+
+          scollToRef.current.scrollIntoView({
+            behavior: "smooth",
+          });
+        }}
         onPrevious={goPrevious}
         onNext={goNext}
       />
