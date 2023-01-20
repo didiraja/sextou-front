@@ -1,8 +1,10 @@
 .card {
-  @apply backdrop-blur-md bg-slate-900/70 rounded-lg p-5 relative;
+  @apply /* backdrop-blur-sm */ bg-white/20 rounded-lg p-5 relative;
+  box-shadow: var(--material-shadow-strong-1), var(--material-shadow-strong-2);
 
   .card-cover {
     @apply w-full h-60 object-cover rounded-lg mb-3;
+    box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
   }
 
   .card-date {

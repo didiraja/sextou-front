@@ -3,6 +3,21 @@
 @tailwind utilities;
 
 :root {
+  --black: #020024;
+  --pink: #ff00cc;
+  --pink-2: #e810bb;
+  --dark-pink: #370241;
+  --dark-pink-2: #360542;
+  --purple: #8421e0;
+  /* --purple: #333399; */
+  --dark-purple: #080241;
+  /* box-shadow: var(--material-shadow-1), var(--material-shadow-2); */
+  /* box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px, rgba(0, 0, 0, 0.7) 0px 1px 2px; */
+  --material-shadow-md-1: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+  --material-shadow-md-2: rgba(0, 0, 0, 0.3) 0px 1px 2px;
+  --material-shadow-strong-1: rgba(0, 0, 0, 0.5) 0px 1px 3px;
+  --material-shadow-strong-2: rgba(0, 0, 0, 0.7) 0px 1px 2px;
+
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -28,9 +43,9 @@ body {
 html {
   background: repeating-linear-gradient(
     50deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(55, 2, 65, 1) 87%,
-    rgba(8, 2, 65, 1) 100%
+    var(--black) 0%,
+    var(--dark-pink) 87%,
+    var(--dark-purple) 100%
   );
   background-attachment: fixed;
 }

@@ -1,5 +1,15 @@
 .button-pill {
-  @apply rounded-md px-2 py-1 mx-1 mb-3 uppercase bg-orange-900 text-xs text-orange-500;
+  @apply rounded-md px-2 py-1 mx-1 mb-3 uppercase text-xs;
+  box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
+  background-color: var(--dark-pink);
+  color: var(--pink-2);
+  /* color: rgba(255, 0, 204, 0.8); */
+
+  &:hover {
+    background-color: rgba(55, 2, 65, 0.3);
+    color: rgba(255, 0, 204, 0.8);
+    box-shadow: none;
+  }
 
   &.highlight {
     @apply hover:bg-amber-900/20 text-amber-500;

@@ -43,7 +43,6 @@ const Card = (props: CardProps) => {
           if (item)
             return (
               <Pill
-                highlight
                 key={index}
                 // onClick={() => navigate(`/${Math.random() * 100}`)}
                 onClick={() => navigate(`/category/${item.slug}`)}
