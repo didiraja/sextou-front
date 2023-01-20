@@ -45,7 +45,8 @@ const Card = (props: CardProps) => {
               <Pill
                 highlight
                 key={index}
-                onClick={() => navigate(`/category/${item.term_id}`)}
+                // onClick={() => navigate(`/${Math.random() * 100}`)}
+                onClick={() => navigate(`/category/${item.slug}`)}
               >
                 {item.name}
               </Pill>

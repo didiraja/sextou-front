@@ -8,19 +8,21 @@ const useGetEvents = (basename: string, query: APIParams = {}) => {
   //   console.log("query", query);
   // }, [query]);
 
-  useEffect(() => {
-    const getEvents = async () => {
-      const result = await Requests.getEvents(basename, query);
+  const runRequest = () =>
+    useEffect(() => {
+      const getEvents = async () => {
+        const result = await Requests.getEvents(basename, query);
 
-      setResponse(() => result.data);
-    };
+        setResponse(() => result.data);
+      };
 
-    getEvents();
-  }, []);
+      getEvents();
+    }, []);
 
   return {
     events: response.posts,
     total_events: response.total_posts,
+    runRequest,
   };
 };
 

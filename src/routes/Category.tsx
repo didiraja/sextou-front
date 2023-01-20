@@ -39,7 +39,7 @@ const Category = () => {
     };
 
     getEvents();
-  }, [activePage]);
+  }, [slug, activePage]);
   // end
 
   return (
@@ -53,7 +53,6 @@ const Category = () => {
           ? events.map((event: EventData) => {
               return (
                 <Card
-                  highlight
                   key={faker.datatype.uuid()}
                   {...event}
                   onClick={openModal}
