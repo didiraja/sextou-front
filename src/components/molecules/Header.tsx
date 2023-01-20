@@ -10,11 +10,16 @@ const Header = () => {
               Home
             </a>
           </li>
-          {/* <li>
-            <a className="menu-item" href="#">
-              Ingressos
-            </a>
-          </li> */}
+          <li className="opacity-50">
+            {/* <a className="menu-item" href="#"> */}
+            Blog
+            {/* </a> */}
+          </li>
+          <li className="opacity-50">
+            {/* <a className="menu-item" href="#"> */}
+            Troca de Ingressos
+            {/* </a> */}
+          </li>
           <li>
             <a className="menu-item" href="/about">
               Sobre

@@ -20,7 +20,7 @@ function HomeCards() {
     after: Date.todayDate(),
   });
 
-  const [highlights, setHighlight] = useState([]);
+  // const [highlights, setHighlight] = useState([]);
 
   // LOADING AND PAGINATION
   const { activePage, setActive, goPrevious, goNext } = usePagination();
@@ -53,7 +53,7 @@ function HomeCards() {
     <>
       {showModal ? <Modal /> : null}
 
-      <div className="highlight-events">
+      {/* <div className="highlight-events">
         <Title highlight>hype da noite</Title>
 
         <CardGrid>
@@ -74,7 +74,7 @@ function HomeCards() {
               })
             : null}
         </CardGrid>
-      </div>
+      </div> */}
 
       <div className="main-events">
         <Title>principais eventos</Title>

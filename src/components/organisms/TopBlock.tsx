@@ -6,7 +6,9 @@ const TopBlock = () => {
   return (
     <>
       <section id="top" className="grid grid-cols-1">
-        <img className="sextou-logo" src={Sextou} alt="Sextou!" />
+        <a href="/">
+          <img className="sextou-logo" src={Sextou} alt="Sextou!" />
+        </a>
 
         {/* <p className="text-5xl text-center font-bold mt-5">Sextou!</p> */}
 
