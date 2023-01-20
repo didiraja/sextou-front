@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { faker } from "@faker-js/faker";
 import Date from "../../services/Date";
 import { ModalContext, ModalContextProps } from "../../store";
 import Pill from "../atoms/Pill";
@@ -60,7 +59,7 @@ const Modal = () => {
               <div className="tags">
                 {content.categories?.map((item: WPTermObject) => (
                   <Pill
-                    key={faker.datatype.uuid()}
+                    key={item.term_id}
                     onClick={() => navigate(`/category/${item.term_id}`)}
                   >
                     {item.name}

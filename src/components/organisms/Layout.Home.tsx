@@ -2,7 +2,6 @@ import CardGrid from "../templates/Card.Grid";
 import Card, { CardProps } from "../molecules/Card";
 import ErrorCard from "../molecules/Card.Error";
 import Title from "../atoms/Title";
-import { faker } from "@faker-js/faker";
 import { useContext, useEffect, useState, useRef } from "react";
 import { ModalContext } from "../../store";
 import Modal from "../molecules/Modal";
@@ -68,7 +67,7 @@ function HomeCards() {
                 return (
                   <Card
                     highlight
-                    key={faker.datatype.uuid()}
+                    key={}
                     {...event}
                     onClick={openModal}
                   />
@@ -88,13 +87,7 @@ function HomeCards() {
 
           {events?.length
             ? events.map((event: CardProps) => {
-                return (
-                  <Card
-                    key={faker.datatype.uuid()}
-                    {...event}
-                    onClick={openModal}
-                  />
-                );
+                return <Card key={event.id} {...event} onClick={openModal} />;
               })
             : null}
         </CardGrid>

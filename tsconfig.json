@@ -6,7 +6,7 @@
     "allowJs": false,
     "skipLibCheck": true,
     // true just for Faker
-    "esModuleInterop": true,
+    // "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,

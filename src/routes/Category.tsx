@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { faker } from "@faker-js/faker";
 
 import CardGrid from "../components/templates/Card.Grid";
 import ErrorCard from "../components/molecules/Card.Error";
-import Card from "../components/molecules/Card";
+import Card, { CardProps } from "../components/molecules/Card";
 import useGetEvents from "../hooks/useGetEvents";
 import { ModalContext } from "../store";
 import { APIParams } from "../services/Requests";
@@ -53,14 +52,8 @@ const Category = () => {
         ) : null}
 
         {events?.length
-          ? events.map((event: EventData) => {
-              return (
-                <Card
-                  key={faker.datatype.uuid()}
-                  {...event}
-                  onClick={openModal}
-                />
-              );
+          ? events.map((event: CardProps) => {
+              return <Card key={event.id} {...event} onClick={openModal} />;
             })
           : null}
       </CardGrid>
