@@ -10,8 +10,6 @@ const TopBlock = () => {
           <img className="sextou-logo" src={Sextou} alt="Sextou!" />
         </a>
 
-        {/* <p className="text-5xl text-center font-bold mt-5">Sextou!</p> */}
-
         {/* <SearchBlock /> */}
       </section>
     </>

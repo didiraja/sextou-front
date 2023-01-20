@@ -14,21 +14,22 @@ function Home() {
   const modalMethods = ModalStorage;
 
   return (
-    <PageContainer>
+    <>
       <Header />
+      <PageContainer>
+        <TopBlock />
 
-      <TopBlock />
+        <ModalStorage value={modalMethods}>
+          {/* <ModalWithContext /> */}
 
-      <ModalStorage value={modalMethods}>
-        {/* <ModalWithContext /> */}
+          <MainContainer>
+            <RouterProvider router={router} />
+          </MainContainer>
+        </ModalStorage>
 
-        <MainContainer>
-          <RouterProvider router={router} />
-        </MainContainer>
-      </ModalStorage>
-
-      <Footer />
-    </PageContainer>
+        <Footer />
+      </PageContainer>
+    </>
   );
 }
 
