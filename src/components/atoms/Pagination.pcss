@@ -9,12 +9,14 @@
     }
 
     button {
-      @apply w-[initial] bg-red-500;
+      @apply w-[initial];
+      background-color: var(--pink-2);
     }
 
     &.active {
       button {
-        @apply bg-red-500/50 hover:cursor-default;
+        background-color: var(--dark-pink);
+        @apply hover:cursor-default;
       }
     }
   }

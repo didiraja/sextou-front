@@ -102,6 +102,7 @@ function HomeCards() {
         <Pagination
           totalItems={totalEvents}
           page={activePage}
+          // REFACTOR SCROLL AFTER CLICK
           onSelectPage={(page: number) => {
             setActive(page);
 
@@ -109,8 +110,20 @@ function HomeCards() {
               behavior: "smooth",
             });
           }}
-          onPrevious={goPrevious}
-          onNext={goNext}
+          onPrevious={() => {
+            goPrevious();
+
+            scollToRef.current.scrollIntoView({
+              behavior: "smooth",
+            });
+          }}
+          onNext={() => {
+            goNext();
+
+            scollToRef.current.scrollIntoView({
+              behavior: "smooth",
+            });
+          }}
         />
       </div>
     </>

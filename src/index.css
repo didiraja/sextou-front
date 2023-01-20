@@ -9,10 +9,8 @@
   --dark-pink: #370241;
   --dark-pink-2: #360542;
   --purple: #8421e0;
-  /* --purple: #333399; */
   --dark-purple: #080241;
   /* box-shadow: var(--material-shadow-1), var(--material-shadow-2); */
-  /* box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px, rgba(0, 0, 0, 0.7) 0px 1px 2px; */
   --material-shadow-md-1: rgba(0, 0, 0, 0.1) 0px 1px 3px;
   --material-shadow-md-2: rgba(0, 0, 0, 0.3) 0px 1px 2px;
   --material-shadow-strong-1: rgba(0, 0, 0, 0.5) 0px 1px 3px;

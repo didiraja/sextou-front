@@ -74,8 +74,20 @@ const Category = () => {
             behavior: "smooth",
           });
         }}
-        onPrevious={goPrevious}
-        onNext={goNext}
+        onPrevious={() => {
+          goPrevious();
+
+          scollToRef.current.scrollIntoView({
+            behavior: "smooth",
+          });
+        }}
+        onNext={() => {
+          goNext();
+
+          scollToRef.current.scrollIntoView({
+            behavior: "smooth",
+          });
+        }}
       />
     </>
   );
