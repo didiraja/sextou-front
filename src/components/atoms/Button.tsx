@@ -15,6 +15,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <div
+      data-testid="button-component"
       className={`button ${className} ${highlight ? "highlight" : ""}`}
       onClick={() => onClick?.()}
     >

@@ -1,7 +1,7 @@
 import { vi } from "vitest";
 import * as Router from "react-router-dom";
 // import {  } from "@testing-library/dom";
-import { render, screen, getByText, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Card from "./Card";
 
 vi.mock("react-router-dom");
@@ -111,26 +111,26 @@ describe("Card component", () => {
     fireEvent.click(spanElement);
     expect(handleClick.called).toBe(true);
   });
+
+  it("render date correctly", () => {
+    const regex = /^([a-zA-Z]+),\s(\d{1,2})\sde\s([a-zA-Z]+)$/;
+
+    render(component);
+
+    const dateElement = screen.getByTestId("date");
+
+    expect(dateElement).toHaveTextContent(regex);
+  });
+
+  it("render categories correctly", () => {
+    render(component);
+
+    const element = screen.getByTestId("categories");
+
+    expect(element.children.length).toBe(state.categories.length);
+
+    state.categories.forEach((pill, index) => {
+      expect(element.children[index]).toHaveTextContent(pill.name);
+    });
+  });
 });
-
-/**
- * @description SUGGESTIONS FROM CHATGPT
- * Here are a few example unit tests that you could write for the Card component:
-
-
-
-    Verify that the component doesn't render the "date_event" div if it's falsy:
-
-test("date_event is not rendered if falsy", () => {
-    const props = {
-        cover: "path/to/cover.jpg",
-        date_event: "",
-        tickets: "123",
-        title: "Test Title",
-        categories: [{id:1,name:'test1'},{id:2,name:'test2'}],
-        onClick: jest.fn()
-    };
-    const { queryByText } = render(<Card {...props} />);
-    expect(queryByText(Date.readableDate(""))).toBeNull();
-});
- */

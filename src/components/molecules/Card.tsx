@@ -32,13 +32,15 @@ const Card = (props: CardProps) => {
       >
         <img className="card-cover" src={cover} alt="" />
         {event_date ? (
-          <div className="card-date">{Date.readableDate(event_date)}</div>
+          <div data-testid="date" className="card-date">
+            {Date.readableDate(event_date)}
+          </div>
         ) : null}
 
         {title ? <div className="card-title">{title}</div> : null}
       </span>
 
-      <div className="card-meta">
+      <div data-testid="categories" className="card-meta">
         {categories?.map((item: WPTermObject, index: number) => {
           // validate item, to prevent crash if array come with falsy values
           if (item)
