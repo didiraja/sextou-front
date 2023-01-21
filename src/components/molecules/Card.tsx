@@ -26,6 +26,7 @@ const Card = (props: CardProps) => {
   return (
     <div className="card">
       <span
+        data-testid="span"
         className="hover:cursor-pointer"
         onClick={() => props.onClick?.(props)}
       >

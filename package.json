@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "types": "tsc",
-    "test": "vitest --run"
+    "test": "vitest --run",
+    "test-watch": "vitest --watch"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
