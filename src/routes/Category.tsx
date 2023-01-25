@@ -10,11 +10,12 @@ import { APIParams } from "../services/Requests";
 import Pagination from "../components/atoms/Pagination";
 import usePagination from "../hooks/usePagination";
 import Requests from "../services/Requests";
+import Modal from "../components/molecules/Modal";
 
 const Category = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { openModal } = useContext(ModalContext);
+  const { showModal, openModal } = useContext(ModalContext);
 
   const isNumber: boolean = !Number.isNaN(Number(slug));
   useEffect(() => {
@@ -45,7 +46,10 @@ const Category = () => {
 
   return (
     <>
+      {showModal ? <Modal /> : null}
+
       <div ref={scollToRef} />
+
       <CardGrid>
         {!events?.length ? (
           <ErrorCard>Nenhum evento encontrado</ErrorCard>
