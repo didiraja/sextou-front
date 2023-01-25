@@ -63,9 +63,7 @@ const Card = (props: CardProps) => {
           onClick={(evt) => (!tickets ? evt.preventDefault() : "")}
         >
           <Button highlight={highlight} disabled={!tickets}>
-            {/* TODO: define text for no tickets link */}
-            {/* {tickets ? "Comprar Ingressos" : "Comprar Ingressos"} */}
-            Comprar Ingressos
+            {tickets ? "Comprar Ingressos" : "Nenhum link disponível"}
           </Button>
         </a>
       </div>
