@@ -1,6 +1,10 @@
-// import { render } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import Pill from "./Pill";
+const component = <Pill>Lapa</Pill>;
 
-// import Pill from "./Pill";
+it("renders", () => {
+  render(component);
+});
 
 // describe("Pill component", () => {
 //   const component = <Pill>Lapa</Pill>;
