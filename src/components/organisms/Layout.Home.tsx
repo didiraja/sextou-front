@@ -21,20 +21,28 @@ function HomeCards() {
     after: Date.todayDate(),
   });
 
-  // const [highlights, setHighlight] = useState([]);
-
   // LOADING AND PAGINATION
   const { activePage, setActive, goPrevious, goNext } = usePagination();
 
+  // const [highlights, setHighlight] = useState([]);
   const [events, setEvents] = useState([]);
   const [totalEvents, setTotalEvents] = useState(0);
+  const [errorMsg, setErrorMsg] = useState("Nenhum evento encontrado");
 
   useEffect(() => {
     const getEvents = async () => {
-      const result = await Requests.getEvents("events", queryString);
+      try {
+        const result = await Requests.getEvents("events", queryString);
 
-      setEvents(() => result.data.posts);
-      setTotalEvents(() => result.data.total_posts);
+        setEvents(() => result.data.posts);
+        setTotalEvents(() => result.data.total_posts);
+      } catch (error: any) {
+        // console.log(error);
+        console.log(`${error.code} - ${error.message}`);
+
+        if (error.code === "ERR_NETWORK")
+          setErrorMsg(() => "Desculpa , não foi possível buscar os eventos.");
+      }
     };
 
     getEvents();
@@ -81,9 +89,7 @@ function HomeCards() {
         <Title>principais eventos</Title>
 
         <CardGrid>
-          {!events?.length ? (
-            <ErrorCard>Nenhum evento encontrado</ErrorCard>
-          ) : null}
+          {!events?.length ? <ErrorCard>{errorMsg}</ErrorCard> : null}
 
           {events?.length
             ? events.map((event: CardProps) => {
@@ -97,6 +103,7 @@ function HomeCards() {
           page={activePage}
           // REFACTOR SCROLL AFTER CLICK
           onSelectPage={(page: number) => {
+            // TODO: optimize
             setActive(page);
 
             scollToRef.current.scrollIntoView({
