@@ -57,7 +57,17 @@ const Card = (props: CardProps) => {
       </div>
 
       <div className="card-bottom">
-        <Button highlight={highlight}>Comprar Ingressos</Button>
+        <a
+          href={tickets}
+          target="_blank"
+          onClick={(evt) => (!tickets ? evt.preventDefault() : "")}
+        >
+          <Button highlight={highlight} disabled={!tickets}>
+            {/* TODO: define text for no tickets link */}
+            {/* {tickets ? "Comprar Ingressos" : "Comprar Ingressos"} */}
+            Comprar Ingressos
+          </Button>
+        </a>
       </div>
     </div>
   );

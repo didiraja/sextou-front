@@ -9,6 +9,16 @@
   }
 
   &.highlight {
-    @apply bg-amber-500;
+    button {
+      @apply bg-amber-500;
+    }
+  }
+
+  &.disabled {
+    button {
+      /* background-color: var(--dark-purple); */
+      background-color: #42176a;
+      @apply cursor-default;
+    }
   }
 }
