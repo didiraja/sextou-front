@@ -13,6 +13,14 @@ import "./Modal.pcss";
 const Modal = () => {
   const { toggleModal, content } = useContext<ModalContextProps>(ModalContext);
 
+  // type guard
+  function isCardProps(content: any): content is CardProps {
+    return content !== undefined && typeof content === "object";
+  }
+
+  // typeguard validation
+  if (!isCardProps(content)) return null;
+
   const navigate = useNavigate();
 
   function handleClick(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -23,13 +31,9 @@ const Modal = () => {
     }
   }
 
-  // type guard
-  function isCardProps(content: any): content is CardProps {
-    return content !== undefined && typeof content === "object";
-  }
+  const findImgRegex = /<img[^>]*>/i;
 
-  // typeguard validation
-  if (!isCardProps(content)) return null;
+  const descriptionHasImgTag = findImgRegex.test(content.description);
 
   return (
     <div className="backdrop z-20" onClick={handleClick}>
@@ -41,14 +45,6 @@ const Modal = () => {
           </p>
           {/* TITLE */}
           <p className="modal-title">{content.title}</p>
-          {/* COVER */}
-          {/* TODO: refactor block, to show featured image only with description
-          block has no image attached */}
-          {/* <img
-              className="modal-cover"
-              src={content.cover}
-              alt={content.title}
-            /> */}
           {/* INFORMATION */}
           <div className="modal-info">
             {/* DATE */}
@@ -80,6 +76,16 @@ const Modal = () => {
             </div>
           </div>
           <div className="modal-content">
+            {/* COVER */}
+
+            {!descriptionHasImgTag ? (
+              <img
+                className="modal-cover"
+                src={content.cover}
+                alt={content.title}
+              />
+            ) : null}
+
             {/* DESCRIPTION */}
             <p dangerouslySetInnerHTML={{ __html: content.description }} />
           </div>
