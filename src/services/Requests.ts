@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { HOST, ENDPOINT } from "./enums";
+
 export type APIParams = {
   before?: string;
   after?: string;
@@ -8,7 +10,7 @@ export type APIParams = {
 };
 
 class Request {
-  private url: string = "http://sextou.local/wp-api/sextou/v1";
+  private url: string = `${HOST}${ENDPOINT.MAIN}`;
 
   // constructor() {
   //   // this.url = ;

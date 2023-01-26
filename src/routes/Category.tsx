@@ -4,13 +4,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import CardGrid from "../components/templates/Card.Grid";
 import ErrorCard from "../components/molecules/Card.Error";
 import Card, { CardProps } from "../components/molecules/Card";
-import useGetEvents from "../hooks/useGetEvents";
+// import useGetEvents from "../hooks/useGetEvents";
 import { ModalContext } from "../store";
 import { APIParams } from "../services/Requests";
 import Pagination from "../components/atoms/Pagination";
 import usePagination from "../hooks/usePagination";
 import Requests from "../services/Requests";
 import Modal from "../components/molecules/Modal";
+
+import { ENDPOINT } from "../services/enums";
 
 const Category = () => {
   const { slug } = useParams();
@@ -34,7 +36,7 @@ const Category = () => {
   useEffect(() => {
     const getEvents = async () => {
       try {
-        const result = await Requests.getEvents(`category/${slug}`, {
+        const result = await Requests.getEvents(`${ENDPOINT.CATEGORY}${slug}`, {
           page: activePage,
         });
 

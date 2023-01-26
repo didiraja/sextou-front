@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "DEV=true vite",
+    "build": "PROD=true tsc && vite build",
     "preview": "vite preview",
     "types": "tsc",
     "test": "vitest --run",
