@@ -62,7 +62,11 @@ const Card = (props: CardProps) => {
           target="_blank"
           onClick={(evt) => (!tickets ? evt.preventDefault() : "")}
         >
-          <Button highlight={highlight} disabled={!tickets}>
+          <Button
+            className={!tickets ? "no-tickets" : ""}
+            highlight={highlight}
+            disabled={!tickets}
+          >
             {tickets ? "Comprar Ingressos" : "Nenhum link disponível"}
           </Button>
         </a>

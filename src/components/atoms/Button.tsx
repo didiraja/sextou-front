@@ -18,9 +18,9 @@ const Button = ({
   return (
     <div
       data-testid="button-component"
-      className={`button ${className} ${highlight ? "highlight" : ""} ${
+      className={`button ${highlight ? "highlight" : ""} ${
         disabled ? "disabled" : ""
-      }`}
+      } ${className}`}
       onClick={() => onClick?.()}
     >
       <button>{children}</button>
