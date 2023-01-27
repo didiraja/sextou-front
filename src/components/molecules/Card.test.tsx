@@ -133,4 +133,6 @@ describe("Card component", () => {
       expect(element.children[index]).toHaveTextContent(pill.name);
     });
   });
+
+  // TODO: test click on button
 });

@@ -66,13 +66,22 @@ const Modal = () => {
 
             {/* TICKETS */}
             <div className="cta">
-              <Button className="md:text-xl">
-                {/* <Icon
-                  className="mr-1 text-3xl"
-                  icon="material-symbols:airplane-ticket-rounded"
-                />{" "} */}
-                Comprar Ingressos
-              </Button>
+              <a
+                href={content.tickets}
+                target="_blank"
+                onClick={(evt) =>
+                  !content.tickets ? evt.preventDefault() : ""
+                }
+              >
+                <Button
+                  className={!content.tickets ? "no-tickets" : ""}
+                  disabled={!content.tickets}
+                >
+                  {content.tickets
+                    ? "Comprar Ingressos"
+                    : "Nenhum link disponível"}
+                </Button>
+              </a>
             </div>
           </div>
           <div className="modal-content">
