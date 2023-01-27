@@ -1,6 +1,11 @@
+export const DOMAIN = {
+  DEV: "sextou.local",
+  PROD: "sextou.quartemo.com.br",
+};
+
 export const HOST: string = import.meta.env.DEV
-  ? "http://sextou.local"
-  : "http://sextou.prod";
+  ? `http://${DOMAIN.DEV}`
+  : `http://${DOMAIN.PROD}`;
 
 export const ENDPOINT = {
   MAIN: "/wp-api/sextou/v1",
