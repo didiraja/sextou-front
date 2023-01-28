@@ -11,3 +11,8 @@ export const ENDPOINT = {
   MAIN: "/wp-api/sextou/v1",
   CATEGORY: "category/",
 };
+
+export const TEXT = {
+  BUY_TICKETS: "Comprar Ingressos",
+  NO_TICKETS_AVAILABLE: "Nenhum link disponível",
+};

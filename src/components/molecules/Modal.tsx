@@ -2,9 +2,10 @@ import { useNavigate } from "react-router-dom";
 import Date from "../../services/Date";
 import { ModalContext, ModalContextProps } from "../../store";
 import Pill from "../atoms/Pill";
-import Button from "../atoms/Button";
+import LinkButton from "../atoms/LinkButton";
 import { useContext } from "react";
 import { CardProps } from "./Card";
+import { TEXT } from "../../services/enums";
 import { WPTermObject } from "../../types";
 import "./Modal.pcss";
 
@@ -66,22 +67,17 @@ const Modal = () => {
 
             {/* TICKETS */}
             <div className="cta">
-              <a
+              <LinkButton
                 href={content.tickets}
-                target="_blank"
                 onClick={(evt) =>
                   !content.tickets ? evt.preventDefault() : ""
                 }
+                className={!content.tickets ? "no-tickets" : ""}
+                highlight={content.highlight}
+                disabled={!content.tickets}
               >
-                <Button
-                  className={!content.tickets ? "no-tickets" : ""}
-                  disabled={!content.tickets}
-                >
-                  {content.tickets
-                    ? "Comprar Ingressos"
-                    : "Nenhum link disponível"}
-                </Button>
-              </a>
+                {content.tickets ? TEXT.BUY_TICKETS : TEXT.NO_TICKETS_AVAILABLE}
+              </LinkButton>
             </div>
           </div>
           <div className="modal-content">

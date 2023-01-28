@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import Pill from "../atoms/Pill";
-import Button from "../atoms/Button";
+import LinkButton from "../atoms/LinkButton";
 import Date from "../../services/Date";
+import { TEXT } from "../../services/enums";
 import { WPTermObject } from "../../types";
 import "./Card.pcss";
 
@@ -57,19 +58,15 @@ const Card = (props: CardProps) => {
       </div>
 
       <div className="card-bottom">
-        <a
+        <LinkButton
           href={tickets}
-          target="_blank"
           onClick={(evt) => (!tickets ? evt.preventDefault() : "")}
+          className={!tickets ? "no-tickets" : ""}
+          highlight={highlight}
+          disabled={!tickets}
         >
-          <Button
-            className={!tickets ? "no-tickets" : ""}
-            highlight={highlight}
-            disabled={!tickets}
-          >
-            {tickets ? "Comprar Ingressos" : "Nenhum link disponível"}
-          </Button>
-        </a>
+          {tickets ? TEXT.BUY_TICKETS : TEXT.NO_TICKETS_AVAILABLE}
+        </LinkButton>
       </div>
     </div>
   );
