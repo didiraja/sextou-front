@@ -28,7 +28,7 @@ const Card = (props: CardProps) => {
     <div className="card">
       <span
         data-testid="span"
-        className="hover:cursor-pointer"
+        className="spanzada hover:cursor-pointer"
         onClick={() => props.onClick?.(props)}
       >
         <img className="card-cover" src={cover} alt="" />
@@ -39,23 +39,23 @@ const Card = (props: CardProps) => {
         ) : null}
 
         {title ? <div className="card-title">{title}</div> : null}
-      </span>
 
-      <div data-testid="categories" className="card-meta">
-        {categories?.map((item: WPTermObject, index: number) => {
-          // validate item, to prevent crash if array come with falsy values
-          if (item)
-            return (
-              <Pill
-                key={index}
-                // onClick={() => navigate(`/${Math.random() * 100}`)}
-                onClick={() => navigate(`/category/${item.slug}`)}
-              >
-                {item.name}
-              </Pill>
-            );
-        }) ?? null}
-      </div>
+        <div data-testid="categories" className="card-meta">
+          {categories?.map((item: WPTermObject, index: number) => {
+            // validate item, to prevent crash if array come with falsy values
+            if (item)
+              return (
+                <Pill
+                  key={index}
+                  // onClick={() => navigate(`/${Math.random() * 100}`)}
+                  onClick={() => navigate(`/category/${item.slug}`)}
+                >
+                  {item.name}
+                </Pill>
+              );
+          }) ?? null}
+        </div>
+      </span>
 
       <div className="card-bottom">
         <LinkButton
