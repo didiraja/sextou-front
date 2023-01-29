@@ -1,5 +1,6 @@
 import CardGrid from "../templates/Card.Grid";
 import Card, { CardProps } from "../molecules/Card";
+import LoadingCard from "../molecules/Card.Loading";
 import ErrorCard from "../molecules/Card.Error";
 import Title from "../atoms/Title";
 import { useContext, useEffect, useState, useRef } from "react";
@@ -28,7 +29,7 @@ function LayoutHome() {
   // const [highlights, setHighlight] = useState([]);
   const [events, setEvents] = useState([]);
   const [totalEvents, setTotalEvents] = useState(0);
-  const [errorMsg, setErrorMsg] = useState("Nenhum evento encontrado");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     const getEvents = async () => {
@@ -90,13 +91,18 @@ function LayoutHome() {
         <Title>principais shows e festas no rio de janeiro</Title>
 
         <CardGrid>
-          {!events?.length ? <ErrorCard>{errorMsg}</ErrorCard> : null}
+          {errorMsg ? <ErrorCard>{errorMsg}</ErrorCard> : null}
 
-          {events?.length
-            ? events.map((event: CardProps) => {
-                return <Card key={event.id} {...event} onClick={openModal} />;
-              })
-            : null}
+          {events?.length ? (
+            events.map((event: CardProps) => {
+              return <Card key={event.id} {...event} onClick={openModal} />;
+            })
+          ) : (
+            <>
+              <LoadingCard />
+              <LoadingCard />
+            </>
+          )}
         </CardGrid>
 
         <Pagination
