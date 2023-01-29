@@ -20,11 +20,6 @@ const Header = () => {
             Troca de Ingressos
             {/* </a> */}
           </li>
-          <li>
-            <a className="menu-item" href="/about">
-              Sobre
-            </a>
-          </li>
         </ul>
       </div>
     </header>
