@@ -86,8 +86,8 @@ function LayoutHome() {
         </CardGrid>
       </div> */}
 
-      <div className="main-events" ref={scollToRef}>
-        <Title>principais eventos</Title>
+      <div className="main-events my-24" ref={scollToRef}>
+        <Title>principais shows e festas no rio de janeiro</Title>
 
         <CardGrid>
           {!events?.length ? <ErrorCard>{errorMsg}</ErrorCard> : null}
