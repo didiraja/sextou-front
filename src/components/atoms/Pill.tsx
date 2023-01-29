@@ -6,20 +6,23 @@ export type PillProps = {
   className?: string;
   bg?: string;
   color?: string;
-  onClick?: () => void;
+  onClick?: (evt: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   children: ReactNode;
 };
 
+export const pillClassName = "button-pill";
+
 const Pill = (props: PillProps) => {
   const { children, highlight, bg, color } = props;
-  const handleClick = () => props.onClick && props.onClick();
+  const handleClick = (evt: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
+    props.onClick?.(evt);
 
   return (
     <button
-      className={`button-pill ${highlight && "highlight"} ${bg && "bg"} ${
+      className={`${pillClassName} ${highlight && "highlight"} ${bg && "bg"} ${
         color ? color : ""
       }`}
-      onClick={() => handleClick()}
+      onClick={(evt) => handleClick(evt)}
     >
       {children}
     </button>

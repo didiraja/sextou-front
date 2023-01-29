@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Pill from "../atoms/Pill";
+import Pill, { pillClassName } from "../atoms/Pill";
 import LinkButton from "../atoms/LinkButton";
 import Date from "../../services/Date";
 import { TEXT } from "../../services/enums";
@@ -19,17 +19,32 @@ export type CardProps = {
   onClick?: (props: CardProps) => void;
 };
 
+export type reducerProps = {
+  evt?: React.MouseEvent<HTMLDivElement, MouseEvent>;
+  action: () => void;
+};
+
 const Card = (props: CardProps) => {
   const { highlight, cover, event_date, tickets, title, categories } = props;
 
   const navigate = useNavigate();
 
+  function handleClickReducer({ evt, action }: reducerProps) {
+    const classNamesArr: string[] = evt?.target.className.split(" ");
+
+    const isClickFromPill = classNamesArr?.includes(pillClassName);
+
+    if (isClickFromPill) return evt?.stopPropagation();
+
+    return () => action();
+  }
+
   return (
     <div className="card">
       <span
         data-testid="span"
-        className="spanzada hover:cursor-pointer"
-        onClick={() => props.onClick?.(props)}
+        className="clickable"
+        onClick={() => handleClickReducer({ action: props.onClick?.(props) })}
       >
         <img className="card-cover" src={cover} alt="" />
         {event_date ? (
@@ -47,8 +62,12 @@ const Card = (props: CardProps) => {
               return (
                 <Pill
                   key={index}
-                  // onClick={() => navigate(`/${Math.random() * 100}`)}
-                  onClick={() => navigate(`/category/${item.slug}`)}
+                  onClick={(evt) =>
+                    handleClickReducer({
+                      evt,
+                      action: navigate(`/category/${item.slug}`),
+                    })
+                  }
                 >
                   {item.name}
                 </Pill>
@@ -60,7 +79,9 @@ const Card = (props: CardProps) => {
       <div className="card-bottom">
         <LinkButton
           href={tickets}
-          onClick={(evt) => (!tickets ? evt.preventDefault() : "")}
+          onClick={(evt) =>
+            handleClickReducer({ action: !tickets ? evt.preventDefault() : "" })
+          }
           className={!tickets ? "no-tickets" : ""}
           highlight={highlight}
           disabled={!tickets}

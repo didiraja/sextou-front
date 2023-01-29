@@ -4,6 +4,10 @@
   display: grid;
   align-items: center;
 
+  .clickable {
+    @apply hover:cursor-pointer;
+  }
+
   .card-cover {
     @apply w-full h-60 object-cover object-top rounded-lg mb-3;
     box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
