@@ -6,9 +6,9 @@ import router from ".";
 import PageContainer from "../components/templates/PageContainer";
 import MainContainer from "../components/templates/MainContainer";
 import TopBlock from "../components/organisms/TopBlock";
-import Footer from "../components/molecules/Footer";
+import Footer from "../components/organisms/Footer";
 import Modal from "../components/molecules/Modal";
-import Header from "../components/molecules/Header";
+import Header from "../components/organisms/Header";
 
 function Home() {
   const modalMethods = ModalStorage;

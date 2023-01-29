@@ -10,8 +10,9 @@ import usePagination from "../../hooks/usePagination";
 import useGetEvents from "../../hooks/useGetEvents";
 import Date from "../../services/Date";
 import Requests from "../../services/Requests";
+import About from "../molecules/About";
 
-function HomeCards() {
+function LayoutHome() {
   const { showModal, openModal } = useContext(ModalContext);
 
   const scollToRef = useRef();
@@ -126,8 +127,10 @@ function HomeCards() {
           }}
         />
       </div>
+
+      <About />
     </>
   );
 }
 
-export default HomeCards;
+export default LayoutHome;
