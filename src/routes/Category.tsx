@@ -6,11 +6,11 @@ import ErrorCard from "../components/molecules/Card.Error";
 import Card, { CardProps } from "../components/molecules/Card";
 // import useGetEvents from "../hooks/useGetEvents";
 import { ModalContext } from "../store";
-import { APIParams } from "../services/Requests";
 import Pagination from "../components/atoms/Pagination";
 import usePagination from "../hooks/usePagination";
 import Requests from "../services/Requests";
 import Modal from "../components/molecules/Modal";
+import Title from "../components/atoms/Title";
 
 import { ENDPOINT } from "../services/enums";
 
@@ -20,6 +20,7 @@ const Category = () => {
   const { showModal, openModal } = useContext(ModalContext);
 
   const isNumber: boolean = !Number.isNaN(Number(slug));
+
   useEffect(() => {
     if (isNumber) return navigate("/");
   }, []);
@@ -31,6 +32,7 @@ const Category = () => {
 
   const [events, setEvents] = useState([]);
   const [totalEvents, setTotalEvents] = useState(0);
+  const [categoryName, setCategoryName] = useState("");
   const [errorMsg, setErrorMsg] = useState("Nenhum evento encontrado");
 
   useEffect(() => {
@@ -40,6 +42,7 @@ const Category = () => {
           page: activePage,
         });
 
+        setCategoryName(() => result.data.name);
         setEvents(() => result.data.posts);
         setTotalEvents(() => result.data.total_posts);
       } catch (error: any) {
@@ -61,6 +64,8 @@ const Category = () => {
 
       <div ref={scollToRef} />
 
+      <Title>Melhores shows e festas em {categoryName}</Title>
+
       <CardGrid>
         {!events?.length ? <ErrorCard>{errorMsg}</ErrorCard> : null}
 
@@ -70,6 +75,7 @@ const Category = () => {
             })
           : null}
       </CardGrid>
+
       <Pagination
         totalItems={totalEvents}
         page={activePage}
