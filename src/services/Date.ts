@@ -1,26 +1,28 @@
 // @ts-nocheck
-import {
-  format,
-  startOfToday,
-  startOfWeek,
-  nextFriday,
-  nextSunday,
-  formatISO,
-} from "date-fns";
+import { format, startOfWeek, nextFriday, nextSunday } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 class DateClass {
   constructor() {
-    this.today = startOfToday();
+    // browser's way to create a Today's date from 00h
+    this.today = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      new Date().getDate()
+    );
     this.week = startOfWeek(this.today);
   }
 
   todayDate() {
-    return formatISO(this.today);
+    return this.today.toISOString();
   }
 
   readableDate(date: string): string {
-    return format(new Date(date), "iii',' dd 'de' MMMM", { locale: ptBR });
+    const formatted = format(new Date(date), "iii',' dd 'de' MMMM", {
+      locale: ptBR,
+    });
+
+    return formatted;
   }
 
   workingWeekStart() {
