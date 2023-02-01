@@ -1,22 +1,24 @@
 // @ts-nocheck
-import { format, startOfWeek, nextFriday, nextSunday } from "date-fns";
+import {
+  format,
+  startOfToday,
+  startOfWeek,
+  parseISO /* nextFriday, nextSunday */,
+} from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 class DateClass {
   /**
    * Basic and Common elements to the Class
    *
+   * @warning ALWAYS parse date to parseISO() to keep a pattern and prevent bugs in Safari < v15.x.x
+   *
    * @constructor
    * @const {Date} today - Today's Date
    * @const {Date} week - First day of Week
    */
   constructor() {
-    // To prevent bugs on Safari, keep creation from browser's API
-    this.today = new Date(
-      new Date().getFullYear(),
-      new Date().getMonth(),
-      new Date().getDate()
-    );
+    this.today = startOfToday();
 
     this.week = startOfWeek(this.today);
   }
@@ -37,11 +39,11 @@ class DateClass {
    * @return {string}
    */
   readableDate(date: string): string {
-    const formatted = format(new Date(date), "iii',' dd 'de' MMMM", {
+    const weekAndMonthDay = format(parseISO(date), "iii',' dd 'de' MMMM", {
       locale: ptBR,
     });
 
-    return formatted;
+    return weekAndMonthDay;
   }
 
   // workingWeekStart() {
