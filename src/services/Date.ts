@@ -3,7 +3,8 @@ import {
   format,
   startOfToday,
   startOfWeek,
-  parseISO /* nextFriday, nextSunday */,
+  formatISO,
+  parseISO,
 } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
@@ -29,7 +30,7 @@ class DateClass {
    * @return {string} date formatted to ISO, on GMT time
    */
   todayDate(): string {
-    return this.today.toISOString();
+    return formatISO(this.today);
   }
 
   /**
