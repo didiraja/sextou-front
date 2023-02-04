@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "DEV=true vite",
-    "dev-prod": "PROD=true vite",
+    "dev-prod": "vite",
     "build": "npm run test && PROD=true vite build",
     "check-build": "npm run types && npm run test && npm run build",
     "preview": "vite preview",

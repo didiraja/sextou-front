@@ -57,7 +57,10 @@ const Modal = () => {
                 {content.categories?.map((item: WPTermObject) => (
                   <Pill
                     key={item.term_id}
-                    onClick={() => navigate(`/category/${item.term_id}`)}
+                    onClick={() => {
+                      toggleModal();
+                      navigate(`/category/${item.slug}`);
+                    }}
                   >
                     {item.name}
                   </Pill>
