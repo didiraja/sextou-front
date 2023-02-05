@@ -13,6 +13,8 @@ export const ENDPOINT = {
 };
 
 export const TEXT = {
-  BUY_TICKETS: "Comprar Ingressos",
-  NO_TICKETS_AVAILABLE: "Nenhum link disponível",
+  BUY_TICKETS: "Comprar Ingresso",
+  NO_TICKETS: "Nenhum link disponível",
+  FREE_TICKETS: "Pegar Ingresso",
+  FREE_NO_TICKETS: "Só brotar",
 };

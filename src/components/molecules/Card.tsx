@@ -13,7 +13,8 @@ export type CardProps = {
   event_date: string;
   categories: Array<WPTermObject>;
   cover: string;
-  tickets?: any;
+  tickets?: string;
+  free?: boolean;
   content: string;
   description: string;
   onClick?: (props: CardProps) => void;
@@ -25,7 +26,8 @@ export type reducerProps = {
 };
 
 const Card = (props: CardProps) => {
-  const { highlight, cover, event_date, tickets, title, categories } = props;
+  const { highlight, cover, event_date, tickets, title, categories, free } =
+    props;
 
   const navigate = useNavigate();
 
@@ -85,8 +87,16 @@ const Card = (props: CardProps) => {
           className={!tickets ? "no-tickets" : ""}
           highlight={highlight}
           disabled={!tickets}
+          free={free}
         >
-          {tickets ? TEXT.BUY_TICKETS : TEXT.NO_TICKETS_AVAILABLE}
+          {/* prettier-ignore */}
+          {free
+            ? free && tickets
+              ? TEXT.FREE_TICKETS
+              : TEXT.FREE_NO_TICKETS
+            : tickets
+            ? TEXT.BUY_TICKETS
+            : TEXT.NO_TICKETS}
         </Button>
       </div>
     </div>

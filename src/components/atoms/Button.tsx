@@ -3,23 +3,21 @@ import "./Button.pcss";
 
 export type ButtonProps = ChildrenOnly & {
   highlight?: boolean;
-  className?: string;
   disabled?: boolean;
-  onClick?: () => void | undefined;
+  free?: boolean;
 };
 
-export type LinkProps = ChildrenOnly & {
+export type LinkProps = ButtonProps & {
   href: string;
   target?: string;
-  highlight?: boolean;
   className?: string;
-  disabled?: boolean;
   onClick?: (evt: any) => void | undefined;
 };
 
 {
   /*
   <Button
+    href=''
     highlight={false}
     className={``}
     disabled={false}
@@ -30,13 +28,7 @@ export type LinkProps = ChildrenOnly & {
 */
 }
 
-const Button = ({
-  highlight,
-  className = "",
-  children,
-  disabled,
-  onClick,
-}: ButtonProps) => {
+const Button = ({ highlight, children, disabled }: ButtonProps) => {
   return (
     <button
       data-testid="button-component"
@@ -44,7 +36,6 @@ const Button = ({
         disabled ? "disabled" : ""
       }`}
       // ${className}
-      onClick={() => onClick?.()}
     >
       {children}
     </button>
@@ -58,16 +49,17 @@ const Link = ({
   className,
   highlight,
   disabled,
+  free,
   children,
 }: LinkProps) => {
   return (
     <a
       href={href}
       target={target}
-      className={`link ${className}`}
+      className={`link ${className} ${free ? "free" : ""}`}
       onClick={(evt) => onClick?.(evt)}
     >
-      <Button highlight={highlight} disabled={disabled}>
+      <Button highlight={highlight} disabled={disabled} free={free}>
         {children}
       </Button>
     </a>
