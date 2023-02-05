@@ -8,7 +8,7 @@ export type ButtonProps = ChildrenOnly & {
 };
 
 export type LinkProps = ButtonProps & {
-  href: string;
+  href?: string;
   target?: string;
   className?: string;
   onClick?: (evt: any) => void | undefined;

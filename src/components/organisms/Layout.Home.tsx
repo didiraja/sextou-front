@@ -21,6 +21,7 @@ function LayoutHome() {
   // DATA STATE
   const [queryString, setQueryString] = useState({
     after: Date.todayDate(),
+    per_page: 8,
   });
 
   // LOADING AND PAGINATION

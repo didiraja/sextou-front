@@ -20,7 +20,7 @@ const Pagination = (props: PaginationProps) => {
     onSelectPage,
   } = props;
 
-  const pagination = [...Array(Math.ceil(totalItems / perPage))];
+  const pagination = [...Array(Math.floor(totalItems / perPage))];
 
   return (
     <div className="pagination">
@@ -32,7 +32,9 @@ const Pagination = (props: PaginationProps) => {
       {pagination.map((_, index) => {
         const label = index + 1;
         const active = label === page;
+        // const limit = page + 4;
 
+        // if (index <= limit)
         return (
           <Button
             className={`btn-page ${active ? "active" : ""}`}
