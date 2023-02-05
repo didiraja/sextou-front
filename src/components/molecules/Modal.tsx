@@ -78,8 +78,15 @@ const Modal = () => {
                 className={!content.tickets ? "no-tickets" : ""}
                 highlight={content.highlight}
                 disabled={!content.tickets}
+                free={content.free}
               >
-                {content.tickets ? TEXT.BUY_TICKETS : TEXT.NO_TICKETS_AVAILABLE}
+                {content.free
+                  ? content.free && content.tickets
+                    ? TEXT.FREE_TICKETS
+                    : TEXT.FREE_NO_TICKETS
+                  : content.tickets
+                  ? TEXT.BUY_TICKETS
+                  : TEXT.NO_TICKETS}
               </Button>
             </div>
           </div>
