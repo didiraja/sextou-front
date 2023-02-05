@@ -1,34 +1,36 @@
 .button-shadow {
   box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
 }
-.button {
+
+.link {
+  @apply rounded-md block;
+  background-color: var(--purple);
+
   &:not(.no-tickets) {
     @apply button-shadow;
   }
 
-  button {
-    background-color: var(--purple);
-
+  .button {
     @apply w-full rounded-md p-3 xl:p-3 font-bold uppercase tracking-widest flex justify-center items-center;
-  }
 
-  &.highlight {
-    button {
+    &.highlight {
       @apply bg-amber-500;
     }
-  }
 
-  &.disabled {
-    button {
+    &.disabled {
       background-color: var(--dark-pink);
       @apply cursor-default;
     }
   }
 
   &.no-tickets {
-    button {
-      background-color: transparent;
-      border: 2px solid var(--purple);
+    background-color: transparent;
+    border: 2px solid var(--purple);
+
+    .button {
+      &.disabled {
+        background-color: transparent;
+      }
     }
   }
 }

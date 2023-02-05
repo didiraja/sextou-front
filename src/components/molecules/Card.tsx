@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Pill, { pillClassName } from "../atoms/Pill";
-import LinkButton from "../atoms/LinkButton";
+import Button from "../atoms/Button";
 import Date from "../../services/Date";
 import { TEXT } from "../../services/enums";
 import { WPTermObject } from "../../types";
@@ -77,7 +77,7 @@ const Card = (props: CardProps) => {
       </span>
 
       <div className="card-bottom">
-        <LinkButton
+        <Button
           href={tickets}
           onClick={(evt) =>
             handleClickReducer({ action: !tickets ? evt.preventDefault() : "" })
@@ -87,7 +87,7 @@ const Card = (props: CardProps) => {
           disabled={!tickets}
         >
           {tickets ? TEXT.BUY_TICKETS : TEXT.NO_TICKETS_AVAILABLE}
-        </LinkButton>
+        </Button>
       </div>
     </div>
   );

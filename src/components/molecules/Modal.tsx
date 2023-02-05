@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Date from "../../services/Date";
 import { ModalContext, ModalContextProps } from "../../store";
 import Pill from "../atoms/Pill";
-import LinkButton from "../atoms/LinkButton";
+import Button from "../atoms/Button";
 import { useContext } from "react";
 import { CardProps } from "./Card";
 import { TEXT } from "../../services/enums";
@@ -70,7 +70,7 @@ const Modal = () => {
 
             {/* TICKETS */}
             <div className="cta">
-              <LinkButton
+              <Button
                 href={content.tickets}
                 onClick={(evt) =>
                   !content.tickets ? evt.preventDefault() : ""
@@ -80,7 +80,7 @@ const Modal = () => {
                 disabled={!content.tickets}
               >
                 {content.tickets ? TEXT.BUY_TICKETS : TEXT.NO_TICKETS_AVAILABLE}
-              </LinkButton>
+              </Button>
             </div>
           </div>
           <div className="modal-content">

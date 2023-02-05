@@ -11,7 +11,9 @@
     "preview": "vite preview",
     "types": "tsc",
     "test": "vitest --run",
-    "test-watch": "vitest --watch"
+    "test-watch": "vitest --watch",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -22,10 +24,19 @@
     "react-router-dom": "^6.7.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-vite": "^0.4.0",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
     "autoprefixer": "^10.4.13",
+    "babel-loader": "^8.3.0",
     "date-fns": "^2.29.3",
     "jsdom": "^20.0.3",
     "postcss": "^8.4.20",
