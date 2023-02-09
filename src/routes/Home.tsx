@@ -1,5 +1,6 @@
 import { ModalContext, ModalStorage } from "../store";
-import { ContextType, useContext } from "react";
+import { zuStore } from "../store";
+import { ContextType, useContext, useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import router from ".";
 
@@ -12,6 +13,8 @@ import Header from "../components/organisms/Header";
 
 function Home() {
   const modalMethods = ModalStorage;
+  // const { showModal } = useContext(ModalContext);
+  const showModal = zuStore((store: any) => store.showModal);
 
   return (
     <>
@@ -19,13 +22,13 @@ function Home() {
       <PageContainer>
         <TopBlock />
 
-        <ModalStorage value={modalMethods}>
-          {/* <ModalWithContext /> */}
+        {showModal ? <Modal /> : null}
 
-          <MainContainer>
-            <RouterProvider router={router} />
-          </MainContainer>
-        </ModalStorage>
+        {/* <ModalStorage value={modalMethods}> */}
+        <MainContainer>
+          <RouterProvider router={router} />
+        </MainContainer>
+        {/* </ModalStorage> */}
 
         <Footer />
       </PageContainer>

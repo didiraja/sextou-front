@@ -4,7 +4,7 @@ import LoadingCard from "../molecules/Card.Loading";
 import ErrorCard from "../molecules/Card.Error";
 import Title from "../atoms/Title";
 import { useContext, useEffect, useState, useRef } from "react";
-import { ModalContext } from "../../store";
+import { zuStore } from "../../store";
 import Modal from "../molecules/Modal";
 import Pagination from "../atoms/Pagination";
 import usePagination from "../../hooks/usePagination";
@@ -14,7 +14,8 @@ import Requests from "../../services/Requests";
 import About from "../molecules/About";
 
 function LayoutHome() {
-  const { showModal, openModal } = useContext(ModalContext);
+  // const { openModal } = useContext(ModalContext);
+  const openModal = zuStore((store: any) => store.openModal);
 
   const scollToRef = useRef();
 
@@ -63,7 +64,7 @@ function LayoutHome() {
 
   return (
     <>
-      {showModal ? <Modal /> : null}
+      {/* {showModal ? <Modal /> : null} */}
 
       {/* <div className="highlight-events">
         <Title highlight>hype da noite</Title>

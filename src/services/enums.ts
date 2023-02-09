@@ -1,10 +1,11 @@
 export const DOMAIN = {
-  DEV: "sextou.local",
+  // DEV: "sextou.local",
+  DEV: "sextou.quartemo.com.br",
   PROD: "sextou.quartemo.com.br",
 };
 
 export const HOST: string = import.meta.env.DEV
-  ? `http://${DOMAIN.DEV}`
+  ? `https://${DOMAIN.DEV}`
   : `//${DOMAIN.PROD}`;
 
 export const ENDPOINT = {

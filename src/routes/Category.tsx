@@ -5,7 +5,7 @@ import CardGrid from "../components/templates/Card.Grid";
 import ErrorCard from "../components/molecules/Card.Error";
 import Card, { CardProps } from "../components/molecules/Card";
 // import useGetEvents from "../hooks/useGetEvents";
-import { ModalContext } from "../store";
+import { ModalContext, zuStore } from "../store";
 import Pagination from "../components/atoms/Pagination";
 import usePagination from "../hooks/usePagination";
 import Requests from "../services/Requests";
@@ -17,7 +17,9 @@ import { ENDPOINT } from "../services/enums";
 const Category = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { showModal, openModal } = useContext(ModalContext);
+  // const { showModal, openModal } = useContext(ModalContext);
+  const showModal = zuStore((store: any) => store.showModal);
+  const openModal = zuStore((store: any) => store.openModal);
 
   const isNumber: boolean = !Number.isNaN(Number(slug));
 

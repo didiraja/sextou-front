@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Date from "../../services/Date";
-import { ModalContext, ModalContextProps } from "../../store";
+import { ModalContext, ModalContextProps, zuStore } from "../../store";
 import Pill from "../atoms/Pill";
 import Button from "../atoms/Button";
 import { useContext } from "react";
@@ -12,7 +12,8 @@ import "./Modal.pcss";
 // TODO: Modal content from Actions(reducer): Details || Text || anything
 
 const Modal = () => {
-  const { toggleModal, content } = useContext<ModalContextProps>(ModalContext);
+  const toggleModal = zuStore((store: any) => store.toggleModal);
+  const content = zuStore((store: any) => store.content);
 
   // type guard
   function isCardProps(content: any): content is CardProps {
@@ -22,7 +23,7 @@ const Modal = () => {
   // typeguard validation
   if (!isCardProps(content)) return null;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function handleClick(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const isBackdrop: boolean = evt.target === evt.currentTarget;
@@ -59,7 +60,7 @@ const Modal = () => {
                     key={item.term_id}
                     onClick={() => {
                       toggleModal();
-                      navigate(`/category/${item.slug}`);
+                      // navigate(`/category/${item.slug}`);
                     }}
                   >
                     {item.name}

@@ -1,4 +1,6 @@
+import { logDOM } from "@testing-library/react";
 import { createContext, useState } from "react";
+import { create } from "zustand";
 import { CardProps } from "../components/molecules/Card";
 import { ChildrenOnly } from "../types";
 
@@ -22,7 +24,7 @@ export const INITIAL_CONTENT: CardProps = {
   content:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit dolorem cum mollitia delectus perferendis laborum ipsa fugit dolore. Sequi harum inventore obcaecati, non itaque commodi placeat dolores aliquam numquam similique!",
   cover: "https://loremflickr.com/640/480/abstract",
-  event_date: "2023-01-21 00:00:00",
+  event_date: "2023-01-21T00:00:00Z",
   tickets: "",
   categories: [
     {
@@ -71,3 +73,19 @@ export const ModalStorage = ({ children }: ChildrenOnly) => {
     <ModalContext.Provider value={store}>{children}</ModalContext.Provider>
   );
 };
+
+export const zuStore = create((set) => ({
+  showModal: false,
+  content: {},
+  toggleModal: () =>
+    set(
+      (state: ModalContextProps) => ({
+        showModal: !state.showModal,
+      }) /* , true */
+    ),
+  openModal: (content: CardProps) => {
+    // console.log(content);
+
+    return set(() => ({ showModal: true, content }) /* , true */);
+  },
+}));
