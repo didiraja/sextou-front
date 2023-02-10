@@ -10,6 +10,7 @@ import Title from "../components/atoms/Title";
 import Pagination from "../components/atoms/Pagination";
 import usePagination from "../hooks/usePagination";
 import About from "../components/molecules/About";
+import { ERROR } from "../services/enums";
 
 function Home() {
   const openModal = zuStore((store: any) => store.openModal);
@@ -41,8 +42,7 @@ function Home() {
         // console.log(error);
         console.log(`${error.code} - ${error.message}`);
 
-        if (error.code === "ERR_NETWORK")
-          setErrorMsg(() => "Desculpa , não foi possível buscar os eventos.");
+        if (error.code === "ERR_NETWORK") setErrorMsg(() => ERROR.LOADING);
       }
     };
 
@@ -61,51 +61,34 @@ function Home() {
 
   return (
     <>
-      {/* <div className="highlight-events">
-        <Title highlight>hype da noite</Title>
-
-        <CardGrid>
-          {!highlights?.length ? (
-            <ErrorCard>Nenhum evento encontrado</ErrorCard>
-          ) : null}
-
-          {highlights?.length
-            ? highlights.map((event: CardProps) => {
-                return (
-                  <Card
-                    highlight
-                    key={}
-                    {...event}
-                    onClick={openModal}
-                  />
-                );
-              })
-            : null}
-        </CardGrid>
-      </div> */}
-
       <div className="main-events my-24" ref={scollToRef}>
         <Title>principais shows e festas no rio de janeiro</Title>
 
         <CardGrid>
-          {errorMsg ? <ErrorCard>{errorMsg}</ErrorCard> : null}
+          {errorMsg ? (
+            <ErrorCard>
+              <p className="text-2xl">{errorMsg}</p>
+            </ErrorCard>
+          ) : null}
 
-          {events?.length ? (
-            events.map((event: CardProps) => {
-              return (
-                <Card
-                  key={event.id}
-                  {...event}
-                  onClick={(event) => openModal(event)}
-                />
-              );
-            })
-          ) : (
-            <>
-              <LoadingCard />
-              <LoadingCard />
-            </>
-          )}
+          <>
+            {events?.length
+              ? events.map((event: CardProps) => {
+                  return (
+                    <Card
+                      key={event.id}
+                      {...event}
+                      onClick={(event) => openModal(event)}
+                    />
+                  );
+                })
+              : !errorMsg && (
+                  <>
+                    <LoadingCard />
+                    <LoadingCard />
+                  </>
+                )}
+          </>
         </CardGrid>
 
         <Pagination

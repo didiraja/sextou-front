@@ -1,6 +1,6 @@
 export const DOMAIN = {
-  // DEV: "sextou.local",
-  DEV: "sextou.quartemo.com.br",
+  DEV: "sextou.local",
+  // DEV: "sextou.quartemo.com.br",
   PROD: "sextou.quartemo.com.br",
 };
 
@@ -11,6 +11,7 @@ export const HOST: string = import.meta.env.DEV
 export const ENDPOINT = {
   MAIN: "/wp-api/sextou/v1",
   CATEGORY: "category/",
+  SINGLE: "event/",
 };
 
 export const TEXT = {
@@ -18,4 +19,9 @@ export const TEXT = {
   NO_TICKETS: "Nenhum link disponível",
   FREE_TICKETS: "Pegar Ingresso",
   FREE_NO_TICKETS: "Só brotar",
+};
+
+export const ERROR = {
+  LOADING: "Infelizmente, nada na pista",
+  LAYOUT: "",
 };

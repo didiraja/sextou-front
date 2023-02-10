@@ -1,10 +1,14 @@
 // @ts-nocheck
-import {
+import DateFNS, {
   format,
   startOfToday,
   startOfWeek,
   formatISO,
   parseISO,
+  formatISO9075,
+  formatISODuration,
+  formatRFC3339,
+  formatRFC7231,
 } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
@@ -30,6 +34,7 @@ class DateClass {
    * @return {string} date formatted to ISO, on GMT time
    */
   todayDate(): string {
+    // slice to remove manually timezone
     return formatISO(this.today);
   }
 
