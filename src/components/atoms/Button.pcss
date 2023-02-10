@@ -1,34 +1,65 @@
 .button-shadow {
   box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
 }
-.button {
-  &:not(.no-tickets) {
-    @apply button-shadow;
-  }
 
-  button {
+.link {
+  @apply rounded-md;
+
+  .button {
+    @apply w-full rounded-md block p-3 xl:p-3 font-bold uppercase tracking-widest flex justify-center items-center;
     background-color: var(--purple);
 
-    @apply w-full rounded-md p-3 xl:p-3 font-bold uppercase tracking-widest flex justify-center items-center;
-  }
+    &:not(.no-tickets) {
+      @apply button-shadow;
+    }
 
-  &.highlight {
-    button {
+    &.highlight {
       @apply bg-amber-500;
     }
-  }
 
-  &.disabled {
-    button {
+    &.disabled {
       background-color: var(--dark-pink);
       @apply cursor-default;
     }
   }
 
+  &.free {
+    .button {
+      background-color: var(--green);
+    }
+  }
+
   &.no-tickets {
-    button {
+    .button {
       background-color: transparent;
       border: 2px solid var(--purple);
+
+      &.disabled {
+        background-color: transparent;
+      }
+    }
+
+    &.free {
+      .button {
+        border: 2px solid var(--green);
+      }
+    }
+  }
+
+  .pill {
+    @apply rounded-md px-2 py-1 mx-1 uppercase text-xs;
+    box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
+    background-color: var(--dark-pink);
+    color: var(--pink-2);
+
+    &:hover {
+      background-color: rgba(55, 2, 65, 0.3);
+      color: rgba(255, 0, 204, 0.8);
+      box-shadow: none;
+    }
+
+    &.highlight {
+      @apply hover:bg-amber-900/20 text-amber-500;
     }
   }
 }

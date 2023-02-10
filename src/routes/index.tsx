@@ -1,21 +1,32 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import LayoutHome from "../components/organisms/Layout.Home";
+import Home from "./Home";
 import Category from "./Category";
-import NotFound from "./NotFound";
+import SingleEvent from "./SingleEvent";
+import Error from "./Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LayoutHome />,
-    errorElement: <NotFound />,
+    element: <Home />,
+    errorElement: <Error />,
   },
   {
     path: "/category/:slug",
     element: <Category />,
     // TODO: Custom error page for Category
-    // errorElement: <NotFound />,
+    errorElement: <Error />,
   },
+  // {
+  //   path: "/event/:slug",
+  //   element: <SingleEvent />,
+  //   // TODO: Custom error page for Category
+  //   // errorElement: <NotFound />,
+  // },
+  // {
+  //   element: <Error />,
+  //   // errorElement: <Error />,
+  // },
 ]);
 
 export default router;

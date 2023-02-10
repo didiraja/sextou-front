@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import Date from "../../services/Date";
-import { ModalContext, ModalContextProps } from "../../store";
-import Pill from "../atoms/Pill";
-import LinkButton from "../atoms/LinkButton";
-import { useContext } from "react";
+import { zuStore } from "../../store";
+import Button from "../atoms/Button";
 import { CardProps } from "./Card";
 import { TEXT } from "../../services/enums";
 import { WPTermObject } from "../../types";
@@ -12,7 +9,8 @@ import "./Modal.pcss";
 // TODO: Modal content from Actions(reducer): Details || Text || anything
 
 const Modal = () => {
-  const { toggleModal, content } = useContext<ModalContextProps>(ModalContext);
+  const toggleModal = zuStore((store: any) => store.toggleModal);
+  const content = zuStore((store: any) => store.content);
 
   // type guard
   function isCardProps(content: any): content is CardProps {
@@ -21,8 +19,6 @@ const Modal = () => {
 
   // typeguard validation
   if (!isCardProps(content)) return null;
-
-  const navigate = useNavigate();
 
   function handleClick(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const isBackdrop: boolean = evt.target === evt.currentTarget;
@@ -55,19 +51,21 @@ const Modal = () => {
             {content.categories ? (
               <div className="tags">
                 {content.categories?.map((item: WPTermObject) => (
-                  <Pill
+                  <Button
+                    pill
                     key={item.term_id}
-                    onClick={() => navigate(`/category/${item.term_id}`)}
+                    href={`/category/${item.slug}`}
+                    target="_self"
                   >
                     {item.name}
-                  </Pill>
+                  </Button>
                 ))}
               </div>
             ) : null}
 
             {/* TICKETS */}
             <div className="cta">
-              <LinkButton
+              <Button
                 href={content.tickets}
                 onClick={(evt) =>
                   !content.tickets ? evt.preventDefault() : ""
@@ -75,9 +73,16 @@ const Modal = () => {
                 className={!content.tickets ? "no-tickets" : ""}
                 highlight={content.highlight}
                 disabled={!content.tickets}
+                free={content.free}
               >
-                {content.tickets ? TEXT.BUY_TICKETS : TEXT.NO_TICKETS_AVAILABLE}
-              </LinkButton>
+                {content.free
+                  ? content.free && content.tickets
+                    ? TEXT.FREE_TICKETS
+                    : TEXT.FREE_NO_TICKETS
+                  : content.tickets
+                  ? TEXT.BUY_TICKETS
+                  : TEXT.NO_TICKETS}
+              </Button>
             </div>
           </div>
           <div className="modal-content">

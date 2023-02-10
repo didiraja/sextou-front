@@ -1,23 +1,22 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import CardGrid from "../components/templates/Card.Grid";
 import ErrorCard from "../components/molecules/Card.Error";
 import Card, { CardProps } from "../components/molecules/Card";
-// import useGetEvents from "../hooks/useGetEvents";
-import { ModalContext } from "../store";
+import { zuStore } from "../store";
 import Pagination from "../components/atoms/Pagination";
 import usePagination from "../hooks/usePagination";
 import Requests from "../services/Requests";
-import Modal from "../components/molecules/Modal";
 import Title from "../components/atoms/Title";
+import LoadingCard from "../components/molecules/Card.Loading";
 
-import { ENDPOINT } from "../services/enums";
+import { ENDPOINT, ERROR } from "../services/enums";
 
 const Category = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { showModal, openModal } = useContext(ModalContext);
+  const openModal = zuStore((store: any) => store.openModal);
 
   const isNumber: boolean = !Number.isNaN(Number(slug));
 
@@ -33,7 +32,7 @@ const Category = () => {
   const [events, setEvents] = useState([]);
   const [totalEvents, setTotalEvents] = useState(0);
   const [categoryName, setCategoryName] = useState("");
-  const [errorMsg, setErrorMsg] = useState("Nenhum evento encontrado");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     const getEvents = async () => {
@@ -49,8 +48,7 @@ const Category = () => {
         // console.log(error);
         console.log(`${error.code} - ${error.message}`);
 
-        if (error.code === "ERR_NETWORK")
-          setErrorMsg(() => "Desculpa , não foi possível buscar os eventos.");
+        if (error.code === "ERR_NETWORK") setErrorMsg(() => ERROR.LOADING);
       }
     };
 
@@ -60,20 +58,41 @@ const Category = () => {
 
   return (
     <>
-      {showModal ? <Modal /> : null}
-
       <div ref={scollToRef} />
 
       <Title>Melhores shows e festas em {categoryName}</Title>
 
       <CardGrid>
-        {!events?.length ? <ErrorCard>{errorMsg}</ErrorCard> : null}
+        {errorMsg ? (
+          <>
+            <ErrorCard>
+              <p className="text-2xl">{errorMsg}</p>
+              <br />
+              <p className="font-normal">
+                Que tal,{" "}
+                <a
+                  className="font-bold underline hover:no-underline"
+                  href="http://"
+                  target="self"
+                  rel="noopener noreferrer"
+                >
+                  voltar para a Home?
+                </a>
+              </p>
+            </ErrorCard>
+          </>
+        ) : null}
 
         {events?.length
           ? events.map((event: CardProps) => {
               return <Card key={event.id} {...event} onClick={openModal} />;
             })
-          : null}
+          : !errorMsg && (
+              <>
+                <LoadingCard />
+                <LoadingCard />
+              </>
+            )}
       </CardGrid>
 
       <Pagination

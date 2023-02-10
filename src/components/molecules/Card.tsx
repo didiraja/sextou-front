@@ -1,6 +1,4 @@
-import { useNavigate } from "react-router-dom";
-import Pill, { pillClassName } from "../atoms/Pill";
-import LinkButton from "../atoms/LinkButton";
+import Button from "../atoms/Button";
 import Date from "../../services/Date";
 import { TEXT } from "../../services/enums";
 import { WPTermObject } from "../../types";
@@ -13,7 +11,8 @@ export type CardProps = {
   event_date: string;
   categories: Array<WPTermObject>;
   cover: string;
-  tickets?: any;
+  tickets?: string;
+  free?: boolean;
   content: string;
   description: string;
   onClick?: (props: CardProps) => void;
@@ -21,22 +20,29 @@ export type CardProps = {
 
 export type reducerProps = {
   evt?: React.MouseEvent<HTMLDivElement, MouseEvent>;
-  action: () => void;
+  action: any;
 };
 
 const Card = (props: CardProps) => {
-  const { highlight, cover, event_date, tickets, title, categories } = props;
+  const { highlight, cover, event_date, tickets, title, categories, free } =
+    props;
 
-  const navigate = useNavigate();
+  function goTo(url: string) {
+    return () => (location.href = url);
+  }
 
   function handleClickReducer({ evt, action }: reducerProps) {
+    // console.log(evt, action);
+
+    if (!action) return;
+
+    action?.();
+
     const classNamesArr: string[] = evt?.target.className.split(" ");
 
-    const isClickFromPill = classNamesArr?.includes(pillClassName);
+    const isClickFromPill = classNamesArr?.includes("pill");
 
     if (isClickFromPill) return evt?.stopPropagation();
-
-    return () => action();
   }
 
   return (
@@ -60,24 +66,26 @@ const Card = (props: CardProps) => {
             // validate item, to prevent crash if array come with falsy values
             if (item)
               return (
-                <Pill
+                <Button
+                  pill
                   key={index}
+                  target="_self"
                   onClick={(evt) =>
                     handleClickReducer({
                       evt,
-                      action: navigate(`/category/${item.slug}`),
+                      action: goTo(`/category/${item.slug}`),
                     })
                   }
                 >
                   {item.name}
-                </Pill>
+                </Button>
               );
           }) ?? null}
         </div>
       </span>
 
       <div className="card-bottom">
-        <LinkButton
+        <Button
           href={tickets}
           onClick={(evt) =>
             handleClickReducer({ action: !tickets ? evt.preventDefault() : "" })
@@ -85,9 +93,17 @@ const Card = (props: CardProps) => {
           className={!tickets ? "no-tickets" : ""}
           highlight={highlight}
           disabled={!tickets}
+          free={free}
         >
-          {tickets ? TEXT.BUY_TICKETS : TEXT.NO_TICKETS_AVAILABLE}
-        </LinkButton>
+          {/* prettier-ignore */}
+          {free
+            ? free && tickets
+              ? TEXT.FREE_TICKETS
+              : TEXT.FREE_NO_TICKETS
+            : tickets
+            ? TEXT.BUY_TICKETS
+            : TEXT.NO_TICKETS}
+        </Button>
       </div>
     </div>
   );
