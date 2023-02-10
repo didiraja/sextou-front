@@ -1,4 +1,4 @@
-import Home from "./routes/Home";
+import Home from "./routes/Template";
 
 function App() {
   return (

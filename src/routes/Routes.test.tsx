@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import Home from "./Home";
+import Home from "./Template";
 import Category from "./Category";
 
 test("Routes render correctly", () => {
