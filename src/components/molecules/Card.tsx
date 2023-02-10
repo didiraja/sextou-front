@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import Pill, { pillClassName } from "../atoms/Pill";
 import Button from "../atoms/Button";
 import Date from "../../services/Date";
 import { TEXT } from "../../services/enums";
@@ -22,23 +20,29 @@ export type CardProps = {
 
 export type reducerProps = {
   evt?: React.MouseEvent<HTMLDivElement, MouseEvent>;
-  action: () => void;
+  action: any;
 };
 
 const Card = (props: CardProps) => {
   const { highlight, cover, event_date, tickets, title, categories, free } =
     props;
 
-  const navigate = useNavigate();
+  function goTo(url: string) {
+    return () => (location.href = url);
+  }
 
   function handleClickReducer({ evt, action }: reducerProps) {
+    // console.log(evt, action);
+
+    if (!action) return;
+
+    action?.();
+
     const classNamesArr: string[] = evt?.target.className.split(" ");
 
-    const isClickFromPill = classNamesArr?.includes(pillClassName);
+    const isClickFromPill = classNamesArr?.includes("pill");
 
     if (isClickFromPill) return evt?.stopPropagation();
-
-    return () => action();
   }
 
   return (
@@ -62,17 +66,19 @@ const Card = (props: CardProps) => {
             // validate item, to prevent crash if array come with falsy values
             if (item)
               return (
-                <Pill
+                <Button
+                  pill
                   key={index}
+                  target="_self"
                   onClick={(evt) =>
                     handleClickReducer({
                       evt,
-                      action: navigate(`/category/${item.slug}`),
+                      action: goTo(`/category/${item.slug}`),
                     })
                   }
                 >
                   {item.name}
-                </Pill>
+                </Button>
               );
           }) ?? null}
         </div>

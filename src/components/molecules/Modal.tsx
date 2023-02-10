@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import Date from "../../services/Date";
-import { ModalContext, ModalContextProps, zuStore } from "../../store";
-import Pill from "../atoms/Pill";
+import { zuStore } from "../../store";
 import Button from "../atoms/Button";
-import { useContext } from "react";
 import { CardProps } from "./Card";
 import { TEXT } from "../../services/enums";
 import { WPTermObject } from "../../types";
@@ -22,8 +19,6 @@ const Modal = () => {
 
   // typeguard validation
   if (!isCardProps(content)) return null;
-
-  // const navigate = useNavigate();
 
   function handleClick(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const isBackdrop: boolean = evt.target === evt.currentTarget;
@@ -56,15 +51,14 @@ const Modal = () => {
             {content.categories ? (
               <div className="tags">
                 {content.categories?.map((item: WPTermObject) => (
-                  <Pill
+                  <Button
+                    pill
                     key={item.term_id}
-                    onClick={() => {
-                      toggleModal();
-                      // navigate(`/category/${item.slug}`);
-                    }}
+                    href={`/category/${item.slug}`}
+                    target="_self"
                   >
                     {item.name}
-                  </Pill>
+                  </Button>
                 ))}
               </div>
             ) : null}

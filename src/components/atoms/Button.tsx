@@ -2,6 +2,7 @@ import { ChildrenOnly } from "../../types";
 import "./Button.pcss";
 
 export type ButtonProps = ChildrenOnly & {
+  pill?: boolean;
   highlight?: boolean;
   disabled?: boolean;
   free?: boolean;
@@ -18,6 +19,7 @@ export type LinkProps = ButtonProps & {
   /*
   <Button
     href=''
+    pill={false}
     highlight={false}
     className={``}
     disabled={false}
@@ -28,14 +30,13 @@ export type LinkProps = ButtonProps & {
 */
 }
 
-const Button = ({ highlight, children, disabled }: ButtonProps) => {
+const Button = ({ pill, highlight, children, disabled }: ButtonProps) => {
   return (
     <button
       data-testid="button-component"
-      className={`button ${highlight ? "highlight" : ""} ${
+      className={`${pill ? "pill" : "button"} ${highlight ? "highlight" : ""} ${
         disabled ? "disabled" : ""
       }`}
-      // ${className}
     >
       {children}
     </button>
@@ -43,6 +44,7 @@ const Button = ({ highlight, children, disabled }: ButtonProps) => {
 };
 
 const Link = ({
+  pill = false,
   href,
   target = "_blank",
   onClick,
@@ -59,7 +61,7 @@ const Link = ({
       className={`link ${className} ${free ? "free" : ""}`}
       onClick={(evt) => onClick?.(evt)}
     >
-      <Button highlight={highlight} disabled={disabled} free={free}>
+      <Button pill={pill} highlight={highlight} disabled={disabled} free={free}>
         {children}
       </Button>
     </a>
