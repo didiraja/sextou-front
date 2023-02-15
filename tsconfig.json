@@ -4,6 +4,7 @@
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
+    // "checkJs": false,
     "skipLibCheck": true,
     // true just for Faker
     // "esModuleInterop": true,
@@ -14,7 +15,6 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react-jsx",
     "outDir": "dist"
   },
