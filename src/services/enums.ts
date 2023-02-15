@@ -4,7 +4,7 @@ export const DOMAIN = {
   PROD: "sextou.quartemo.com.br",
 };
 
-export const HOST: string = import.meta.env.DEV
+export const HOST = import.meta.env.DEV
   ? `https://${DOMAIN.DEV}`
   : `//${DOMAIN.PROD}`;
 
@@ -23,5 +23,4 @@ export const TEXT = {
 
 export const ERROR = {
   LOADING: "Infelizmente, nada na pista",
-  LAYOUT: "",
 };

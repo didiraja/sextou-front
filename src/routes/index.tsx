@@ -14,14 +14,12 @@ const router = createBrowserRouter([
   {
     path: "/category/:slug",
     element: <Category />,
-    // TODO: Custom error page for Category
     errorElement: <Error />,
   },
   // {
   //   path: "/event/:slug",
   //   element: <SingleEvent />,
-  //   // TODO: Custom error page for Category
-  //   // errorElement: <NotFound />,
+  //   // errorElement: <Error />,
   // },
   // {
   //   element: <Error />,

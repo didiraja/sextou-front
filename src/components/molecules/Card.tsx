@@ -19,7 +19,9 @@ export type CardProps = {
 };
 
 export type reducerProps = {
-  evt?: React.MouseEvent<HTMLDivElement, MouseEvent>;
+  evt?: React.MouseEvent<HTMLDivElement, MouseEvent> & {
+    target: { className: string };
+  };
   action: any;
 };
 
@@ -38,11 +40,13 @@ const Card = (props: CardProps) => {
 
     action?.();
 
-    const classNamesArr: string[] = evt?.target.className.split(" ");
+    if (evt) {
+      const classNamesArr = evt?.target.className.split(" ");
 
-    const isClickFromPill = classNamesArr?.includes("pill");
+      const isClickFromPill = classNamesArr?.includes("pill");
 
-    if (isClickFromPill) return evt?.stopPropagation();
+      if (isClickFromPill) return evt?.stopPropagation();
+    }
   }
 
   return (

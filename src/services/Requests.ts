@@ -1,13 +1,15 @@
 import axios from "axios";
-
+import { CardProps } from "../components/molecules/Card";
 import { HOST, ENDPOINT } from "./enums";
 
-export type APIParams = {
+export interface IApiParams {
   before?: string;
   after?: string;
   page?: number;
   per_page?: number;
-};
+}
+
+type IRequestReturn = Promise<[] | CardProps>;
 
 class Request {
   private url: string = `${HOST}${ENDPOINT.MAIN}`;
@@ -16,11 +18,15 @@ class Request {
   //   // this.url = ;
   // }
 
-  async getEvents(basename: string = "events", query: APIParams = {}) {
-    const queryString = new URLSearchParams(query).toString();
+  async getEvents(
+    basename: string = "events",
+    query: IApiParams = {}
+  ): IRequestReturn {
+    const queryString: string = new URLSearchParams(
+      query as Record<string, string>
+    ).toString();
 
     try {
-      // TODO: dynamic weekend on request
       return axios.get(`${this.url}/${basename}/?${queryString}`);
     } catch (e: any) {
       console.log(`[getEvents Error] ${e.code} - ${e.message}`);

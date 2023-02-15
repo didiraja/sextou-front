@@ -6,7 +6,7 @@ import { TEXT } from "../../services/enums";
 import { WPTermObject } from "../../types";
 import "./Modal.pcss";
 
-// TODO: Modal content from Actions(reducer): Details || Text || anything
+// TODO: Modal content from Actions(reducer): Event Details || Some Text || anything
 
 const Modal = () => {
   const toggleModal = zuStore((store: any) => store.toggleModal);

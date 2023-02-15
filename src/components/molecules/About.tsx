@@ -1,8 +1,6 @@
 import Title from "../atoms/Title";
 import "./About.pcss";
 
-// TODO: Write text with Markdown, loading package on Suspense
-
 const About = () => {
   return (
     <div className="about-wrapper">
