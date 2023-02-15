@@ -25,7 +25,7 @@ const Pagination = (props: PaginationProps) => {
   return (
     <div className="pagination">
       {page > 1 ? (
-        <Button className="" onClick={() => onPrevious?.()}>
+        <Button className={`btn-page`} onClick={() => onPrevious?.()}>
           {"<"}
         </Button>
       ) : null}
@@ -46,7 +46,9 @@ const Pagination = (props: PaginationProps) => {
         );
       })}
       {page < pagination.length ? (
-        <Button onClick={() => onNext?.()}>{">"}</Button>
+        <Button className={`btn-page`} onClick={() => onNext?.()}>
+          {">"}
+        </Button>
       ) : null}
     </div>
   );
