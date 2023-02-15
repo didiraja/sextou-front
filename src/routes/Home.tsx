@@ -15,7 +15,7 @@ import { ERROR } from "../services/enums";
 function Home() {
   const openModal = zuStore((store: any) => store.openModal);
 
-  const scollToRef = useRef();
+  const scollToRef = useRef<HTMLDivElement | null>(null);
 
   // DATA STATE
   const [queryString, setQueryString] = useState({
@@ -35,6 +35,10 @@ function Home() {
     const getEvents = async () => {
       try {
         const result = await Requests.getEvents("events", queryString);
+
+        if (!result) {
+          return;
+        }
 
         setEvents(() => result.data.posts);
         setTotalEvents(() => result.data.total_posts);
@@ -58,6 +62,14 @@ function Home() {
       };
     });
   }, [activePage]);
+
+  const scrollPageUp = () => {
+    if (!scollToRef.current) return;
+
+    return scollToRef.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -96,26 +108,19 @@ function Home() {
           page={activePage}
           // REFACTOR SCROLL AFTER CLICK
           onSelectPage={(page: number) => {
-            // TODO: optimize
             setActive(page);
 
-            scollToRef.current.scrollIntoView({
-              behavior: "smooth",
-            });
+            scrollPageUp();
           }}
           onPrevious={() => {
             goPrevious();
 
-            scollToRef.current.scrollIntoView({
-              behavior: "smooth",
-            });
+            scrollPageUp();
           }}
           onNext={() => {
             goNext();
 
-            scollToRef.current.scrollIntoView({
-              behavior: "smooth",
-            });
+            scrollPageUp();
           }}
         />
       </div>

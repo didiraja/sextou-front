@@ -9,7 +9,7 @@
     "build": "npm run test && PROD=true vite build",
     "check-build": "npm run types && npm run test && npm run build",
     "preview": "vite preview",
-    "types": "tsc",
+    "types": "tsc --p tsconfig.json",
     "test": "vitest --run",
     "test-watch": "vitest --watch",
     "storybook": "start-storybook -p 6006",

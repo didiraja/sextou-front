@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { CardProps } from "../components/molecules/Card";
 import { HOST, ENDPOINT } from "./enums";
 
@@ -9,7 +9,7 @@ export interface IApiParams {
   per_page?: number;
 }
 
-type IRequestReturn = Promise<[] | CardProps>;
+type IRequestReturn = Promise<AxiosResponse | undefined>;
 
 class Request {
   private url: string = `${HOST}${ENDPOINT.MAIN}`;
@@ -31,7 +31,7 @@ class Request {
     } catch (e: any) {
       console.log(`[getEvents Error] ${e.code} - ${e.message}`);
 
-      return [];
+      return undefined;
     }
   }
 

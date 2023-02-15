@@ -66,4 +66,4 @@
 //   );
 // }
 
-// export default SearchBlock;
+export default SearchBlock;

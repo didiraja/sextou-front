@@ -24,7 +24,7 @@ const Category = () => {
     if (isNumber) return navigate("/");
   }, []);
 
-  const scollToRef = useRef();
+  const scollToRef = useRef<HTMLDivElement | null>(null);
 
   // LOADING AND PAGINATION
   const { activePage, setActive, goPrevious, goNext } = usePagination();
@@ -41,6 +41,10 @@ const Category = () => {
           page: activePage,
         });
 
+        if (!result) {
+          return;
+        }
+
         setCategoryName(() => result.data.name);
         setEvents(() => result.data.posts);
         setTotalEvents(() => result.data.total_posts);
@@ -55,6 +59,14 @@ const Category = () => {
     getEvents();
   }, [slug, activePage]);
   // end
+
+  const scrollPageUp = () => {
+    if (!scollToRef.current) return;
+
+    return scollToRef.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -101,23 +113,17 @@ const Category = () => {
         onSelectPage={(page: number) => {
           setActive(page);
 
-          scollToRef.current.scrollIntoView({
-            behavior: "smooth",
-          });
+          scrollPageUp();
         }}
         onPrevious={() => {
           goPrevious();
 
-          scollToRef.current.scrollIntoView({
-            behavior: "smooth",
-          });
+          scrollPageUp();
         }}
         onNext={() => {
           goNext();
 
-          scollToRef.current.scrollIntoView({
-            behavior: "smooth",
-          });
+          scrollPageUp();
         }}
       />
     </>
