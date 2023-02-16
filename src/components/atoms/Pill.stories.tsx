@@ -1,15 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { ComponentMeta } from '@storybook/react';
-import Button from './Button';
-
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
-  title: 'Example/Pill',
-  component: Button,
-} as ComponentMeta<typeof Button>;
-
+/* eslint-disable */
+// @ts-nocheck
 function Template() {
   const data = [{
     slug: 'centro',

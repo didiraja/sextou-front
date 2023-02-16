@@ -1,4 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta } from '@storybook/react';
 import Button, { LinkProps } from './Button';
 
@@ -21,7 +23,7 @@ Link.args = {
 export const NoLink = Template.bind({});
 NoLink.args = {
   disabled: true,
-  tickets: '',
+  tickets: undefined,
   // className: '',
   children: 'Sem Link',
 };
@@ -39,5 +41,25 @@ FreeNoLink.args = {
   disabled: true,
   // className: 'no-tickets',
   children: '0800 sem Link',
-  tickets: '',
+  tickets: undefined,
 };
+
+function ButtonPill() {
+  const data = [{
+    slug: 'centro',
+    label: 'Centro',
+  },
+  {
+    slug: 'lapa',
+    label: 'Lapa',
+  },
+  {
+    slug: 'funk',
+    label: 'Funk',
+  },
+  ];
+
+  return data.map((item) => <Button pill href={`https://sextou.rio/category/${item.slug}`}>{item.label}</Button>);
+}
+
+export const Pill = ButtonPill.bind({});

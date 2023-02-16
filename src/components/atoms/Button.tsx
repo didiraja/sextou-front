@@ -44,7 +44,7 @@ function Link({
     <a
       href={href}
       target={target}
-      className={`link ${className} ${free ? 'free' : ''} ${tickets ? '' : 'no-tickets'}`}
+      className={`link ${className} ${free ? 'free' : ''} ${!tickets ? '' : 'no-tickets'}`}
       onClick={(evt) => onClick?.(evt)}
     >
       {/* eslint-disable-next-line no-use-before-define */}
