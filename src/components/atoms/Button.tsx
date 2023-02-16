@@ -11,24 +11,48 @@ export type LinkProps = ButtonProps & {
   href?: string;
   target?: string;
   free?: boolean;
+  tickets: string | undefined;
   className?: string;
   onClick?: (evt: any) => void | undefined;
 };
 
 // eslint-disable-next-line no-lone-blocks
 {
-  /*
-  <Button
-    href=''
-    pill={false}
-    highlight={false}
-    className={``}
-    disabled={false}
-    onClick={() =>}
-  >
-    {children}
-  </Button>
-*/
+  /**
+   *
+   * @example
+   * <Button href='' pill={false} highlight={false} className={``} disabled={false} onClick={() =>}>
+      {children}
+     </Button>
+   *
+  */
+}
+
+function Link({
+  pill,
+  href,
+  target,
+  onClick,
+  className,
+  highlight,
+  disabled,
+  free,
+  children,
+  tickets,
+}: LinkProps): JSX.Element {
+  return (
+    <a
+      href={href}
+      target={target}
+      className={`link ${className} ${free ? 'free' : ''} ${tickets ? '' : 'no-tickets'}`}
+      onClick={(evt) => onClick?.(evt)}
+    >
+      {/* eslint-disable-next-line no-use-before-define */}
+      <Button pill={pill} highlight={highlight} disabled={disabled}>
+        {children}
+      </Button>
+    </a>
+  );
 }
 
 function Button({
@@ -44,31 +68,6 @@ function Button({
     >
       {children}
     </button>
-  );
-}
-
-function Link({
-  pill,
-  href,
-  target,
-  onClick,
-  className,
-  highlight,
-  disabled,
-  free,
-  children,
-}: LinkProps): JSX.Element {
-  return (
-    <a
-      href={href}
-      target={target}
-      className={`link ${className} ${free ? 'free' : ''}`}
-      onClick={(evt) => onClick?.(evt)}
-    >
-      <Button pill={pill} highlight={highlight} disabled={disabled}>
-        {children}
-      </Button>
-    </a>
   );
 }
 
