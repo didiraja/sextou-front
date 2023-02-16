@@ -41,11 +41,11 @@ body {
 }
 
 html {
-  background: repeating-linear-gradient(
+  /* background: repeating-linear-gradient(
     50deg,
     var(--black) 0%,
     var(--dark-pink) 87%,
     var(--dark-purple) 100%
   );
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
