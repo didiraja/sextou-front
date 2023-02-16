@@ -11,7 +11,7 @@ export type LinkProps = ButtonProps & {
   href?: string;
   target?: string;
   free?: boolean;
-  tickets: string | undefined;
+  tickets?: string | undefined;
   className?: string;
   onClick?: (evt: any) => void | undefined;
 };
