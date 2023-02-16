@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { zuStore } from '../store';
+import zuStore from '../store';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
 import CardGrid from '../components/templates/Card.Grid';
@@ -46,6 +46,7 @@ function Home() {
         setTotalEvents(() => result.data.total_posts);
       } catch (error: any) {
         // console.log(error);
+        // eslint-disable-next-line no-console
         console.log(`${error.code} - ${error.message}`);
 
         if (error.code === 'ERR_NETWORK') setErrorMsg(() => ERROR.LOADING);
@@ -66,7 +67,7 @@ function Home() {
   const scrollPageUp = () => {
     if (!scollToRef.current) return;
 
-    return scollToRef.current.scrollIntoView({
+    scollToRef.current.scrollIntoView({
       behavior: 'smooth',
     });
   };
@@ -83,22 +84,21 @@ function Home() {
             </ErrorCard>
           ) : null}
 
-          <>
-            {events?.length
-              ? events.map((event: CardProps) => (
-                <Card
-                  key={event.id}
-                  {...event}
-                  onClick={(event) => openModal(event)}
-                />
-              ))
-              : !errorMsg && (
-                <>
-                  <LoadingCard />
-                  <LoadingCard />
-                </>
-              )}
-          </>
+          {events?.length
+            ? events.map((event: CardProps) => (
+              <Card
+                key={event.id}
+                {...event}
+                onClick={(evt) => openModal(evt)}
+              />
+            ))
+            : !errorMsg && (
+              <>
+                <LoadingCard />
+                <LoadingCard />
+                <LoadingCard />
+              </>
+            )}
         </CardGrid>
 
         <Pagination

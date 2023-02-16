@@ -85,7 +85,7 @@ Button.defaultProps = {
 Link.defaultProps = {
   ...commonProps,
   free: false,
-  href: false,
+  href: '',
   target: '_blank',
   className: '',
   // eslint-disable-next-line @typescript-eslint/no-empty-function

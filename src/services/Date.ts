@@ -1,11 +1,12 @@
-// @ts-nocheck
+/* eslint-disable import/no-duplicates */
+// TODO: fix these imports without disable - (ts or eslint?)
 import {
   format,
   startOfToday,
-  startOfWeek,
   formatISO,
   parseISO,
 } from 'date-fns';
+
 import { ptBR } from 'date-fns/locale';
 
 class DateClass {

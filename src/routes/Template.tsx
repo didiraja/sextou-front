@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router-dom';
-import { zuStore } from '../store';
+import zuStore from '../store';
 import router from '.';
 
 import PageContainer from '../components/templates/PageContainer';

@@ -1,5 +1,6 @@
+/* eslint-disable */
 import Date from '../../services/Date';
-import { zuStore } from '../../store';
+import zuStore from '../../store';
 import Button from '../atoms/Button';
 import { CardProps } from './Card';
 import { TEXT } from '../../services/enums';

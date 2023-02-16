@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import CardGrid from '../components/templates/Card.Grid';
 import ErrorCard from '../components/molecules/Card.Error';
 import Card, { CardProps } from '../components/molecules/Card';
-import { zuStore } from '../store';
+import zuStore from '../store';
 import Pagination from '../components/atoms/Pagination';
 import usePagination from '../hooks/usePagination';
 import Requests from '../services/Requests';

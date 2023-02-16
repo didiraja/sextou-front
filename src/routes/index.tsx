@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import Home from './Home';
 import Category from './Category';
-import SingleEvent from './SingleEvent';
+// import SingleEvent from './SingleEvent';
 import Error from './Error';
 
 const router = createBrowserRouter([

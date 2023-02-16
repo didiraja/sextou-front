@@ -32,5 +32,6 @@ module.exports = {
     'react/no-unused-prop-types': [0],
     'react/no-array-index-key': [0],
     'react/jsx-props-no-spreading': [0],
+    'class-methods-use-this': [0],
   },
 };
