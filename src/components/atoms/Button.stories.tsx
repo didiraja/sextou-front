@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-
-import Button from "./Button";
+import Button, { ButtonProps } from "./Button";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -9,32 +8,30 @@ export default {
   component: Button,
 } as ComponentMeta<typeof Button>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = (args) => (
-  <Button disabled={true}>Olá</Button>
-);
+const Template = (args: ButtonProps) => <Button {...args}></Button>;
 
-export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  highlight: false,
-  disabled: false,
-  onClick: () => console.log("disparou!"),
+export const Link = Template.bind({});
+Link.args = {
+  children: "Tem Link",
 };
 
-// export const Secondary = Template.bind({});
-// Secondary.args = {
-//   label: "Button",
-// };
+export const NoLink = Template.bind({});
+NoLink.args = {
+  disabled: true,
+  className: "no-tickets",
+  children: "Sem Link",
+};
 
-// export const Large = Template.bind({});
-// Large.args = {
-//   size: "large",
-//   label: "Button",
-// };
+export const FreeLink = Template.bind({});
+FreeLink.args = {
+  free: true,
+  children: "0800 com Link",
+};
 
-// export const Small = Template.bind({});
-// Small.args = {
-//   size: "small",
-//   label: "Button",
-// };
+export const FreeNoLink = Template.bind({});
+FreeNoLink.args = {
+  free: true,
+  disabled: true,
+  className: "no-tickets",
+  children: "0800 sem Link",
+};
