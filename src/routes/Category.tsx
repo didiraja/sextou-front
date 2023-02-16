@@ -21,7 +21,7 @@ function Category() {
   const isNumber = !Number.isNaN(Number(slug));
 
   useEffect(() => {
-    if (isNumber) return navigate('/');
+    if (isNumber) navigate('/');
   }, []);
 
   const scollToRef = useRef<HTMLDivElement | null>(null);
@@ -52,6 +52,7 @@ function Category() {
         setTotalEvents(() => result.data.total_posts);
       } catch (error: any) {
         // console.log(error);
+        // eslint-disable-next-line no-console
         console.log(`${error.code} - ${error.message}`);
 
         if (error.code === 'ERR_NETWORK') setErrorMsg(() => ERROR.LOADING);
@@ -65,7 +66,7 @@ function Category() {
   const scrollPageUp = () => {
     if (!scollToRef.current) return;
 
-    return scollToRef.current.scrollIntoView({
+    scollToRef.current.scrollIntoView({
       behavior: 'smooth',
     });
   };

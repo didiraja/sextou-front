@@ -27,11 +27,13 @@ export type reducerProps = {
 
 function Card(props: CardProps) {
   const {
-    highlight, cover, event_date, tickets, title, categories, free,
+    highlight, cover, event_date: eventDate, tickets, title, categories, free, onClick,
   } = props;
 
   function goTo(url: string) {
-    return () => (location.href = url);
+    return () => {
+      window.location.href = url;
+    };
   }
 
   function handleClickReducer({ evt, action }: reducerProps) {
@@ -46,7 +48,7 @@ function Card(props: CardProps) {
 
       const isClickFromPill = classNamesArr?.includes('pill');
 
-      if (isClickFromPill) return evt?.stopPropagation();
+      if (isClickFromPill) evt.stopPropagation();
     }
   }
 
@@ -55,36 +57,31 @@ function Card(props: CardProps) {
       <span
         data-testid="span"
         className="clickable"
-        onClick={() => handleClickReducer({ action: props.onClick?.(props) })}
+        onClick={() => handleClickReducer({ action: onClick?.(props) })}
       >
         <img className="card-cover" src={cover} alt="" />
-        {event_date ? (
+        {eventDate ? (
           <div data-testid="date" className="card-date">
-            {Date.readableDate(event_date)}
+            {Date.readableDate(eventDate)}
           </div>
         ) : null}
 
         {title ? <div className="card-title">{title}</div> : null}
 
         <div data-testid="categories" className="card-meta">
-          {categories?.map((item: WPTermObject, index: number) => {
-            // validate item, to prevent crash if array come with falsy values
-            if (item) {
-              return (
-                <Button
-                  pill
-                  key={index}
-                  target="_self"
-                  onClick={(evt) => handleClickReducer({
-                    evt,
-                    action: goTo(`/category/${item.slug}`),
-                  })}
-                >
-                  {item.name}
-                </Button>
-              );
-            }
-          }) ?? null}
+          {categories?.map((item: WPTermObject, index: number) => (
+            <Button
+              pill
+              key={index}
+              target="_self"
+              onClick={(evt) => handleClickReducer({
+                evt,
+                action: goTo(`/category/${item.slug}`),
+              })}
+            >
+              {item.name}
+            </Button>
+          )) ?? null}
         </div>
       </span>
 
@@ -97,7 +94,8 @@ function Card(props: CardProps) {
           disabled={!tickets}
           free={free}
         >
-          {/* prettier-ignore */}
+          {/* TODO: better button text */}
+          {/* eslint-disable-next-line no-nested-ternary */}
           {free
             ? free && tickets
               ? TEXT.FREE_TICKETS
@@ -110,5 +108,13 @@ function Card(props: CardProps) {
     </div>
   );
 }
+
+Card.defaultProps = {
+  highlight: false,
+  tickets: '',
+  free: false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onClick: () => {},
+};
 
 export default Card;

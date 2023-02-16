@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const usePagination = () => {
   const [activePage, setActivePage] = useState(1);

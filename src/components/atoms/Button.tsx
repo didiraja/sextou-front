@@ -72,16 +72,18 @@ function Link({
   );
 }
 
-Button.defaultProps = {
+const commonProps = {
   pill: false,
   highlight: false,
   disabled: false,
 };
 
+Button.defaultProps = {
+  ...commonProps,
+};
+
 Link.defaultProps = {
-  pill: false,
-  highlight: false,
-  disabled: false,
+  ...commonProps,
   free: false,
   href: false,
   target: '_blank',

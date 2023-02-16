@@ -54,4 +54,10 @@ function Pagination(props: PaginationProps) {
   );
 }
 
+Pagination.defaultProps = {
+  perPage: 8,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onSelectPage: () => {},
+};
+
 export default Pagination;
