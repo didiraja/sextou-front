@@ -1,0 +1,6 @@
+dist/
+stories/
+*.stories.ts
+*.stories.tsx
+*.test.ts
+*.test.tsx

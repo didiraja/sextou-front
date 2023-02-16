@@ -1,13 +1,15 @@
-import Title from "../atoms/Title";
-import "./About.pcss";
+import Title from '../atoms/Title';
+import './About.pcss';
 
-const About = () => {
+function About() {
   return (
     <div className="about-wrapper">
       <Title>Sobre</Title>
 
       <p>
-        <strong className="capitular">Sextou!</strong> é uma plataforma criada
+        <strong className="capitular">Sextou!</strong>
+        {' '}
+        é uma plataforma criada
         para empoderar o usuário na escolha de seu entretenimento, encontrando
         novas opções e filtrando a que melhor se encaixa em seu gosto e
         localização.
@@ -22,14 +24,15 @@ const About = () => {
       </p>
 
       <p>
-        Plataforma idealizada e criada por mim,{" "}
-        <a href="https://linkedin.com/in/didiraja" target="_blank">
+        Plataforma idealizada e criada por mim,
+        {' '}
+        <a href="https://linkedin.com/in/didiraja" target="_blank" rel="noreferrer">
           Dico Didiraja
         </a>
         .
       </p>
     </div>
   );
-};
+}
 
 export default About;

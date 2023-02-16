@@ -1,20 +1,20 @@
-import Date from "../../services/Date";
-import { zuStore } from "../../store";
-import Button from "../atoms/Button";
-import { CardProps } from "./Card";
-import { TEXT } from "../../services/enums";
-import { WPTermObject } from "../../types";
-import "./Modal.pcss";
+import Date from '../../services/Date';
+import { zuStore } from '../../store';
+import Button from '../atoms/Button';
+import { CardProps } from './Card';
+import { TEXT } from '../../services/enums';
+import { WPTermObject } from '../../types';
+import './Modal.pcss';
 
 // TODO: Modal content from Actions(reducer): Event Details || Some Text || anything
 
-const Modal = () => {
+function Modal() {
   const toggleModal = zuStore((store: any) => store.toggleModal);
   const content = zuStore((store: any) => store.content);
 
   // type guard
   function isCardProps(content: any): content is CardProps {
-    return content !== undefined && typeof content === "object";
+    return content !== undefined && typeof content === 'object';
   }
 
   // typeguard validation
@@ -67,10 +67,8 @@ const Modal = () => {
             <div className="cta">
               <Button
                 href={content.tickets}
-                onClick={(evt) =>
-                  !content.tickets ? evt.preventDefault() : ""
-                }
-                className={!content.tickets ? "no-tickets" : ""}
+                onClick={(evt) => (!content.tickets ? evt.preventDefault() : '')}
+                className={!content.tickets ? 'no-tickets' : ''}
                 highlight={content.highlight}
                 disabled={!content.tickets}
                 free={content.free}
@@ -80,8 +78,8 @@ const Modal = () => {
                     ? TEXT.FREE_TICKETS
                     : TEXT.FREE_NO_TICKETS
                   : content.tickets
-                  ? TEXT.BUY_TICKETS
-                  : TEXT.NO_TICKETS}
+                    ? TEXT.BUY_TICKETS
+                    : TEXT.NO_TICKETS}
               </Button>
             </div>
           </div>
@@ -103,6 +101,6 @@ const Modal = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Modal;

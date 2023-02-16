@@ -1,8 +1,8 @@
-import Button from "../atoms/Button";
-import Date from "../../services/Date";
-import { TEXT } from "../../services/enums";
-import { WPTermObject } from "../../types";
-import "./Card.pcss";
+import Button from '../atoms/Button';
+import Date from '../../services/Date';
+import { TEXT } from '../../services/enums';
+import { WPTermObject } from '../../types';
+import './Card.pcss';
 
 export type CardProps = {
   highlight?: boolean;
@@ -25,9 +25,10 @@ export type reducerProps = {
   action: any;
 };
 
-const Card = (props: CardProps) => {
-  const { highlight, cover, event_date, tickets, title, categories, free } =
-    props;
+function Card(props: CardProps) {
+  const {
+    highlight, cover, event_date, tickets, title, categories, free,
+  } = props;
 
   function goTo(url: string) {
     return () => (location.href = url);
@@ -41,9 +42,9 @@ const Card = (props: CardProps) => {
     action?.();
 
     if (evt) {
-      const classNamesArr = evt?.target.className.split(" ");
+      const classNamesArr = evt?.target.className.split(' ');
 
-      const isClickFromPill = classNamesArr?.includes("pill");
+      const isClickFromPill = classNamesArr?.includes('pill');
 
       if (isClickFromPill) return evt?.stopPropagation();
     }
@@ -68,22 +69,21 @@ const Card = (props: CardProps) => {
         <div data-testid="categories" className="card-meta">
           {categories?.map((item: WPTermObject, index: number) => {
             // validate item, to prevent crash if array come with falsy values
-            if (item)
+            if (item) {
               return (
                 <Button
                   pill
                   key={index}
                   target="_self"
-                  onClick={(evt) =>
-                    handleClickReducer({
-                      evt,
-                      action: goTo(`/category/${item.slug}`),
-                    })
-                  }
+                  onClick={(evt) => handleClickReducer({
+                    evt,
+                    action: goTo(`/category/${item.slug}`),
+                  })}
                 >
                   {item.name}
                 </Button>
               );
+            }
           }) ?? null}
         </div>
       </span>
@@ -91,10 +91,8 @@ const Card = (props: CardProps) => {
       <div className="card-bottom">
         <Button
           href={tickets}
-          onClick={(evt) =>
-            handleClickReducer({ action: !tickets ? evt.preventDefault() : "" })
-          }
-          className={!tickets ? "no-tickets" : ""}
+          onClick={(evt) => handleClickReducer({ action: !tickets ? evt.preventDefault() : '' })}
+          className={!tickets ? 'no-tickets' : ''}
           highlight={highlight}
           disabled={!tickets}
           free={free}
@@ -105,12 +103,12 @@ const Card = (props: CardProps) => {
               ? TEXT.FREE_TICKETS
               : TEXT.FREE_NO_TICKETS
             : tickets
-            ? TEXT.BUY_TICKETS
-            : TEXT.NO_TICKETS}
+              ? TEXT.BUY_TICKETS
+              : TEXT.NO_TICKETS}
         </Button>
       </div>
     </div>
   );
-};
+}
 
 export default Card;

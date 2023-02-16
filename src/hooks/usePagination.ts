@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const usePagination = () => {
   const [activePage, setActivePage] = useState(1);
@@ -7,17 +7,11 @@ const usePagination = () => {
   //   console.log("activePage", activePage);
   // }, [activePage]);
 
-  const setActive = (page: number) => {
-    return setActivePage(() => page);
-  };
+  const setActive = (page: number) => setActivePage(() => page);
 
-  const goPrevious = () => {
-    return setActivePage((actualPage) => actualPage - 1);
-  };
+  const goPrevious = () => setActivePage((actualPage) => actualPage - 1);
 
-  const goNext = () => {
-    return setActivePage((actualPage) => actualPage + 1);
-  };
+  const goNext = () => setActivePage((actualPage) => actualPage + 1);
 
   return {
     activePage,

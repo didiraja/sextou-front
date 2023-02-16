@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { CardProps } from "../components/molecules/Card";
+import { create } from 'zustand';
+import { CardProps } from '../components/molecules/Card';
 
 type Store = {
   showModal: boolean;
@@ -11,9 +11,6 @@ type Store = {
 export const zuStore = create((set) => ({
   showModal: false,
   content: {},
-  toggleModal: () =>
-    set((state: Store) => {
-      return { showModal: !state.showModal };
-    }),
+  toggleModal: () => set((state: Store) => ({ showModal: !state.showModal })),
   openModal: (content: CardProps) => set(() => ({ showModal: true, content })),
 }));

@@ -5,8 +5,8 @@ import {
   startOfWeek,
   formatISO,
   parseISO,
-} from "date-fns";
-import { ptBR } from "date-fns/locale";
+} from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 class DateClass {
   private today: Date;

@@ -1,19 +1,17 @@
-import Sextou from "../../assets/sextou.png";
+import Sextou from '../../assets/sextou.png';
 
-import "./TopBlock.pcss";
+import './TopBlock.pcss';
 
-const TopBlock = () => {
+function TopBlock() {
   return (
-    <>
-      <section id="top" className="grid grid-cols-1">
-        <a href="/">
-          <img className="sextou-logo" src={Sextou} alt="Sextou!" />
-        </a>
+    <section id="top" className="grid grid-cols-1">
+      <a href="/">
+        <img className="sextou-logo" src={Sextou} alt="Sextou!" />
+      </a>
 
-        {/* <SearchBlock /> */}
-      </section>
-    </>
+      {/* <SearchBlock /> */}
+    </section>
   );
-};
+}
 
 export default TopBlock;

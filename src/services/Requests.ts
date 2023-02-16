@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from "axios";
-import { CardProps } from "../components/molecules/Card";
-import { HOST, ENDPOINT } from "./enums";
+import axios, { AxiosResponse } from 'axios';
+import { CardProps } from '../components/molecules/Card';
+import { HOST, ENDPOINT } from './enums';
 
 export interface IApiParams {
   before?: string;
@@ -12,18 +12,18 @@ export interface IApiParams {
 type IRequestReturn = Promise<AxiosResponse | undefined>;
 
 class Request {
-  private url: string = `${HOST}${ENDPOINT.MAIN}`;
+  private url = `${HOST}${ENDPOINT.MAIN}`;
 
   // constructor() {
   //   // this.url = ;
   // }
 
   async getEvents(
-    basename: string = "events",
-    query: IApiParams = {}
+    basename = 'events',
+    query: IApiParams = {},
   ): IRequestReturn {
     const queryString: string = new URLSearchParams(
-      query as Record<string, string>
+      query as Record<string, string>,
     ).toString();
 
     try {

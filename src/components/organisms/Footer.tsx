@@ -1,6 +1,6 @@
-import "./Footer.pcss";
+import './Footer.pcss';
 
-const Footer = () => {
+function Footer() {
   return (
     <footer>
       <p className="legal">
@@ -10,14 +10,18 @@ const Footer = () => {
       </p>
       <div className="spacing" />
       <p className="layout">
-        Design e Código por{" "}
-        <a href="https://twitter.com/didiraja" target="_blank">
+        Design e Código por
+        {' '}
+        <a href="https://twitter.com/didiraja" target="_blank" rel="noreferrer">
           Dico Didiraja
-        </a>{" "}
-        &copy; {new Date().getFullYear()}
+        </a>
+        {' '}
+        &copy;
+        {' '}
+        {new Date().getFullYear()}
       </p>
     </footer>
   );
-};
+}
 
 export default Footer;
