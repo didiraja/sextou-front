@@ -1,6 +1,6 @@
-import "./Card.Loading.pcss";
+import './Card.Loading.pcss';
 
-const CardLoading = () => {
+function CardLoading() {
   return (
     <div className="card">
       <div className="placeholder-cover" />
@@ -18,6 +18,6 @@ const CardLoading = () => {
       <div className="placeholder-button" />
     </div>
   );
-};
+}
 
 export default CardLoading;

@@ -1,6 +1,6 @@
-import Title from "../components/atoms/Title";
+import Title from '../components/atoms/Title';
 
-const Error = () => {
+function Error() {
   return (
     <>
       <Title>Deu Ruim!</Title>
@@ -10,6 +10,6 @@ const Error = () => {
       </p>
     </>
   );
-};
+}
 
 export default Error;

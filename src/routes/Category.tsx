@@ -1,38 +1,40 @@
-import { useEffect, useState, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import CardGrid from "../components/templates/Card.Grid";
-import ErrorCard from "../components/molecules/Card.Error";
-import Card, { CardProps } from "../components/molecules/Card";
-import { zuStore } from "../store";
-import Pagination from "../components/atoms/Pagination";
-import usePagination from "../hooks/usePagination";
-import Requests from "../services/Requests";
-import Title from "../components/atoms/Title";
-import LoadingCard from "../components/molecules/Card.Loading";
+import CardGrid from '../components/templates/Card.Grid';
+import ErrorCard from '../components/molecules/Card.Error';
+import Card, { CardProps } from '../components/molecules/Card';
+import zuStore from '../store';
+import Pagination from '../components/atoms/Pagination';
+import usePagination from '../hooks/usePagination';
+import Requests from '../services/Requests';
+import Title from '../components/atoms/Title';
+import LoadingCard from '../components/molecules/Card.Loading';
 
-import { ENDPOINT, ERROR } from "../services/enums";
+import { ENDPOINT, ERROR } from '../services/enums';
 
-const Category = () => {
+function Category() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const openModal = zuStore((store: any) => store.openModal);
 
-  const isNumber: boolean = !Number.isNaN(Number(slug));
+  const isNumber = !Number.isNaN(Number(slug));
 
   useEffect(() => {
-    if (isNumber) return navigate("/");
+    if (isNumber) navigate('/');
   }, []);
 
-  const scollToRef = useRef();
+  const scollToRef = useRef<HTMLDivElement | null>(null);
 
   // LOADING AND PAGINATION
-  const { activePage, setActive, goPrevious, goNext } = usePagination();
+  const {
+    activePage, setActive, goPrevious, goNext,
+  } = usePagination();
 
   const [events, setEvents] = useState([]);
   const [totalEvents, setTotalEvents] = useState(0);
-  const [categoryName, setCategoryName] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [categoryName, setCategoryName] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     const getEvents = async () => {
@@ -41,14 +43,19 @@ const Category = () => {
           page: activePage,
         });
 
+        if (!result) {
+          return;
+        }
+
         setCategoryName(() => result.data.name);
         setEvents(() => result.data.posts);
         setTotalEvents(() => result.data.total_posts);
       } catch (error: any) {
         // console.log(error);
+        // eslint-disable-next-line no-console
         console.log(`${error.code} - ${error.message}`);
 
-        if (error.code === "ERR_NETWORK") setErrorMsg(() => ERROR.LOADING);
+        if (error.code === 'ERR_NETWORK') setErrorMsg(() => ERROR.LOADING);
       }
     };
 
@@ -56,43 +63,51 @@ const Category = () => {
   }, [slug, activePage]);
   // end
 
+  const scrollPageUp = () => {
+    if (!scollToRef.current) return;
+
+    scollToRef.current.scrollIntoView({
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
       <div ref={scollToRef} />
 
-      <Title>Melhores shows e festas em {categoryName}</Title>
+      <Title>
+        Melhores shows e festas em
+        {categoryName}
+      </Title>
 
       <CardGrid>
         {errorMsg ? (
-          <>
-            <ErrorCard>
-              <p className="text-2xl">{errorMsg}</p>
-              <br />
-              <p className="font-normal">
-                Que tal,{" "}
-                <a
-                  className="font-bold underline hover:no-underline"
-                  href="http://"
-                  target="self"
-                  rel="noopener noreferrer"
-                >
-                  voltar para a Home?
-                </a>
-              </p>
-            </ErrorCard>
-          </>
+          <ErrorCard>
+            <p className="text-2xl">{errorMsg}</p>
+            <br />
+            <p className="font-normal">
+              Que tal,
+              {' '}
+              <a
+                className="font-bold underline hover:no-underline"
+                href="http://"
+                target="self"
+                rel="noopener noreferrer"
+              >
+                voltar para a Home?
+              </a>
+            </p>
+          </ErrorCard>
         ) : null}
 
         {events?.length
-          ? events.map((event: CardProps) => {
-              return <Card key={event.id} {...event} onClick={openModal} />;
-            })
+          ? events.map((event: CardProps) => <Card key={event.id} {...event} onClick={openModal} />)
           : !errorMsg && (
-              <>
-                <LoadingCard />
-                <LoadingCard />
-              </>
-            )}
+            <>
+              <LoadingCard />
+              <LoadingCard />
+            </>
+          )}
       </CardGrid>
 
       <Pagination
@@ -101,27 +116,21 @@ const Category = () => {
         onSelectPage={(page: number) => {
           setActive(page);
 
-          scollToRef.current.scrollIntoView({
-            behavior: "smooth",
-          });
+          scrollPageUp();
         }}
         onPrevious={() => {
           goPrevious();
 
-          scollToRef.current.scrollIntoView({
-            behavior: "smooth",
-          });
+          scrollPageUp();
         }}
         onNext={() => {
           goNext();
 
-          scollToRef.current.scrollIntoView({
-            behavior: "smooth",
-          });
+          scrollPageUp();
         }}
       />
     </>
   );
-};
+}
 
 export default Category;

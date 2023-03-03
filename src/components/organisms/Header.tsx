@@ -1,6 +1,6 @@
-import "./Header.pcss";
+import './Header.pcss';
 
-const Header = () => {
+function Header() {
   return (
     <header className="header-wrapper">
       <div className="header-menu">
@@ -24,6 +24,6 @@ const Header = () => {
       </div>
     </header>
   );
-};
+}
 
 export default Header;

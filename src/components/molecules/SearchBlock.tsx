@@ -1,3 +1,4 @@
+/* eslint-disable */
 // @ts-nocheck
 
 /**
@@ -66,4 +67,4 @@
 //   );
 // }
 
-// export default SearchBlock;
+export default SearchBlock;

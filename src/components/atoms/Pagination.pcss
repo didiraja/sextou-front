@@ -1,16 +1,20 @@
 .pagination {
   @apply mb-5 px-5 flex justify-center;
 
-  a {
-    @apply inline-block w-[initial];
-    background-color: var(--pink-2);
-
-    &.active {
-      background-color: var(--dark-pink);
-      @apply hover:cursor-default;
+  a.link.btn-page {
+    button {
+      @apply inline-block w-[initial];
+      background-color: var(--pink-2);
     }
 
-    & ~ a {
+    &.active {
+      button {
+        background-color: var(--dark-pink);
+        @apply hover:cursor-default;
+      }
+    }
+
+    & ~ a.link.btn-page {
       @apply ml-3;
     }
   }

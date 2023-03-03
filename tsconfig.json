@@ -1,22 +1,28 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "module": "ESNext",
+    "target": "es2016",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
+    // "checkJs": false,
     "skipLibCheck": true,
     // true just for Faker
     // "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "outDir": "dist"
   },
   "include": ["src", "tests"],
+  "exclude": [
+    "*.cjs, src/**/*.test.tsx",
+    "src/**/*.stories.tsx",
+    "src/stories/*/**"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

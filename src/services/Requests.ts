@@ -1,56 +1,39 @@
-import axios from "axios";
+import axios, { AxiosResponse } from 'axios';
+import { HOST, ENDPOINT } from './enums';
 
-import { HOST, ENDPOINT } from "./enums";
-
-export type APIParams = {
+export interface IApiParams {
   before?: string;
   after?: string;
   page?: number;
   per_page?: number;
-};
+}
+
+type IRequestReturn = Promise<AxiosResponse | undefined>;
 
 class Request {
-  private url: string = `${HOST}${ENDPOINT.MAIN}`;
+  private url = `${HOST}${ENDPOINT.MAIN}`;
 
-  // constructor() {
-  //   // this.url = ;
-  // }
-
-  async getEvents(basename: string = "events", query: APIParams = {}) {
-    const queryString = new URLSearchParams(query).toString();
+  async getEvents(
+    basename = 'events',
+    query: IApiParams = {},
+  ): IRequestReturn {
+    const queryString: string = new URLSearchParams(
+      query as Record<string, string>,
+    ).toString();
 
     try {
-      // TODO: dynamic weekend on request
       return axios.get(`${this.url}/${basename}/?${queryString}`);
     } catch (e: any) {
+      // eslint-disable-next-line no-console
       console.log(`[getEvents Error] ${e.code} - ${e.message}`);
 
-      return [];
+      return undefined;
     }
   }
 
-  async highlightEvents() {}
+  // async highlightEvents() {}
 
-  async regularEvents() {}
-
-  /**
-   * @DEPRECATED after custom WP API
-   */
-  // // http://sextou.local/wp-api/wp/v2/categories/1
-  // async getCatName(id: number) {
-  //   return axios.get(`${this.url}/categories/${id}`);
-  // }
-
-  // // http://sextou.local/wp-api/wp/v2/media/33
-  // async getMedia(id: number) {
-  //   try {
-  //     return axios.get(`${this.url}/media/${id}`);
-  //   } catch (e: AxiosError<any>) {
-  //     console.log(`[getMedia Error] ${e.code} - ${e.message}`);
-
-  //     return [];
-  //   }
-  // }
+  // async regularEvents() {}
 }
 
 export default new Request();

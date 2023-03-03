@@ -1,0 +1,3 @@
+dist/
+*.test.ts
+*.test.tsx

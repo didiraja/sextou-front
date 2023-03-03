@@ -1,18 +1,18 @@
-// @ts-nocheck
-import DateFNS, {
+/* eslint-disable import/no-duplicates */
+// TODO: fix these imports without disable - (ts or eslint?)
+import {
   format,
   startOfToday,
-  startOfWeek,
   formatISO,
   parseISO,
-  formatISO9075,
-  formatISODuration,
-  formatRFC3339,
-  formatRFC7231,
-} from "date-fns";
-import { ptBR } from "date-fns/locale";
+} from 'date-fns';
+
+import { ptBR } from 'date-fns/locale';
 
 class DateClass {
+  private today: Date;
+  // private week: Date;
+
   /**
    * Basic and Common elements to the Class
    *
@@ -20,12 +20,12 @@ class DateClass {
    *
    * @constructor
    * @const {Date} today - Today's Date
-   * @const {Date} week - First day of Week
+  //  * @const {Date} week - First day of Week
    */
   constructor() {
     this.today = startOfToday();
 
-    this.week = startOfWeek(this.today);
+    // this.week = startOfWeek(this.today);
   }
 
   /**
@@ -34,7 +34,6 @@ class DateClass {
    * @return {string} date formatted to ISO, on GMT time
    */
   todayDate(): string {
-    // slice to remove manually timezone
     return formatISO(this.today);
   }
 

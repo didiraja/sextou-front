@@ -1,41 +1,65 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-
-import Button from "./Button";
-import "./Button.pcss";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ComponentMeta } from '@storybook/react';
+import Button, { LinkProps } from './Button';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Example/Button",
+  title: 'Example/Button',
   component: Button,
 } as ComponentMeta<typeof Button>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = (args) => (
-  <Button disabled={true}>Olá</Button>
-);
+function Template(args: LinkProps) {
+  return <Button {...args} />;
+}
 
-export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  highlight: false,
-  disabled: false,
-  onClick: () => console.log("disparou!"),
+export const Link = Template.bind({});
+Link.args = {
+  children: 'Tem Link',
+  tickets: 'dfsdfsdafsdfsd',
 };
 
-// export const Secondary = Template.bind({});
-// Secondary.args = {
-//   label: "Button",
-// };
+export const NoLink = Template.bind({});
+NoLink.args = {
+  disabled: true,
+  tickets: undefined,
+  // className: '',
+  children: 'Sem Link',
+};
 
-// export const Large = Template.bind({});
-// Large.args = {
-//   size: "large",
-//   label: "Button",
-// };
+export const FreeLink = Template.bind({});
+FreeLink.args = {
+  free: true,
+  children: '0800 com Link',
+  tickets: 'dfsdfsdafsdfsd',
+};
 
-// export const Small = Template.bind({});
-// Small.args = {
-//   size: "small",
-//   label: "Button",
-// };
+export const FreeNoLink = Template.bind({});
+FreeNoLink.args = {
+  free: true,
+  disabled: true,
+  // className: 'no-tickets',
+  children: '0800 sem Link',
+  tickets: undefined,
+};
+
+function ButtonPill() {
+  const data = [{
+    slug: 'centro',
+    label: 'Centro',
+  },
+  {
+    slug: 'lapa',
+    label: 'Lapa',
+  },
+  {
+    slug: 'funk',
+    label: 'Funk',
+  },
+  ];
+
+  return data.map((item) => <Button pill href={`https://sextou.rio/category/${item.slug}`}>{item.label}</Button>);
+}
+
+export const Pill = ButtonPill.bind({});
