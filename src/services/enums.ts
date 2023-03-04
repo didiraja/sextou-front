@@ -16,7 +16,7 @@ export const ENDPOINT = {
 
 export const TEXT = {
   BUY_TICKETS: 'Comprar Ingresso',
-  NO_TICKETS: 'Nenhum link disponível',
+  NO_TICKETS: 'Sem link ainda',
   FREE_TICKETS: 'Pegar Ingresso',
   FREE_NO_TICKETS: 'Só brotar',
 };

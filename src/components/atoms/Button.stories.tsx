@@ -3,6 +3,7 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta } from '@storybook/react';
 import Button, { LinkProps } from './Button';
+import './Button.pcss';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
