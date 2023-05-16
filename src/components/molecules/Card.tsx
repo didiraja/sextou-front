@@ -48,7 +48,7 @@ function Card(props: CardProps) {
 
   return (
     <div className="card">
-      <Content {...props} />
+      <Content {...props} component="Card" />
     </div>
   );
 }

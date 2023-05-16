@@ -1,11 +1,9 @@
-/* eslint-disable */
-import Date from '../../services/Date';
+/* eslint-disable react/no-danger */
 import zuStore from '../../store';
-import Button from '../atoms/Button';
+import Content from '../atoms/Content';
 import { CardProps } from './Card';
-import { TEXT } from '../../services/enums';
-import { WPTermObject } from '../../types';
 import './Modal.pcss';
+import Close from '../../assets/icon/close.svg';
 
 // TODO: Modal content from Actions(reducer): Event Details || Some Text || anything
 
@@ -14,8 +12,8 @@ function Modal() {
   const content = zuStore((store: any) => store.content);
 
   // type guard
-  function isCardProps(content: any): content is CardProps {
-    return content !== undefined && typeof content === 'object';
+  function isCardProps(abc: any): abc is CardProps {
+    return abc !== undefined && typeof abc === 'object';
   }
 
   // typeguard validation
@@ -27,6 +25,8 @@ function Modal() {
     if (isBackdrop) {
       return toggleModal();
     }
+
+    return null;
   }
 
   const findImgRegex = /<img[^>]*>/i;
@@ -37,55 +37,14 @@ function Modal() {
     <div className="backdrop z-20" onClick={handleClick}>
       <div className="modal-wrapper">
         <div className="modal">
-          {/* CLOSE BUTTON */}
+
           <p className="nav-wrapper" onClick={toggleModal}>
-            Fechar
+            <img src={Close} alt="Fechar Modal" />
           </p>
-          {/* TITLE */}
-          <p className="modal-title">{content.title}</p>
-          {/* INFORMATION */}
-          <div className="modal-info">
-            {/* DATE */}
-            <p className="date">{Date.readableDate(content.event_date)}</p>
 
-            {/* CATEGORIES */}
-            {content.categories ? (
-              <div className="tags">
-                {content.categories?.map((item: WPTermObject) => (
-                  <Button
-                    pill
-                    key={item.term_id}
-                    href={`/category/${item.slug}`}
-                    target="_self"
-                  >
-                    {item.name}
-                  </Button>
-                ))}
-              </div>
-            ) : null}
+          <Content {...content} component="Modal" />
 
-            {/* TICKETS */}
-            <div className="cta">
-              <Button
-                href={content.tickets}
-                onClick={(evt) => (!content.tickets ? evt.preventDefault() : '')}
-                className={!content.tickets ? 'no-tickets' : ''}
-                highlight={content.highlight}
-                disabled={!content.tickets}
-                free={content.free}
-              >
-                {content.free
-                  ? content.free && content.tickets
-                    ? TEXT.FREE_TICKETS
-                    : TEXT.FREE_NO_TICKETS
-                  : content.tickets
-                    ? TEXT.BUY_TICKETS
-                    : TEXT.NO_TICKETS}
-              </Button>
-            </div>
-          </div>
           <div className="modal-content">
-            {/* COVER */}
 
             {!descriptionHasImgTag ? (
               <img
@@ -95,8 +54,7 @@ function Modal() {
               />
             ) : null}
 
-            {/* DESCRIPTION */}
-            <p dangerouslySetInnerHTML={{ __html: content.description }} />
+            <p style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: content.description }} />
           </div>
         </div>
       </div>

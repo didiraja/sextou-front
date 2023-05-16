@@ -16,22 +16,27 @@
   @apply max-h-full hide-scrollbar top-16 px-5 pt-3 pb-[3rem] md:p-8 xl:p-8
 		backdrop-blur-sm bg-black/[85%] rounded-lg shadow-black/80 text-white;
   .nav-wrapper {
-    @apply hover:bg-slate-400/10 active:bg-slate-700/10 hover:cursor-pointer rounded-md max-w-[6rem]
+    @apply hover:bg-slate-400/10 active:bg-slate-700/10 hover:cursor-pointer rounded-full max-w-[5rem]
       ml-auto mb-5 p-5 block text-center;
   }
-  .modal-title {
+  .title {
     @apply mb-5 font-black text-4xl md:text-5xl xl:text-5xl text-center;
   }
-  .modal-cover {
+  .cover {
     @apply mb-5;
   }
-  .modal-info {
-    @apply mb-5 divide-y-[10px] xl:divide-x-[10px] divide-transparent xl:flex xl:justify-center xl:items-center;
+  .meta {
+    @apply mb-5 divide-y-[10px] xl:divide-x-[10px] divide-transparent xl:flex xl:justify-center xl:items-center /* border border-white */;
     .date {
-      @apply text-center text-2xl md:text-3xl;
+      @apply text-center text-2xl;
     }
-    .tags {
-      @apply text-center text-lg md:text-xl;
+
+    &.modal-theme {
+      @apply flex justify-center items-center;
+
+      .categories-wrapper {
+        @apply mx-3;
+      }
     }
   }
   .modal-content {
