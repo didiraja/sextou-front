@@ -1,7 +1,7 @@
 # Custom
 src/**/*.js
-.eslintcache
 *:Zone.Identifier
+.eslintcache
 
 # Logs
 logs

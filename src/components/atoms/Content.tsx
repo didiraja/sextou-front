@@ -1,8 +1,8 @@
-import Button from './Button';
-import Date from '../../services/Date';
-import { TEXT } from '../../services/enums';
-import { WPTermObject } from '../../types';
-import './Content.pcss';
+import Button from "./Button";
+import Date from "../../services/Date";
+import { TEXT } from "../../services/enums";
+import { WPTermObject } from "../../types";
+import "./Content.pcss";
 
 export interface IEventProps {
   highlight?: boolean;
@@ -19,8 +19,8 @@ export interface IEventProps {
 }
 
 export type ContentProps = IEventProps & {
-  component?: 'Modal' | 'Card';
-}
+  component?: "Modal" | "Card";
+};
 
 export type reducerProps = {
   evt?: React.MouseEvent<HTMLDivElement, MouseEvent> & {
@@ -43,15 +43,15 @@ function handleClickReducer({ evt, action }: reducerProps) {
   action?.();
 
   if (evt) {
-    const classNamesArr = evt?.target.className.split(' ');
+    const classNamesArr = evt?.target.className.split(" ");
 
-    const isClickFromPill = classNamesArr?.includes('pill');
+    const isClickFromPill = classNamesArr?.includes("pill");
 
     if (isClickFromPill) evt.stopPropagation();
   }
 }
 
-function DateBlock({ eventDate } : { eventDate: string}) {
+function DateBlock({ eventDate }: { eventDate: string }) {
   return (
     <div data-testid="date" className="date">
       {Date.readableDate(eventDate)}
@@ -60,18 +60,32 @@ function DateBlock({ eventDate } : { eventDate: string}) {
 }
 
 function BtnTxtReducer({ free, tickets }: ContentProps) {
-  if (free && tickets) { return TEXT.FREE_TICKETS; }
+  if (free && tickets) {
+    return TEXT.FREE_TICKETS;
+  }
 
-  if (free) { return TEXT.FREE_NO_TICKETS; }
+  if (free) {
+    return TEXT.FREE_NO_TICKETS;
+  }
 
-  if (!free && tickets) { return TEXT.BUY_TICKETS; }
+  if (!free && tickets) {
+    return TEXT.BUY_TICKETS;
+  }
 
   return TEXT.NO_TICKETS;
 }
 
 function Content(props: ContentProps) {
   const {
-    component, highlight, cover, event_date: eventDate, tickets, title, categories, free, onClick,
+    component,
+    highlight,
+    cover,
+    event_date: eventDate,
+    tickets,
+    title,
+    categories,
+    free,
+    onClick,
   } = props;
 
   return (
@@ -81,26 +95,24 @@ function Content(props: ContentProps) {
         className="clickable"
         onClick={() => handleClickReducer({ action: onClick?.(props) })}
       >
-        {
-          (component === 'Card')
-            ? <img className="cover" src={cover} alt={title} />
-            : null
-        }
+        {component === "Card" ? (
+          <img className="cover" src={cover} alt={title} />
+        ) : null}
 
-        {
-          (component === 'Card' && eventDate) ? (
-            <DateBlock eventDate={eventDate} />
-          ) : null
-        }
+        {component === "Card" && eventDate ? (
+          <DateBlock eventDate={eventDate} />
+        ) : null}
 
         {title ? <div className="title">{title}</div> : null}
 
-        <div className={`meta ${component === 'Card' ? 'card-theme' : 'modal-theme'}`}>
-          {
-            (component === 'Modal' && eventDate) ? (
-              <DateBlock eventDate={eventDate} />
-            ) : null
-          }
+        <div
+          className={`meta ${
+            component === "Card" ? "card-theme" : "modal-theme"
+          }`}
+        >
+          {component === "Modal" && eventDate ? (
+            <DateBlock eventDate={eventDate} />
+          ) : null}
 
           <div data-testid="categories" className="categories-wrapper">
             {categories?.map((item: WPTermObject, index: number) => (
@@ -108,10 +120,12 @@ function Content(props: ContentProps) {
                 pill
                 key={index}
                 target="_self"
-                onClick={(evt) => handleClickReducer({
-                  evt,
-                  action: goTo(`/category/${item.slug}`),
-                })}
+                onClick={(evt) =>
+                  handleClickReducer({
+                    evt,
+                    action: goTo(`/category/${item.slug}`),
+                  })
+                }
               >
                 {item.name}
               </Button>
@@ -120,8 +134,13 @@ function Content(props: ContentProps) {
 
           <Button
             href={tickets}
-            onClick={(evt) => handleClickReducer({ action: !tickets ? evt.preventDefault() : '' })}
-            className={!tickets ? 'no-tickets' : ''}
+            target="_blank"
+            onClick={(evt) =>
+              handleClickReducer({
+                action: !tickets ? evt.preventDefault() : "",
+              })
+            }
+            className={!tickets ? "no-tickets" : ""}
             highlight={highlight}
             disabled={!tickets}
             free={free}
@@ -135,9 +154,9 @@ function Content(props: ContentProps) {
 }
 
 Content.defaultProps = {
-  component: '',
+  component: "",
   highlight: false,
-  tickets: '',
+  tickets: "",
   free: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClick: () => {},

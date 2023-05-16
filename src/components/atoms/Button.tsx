@@ -1,5 +1,5 @@
-import { ChildrenOnly } from '../../types';
-import './Button.pcss';
+import { ChildrenOnly } from "../../types";
+import "./Button.pcss";
 
 export type ButtonProps = ChildrenOnly & {
   pill?: boolean;
@@ -44,7 +44,9 @@ function Link({
     <a
       href={href}
       target={target}
-      className={`link ${className} ${free ? 'free' : ''} ${!tickets ? '' : 'no-tickets'}`}
+      className={`link ${className} ${free ? "free" : ""} ${
+        !tickets ? "" : "no-tickets"
+      }`}
       onClick={(evt) => onClick?.(evt)}
     >
       {/* eslint-disable-next-line no-use-before-define */}
@@ -55,15 +57,13 @@ function Link({
   );
 }
 
-function Button({
-  pill, highlight, children, disabled,
-}: ButtonProps) {
+function Button({ pill, highlight, children, disabled }: ButtonProps) {
   return (
     <button
       type="button"
       data-testid="button-component"
-      className={`${pill ? 'pill' : 'button'} ${highlight ? 'highlight' : ''} ${
-        disabled ? 'disabled' : ''
+      className={`${pill ? "pill" : "button"} ${highlight ? "highlight" : ""} ${
+        disabled ? "disabled" : ""
       }`}
     >
       {children}
@@ -84,9 +84,9 @@ Button.defaultProps = {
 Link.defaultProps = {
   ...commonProps,
   free: false,
-  href: '',
-  target: '_blank',
-  className: '',
+  href: "",
+  target: "",
+  className: "",
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClick: () => {},
 };
