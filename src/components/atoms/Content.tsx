@@ -22,34 +22,34 @@ export type ContentProps = IEventProps & {
   component?: "Modal" | "Card";
 };
 
-export type reducerProps = {
-  evt?: React.MouseEvent<HTMLDivElement, MouseEvent> & {
-    target: { className: string };
-  };
-  action: any;
-};
+// export type reducerProps = {
+//   evt?: React.MouseEvent<HTMLDivElement, MouseEvent> & {
+//     target: { className: string };
+//   };
+//   action: any;
+// };
 
-function goTo(url: string) {
-  return () => {
-    window.location.href = url;
-  };
-}
+// function goTo(url: string) {
+//   return () => {
+//     window.location.href = url;
+//   };
+// }
 
-function handleClickReducer({ evt, action }: reducerProps) {
-  // console.log(evt, action);
+// function handleClickReducer({ evt, action }: reducerProps) {
+//   console.log(evt, action);
 
-  if (!action) return;
+//   if (evt) {
+//     const classNamesArr = evt?.target.className.split(" ");
 
-  action?.();
+//     const isClickFromPill = classNamesArr?.includes("pill");
 
-  if (evt) {
-    const classNamesArr = evt?.target.className.split(" ");
+//     if (isClickFromPill) evt.stopPropagation();
+//   }
 
-    const isClickFromPill = classNamesArr?.includes("pill");
+//   if (!action) return;
 
-    if (isClickFromPill) evt.stopPropagation();
-  }
-}
+//   action?.();
+// }
 
 function DateBlock({ eventDate }: { eventDate: string }) {
   return (
@@ -93,7 +93,7 @@ function Content(props: ContentProps) {
       <span
         data-testid="span"
         className="clickable"
-        onClick={() => handleClickReducer({ action: onClick?.(props) })}
+        onClick={() => onClick?.(props)}
       >
         {component === "Card" ? (
           <img className="cover" src={cover} alt={title} />
@@ -118,14 +118,10 @@ function Content(props: ContentProps) {
             {categories?.map((item: WPTermObject, index: number) => (
               <Button
                 pill
+                href={`/category/${item.slug}`}
                 key={index}
                 target="_self"
-                onClick={(evt) =>
-                  handleClickReducer({
-                    evt,
-                    action: goTo(`/category/${item.slug}`),
-                  })
-                }
+                onClick={(evt) => evt.stopPropagation()}
               >
                 {item.name}
               </Button>
@@ -135,11 +131,7 @@ function Content(props: ContentProps) {
           <Button
             href={tickets}
             target="_blank"
-            onClick={(evt) =>
-              handleClickReducer({
-                action: !tickets ? evt.preventDefault() : "",
-              })
-            }
+            onClick={(evt) => evt.stopPropagation()}
             className={!tickets ? "no-tickets" : ""}
             highlight={highlight}
             disabled={!tickets}
