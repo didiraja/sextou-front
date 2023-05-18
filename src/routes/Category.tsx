@@ -48,6 +48,13 @@ function Category() {
         }
 
         setCategoryName(() => result.data.name);
+
+        const resultIsEmpty = result.data.posts.length === 0;
+
+        if (resultIsEmpty) {
+          setErrorMsg(() => ERROR.LOADING);
+        }
+
         setEvents(() => result.data.posts);
         setTotalEvents(() => result.data.total_posts);
       } catch (error: any) {
@@ -76,8 +83,7 @@ function Category() {
       <div ref={scollToRef} />
 
       <Title>
-        Melhores shows e festas em
-        {categoryName}
+        {`Melhores shows e festas em ${categoryName}`}
       </Title>
 
       <CardGrid>
@@ -90,8 +96,8 @@ function Category() {
               {' '}
               <a
                 className="font-bold underline hover:no-underline"
-                href="http://"
-                target="self"
+                href="/"
+                target="_self"
                 rel="noopener noreferrer"
               >
                 voltar para a Home?

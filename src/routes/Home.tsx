@@ -42,6 +42,12 @@ function Home() {
           return;
         }
 
+        const resultIsEmpty = result.data.posts.length === 0;
+
+        if (resultIsEmpty) {
+          setErrorMsg(() => ERROR.LOADING);
+        }
+
         setEvents(() => result.data.posts);
         setTotalEvents(() => result.data.total_posts);
       } catch (error: any) {
@@ -94,7 +100,6 @@ function Home() {
             ))
             : !errorMsg && (
               <>
-                <LoadingCard />
                 <LoadingCard />
                 <LoadingCard />
               </>
