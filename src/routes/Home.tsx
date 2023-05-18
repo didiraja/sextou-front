@@ -1,16 +1,16 @@
-import { useEffect, useState, useRef } from "react";
-import zuStore from "../store";
-import Requests from "../services/Requests";
-import Date from "../services/Date";
-import CardGrid from "../components/templates/Card.Grid";
-import Card, { CardProps } from "../components/molecules/Card";
-import LoadingCard from "../components/molecules/Card.Loading";
-import ErrorCard from "../components/molecules/Card.Error";
-import Title from "../components/atoms/Title";
-import Pagination from "../components/atoms/Pagination";
-import usePagination from "../hooks/usePagination";
-import About from "../components/molecules/About";
-import { ERROR } from "../services/enums";
+import { useEffect, useState, useRef } from 'react';
+import zuStore from '../store';
+import Requests from '../services/Requests';
+import Date from '../services/Date';
+import CardGrid from '../components/templates/Card.Grid';
+import Card, { CardProps } from '../components/molecules/Card';
+import LoadingCard from '../components/molecules/Card.Loading';
+import ErrorCard from '../components/molecules/Card.Error';
+import Title from '../components/atoms/Title';
+import Pagination from '../components/atoms/Pagination';
+import usePagination from '../hooks/usePagination';
+import About from '../components/molecules/About';
+import { ERROR } from '../services/enums';
 
 function Home() {
   const openModal = zuStore((store: any) => store.openModal);
@@ -24,17 +24,19 @@ function Home() {
   });
 
   // LOADING AND PAGINATION
-  const { activePage, setActive, goPrevious, goNext } = usePagination();
+  const {
+    activePage, setActive, goPrevious, goNext,
+  } = usePagination();
 
   // const [highlights, setHighlight] = useState([]);
   const [events, setEvents] = useState([]);
   const [totalEvents, setTotalEvents] = useState(0);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     const getEvents = async () => {
       try {
-        const result = await Requests.getEvents("events", queryString);
+        const result = await Requests.getEvents('events', queryString);
 
         if (!result) {
           return;
@@ -47,7 +49,7 @@ function Home() {
         // eslint-disable-next-line no-console
         console.log(`${error.code} - ${error.message}`);
 
-        if (error.code === "ERR_NETWORK") setErrorMsg(() => ERROR.LOADING);
+        if (error.code === 'ERR_NETWORK') setErrorMsg(() => ERROR.LOADING);
       }
     };
 
@@ -66,7 +68,7 @@ function Home() {
     if (!scollToRef.current) return;
 
     scollToRef.current.scrollIntoView({
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -84,19 +86,19 @@ function Home() {
 
           {events?.length
             ? events.map((event: CardProps) => (
-                <Card
-                  key={event.id}
-                  {...event}
-                  onClick={(evt) => openModal(evt)}
-                />
-              ))
+              <Card
+                key={event.id}
+                {...event}
+                onClick={(evt) => openModal(evt)}
+              />
+            ))
             : !errorMsg && (
-                <>
-                  <LoadingCard />
-                  <LoadingCard />
-                  <LoadingCard />
-                </>
-              )}
+              <>
+                <LoadingCard />
+                <LoadingCard />
+                <LoadingCard />
+              </>
+            )}
         </CardGrid>
 
         <Pagination

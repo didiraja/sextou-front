@@ -1,8 +1,8 @@
-import Button from "./Button";
-import Date from "../../services/Date";
-import { TEXT } from "../../services/enums";
-import { WPTermObject } from "../../types";
-import "./Content.pcss";
+import Button from './Button';
+import Date from '../../services/Date';
+import { TEXT } from '../../services/enums';
+import { WPTermObject } from '../../types';
+import './Content.pcss';
 
 export interface IEventProps {
   highlight?: boolean;
@@ -19,7 +19,7 @@ export interface IEventProps {
 }
 
 export type ContentProps = IEventProps & {
-  component?: "Modal" | "Card";
+  component?: 'Modal' | 'Card';
 };
 
 // export type reducerProps = {
@@ -95,11 +95,11 @@ function Content(props: ContentProps) {
         className="clickable"
         onClick={() => onClick?.(props)}
       >
-        {component === "Card" ? (
+        {component === 'Card' ? (
           <img className="cover" src={cover} alt={title} />
         ) : null}
 
-        {component === "Card" && eventDate ? (
+        {component === 'Card' && eventDate ? (
           <DateBlock eventDate={eventDate} />
         ) : null}
 
@@ -107,10 +107,10 @@ function Content(props: ContentProps) {
 
         <div
           className={`meta ${
-            component === "Card" ? "card-theme" : "modal-theme"
+            component === 'Card' ? 'card-theme' : 'modal-theme'
           }`}
         >
-          {component === "Modal" && eventDate ? (
+          {component === 'Modal' && eventDate ? (
             <DateBlock eventDate={eventDate} />
           ) : null}
 
@@ -132,7 +132,7 @@ function Content(props: ContentProps) {
             href={tickets}
             target="_blank"
             onClick={(evt) => evt.stopPropagation()}
-            className={!tickets ? "no-tickets" : ""}
+            className={!tickets ? 'no-tickets' : ''}
             highlight={highlight}
             disabled={!tickets}
             free={free}
@@ -146,9 +146,9 @@ function Content(props: ContentProps) {
 }
 
 Content.defaultProps = {
-  component: "",
+  component: '',
   highlight: false,
-  tickets: "",
+  tickets: '',
   free: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClick: () => {},

@@ -1,5 +1,5 @@
-import "./Pagination.pcss";
-import Button from "./Button";
+import './Pagination.pcss';
+import Button from './Button';
 
 type PaginationProps = {
   totalItems: number;
@@ -36,7 +36,7 @@ function Pagination(props: PaginationProps) {
 
   const selectPageAction = (
     evt: Event,
-    pageData: { active: boolean; label: number }
+    pageData: { active: boolean; label: number },
   ) => {
     evt.preventDefault();
 
@@ -51,7 +51,7 @@ function Pagination(props: PaginationProps) {
     <div className="pagination">
       {page > 1 ? (
         <Button className="btn-page" onClick={(evt) => previousPageAction(evt)}>
-          {"<"}
+          {'<'}
         </Button>
       ) : null}
       {pagination.map((_, index) => {
@@ -62,7 +62,7 @@ function Pagination(props: PaginationProps) {
         // if (index <= limit)
         return (
           <Button
-            className={`btn-page ${active ? "active" : ""}`}
+            className={`btn-page ${active ? 'active' : ''}`}
             key={index}
             onClick={(evt) => selectPageAction(evt, { active, label })}
           >
@@ -72,7 +72,7 @@ function Pagination(props: PaginationProps) {
       })}
       {page < pagination.length ? (
         <Button className="btn-page" onClick={(evt) => nextPageAction(evt)}>
-          {">"}
+          {'>'}
         </Button>
       ) : null}
     </div>
