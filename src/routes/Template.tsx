@@ -14,7 +14,7 @@ function Template() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <PageContainer>
         <TopBlock />
 

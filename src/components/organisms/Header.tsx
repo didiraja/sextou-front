@@ -10,16 +10,6 @@ function Header() {
               Home
             </a>
           </li>
-          <li className="hiddeable">
-            {/* <a className="menu-item" href="#"> */}
-            Blog
-            {/* </a> */}
-          </li>
-          <li className="hiddeable">
-            {/* <a className="menu-item" href="#"> */}
-            Troca de Ingressos
-            {/* </a> */}
-          </li>
         </ul>
       </div>
     </header>
