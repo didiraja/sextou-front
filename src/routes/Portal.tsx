@@ -20,15 +20,66 @@ function Home() {
   /**
    * ROUTE LOGIC
   */
-  const { slug, page: paginationNumber } = useParams();
+  const {
+    id: eventID, slug, page: paginationNumber,
+  } = useParams();
   const navigate = useNavigate();
 
+  /** Check if Single Event Page */
+  if (eventID) {
+    const numbersFromURL = eventID.match(/^\d+(?=-)/);
+
+    if (numbersFromURL) {
+      const actualID = numbersFromURL[0];
+
+      const opa = async () => {
+        const result = await Requests.getSingleEvent('events', Number(actualID));
+
+        console.log(result);
+      };
+
+      opa();
+
+      // APPLY USE EFFECT TO SINGLE EVENT
+      // useEffect(() => {
+      //   const getEvents = async () => {
+      //     try {
+      //       const result = await Requests.getEvents(isCategoryPage ? `${ENDPOINT.CATEGORY}${slug}` : 'events', queryString);
+
+      //       if (!result) {
+      //         return;
+      //       }
+
+      //       setCategoryName(() => result.data.name);
+
+      //       const resultIsEmpty = result.data.posts.length === 0;
+
+      //       if (resultIsEmpty) {
+      //         setErrorMsg(() => ERROR.LOADING);
+      //       }
+
+      //       setEvents(() => result.data.posts);
+      //       setTotalEvents(() => result.data.total_posts);
+      //     } catch (error: any) {
+      //       // console.log(error);
+      //       // eslint-disable-next-line no-console
+      //       console.log(`${error.code} - ${error.message}`);
+
+      //       if (error.code === 'ERR_NETWORK') setErrorMsg(() => ERROR.LOADING);
+      //     }
+      //   };
+
+      //   getEvents();
+      // }, [queryString, activePage]);
+    }
+  }
+
   const isCategoryPage = Boolean(slug);
-  const isNumber = !Number.isNaN(Number(slug));
+  const isSlugANumber = !Number.isNaN(Number(slug));
 
   // wrong params and redirects
   useEffect(() => {
-    if (isNumber) navigate('/');
+    if (isSlugANumber) navigate('/');
   }, []);
 
   /**

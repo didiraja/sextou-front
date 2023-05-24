@@ -1,6 +1,6 @@
 export const DOMAIN = {
   DEV: 'sextou.quartemo.com.br',
-  // DEV: "sextou.local",
+  // DEV: 'sextou.local',
   PROD: 'sextou.quartemo.com.br',
 };
 

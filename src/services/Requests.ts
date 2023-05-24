@@ -31,6 +31,20 @@ class Request {
     }
   }
 
+  async getSingleEvent(
+    basename = 'events',
+    id: number,
+  ): IRequestReturn {
+    try {
+      return axios.get(`${this.url}/${basename}/${id}`);
+    } catch (e: any) {
+      // eslint-disable-next-line no-console
+      console.log(`[getEvents Error] ${e.code} - ${e.message}`);
+
+      return undefined;
+    }
+  }
+
   // async highlightEvents() {}
 
   // async regularEvents() {}
