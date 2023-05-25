@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import './Pagination.pcss';
 import Button from './Button';
+import {
+  PER_PAGE,
+} from '../../services/enums';
 
 type PaginationProps = {
   totalItems: number;
@@ -12,9 +16,9 @@ type PaginationProps = {
 
 function Pagination(props: PaginationProps) {
   const {
-    totalItems = 13,
+    totalItems = PER_PAGE,
     page = 1,
-    perPage = 12,
+    perPage = PER_PAGE,
     onNext,
     onPrevious,
     onSelectPage,
@@ -36,15 +40,11 @@ function Pagination(props: PaginationProps) {
 
   const selectPageAction = (
     evt: Event,
-    pageData: { active: boolean; label: number },
+    selected: number,
   ) => {
     evt.preventDefault();
 
-    if (!pageData.active) {
-      return onSelectPage?.(pageData.label);
-    }
-
-    return undefined;
+    onSelectPage?.(selected);
   };
 
   return (
@@ -54,22 +54,22 @@ function Pagination(props: PaginationProps) {
           {'<'}
         </Button>
       ) : null}
+
       {pagination.map((_, index) => {
         const label = index + 1;
         const active = label === page;
-        // const limit = page + 4;
 
-        // if (index <= limit)
         return (
           <Button
             className={`btn-page ${active ? 'active' : ''}`}
             key={index}
-            onClick={(evt) => selectPageAction(evt, { active, label })}
+            onClick={(evt) => selectPageAction(evt, label)}
           >
             {label}
           </Button>
         );
       })}
+
       {page < pagination.length ? (
         <Button className="btn-page" onClick={(evt) => nextPageAction(evt)}>
           {'>'}
@@ -80,9 +80,8 @@ function Pagination(props: PaginationProps) {
 }
 
 Pagination.defaultProps = {
-  perPage: 12,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onSelectPage: () => {},
+  perPage: PER_PAGE,
+  onSelectPage: () => { },
 };
 
 export default Pagination;

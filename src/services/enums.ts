@@ -20,6 +20,8 @@ export const PATH = {
   SINGLE: 'SINGLE',
 };
 
+export const PER_PAGE = 12;
+
 export const TEXT = {
   BUY_TICKETS: 'Comprar Ingresso',
   NO_TICKETS: 'Sem link ainda',

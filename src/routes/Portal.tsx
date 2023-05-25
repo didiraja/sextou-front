@@ -6,7 +6,6 @@ import Requests from '../services/Requests';
 import Date from '../services/Date';
 import CardGrid from '../components/templates/Card.Grid';
 import Card, { CardProps } from '../components/molecules/Card';
-import { IEventProps } from '../components/atoms/Content';
 import LoadingCard from '../components/molecules/Card.Loading';
 import ErrorCard from '../components/molecules/Card.Error';
 import Title from '../components/atoms/Title';
@@ -14,10 +13,17 @@ import Pagination from '../components/atoms/Pagination';
 import usePagination from '../hooks/usePagination';
 import About from '../components/molecules/About';
 
-import { PATH, ENDPOINT, ERROR } from '../services/enums';
+import {
+  ENDPOINT, PATH, PER_PAGE, ERROR,
+} from '../services/enums';
 
 function Home() {
+  /**
+   * ELEVATED TRIGGERS
+   */
   const openModal = zuStore((store: any) => store.openModal);
+  // const toggleModal = zuStore((store: any) => store.toggleModal);
+  const showModal = zuStore((store: any) => store.showModal);
 
   /**
    * COMMON DATA
@@ -26,7 +32,7 @@ function Home() {
 
   const isSingleEventPage = Boolean(eventID);
   const isCategoryPage = Boolean(slug);
-  // const isGeneralPage = Boolean(eventID) && Boolean(slug);
+  const isGeneralPage = !isSingleEventPage && !isCategoryPage;
 
   const [events, setEvents] = useState([]);
   const [totalEvents, setTotalEvents] = useState(0);
@@ -35,7 +41,7 @@ function Home() {
 
   const [queryString, setQueryString] = useState({
     after: Date.todayDate(),
-    per_page: 12,
+    per_page: PER_PAGE,
     page: 1,
   });
 
@@ -45,8 +51,8 @@ function Home() {
 
       if (path === PATH.SINGLE) {
         // params
-        const numbersFromURL = eventID.match(/^\d+(?=-)/);
-        const actualID = numbersFromURL[0];
+        const numbersFromURL = eventID?.match(/^\d+(?=-)/);
+        const actualID = numbersFromURL?.[0];
 
         // fetch
         if (eventID && actualID) {
@@ -78,12 +84,11 @@ function Home() {
         if (resultIsEmpty) {
           setErrorMsg(() => ERROR.LOADING);
         }
-
         setEvents(() => result.data.posts);
         setTotalEvents(() => result.data.total_posts);
       }
     } catch (error: any) {
-      // console.log(error);
+      console.log(error);
       // eslint-disable-next-line no-console
       console.log(`${error.code} - ${error.message}`);
 
@@ -112,18 +117,33 @@ function Home() {
     }, []);
   }
 
+  if (isGeneralPage) {
+    useEffect(() => {
+      getEvents(PATH.MAIN);
+    }, []);
+  }
+
   const {
     activePage, setActive, goPrevious, goNext,
   } = usePagination();
 
+  /**
+   * PAGINATION LOGIC
+  */
   useEffect(() => {
     setQueryString((state) => ({
       ...state,
       page: activePage,
     }));
-
-    getEvents();
   }, [activePage]);
+
+  useEffect(() => {
+    getEvents(isGeneralPage ? PATH.MAIN : PATH.CATEGORY);
+  }, [queryString]);
+
+  useEffect(() => {
+    if (!showModal) navigate('/');
+  }, [showModal]);
 
   /**
    * UI LOGIC
@@ -138,81 +158,78 @@ function Home() {
     });
   };
 
-  if (!isSingleEventPage) {
-    return (
-      <>
-        <div className="main-events my-24" ref={scollToRef}>
-          <Title>
-            {
-              isCategoryPage
-                ? `Melhores shows e festas em ${categoryName}`
-                : 'Principais shows e festas no Rio de Janeiro'
-            }
+  return (
+    <>
+      <div className="main-events my-24" ref={scollToRef}>
+        <Title>
+          {
+            isCategoryPage
+              ? `Melhores shows e festas em ${categoryName}`
+              : 'Principais shows e festas no Rio de Janeiro'
+          }
+        </Title>
 
-          </Title>
+        <CardGrid>
+          {errorMsg ? (
+            <ErrorCard>
+              <p className="text-2xl">{errorMsg}</p>
+              <br />
+              <p className="font-normal">
+                Que tal,
+                {' '}
+                <a
+                  className="font-bold underline hover:no-underline"
+                  href="/"
+                  target="_self"
+                  rel="noopener noreferrer"
+                >
+                  voltar para a Home?
+                </a>
+              </p>
+            </ErrorCard>
+          ) : null}
 
-          <CardGrid>
-            {errorMsg ? (
-              <ErrorCard>
-                <p className="text-2xl">{errorMsg}</p>
-                <br />
-                <p className="font-normal">
-                  Que tal,
-                  {' '}
-                  <a
-                    className="font-bold underline hover:no-underline"
-                    href="/"
-                    target="_self"
-                    rel="noopener noreferrer"
-                  >
-                    voltar para a Home?
-                  </a>
-                </p>
-              </ErrorCard>
-            ) : null}
+          {events?.length
+            ? events.map((event: CardProps) => (
+              <Card
+                key={event.id}
+                {...event}
+                onClick={(evt) => openModal(evt)}
+              />
+            ))
+            : !errorMsg && (
+              <>
+                <LoadingCard />
+                <LoadingCard />
+              </>
+            )}
+        </CardGrid>
 
-            {events?.length
-              ? events.map((event: CardProps) => (
-                <Card
-                  key={event.id}
-                  {...event}
-                  onClick={(evt) => openModal(evt)}
-                />
-              ))
-              : !errorMsg && (
-                <>
-                  <LoadingCard />
-                  <LoadingCard />
-                </>
-              )}
-          </CardGrid>
+        <Pagination
+          totalItems={totalEvents}
+          page={activePage}
+          perPage={PER_PAGE}
+          onSelectPage={(page: number) => {
+            setActive(page);
 
-          <Pagination
-            totalItems={totalEvents}
-            page={activePage}
-            // REFACTOR SCROLL AFTER CLICK
-            onSelectPage={(page: number) => {
-              setActive(page);
+            scrollPageUp();
+          }}
+          onPrevious={() => {
+            goPrevious();
 
-              scrollPageUp();
-            }}
-            onPrevious={() => {
-              goPrevious();
+            scrollPageUp();
+          }}
+          onNext={() => {
+            goNext();
 
-              scrollPageUp();
-            }}
-            onNext={() => {
-              goNext();
+            scrollPageUp();
+          }}
+        />
+      </div>
 
-              scrollPageUp();
-            }}
-          />
-        </div>
-
-        <About />
-      </>
-    );
-  }
+      <About />
+    </>
+  );
 }
 
 export default Home;

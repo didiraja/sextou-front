@@ -44,10 +44,6 @@ class Request {
       return undefined;
     }
   }
-
-  // async highlightEvents() {}
-
-  // async regularEvents() {}
 }
 
 export default new Request();
