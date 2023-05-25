@@ -14,6 +14,12 @@ export const ENDPOINT = {
   SINGLE: 'event/',
 };
 
+export const PATH = {
+  MAIN: 'MAIN',
+  CATEGORY: 'CATEGORY',
+  SINGLE: 'SINGLE',
+};
+
 export const TEXT = {
   BUY_TICKETS: 'Comprar Ingresso',
   NO_TICKETS: 'Sem link ainda',

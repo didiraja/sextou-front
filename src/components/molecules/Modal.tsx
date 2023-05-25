@@ -1,9 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 /* eslint-disable react/no-danger */
 import zuStore from '../../store';
 import Content from '../atoms/Content';
 import { CardProps } from './Card';
-import './Modal.pcss';
 import Close from '../../assets/icon/close.svg';
+import './Modal.pcss';
 
 // TODO: Modal content from Actions(reducer): Event Details || Some Text || anything
 

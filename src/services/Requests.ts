@@ -8,7 +8,7 @@ export interface IApiParams {
   per_page?: number;
 }
 
-type IRequestReturn = Promise<AxiosResponse | undefined>;
+export type IRequestReturn = Promise<AxiosResponse | undefined>;
 
 class Request {
   private url = `${HOST}${ENDPOINT.MAIN}`;
