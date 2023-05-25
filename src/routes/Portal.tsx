@@ -77,18 +77,21 @@ function Home() {
           return;
         }
 
-        // action
-        setCategoryName(() => result.data.name);
-
         const resultIsEmpty = result.data.posts.length === 0;
         if (resultIsEmpty) {
           setErrorMsg(() => ERROR.LOADING);
+
+          return;
         }
+
+        // action
+        if (isCategoryPage) { setCategoryName(() => result.data.name); }
+
         setEvents(() => result.data.posts);
         setTotalEvents(() => result.data.total_posts);
       }
     } catch (error: any) {
-      console.log(error);
+      // console.log(error);
       // eslint-disable-next-line no-console
       console.log(`${error.code} - ${error.message}`);
 
@@ -109,10 +112,13 @@ function Home() {
 
   if (isCategoryPage) {
     useEffect(() => {
-      // const isSlugANumber = !Number.isNaN(Number(slug));
-      const isSlugANumber = Number(slug);
-      if (isSlugANumber) navigate('/');
+      const isSlugANumber = Number.isInteger(Number(slug));
 
+      if (isSlugANumber) {
+        navigate('/');
+
+        return;
+      }
       getEvents(PATH.CATEGORY);
     }, []);
   }
@@ -141,9 +147,10 @@ function Home() {
     getEvents(isGeneralPage ? PATH.MAIN : PATH.CATEGORY);
   }, [queryString]);
 
-  useEffect(() => {
-    if (!showModal) navigate('/');
-  }, [showModal]);
+  // VALIDATE BETTER IF MODAL IS OPEN OR NOT
+  // useEffect(() => {
+  //   if (!showModal) navigate('/');
+  // }, [showModal]);
 
   /**
    * UI LOGIC

@@ -21,6 +21,8 @@ class Request {
       query as Record<string, string>,
     ).toString();
 
+    // console.log('Request triggered');
+
     try {
       return axios.get(`${this.url}/${basename}/?${queryString}`);
     } catch (e: any) {
