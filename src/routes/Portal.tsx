@@ -45,6 +45,8 @@ function Home() {
     page: 1,
   });
 
+  const navigate = useNavigate();
+
   const getEvents = async (path = PATH.MAIN) => {
     try {
       let result: AxiosResponse | undefined;
@@ -63,6 +65,10 @@ function Home() {
         if (!result) {
           return;
         }
+
+        // if (eventID !== result.data.slug) {
+        navigate(`/event/${result.data.slug}`);
+        // }
 
         // action
         openModal(result.data);
@@ -98,8 +104,6 @@ function Home() {
       if (error.code === 'ERR_NETWORK') setErrorMsg(() => ERROR.LOADING);
     }
   };
-
-  const navigate = useNavigate();
 
   /**
    * CONTENT ACTION
