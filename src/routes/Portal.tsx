@@ -66,9 +66,11 @@ function Home() {
           return;
         }
 
-        // if (eventID !== result.data.slug) {
-        navigate(`/event/${result.data.slug}`);
-        // }
+        if (eventID !== result.data.slug) {
+          navigate(`/event/${result.data.slug}`);
+
+          return;
+        }
 
         // action
         openModal(result.data);
