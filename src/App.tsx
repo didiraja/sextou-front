@@ -1,9 +1,65 @@
-import Home from './routes/Template';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
+import RootTemplate from './routes/RootTemplate';
+import Home, { HomeLoader } from './routes/Home';
+import Category, { CategoryLoader } from './routes/Category';
+import SingleEvent, { SingleEventLoader } from './routes/Single';
+
+import Error from './routes/Error';
+
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route
+    path="/"
+    element={<RootTemplate />}
+    errorElement={<Error />}
+  >
+    <Route
+      index
+      loader={HomeLoader}
+      element={<Home />}
+      errorElement={<Error />}
+    />
+
+    <Route path="category">
+      <Route
+        path=":slug"
+        element={<Category />}
+        loader={CategoryLoader}
+      />
+    </Route>
+
+    <Route path="event">
+      <Route
+        path=":id"
+        element={<SingleEvent />}
+        loader={SingleEventLoader}
+      />
+    </Route>
+
+    {/* <Route path="*"
+      element={<NotFound />} />
+    */}
+  </Route>,
+));
+
+// const router = createBrowserRouter([
+//   ...allRoutes,
+//   {
+//     path: '*',
+//     // change Portal to 404 component
+//     element: <Portal />,
+//     errorElement: <Error />,
+//   },
+// ]);
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <RouterProvider router={router} />
     </div>
   );
 }

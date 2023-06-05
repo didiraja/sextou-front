@@ -9,7 +9,8 @@ export const HOST = import.meta.env.DEV
   : `//${DOMAIN.PROD}`;
 
 export const ENDPOINT = {
-  MAIN: '/wp-api/sextou/v1',
+  PATH: '/wp-api/sextou/v1',
+  MAIN: 'events',
   CATEGORY: 'category/',
   SINGLE: 'event/',
 };

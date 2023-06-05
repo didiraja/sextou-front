@@ -53,8 +53,6 @@ function Home() {
 
       if (path === PATH.SINGLE) {
         // params
-        const numbersFromURL = eventID?.match(/^\d+(?=-)/);
-        const actualID = numbersFromURL?.[0];
 
         // fetch
         if (eventID && actualID) {

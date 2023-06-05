@@ -11,7 +11,7 @@ export interface IApiParams {
 export type IRequestReturn = Promise<AxiosResponse | undefined>;
 
 class Request {
-  private url = `${HOST}${ENDPOINT.MAIN}`;
+  private url = `${HOST}${ENDPOINT.PATH}`;
 
   async getEvents(
     basename = 'events',
