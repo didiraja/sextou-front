@@ -8,6 +8,7 @@ import RootTemplate from './routes/RootTemplate';
 import Home, { HomeLoader } from './routes/Home';
 import Category, { CategoryLoader } from './routes/Category';
 import SingleEvent, { SingleEventLoader } from './routes/Single';
+import NotFound from './routes/NotFound';
 
 import Error from './routes/Error';
 
@@ -27,22 +28,25 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="category">
       <Route
         path=":slug"
-        element={<Category />}
         loader={CategoryLoader}
+        element={<Category />}
+      // errorElement={<RootTemplate />}
       />
     </Route>
 
     <Route path="event">
       <Route
-        path=":id"
+        path=":id/:slug"
         element={<SingleEvent />}
         loader={SingleEventLoader}
       />
     </Route>
 
-    {/* <Route path="*"
-      element={<NotFound />} />
-    */}
+    <Route
+      path="*"
+      element={<NotFound />}
+    />
+
   </Route>,
 ));
 

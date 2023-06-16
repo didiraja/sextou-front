@@ -1,5 +1,7 @@
 import { useRef } from 'react';
-import { redirect, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import {
+  redirect, LoaderFunctionArgs, useLoaderData, useParams,
+} from 'react-router-dom';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
 import CardGrid from '../components/templates/Card.Grid';
@@ -31,14 +33,15 @@ export async function CategoryLoader({ params: { slug } }: LoaderFunctionArgs) {
 
     return result;
   } catch (error: any) {
-    // console.log(error);
     // eslint-disable-next-line no-console
+    // console.log(error);
+
     console.log(`${error.code} - ${error.message}`);
 
-    // handle this error
+    // TODO: handle this error
     // ERR_BAD_REQUEST
 
-    throw Error(ERROR.LOADING);
+    return redirect('/');
   }
 }
 
@@ -85,7 +88,7 @@ function Category() {
         <Title>
           Melhores shows e festas em
           {' '}
-          {events.name}
+          {useParams().slug}
         </Title>
 
         {/* {
