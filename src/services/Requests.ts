@@ -35,7 +35,7 @@ class Request {
 
   async getSingleEvent(
     basename = 'events',
-    id: number,
+    id: string,
   ): IRequestReturn {
     try {
       return axios.get(`${this.url}/${basename}/${id}`);

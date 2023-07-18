@@ -1,20 +1,17 @@
-import { useRef } from 'react';
 import {
-  LoaderFunctionArgs, redirect, navigate, useLoaderData,
+  LoaderFunctionArgs, redirect, useLoaderData,
 } from 'react-router-dom';
 import Requests from '../services/Requests';
-import Date from '../services/Date';
-import CardGrid from '../components/templates/Card.Grid';
-import Card, { CardProps } from '../components/molecules/Card';
-import ErrorCard from '../components/molecules/Card.Error';
 import Title from '../components/atoms/Title';
-import Pagination from '../components/atoms/Pagination';
-import usePagination from '../hooks/usePagination';
-import About from '../components/molecules/About';
+import Date from '../services/Date';
+import Button from '../components/atoms/Button';
+import { BtnTxtReducer } from '../components/atoms/Content';
+import './Single.pcss';
 
 import {
-  ENDPOINT, PER_PAGE, ERROR,
+  ENDPOINT, ERROR,
 } from '../services/enums';
+import { WPTermObject } from '../types';
 
 export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) {
   /**
@@ -23,16 +20,12 @@ export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) 
    * do fetch()
   */
 
-  // if (!id || !isIdANumber) {
-  //   return redirect('/');
-  // }
+  if (!id || Number.isNaN(Number(id))) {
+    return redirect('/');
+  }
 
   try {
-    const result = await Requests.getSingleEvent((ENDPOINT.MAIN, idValue), {
-      after: Date.todayDate(),
-      per_page: PER_PAGE,
-      page: 1,
-    });
+    const result = await Requests.getSingleEvent(ENDPOINT.MAIN, id);
 
     return result;
   } catch (error: any) {
@@ -45,120 +38,61 @@ export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) 
 }
 
 function SingleEvent() {
-  const singleEventFetch = useLoaderData();
+  const singleEvent: any = useLoaderData();
 
-  console.log(singleEventFetch);
-
-  // DEBUG - FETCH OK BUT NO EVENTS
-  // const events = [];
-  // const moreThanZero = false;
-
-  const events = singleEventFetch?.data;
-  const moreThanZero = singleEventFetch?.data.posts?.length > 0;
+  // console.log(singleEvent.data);
 
   const {
-    /* activePage, */ setActive, goPrevious, goNext,
-  } = usePagination();
-
-  /**
-   * PAGINATION LOGIC
-  */
-  // useEffect(() => {
-  //   setQueryString((state) => ({
-  //     ...state,
-  //     page: activePage,
-  //   }));
-  // }, [activePage]);
-
-  /**
-   * UI LOGIC
-  */
-  const scollToRef = useRef<HTMLDivElement | null>(null);
-
-  const scrollPageUp = () => {
-    if (!scollToRef.current) return;
-
-    scollToRef.current.scrollIntoView({
-      behavior: 'smooth',
-    });
-  };
+    title, categories, cover, description, tickets, event_date: eventDate, free,
+  } = singleEvent.data;
 
   return (
-    <>
-      <div className="main-events my-24" ref={scollToRef}>
-        <Title>
-          Melhores shows e festas em
-          {' '}
-          {events.name}
-        </Title>
+    <div className="single-event--wrapper">
 
-        {/* {
-          (condition?) ? (
-            <>
-              <LoadingCard />
-              <LoadingCard />
-            </>
-          ) : null
-        } */}
+      <Title>{title}</Title>
 
-        {!moreThanZero ? (
-          <ErrorCard>
-            <p className="text-2xl">{ERROR.LOADING}</p>
-            <br />
-            <p className="font-normal">
-              Que tal,
-              {' '}
-              <a
-                className="font-bold underline hover:no-underline"
-                href="/"
-                target="_self"
-                rel="noopener noreferrer"
-              >
-                voltar para a Home?
-              </a>
-            </p>
-          </ErrorCard>
-        ) : null}
+      <div className="single-event--header">
+        <div className="date">
+          {Date.readableDate(eventDate)}
+        </div>
 
-        {moreThanZero ? (
-          <>
-            <CardGrid>
-              {events.posts.map((event: CardProps) => (
-                <Card
-                  key={event.id}
-                  {...event}
-                // onClick={(evt) => openModal(evt)}
-                />
-              ))}
-            </CardGrid>
-
-            <Pagination
-              totalItems={events.totalEvents}
-              page={1}
-              perPage={PER_PAGE}
-              onSelectPage={(page: number) => {
-                setActive(page);
-
-                scrollPageUp();
-              }}
-              onPrevious={() => {
-                goPrevious();
-
-                scrollPageUp();
-              }}
-              onNext={() => {
-                goNext();
-
-                scrollPageUp();
-              }}
-            />
-          </>
-        ) : null}
+        <div className="categories-wrapper">
+          {categories?.map((item: WPTermObject, index: number) => (
+            <Button
+              pill
+              href={`/category/${item.slug}`}
+              key={index}
+              target="_self"
+              onClick={(evt) => evt.stopPropagation()}
+            >
+              {item.name}
+            </Button>
+          )) ?? null}
+        </div>
 
       </div>
 
-      <About />
-    </>
+      <img className="single-event--cover" src={cover} alt={title} />
+
+      <p
+        className="single-event--description"
+        style={{ whiteSpace: 'pre-wrap' }}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
+
+      <Button
+        href={tickets}
+        target="_blank"
+        onClick={(evt) => evt.stopPropagation()}
+        className={!tickets ? 'no-tickets' : ''}
+        disabled={!tickets}
+        free={free}
+      >
+        {BtnTxtReducer(singleEvent.data)}
+      </Button>
+
+    </div>
   );
 }
 

@@ -59,7 +59,7 @@ function DateBlock({ eventDate }: { eventDate: string }) {
   );
 }
 
-function BtnTxtReducer({ free, tickets }: ContentProps) {
+export function BtnTxtReducer({ free, tickets }: ContentProps) {
   if (free && tickets) {
     return TEXT.FREE_TICKETS;
   }
@@ -106,9 +106,7 @@ function Content(props: ContentProps) {
         {title ? <div className="title">{title}</div> : null}
 
         <div
-          className={`meta ${
-            component === 'Card' ? 'card-theme' : 'modal-theme'
-          }`}
+          className={`meta ${component === 'Card' ? 'card-theme' : 'modal-theme'}`}
         >
           {component === 'Modal' && eventDate ? (
             <DateBlock eventDate={eventDate} />
@@ -151,7 +149,7 @@ Content.defaultProps = {
   tickets: '',
   free: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClick: () => {},
+  onClick: () => { },
 };
 
 export default Content;

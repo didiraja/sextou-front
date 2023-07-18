@@ -30,13 +30,12 @@ const router = createBrowserRouter(createRoutesFromElements(
         path=":slug"
         loader={CategoryLoader}
         element={<Category />}
-      // errorElement={<RootTemplate />}
       />
     </Route>
 
     <Route path="event">
       <Route
-        path=":id/:slug"
+        path=":id"
         element={<SingleEvent />}
         loader={SingleEventLoader}
       />
