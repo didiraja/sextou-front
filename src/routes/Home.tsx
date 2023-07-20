@@ -1,9 +1,10 @@
+import { AxiosResponse } from 'axios';
 import { useRef } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
 import CardGrid from '../components/templates/Card.Grid';
-import Card, { CardProps } from '../components/molecules/Card';
+import Card, { CardProps, reducerProps } from '../components/molecules/Card';
 // import LoadingCard from '../components/molecules/Card.Loading';
 import ErrorCard from '../components/molecules/Card.Error';
 import Title from '../components/atoms/Title';
@@ -34,7 +35,8 @@ export async function HomeLoader() {
 }
 
 function Home() {
-  const eventsFetch = useLoaderData();
+  const eventsFetch = useLoaderData() as AxiosResponse;
+  const navigate = useNavigate();
 
   // DEBUG - FETCH OK BUT NO EVENTS
   // const events = [];
@@ -43,9 +45,9 @@ function Home() {
   const events = eventsFetch?.data;
   const moreThanZero = eventsFetch?.data.posts?.length > 0;
 
-  const {
-    /* activePage, */ setActive, goPrevious, goNext,
-  } = usePagination();
+  // const {
+  //   /* activePage, */ setActive, goPrevious, goNext,
+  // } = usePagination();
 
   /**
    * PAGINATION LOGIC
@@ -62,18 +64,18 @@ function Home() {
   */
   const scollToRef = useRef<HTMLDivElement | null>(null);
 
-  const scrollPageUp = () => {
-    if (!scollToRef.current) return;
+  // const scrollPageUp = () => {
+  //   if (!scollToRef.current) return;
 
-    scollToRef.current.scrollIntoView({
-      behavior: 'smooth',
-    });
-  };
+  //   scollToRef.current.scrollIntoView({
+  //     behavior: 'smooth',
+  //   });
+  // };
 
   return (
     <>
       <div className="main-events my-24" ref={scollToRef}>
-        <Title>
+        <Title className="mb-8">
           Principais shows e festas no Rio de Janeiro
         </Title>
 
@@ -112,12 +114,12 @@ function Home() {
                 <Card
                   key={event.id}
                   {...event}
-                // onClick={(evt) => openModal(evt)}
+                  onClick={() => navigate(`/event/${event.id}`)}
                 />
               ))}
             </CardGrid>
 
-            <Pagination
+            {/* <Pagination
               totalItems={events.totalEvents}
               page={1}
               perPage={PER_PAGE}
@@ -136,7 +138,7 @@ function Home() {
 
                 scrollPageUp();
               }}
-            />
+            /> */}
           </>
         ) : null}
 

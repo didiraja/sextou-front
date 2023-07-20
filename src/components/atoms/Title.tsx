@@ -1,12 +1,20 @@
 import { ButtonProps } from './Button';
 import './Title.pcss';
 
-function Title({ children, highlight }: ButtonProps) {
+type TitleProps = ButtonProps & {
+  className?: string
+}
+
+function Title({ className, children, highlight }: TitleProps) {
   return (
-    <h1 className={`section-title ${highlight ? 'highlight' : ''}`}>
+    <h1 className={`section-title ${className} ${highlight ? 'highlight' : ''}`}>
       {children}
     </h1>
   );
 }
+
+Title.defaultProps = {
+  className: '',
+};
 
 export default Title;
