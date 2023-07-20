@@ -5,6 +5,7 @@ import { WPTermObject } from '../../types';
 import './Content.pcss';
 
 export interface IEventProps {
+  slug: string;
   highlight?: boolean;
   id: number;
   title: string;

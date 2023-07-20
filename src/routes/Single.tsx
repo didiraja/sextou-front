@@ -1,11 +1,12 @@
 import {
-  LoaderFunctionArgs, redirect, useLoaderData,
+  LoaderFunctionArgs, redirect, useLoaderData, useLocation,
 } from 'react-router-dom';
+import { AxiosResponse } from 'axios';
 import Requests from '../services/Requests';
 import Title from '../components/atoms/Title';
 import Date from '../services/Date';
 import Button from '../components/atoms/Button';
-import { BtnTxtReducer } from '../components/atoms/Content';
+import { BtnTxtReducer, IEventProps } from '../components/atoms/Content';
 import './Single.pcss';
 
 import {
@@ -38,13 +39,25 @@ export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) 
 }
 
 function SingleEvent() {
-  const singleEvent: any = useLoaderData();
+  const singleEvent = useLoaderData() as AxiosResponse<IEventProps>;
 
-  // console.log(singleEvent.data);
+  const location = useLocation();
+
+  function removeNumberAfterLastSlash(inputString: string) {
+    const lastSlashIndex = inputString.lastIndexOf('/');
+    if (lastSlashIndex !== -1) {
+      return inputString.substring(0, lastSlashIndex + 1);
+    }
+    return inputString;
+  }
 
   const {
-    title, categories, cover, description, tickets, event_date: eventDate, free,
+    slug, title, categories, cover, description, tickets, event_date: eventDate, free,
   } = singleEvent.data;
+
+  const updatedURL = `${removeNumberAfterLastSlash(location.pathname)}${slug}`;
+
+  window.history.replaceState(null, '', updatedURL);
 
   return (
     <div className="single-event--wrapper">
@@ -70,27 +83,25 @@ function SingleEvent() {
           )) ?? null}
         </div>
 
+        <Button
+          href={tickets}
+          target="_blank"
+          onClick={(evt) => evt.stopPropagation()}
+          className={!tickets ? 'no-tickets' : ''}
+          disabled={!tickets}
+          free={free}
+        >
+          {BtnTxtReducer(singleEvent.data)}
+        </Button>
       </div>
 
       <img className="single-event--cover" src={cover} alt={title} />
 
       <p
         className="single-event--description"
-        style={{ whiteSpace: 'pre-wrap' }}
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: description }}
       />
-
-      <Button
-        href={tickets}
-        target="_blank"
-        onClick={(evt) => evt.stopPropagation()}
-        className={!tickets ? 'no-tickets' : ''}
-        disabled={!tickets}
-        free={free}
-      >
-        {BtnTxtReducer(singleEvent.data)}
-      </Button>
 
     </div>
   );
