@@ -1,10 +1,10 @@
 .header-wrapper {
-  @apply /* fixed z-10 w-full */ backdrop-blur-sm drop-shadow-md bg-white/5 p-3;
+  @apply backdrop-blur-sm drop-shadow-md bg-white/5 p-3;
 }
 .header-menu {
   @apply ml-auto;
   &--common {
-    @apply text-white text-xl flex justify-end;
+    @apply text-white text-xl;
     li {
       &.hiddeable {
         @apply opacity-50 hidden lg:inline-block;
@@ -15,7 +15,11 @@
       }
     }
     .menu-item {
-      @apply underline hover:no-underline underline-offset-1 cursor-pointer;
+      @apply underline hover:no-underline underline-offset-1 cursor-pointer flex justify-center items-center w-2/5 mx-auto;
+
+      & svg {
+        @apply mr-2;
+      }
     }
   }
 }
