@@ -7,7 +7,7 @@ type TitleProps = ButtonProps & {
 
 function Title({ className, children, highlight }: TitleProps) {
   return (
-    <h1 className={`section-title ${className} ${highlight ? 'highlight' : ''}`}>
+    <h1 className={`title section-title ${className} ${highlight ? 'highlight' : ''}`}>
       {children}
     </h1>
   );

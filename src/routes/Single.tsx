@@ -6,7 +6,7 @@ import Requests from '../services/Requests';
 import Title from '../components/atoms/Title';
 import Date from '../services/Date';
 import Button from '../components/atoms/Button';
-import { BtnTxtReducer, IEventProps } from '../components/atoms/Content';
+import Content, { BtnTxtReducer, IEventProps } from '../components/atoms/Content';
 import './Single.pcss';
 
 import {
@@ -60,9 +60,11 @@ function SingleEvent() {
   window.history.replaceState(null, '', updatedURL);
 
   return (
-    <div className="single-event--wrapper">
+    <div className="single-event--wrapper card-surface">
 
-      <Title>{title}</Title>
+      <Content {...singleEvent.data} mode="Single" />
+
+      {/* <Title>{title}</Title>
 
       <div className="single-event--header">
         <div className="date">
@@ -101,7 +103,7 @@ function SingleEvent() {
         className="single-event--description"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: description }}
-      />
+      /> */}
 
     </div>
   );

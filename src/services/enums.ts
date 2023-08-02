@@ -33,3 +33,8 @@ export const TEXT = {
 export const ERROR = {
   LOADING: 'Infelizmente, nada na pista',
 };
+
+export const MODE = {
+  CARD: 'Card',
+  SINGLE: 'Single',
+};

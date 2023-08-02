@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+// TODO: DELETE COMPONENT
 /* eslint-disable react/no-danger */
 import zuStore from '../../store';
 import Content from '../atoms/Content';

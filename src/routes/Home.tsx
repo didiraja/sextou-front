@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { useRef } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
 import CardGrid from '../components/templates/Card.Grid';
@@ -114,10 +114,12 @@ function Home() {
                 <Card
                   key={event.id}
                   {...event}
-                  onClick={() => navigate(`/event/${event.id}`)}
+                  path={`/event/${event.id}`}
                 />
               ))}
             </CardGrid>
+            {/* <Link to={`/event/${event.id}`}>
+                </Link> */}
 
             {/* <Pagination
               totalItems={events.totalEvents}

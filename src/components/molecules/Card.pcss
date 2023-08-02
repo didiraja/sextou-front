@@ -2,40 +2,25 @@
   @apply bg-white/20 rounded-lg p-5 relative;
   box-shadow: var(--material-shadow-strong-1), var(--material-shadow-strong-2);
   display: grid;
-  align-items: center;
 
   .clickable {
     @apply hover:cursor-pointer;
   }
 
   .content {
-    .cover {
-      @apply w-full h-60 object-cover object-top rounded-lg mb-3;
-      box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
-    }
 
     .date {
       @apply text-sm text-white mb-1;
     }
 
-    .title {
-      @apply text-3xl font-bold text-white;
-      /* hack to limit to 2 lines */
-      text-overflow: ellipsis;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-
     .meta {
       @apply my-3;
 
-      &.card-theme {
+      /* &.card-mode {
         > a.link {
           @apply block mt-3;
         }
-      }
+      } */
     }
   }
 }

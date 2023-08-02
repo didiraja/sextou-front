@@ -48,7 +48,7 @@ function Card(props: CardProps) {
 
   return (
     <div className="card">
-      <Content {...props} component="Card" />
+      <Content mode="Card" {...props} path={props.path} />
     </div>
   );
 }
@@ -58,7 +58,7 @@ Card.defaultProps = {
   tickets: '',
   free: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClick: () => {},
+  onClick: () => { },
 };
 
 export default Card;
