@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "DEV=true vite",
     "dev-prod": "vite",
-    "build": "npm run test && PROD=true vite build",
-    "check-build": "npm run types && npm run test && npm run build",
+    "build": "PROD=true vite build",
+    "check-deploy": "npm run types && npm run test && npm run build",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "preview": "vite preview",
     "types": "tsc --p tsconfig.json",
