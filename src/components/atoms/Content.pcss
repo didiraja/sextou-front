@@ -1,15 +1,14 @@
 .content {
   .title {
-    @apply mb-3 text-5xl;
+    @apply mb-3;
   }
 
   .cover {
     @apply w-full object-cover object-top mb-3;
   }
-
   
   .description {
-    @apply mb-3 text-xl font-serif;
+    @apply mb-3;
 
     img {
       @apply w-full rounded-lg;
@@ -22,6 +21,10 @@
       @apply h-60;
     }
 
+    .title {
+      @apply text-3xl font-semibold;
+    }
+
     .categories-wrapper {
       @apply mb-3;
     }
@@ -32,6 +35,10 @@
       @apply text-center;
     }
 
+    .title {
+      @apply text-5xl font-bold tracking-tight;
+    }
+
     .subheader {
       @apply mb-5 flex gap-2  justify-center items-center;
     }
@@ -39,12 +46,9 @@
     .cover {
     }
 
-    /* .cover {
-      @apply h-60;
+    .description {
+      font-family: 'Rubik Variable', sans-serif;
+      @apply text-xl font-normal;
     }
-
-    .categories-wrapper {
-      @apply mb-3;
-    } */
   }
 }

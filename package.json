@@ -17,20 +17,22 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@fontsource-variable/lora": "^5.0.7",
+    "@fontsource-variable/rubik": "^5.0.8",
+    "@nabla/vite-plugin-eslint": "^1.5.0",
+    "@storybook/react": "^6.5.16",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@vitejs/plugin-react": "^3.0.0",
     "axios": "^1.2.2",
     "date-fns": "^2.29.3",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.7.0",
-    "zustand": "^4.3.2",
     "vite": "^4.0.0",
     "vitest": "^0.26.2",
-    "@nabla/vite-plugin-eslint": "^1.5.0",
-    "@vitejs/plugin-react": "^3.0.0",
-    "@storybook/react": "^6.5.16"
+    "zustand": "^4.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

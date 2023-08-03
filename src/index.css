@@ -61,8 +61,8 @@ html {
 }
 
 .title {
-  @apply text-3xl font-bold text-white;
-  letter-spacing: -2px;
+  color: white;
+  font-family: 'Rubik Variable', sans-serif;
 }
 
 .max-two-lines {
