@@ -5,25 +5,18 @@ import { AxiosResponse } from 'axios';
 import Requests from '../services/Requests';
 import useTitle from '../hooks/useTitle';
 import Content, { IEventProps } from '../components/atoms/Content';
+import {
+  ENDPOINT,
+} from '../services/enums';
 import './Single.pcss';
 
-import {
-  ENDPOINT, ERROR,
-} from '../services/enums';
-
 export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) {
-  /**
-   * validate number on id string
-   * if not number, redirect
-   * do fetch()
-  */
-
-  if (!id || Number.isNaN(Number(id))) {
+  if (!id) {
     return redirect('/');
   }
 
   try {
-    const result = await Requests.getSingleEvent(ENDPOINT.MAIN, id);
+    const result = await Requests.getSingleEvent(ENDPOINT.SINGLE, id);
 
     return result;
   } catch (error: any) {
@@ -31,7 +24,7 @@ export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) 
     // eslint-disable-next-line no-console
     console.log(`${error.code} - ${error.message}`);
 
-    throw Error(ERROR.LOADING);
+    return redirect('/not-found');
   }
 }
 

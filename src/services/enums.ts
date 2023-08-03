@@ -12,7 +12,7 @@ export const ENDPOINT = {
   PATH: '/wp-api/sextou/v1',
   MAIN: 'events',
   CATEGORY: 'category/',
-  SINGLE: 'event/',
+  SINGLE: 'event',
 };
 
 export const PATH = {

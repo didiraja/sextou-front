@@ -9,7 +9,7 @@ function Error() {
     <>
       <Title>404 - Nada por Aqui</Title>
 
-      <ErrorCard>
+      <ErrorCard className="mt-3">
         <p className="text-2xl">{ERROR.LOADING}</p>
         <br />
         <p className="font-normal">

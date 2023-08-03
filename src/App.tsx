@@ -26,7 +26,7 @@ const router = createBrowserRouter(createRoutesFromElements(
 
     <Route path="category">
       <Route
-        path=":slug"
+        path=":entry"
         loader={CategoryLoader}
         element={<Category />}
       />

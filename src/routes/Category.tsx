@@ -17,15 +17,15 @@ import {
   ENDPOINT, PER_PAGE, ERROR,
 } from '../services/enums';
 
-export async function CategoryLoader({ params: { slug } }: LoaderFunctionArgs) {
-  const isSlugANumber = Number.isInteger(Number(slug));
+export async function CategoryLoader({ params: { entry } }: LoaderFunctionArgs) {
+  const isSlugANumber = Number.isInteger(Number(entry));
 
-  if (isSlugANumber) {
+  if (!entry || isSlugANumber) {
     return redirect('/');
   }
 
   try {
-    const result = await Requests.getEvents((ENDPOINT.CATEGORY + slug), {
+    const result = await Requests.getEvents((ENDPOINT.CATEGORY + entry), {
       after: Date.todayDate(),
       per_page: PER_PAGE,
       page: 1,
