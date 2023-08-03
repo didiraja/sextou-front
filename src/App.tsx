@@ -9,7 +9,6 @@ import Home, { HomeLoader } from './routes/Home';
 import Category, { CategoryLoader } from './routes/Category';
 import SingleEvent, { SingleEventLoader } from './routes/Single';
 import NotFound from './routes/NotFound';
-
 import Error from './routes/Error';
 
 const router = createBrowserRouter(createRoutesFromElements(

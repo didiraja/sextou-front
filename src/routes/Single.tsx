@@ -3,16 +3,13 @@ import {
 } from 'react-router-dom';
 import { AxiosResponse } from 'axios';
 import Requests from '../services/Requests';
-import Title from '../components/atoms/Title';
-import Date from '../services/Date';
-import Button from '../components/atoms/Button';
-import Content, { BtnTxtReducer, IEventProps } from '../components/atoms/Content';
+import useTitle from '../hooks/useTitle';
+import Content, { IEventProps } from '../components/atoms/Content';
 import './Single.pcss';
 
 import {
   ENDPOINT, ERROR,
 } from '../services/enums';
-import { WPTermObject } from '../types';
 
 export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) {
   /**
@@ -41,6 +38,10 @@ export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) 
 function SingleEvent() {
   const singleEvent = useLoaderData() as AxiosResponse<IEventProps>;
 
+  const { slug, title } = singleEvent.data;
+
+  useTitle(`${title} - Sextou!`);
+
   const location = useLocation();
 
   function removeNumberAfterLastSlash(inputString: string) {
@@ -50,10 +51,6 @@ function SingleEvent() {
     }
     return inputString;
   }
-
-  const {
-    slug, title, categories, cover, description, tickets, event_date: eventDate, free,
-  } = singleEvent.data;
 
   const updatedURL = `${removeNumberAfterLastSlash(location.pathname)}${slug}`;
 
