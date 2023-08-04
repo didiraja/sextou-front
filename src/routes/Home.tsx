@@ -1,12 +1,15 @@
 import { AxiosResponse } from 'axios';
-import { useRef } from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { useRef, Suspense } from 'react';
+import {
+  Await, defer, useLoaderData,
+} from 'react-router-dom';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
 import CardGrid from '../components/templates/Card.Grid';
 import Card, { CardProps, reducerProps } from '../components/molecules/Card';
 // import LoadingCard from '../components/molecules/Card.Loading';
 import ErrorCard from '../components/molecules/Card.Error';
+import CardLoading from '../components/molecules/Card.Loading';
 import Title from '../components/atoms/Title';
 import Pagination from '../components/atoms/Pagination';
 import usePagination from '../hooks/usePagination';
@@ -17,33 +20,58 @@ import {
 } from '../services/enums';
 
 export async function HomeLoader() {
-  try {
-    const result = await Requests.getEvents(ENDPOINT.MAIN, {
-      after: Date.todayDate(),
-      per_page: PER_PAGE,
-      page: 1,
-    });
+  const result = Requests.getEvents(ENDPOINT.MAIN, {
+    after: Date.todayDate(),
+    per_page: PER_PAGE,
+    page: 1,
+  });
 
-    return result;
-  } catch (error: any) {
-    // console.log(error);
-    // eslint-disable-next-line no-console
-    console.log(`${error.code} - ${error.message}`);
+  return defer({
+    result,
+  });
+}
 
-    throw Error(ERROR.LOADING);
-  }
+function LoadingFlow() {
+  return (
+    <CardGrid>
+      <CardLoading />
+      <CardLoading />
+      <CardLoading />
+      <CardLoading />
+    </CardGrid>
+  );
+}
+
+function EmptyLoad() {
+  return (
+    <ErrorCard>
+      <p className="text-2xl">{ERROR.LOADING}</p>
+      <br />
+      <p className="font-normal">
+        Que tal,
+        {' '}
+        <a
+          className="font-bold underline hover:no-underline"
+          href="/"
+          target="_self"
+          rel="noopener noreferrer"
+        >
+          voltar para a Home?
+        </a>
+      </p>
+    </ErrorCard>
+  );
 }
 
 function Home() {
-  const eventsFetch = useLoaderData() as AxiosResponse;
-  const navigate = useNavigate();
+  const loaderData = useLoaderData() as AxiosResponse;
 
   // DEBUG - FETCH OK BUT NO EVENTS
   // const events = [];
   // const moreThanZero = false;
 
-  const events = eventsFetch?.data;
-  const moreThanZero = eventsFetch?.data.posts?.length > 0;
+  // const events = eventsFetch?.data;
+  // const moreThanZero = eventsFetch?.data.posts?.length > 0;
 
   // const {
   //   /* activePage, */ setActive, goPrevious, goNext,
@@ -78,50 +106,51 @@ function Home() {
         <Title>
           Principais shows e festas no Rio de Janeiro
         </Title>
-
-        {/* {
-          (condition?) ? (
-            <>
-              <LoadingCard />
-              <LoadingCard />
-            </>
-          ) : null
-        } */}
-
+        <Suspense fallback={<LoadingFlow />}>
+          <Await
+            resolve={loaderData.result}
+            errorElement={<p>Deu ruim no carregamento</p>}
+          >
+            {({ data }) => (
+              <CardGrid>
+                {data?.posts.map((event: CardProps) => (
+                  <Card
+                    key={event.id}
+                    {...event}
+                    path={`/event/${event.id}`}
+                  />
+                ))}
+              </CardGrid>
+            )}
+          </Await>
+        </Suspense>
+        {/*
         {!moreThanZero ? (
-          <ErrorCard>
-            <p className="text-2xl">{ERROR.LOADING}</p>
-            <br />
-            <p className="font-normal">
-              Que tal,
-              {' '}
-              <a
-                className="font-bold underline hover:no-underline"
-                href="/"
-                target="_self"
-                rel="noopener noreferrer"
-              >
-                voltar para a Home?
-              </a>
-            </p>
-          </ErrorCard>
-        ) : null}
+              <ErrorCard>
+                <p className="text-2xl">{ERROR.LOADING}</p>
+                <br />
+                <p className="font-normal">
+                  Que tal,
+                  {' '}
+                  <a
+                    className="font-bold underline hover:no-underline"
+                    href="/"
+                    target="_self"
+                    rel="noopener noreferrer"
+                  >
+                    voltar para a Home?
+                  </a>
+                </p>
+              </ErrorCard>
+            ) : null}
 
-        {moreThanZero ? (
-          <>
-            <CardGrid>
-              {events.posts.map((event: CardProps) => (
-                <Card
-                  key={event.id}
-                  {...event}
-                  path={`/event/${event.id}`}
-                />
-              ))}
-            </CardGrid>
-            {/* <Link to={`/event/${event.id}`}>
+            {moreThanZero ? (
+              <>
+
+                {/* <Link to={`/event/${event.id}`}>
                 </Link> */}
 
-            {/* <Pagination
+        {/* <Pagination
               totalItems={events.totalEvents}
               page={1}
               perPage={PER_PAGE}
@@ -140,9 +169,19 @@ function Home() {
 
                 scrollPageUp();
               }}
-            /> */}
-          </>
-        ) : null}
+            />
+              </>
+            ) : null}
+            */}
+
+        {/* {
+          (condition?) ? (
+            <>
+              <LoadingCard />
+              <LoadingCard />
+            </>
+          ) : null
+        } */}
 
       </div>
 
