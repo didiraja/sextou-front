@@ -28,35 +28,6 @@ export type ContentProps = IEventProps & {
   children?: ReactElement;
 };
 
-// export type reducerProps = {
-//   evt?: React.MouseEvent<HTMLDivElement, MouseEvent> & {
-//     target: { className: string };
-//   };
-//   action: any;
-// };
-
-// function goTo(url: string) {
-//   return () => {
-//     window.location.href = url;
-//   };
-// }
-
-// function handleClickReducer({ evt, action }: reducerProps) {
-//   console.log(evt, action);
-
-//   if (evt) {
-//     const classNamesArr = evt?.target.className.split(" ");
-
-//     const isClickFromPill = classNamesArr?.includes("pill");
-
-//     if (isClickFromPill) evt.stopPropagation();
-//   }
-
-//   if (!action) return;
-
-//   action?.();
-// }
-
 function DateBlock({ event_date: eventDate }: ContentProps) {
   return (
     <div data-testid="date" className="date">

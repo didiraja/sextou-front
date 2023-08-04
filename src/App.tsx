@@ -48,16 +48,6 @@ const router = createBrowserRouter(createRoutesFromElements(
   </Route>,
 ));
 
-// const router = createBrowserRouter([
-//   ...allRoutes,
-//   {
-//     path: '*',
-//     // change Portal to 404 component
-//     element: <Portal />,
-//     errorElement: <Error />,
-//   },
-// ]);
-
 function App() {
   return (
     <div className="App">

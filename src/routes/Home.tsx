@@ -42,27 +42,6 @@ function LoadingFlow() {
   );
 }
 
-function EmptyLoad() {
-  return (
-    <ErrorCard>
-      <p className="text-2xl">{ERROR.LOADING}</p>
-      <br />
-      <p className="font-normal">
-        Que tal,
-        {' '}
-        <a
-          className="font-bold underline hover:no-underline"
-          href="/"
-          target="_self"
-          rel="noopener noreferrer"
-        >
-          voltar para a Home?
-        </a>
-      </p>
-    </ErrorCard>
-  );
-}
-
 function Home() {
   const loaderData = useLoaderData() as AxiosResponse;
 
@@ -125,30 +104,6 @@ function Home() {
           </Await>
         </Suspense>
         {/*
-        {!moreThanZero ? (
-              <ErrorCard>
-                <p className="text-2xl">{ERROR.LOADING}</p>
-                <br />
-                <p className="font-normal">
-                  Que tal,
-                  {' '}
-                  <a
-                    className="font-bold underline hover:no-underline"
-                    href="/"
-                    target="_self"
-                    rel="noopener noreferrer"
-                  >
-                    voltar para a Home?
-                  </a>
-                </p>
-              </ErrorCard>
-            ) : null}
-
-            {moreThanZero ? (
-              <>
-
-                {/* <Link to={`/event/${event.id}`}>
-                </Link> */}
 
         {/* <Pagination
               totalItems={events.totalEvents}
@@ -173,15 +128,6 @@ function Home() {
               </>
             ) : null}
             */}
-
-        {/* {
-          (condition?) ? (
-            <>
-              <LoadingCard />
-              <LoadingCard />
-            </>
-          ) : null
-        } */}
 
       </div>
 

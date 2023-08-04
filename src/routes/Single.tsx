@@ -51,50 +51,7 @@ function SingleEvent() {
 
   return (
     <div className="single-event--wrapper card-surface">
-
       <Content {...singleEvent.data} mode="Single" />
-
-      {/* <Title>{title}</Title>
-
-      <div className="single-event--header">
-        <div className="date">
-          {Date.readableDate(eventDate)}
-        </div>
-
-        <div className="categories-wrapper">
-          {categories?.map((item: WPTermObject, index: number) => (
-            <Button
-              pill
-              href={`/category/${item.slug}`}
-              key={index}
-              target="_self"
-              onClick={(evt) => evt.stopPropagation()}
-            >
-              {item.name}
-            </Button>
-          )) ?? null}
-        </div>
-
-        <Button
-          href={tickets}
-          target="_blank"
-          onClick={(evt) => evt.stopPropagation()}
-          className={!tickets ? 'no-tickets' : ''}
-          disabled={!tickets}
-          free={free}
-        >
-          {BtnTxtReducer(singleEvent.data)}
-        </Button>
-      </div>
-
-      <img className="single-event--cover" src={cover} alt={title} />
-
-      <p
-        className="single-event--description"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: description }}
-      /> */}
-
     </div>
   );
 }

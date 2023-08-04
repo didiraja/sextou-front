@@ -6,6 +6,10 @@
   .cover {
     @apply w-full object-cover object-top mb-3;
   }
+
+  .categories-wrapper {
+    @apply flex gap-2;
+  }
   
   .description {
     @apply mb-3;
@@ -13,6 +17,10 @@
     img {
       @apply w-full rounded-lg;
       box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
+    }
+
+    a {
+      @apply underline hover:no-underline underline-offset-1;
     }
   }
 
@@ -40,7 +48,7 @@
     }
 
     .subheader {
-      @apply mb-5 flex gap-2  justify-center items-center;
+      @apply mb-5 flex gap-2 justify-center items-center;
     }
 
     .cover {
