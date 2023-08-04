@@ -88,7 +88,7 @@ function Category() {
         <Title>
           Melhores shows e festas em
           {' '}
-          {useParams().slug}
+          {events.name}
         </Title>
 
         {/* {

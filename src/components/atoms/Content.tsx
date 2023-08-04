@@ -129,7 +129,7 @@ function Header(props: ContentProps) {
 
           <DateBlock {...props} />
 
-          {title ? <div className="title">{title}</div> : null}
+          {title ? <div className={`title ${mode === MODE.CARD ? 'max-two-lines' : ''}`}>{title}</div> : null}
         </>
       </ClickableOn>
 

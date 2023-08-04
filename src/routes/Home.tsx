@@ -75,7 +75,7 @@ function Home() {
   return (
     <>
       <div className="main-events my-24" ref={scollToRef}>
-        <Title className="mb-8">
+        <Title>
           Principais shows e festas no Rio de Janeiro
         </Title>
 
@@ -131,7 +131,7 @@ function Home() {
                 scrollPageUp();
               }}
               onPrevious={() => {
-                goPrevious();
+              goPrevious();
 
                 scrollPageUp();
               }}

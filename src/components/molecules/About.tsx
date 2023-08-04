@@ -4,7 +4,7 @@ import './About.pcss';
 function About() {
   return (
     <div className="about-wrapper">
-      <Title className="mb-8">Sobre</Title>
+      <Title>Sobre</Title>
 
       <p>
         <strong className="capitular">Sextou!</strong>
