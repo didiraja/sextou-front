@@ -16,7 +16,6 @@ function Template() {
         <MainContainer>
           <Outlet />
         </MainContainer>
-
         <Footer />
       </PageContainer>
     </>

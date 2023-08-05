@@ -1,13 +1,13 @@
 import {
-  LoaderFunctionArgs, redirect, useLoaderData, useLocation,
+  defer, LoaderFunctionArgs, redirect, useLoaderData, useLocation,
 } from 'react-router-dom';
 import { AxiosResponse } from 'axios';
 import Requests from '../services/Requests';
 import useTitle from '../hooks/useTitle';
 import Content, { IEventProps } from '../components/atoms/Content';
-import {
-  ENDPOINT,
-} from '../services/enums';
+import { ENDPOINT } from '../services/enums';
+import GracefulLoad from '../components/hocs/GracefulLoadCards';
+import { removeNumberAfterLastSlash } from '../services/utils';
 import './Single.pcss';
 
 export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) {
@@ -15,44 +15,34 @@ export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) 
     return redirect('/');
   }
 
-  try {
-    const result = await Requests.getSingleEvent(ENDPOINT.SINGLE, id);
+  const result = await Requests.getSingleEvent(ENDPOINT.SINGLE, id);
 
-    return result;
-  } catch (error: any) {
-    // console.log(error);
-    // eslint-disable-next-line no-console
-    console.log(`${error.code} - ${error.message}`);
-
-    return redirect('/not-found');
-  }
+  return defer({
+    result,
+  });
 }
 
 function SingleEvent() {
-  const singleEvent = useLoaderData() as AxiosResponse<IEventProps>;
+  const singleLoader = useLoaderData() as AxiosResponse<IEventProps>;
 
-  const { slug, title } = singleEvent.data;
+  const { data: { slug, title } } = singleLoader.result;
 
   useTitle(`${title} - Sextou!`);
 
   const location = useLocation();
-
-  function removeNumberAfterLastSlash(inputString: string) {
-    const lastSlashIndex = inputString.lastIndexOf('/');
-    if (lastSlashIndex !== -1) {
-      return inputString.substring(0, lastSlashIndex + 1);
-    }
-    return inputString;
-  }
 
   const updatedURL = `${removeNumberAfterLastSlash(location.pathname)}${slug}`;
 
   window.history.replaceState(null, '', updatedURL);
 
   return (
-    <div className="single-event--wrapper card-surface">
-      <Content {...singleEvent.data} mode="Single" />
-    </div>
+    <GracefulLoad loaderData={singleLoader.result}>
+      {({ loaderData }) => (
+        <div className="single--wrapper card-surface">
+          <Content {...loaderData} mode="Single" />
+        </div>
+      )}
+    </GracefulLoad>
   );
 }
 

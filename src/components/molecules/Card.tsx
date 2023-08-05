@@ -1,19 +1,9 @@
-import { WPTermObject } from '../../types';
-import Content from '../atoms/Content';
+import Content, { IEventProps } from '../atoms/Content';
 import './Card.pcss';
 
-export type CardProps = {
-  highlight?: boolean;
-  id: number;
-  title: string;
-  event_date: string;
-  categories: Array<WPTermObject>;
-  cover: string;
-  tickets?: string;
-  free?: boolean;
-  content: string;
-  description: string;
-  onClick?: (props: CardProps) => void;
+export type CardProps = IEventProps & {
+  path: string;
+  // onClick?: (props: CardProps) => void;
 };
 
 export type reducerProps = {
@@ -48,7 +38,7 @@ function Card(props: CardProps) {
 
   return (
     <div className="card">
-      <Content mode="Card" {...props} path={props.path} />
+      <Content mode="Card" {...props} path={`/event/${props.path}`} />
     </div>
   );
 }

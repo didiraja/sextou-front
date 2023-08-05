@@ -1,21 +1,17 @@
 import { useRef } from 'react';
 import {
-  redirect, LoaderFunctionArgs, useLoaderData, useParams,
+  defer, redirect, LoaderFunctionArgs, useLoaderData,
 } from 'react-router-dom';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
 import CardGrid from '../components/templates/Card.Grid';
 import Card, { CardProps } from '../components/molecules/Card';
-// import LoadingCard from '../components/molecules/Card.Loading';
-import ErrorCard from '../components/molecules/Card.Error';
 import Title from '../components/atoms/Title';
 import Pagination from '../components/atoms/Pagination';
 import usePagination from '../hooks/usePagination';
 import About from '../components/molecules/About';
-
-import {
-  ENDPOINT, PER_PAGE, ERROR,
-} from '../services/enums';
+import GracefulLoad from '../components/hocs/GracefulLoadCards';
+import { ENDPOINT, PER_PAGE } from '../services/enums';
 
 export async function CategoryLoader({ params: { entry } }: LoaderFunctionArgs) {
   const isSlugANumber = Number.isInteger(Number(entry));
@@ -24,40 +20,23 @@ export async function CategoryLoader({ params: { entry } }: LoaderFunctionArgs) 
     return redirect('/');
   }
 
-  try {
-    const result = await Requests.getEvents((ENDPOINT.CATEGORY + entry), {
-      after: Date.todayDate(),
-      per_page: PER_PAGE,
-      page: 1,
-    });
+  const result = Requests.getEvents((ENDPOINT.CATEGORY + entry), {
+    after: Date.todayDate(),
+    per_page: PER_PAGE,
+    page: 1,
+  });
 
-    return result;
-  } catch (error: any) {
-    // eslint-disable-next-line no-console
-    // console.log(error);
-
-    console.log(`${error.code} - ${error.message}`);
-
-    // TODO: handle this error
-    // ERR_BAD_REQUEST
-
-    return redirect('/');
-  }
+  return defer({
+    result,
+  });
 }
 
 function Category() {
-  const categoryFetch = useLoaderData();
+  const categoryLoader = useLoaderData();
 
-  // DEBUG - FETCH OK BUT NO EVENTS
-  // const events = [];
-  // const moreThanZero = false;
-
-  const events = categoryFetch?.data;
-  const moreThanZero = categoryFetch?.data.posts?.length > 0;
-
-  const {
-    /* activePage, */ setActive, goPrevious, goNext,
-  } = usePagination();
+  // const {
+  //   activePage, setActive, goPrevious, goNext,
+  // } = usePagination();
 
   /**
    * PAGINATION LOGIC
@@ -72,87 +51,37 @@ function Category() {
   /**
    * UI LOGIC
   */
-  const scollToRef = useRef<HTMLDivElement | null>(null);
+  // const scollToRef = useRef<HTMLDivElement | null>(null);
 
-  const scrollPageUp = () => {
-    if (!scollToRef.current) return;
+  // const scrollPageUp = () => {
+  //   if (!scollToRef.current) return;
 
-    scollToRef.current.scrollIntoView({
-      behavior: 'smooth',
-    });
-  };
+  //   scollToRef.current.scrollIntoView({
+  //     behavior: 'smooth',
+  //   });
+  // };
 
   return (
     <>
-      <div className="main-events my-24" ref={scollToRef}>
-        <Title>
-          Melhores shows e festas em
-          {' '}
-          {events.name}
-        </Title>
+      <div className="category--wrapper">
 
-        {/* {
-          (condition?) ? (
+        <GracefulLoad loaderData={categoryLoader.result}>
+          {({ loaderData }) => (
             <>
-              <LoadingCard />
-              <LoadingCard />
+              <Title>{`Melhores shows e festas em ${loaderData.name}`}</Title>
+
+              <CardGrid>
+                {loaderData.posts?.map((event: CardProps) => (
+                  <Card
+                    key={event.id}
+                    {...event}
+                    path={event.id}
+                  />
+                ))}
+              </CardGrid>
             </>
-          ) : null
-        } */}
-
-        {!moreThanZero ? (
-          <ErrorCard>
-            <p className="text-2xl">{ERROR.LOADING}</p>
-            <br />
-            <p className="font-normal">
-              Que tal,
-              {' '}
-              <a
-                className="font-bold underline hover:no-underline"
-                href="/"
-                target="_self"
-                rel="noopener noreferrer"
-              >
-                voltar para a Home?
-              </a>
-            </p>
-          </ErrorCard>
-        ) : null}
-
-        {moreThanZero ? (
-          <>
-            <CardGrid>
-              {events.posts.map((event: CardProps) => (
-                <Card
-                  key={event.id}
-                  {...event}
-                // onClick={(evt) => openModal(evt)}
-                />
-              ))}
-            </CardGrid>
-
-            <Pagination
-              totalItems={events.totalEvents}
-              page={1}
-              perPage={PER_PAGE}
-              onSelectPage={(page: number) => {
-                setActive(page);
-
-                scrollPageUp();
-              }}
-              onPrevious={() => {
-                goPrevious();
-
-                scrollPageUp();
-              }}
-              onNext={() => {
-                goNext();
-
-                scrollPageUp();
-              }}
-            />
-          </>
-        ) : null}
+          )}
+        </GracefulLoad>
 
       </div>
 

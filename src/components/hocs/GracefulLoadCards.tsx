@@ -1,8 +1,9 @@
+import { AxiosResponse } from 'axios';
 import { Suspense } from 'react';
 import { Await } from 'react-router-dom';
-import Card, { CardProps } from '../molecules/Card';
 import CardLoading from '../molecules/Card.Loading';
 import CardGrid from '../templates/Card.Grid';
+import CardError from '../molecules/Card.Error';
 
 function LoadingFlow() {
   return (
@@ -15,38 +16,24 @@ function LoadingFlow() {
   );
 }
 
-function EmptyLoad() {
-  return (
-    <ErrorCard>
-      <p className="text-2xl">{ERROR.LOADING}</p>
-      <br />
-      <p className="font-normal">
-        Que tal,
-        {' '}
-        <a
-          className="font-bold underline hover:no-underline"
-          href="/"
-          target="_self"
-          rel="noopener noreferrer"
-        >
-          voltar para a Home?
-        </a>
-      </p>
-    </ErrorCard>
-  );
+interface IGracefulLoadProps {
+  loaderData: AxiosResponse;
+  children: any;
 }
 
-function GracefulLoad(props) {
+function GracefulLoad(props: IGracefulLoadProps) {
   const { loaderData } = props;
 
   return (
     <Suspense fallback={<LoadingFlow />}>
       <Await
-        resolve={loaderData.result}
-        errorElement={<p>Deu ruim no carregamento</p>}
+        resolve={loaderData}
+        errorElement={<CardError>Deu ruim no carregamento</CardError>}
       >
         {({ data }) => <props.children loaderData={data} />}
       </Await>
     </Suspense>
   );
 }
+
+export default GracefulLoad;

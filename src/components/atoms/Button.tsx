@@ -1,5 +1,5 @@
+import { Link as LinkRouter } from 'react-router-dom';
 import { ChildrenOnly } from '../../types';
-// import { Link as LinkRouter } from 'react-router-dom';
 import './Button.pcss';
 
 export type ButtonProps = ChildrenOnly & {
@@ -9,7 +9,7 @@ export type ButtonProps = ChildrenOnly & {
 };
 
 export type LinkProps = ButtonProps & {
-  href?: string;
+  href: string;
   target?: string;
   free?: boolean;
   tickets?: string | undefined;
@@ -33,7 +33,6 @@ function Link({
   pill,
   href,
   target,
-  onClick,
   className,
   highlight,
   disabled,
@@ -42,17 +41,16 @@ function Link({
   tickets,
 }: LinkProps): JSX.Element {
   return (
-    <a
-      href={href}
+    <LinkRouter
+      to={href}
       target={target}
       className={`link ${className} ${free ? 'free' : ''} ${!tickets ? '' : 'no-tickets'}`}
-      onClick={(evt) => (tickets ? onClick?.(evt) : null)}
     >
       {/* eslint-disable-next-line no-use-before-define */}
       <Button pill={pill} highlight={highlight} disabled={disabled}>
         {children}
       </Button>
-    </a>
+    </LinkRouter>
   );
 }
 

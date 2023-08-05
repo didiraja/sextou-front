@@ -14,6 +14,7 @@ import Title from '../components/atoms/Title';
 import Pagination from '../components/atoms/Pagination';
 import usePagination from '../hooks/usePagination';
 import About from '../components/molecules/About';
+import GracefulLoad from '../components/hocs/GracefulLoadCards';
 
 import {
   ENDPOINT, PER_PAGE, ERROR,
@@ -31,26 +32,8 @@ export async function HomeLoader() {
   });
 }
 
-function LoadingFlow() {
-  return (
-    <CardGrid>
-      <CardLoading />
-      <CardLoading />
-      <CardLoading />
-      <CardLoading />
-    </CardGrid>
-  );
-}
-
 function Home() {
-  const loaderData = useLoaderData() as AxiosResponse;
-
-  // DEBUG - FETCH OK BUT NO EVENTS
-  // const events = [];
-  // const moreThanZero = false;
-
-  // const events = eventsFetch?.data;
-  // const moreThanZero = eventsFetch?.data.posts?.length > 0;
+  const homeLoader = useLoaderData() as AxiosResponse;
 
   // const {
   //   /* activePage, */ setActive, goPrevious, goNext,
@@ -81,28 +64,23 @@ function Home() {
 
   return (
     <>
-      <div className="main-events my-24" ref={scollToRef}>
+      <div className="home--wrapper" ref={scollToRef}>
         <Title>
           Principais shows e festas no Rio de Janeiro
         </Title>
-        <Suspense fallback={<LoadingFlow />}>
-          <Await
-            resolve={loaderData.result}
-            errorElement={<p>Deu ruim no carregamento</p>}
-          >
-            {({ data }) => (
-              <CardGrid>
-                {data?.posts.map((event: CardProps) => (
-                  <Card
-                    key={event.id}
-                    {...event}
-                    path={`/event/${event.id}`}
-                  />
-                ))}
-              </CardGrid>
-            )}
-          </Await>
-        </Suspense>
+        <GracefulLoad loaderData={homeLoader.result}>
+          {({ loaderData }) => (
+            <CardGrid>
+              {loaderData.posts?.map((event: CardProps) => (
+                <Card
+                  key={event.id}
+                  {...event}
+                  path={event.id}
+                />
+              ))}
+            </CardGrid>
+          )}
+        </GracefulLoad>
         {/*
 
         {/* <Pagination

@@ -20,12 +20,13 @@ export interface IEventProps {
   free?: boolean;
   content: string;
   description: string;
-  onClick?: (props: IEventProps) => void;
+  // onClick?: (props: IEventProps) => void;
 }
 
 export type ContentProps = IEventProps & {
-  mode?: MODE.CARD | 'Card';
+  mode?: 'Card' | 'Single';
   children?: ReactElement;
+  path?: string;
 };
 
 function DateBlock({ event_date: eventDate }: ContentProps) {
@@ -53,20 +54,20 @@ export function BtnTxtReducer({ free, tickets }: Partial<ContentProps>) {
 }
 
 function ClickableOn(props: ContentProps) {
-  const { mode, children } = props;
+  const { mode, children, path } = props;
 
   const isCard = mode === MODE.CARD;
   // const isSingle = mode === MODE.SINGLE;
 
-  if (isCard) {
+  if (isCard && path) {
     return (
-      <Link to={props.path}>
+      <Link to={path}>
         {children}
       </Link>
     );
   }
 
-  return children;
+  return children || null;
 }
 
 function ButtonContent({ tickets, highlight, free }: ContentProps) {
@@ -106,13 +107,12 @@ function Header(props: ContentProps) {
 
       <div className="subheader">
         <div data-testid="categories" className="categories-wrapper">
-          {categories?.map((item: WPTermObject, index: number) => (
+          {categories?.map((item: WPTermObject) => (
             <Button
               pill
               href={`/category/${item.slug}`}
-              key={index}
+              key={item.term_id}
               target="_self"
-              onClick={(evt) => evt.stopPropagation()}
             >
               {item.name}
             </Button>
