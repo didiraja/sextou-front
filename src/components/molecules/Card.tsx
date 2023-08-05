@@ -3,7 +3,6 @@ import './Card.pcss';
 
 export type CardProps = IEventProps & {
   path: string;
-  // onClick?: (props: CardProps) => void;
 };
 
 export type reducerProps = {
@@ -14,6 +13,8 @@ export type reducerProps = {
 };
 
 function Card(props: CardProps) {
+  const { path } = props;
+
   // function goTo(url: string) {
   //   return () => {
   //     window.location.href = url;
@@ -38,17 +39,9 @@ function Card(props: CardProps) {
 
   return (
     <div className="card">
-      <Content mode="Card" {...props} path={`/event/${props.path}`} />
+      <Content mode="Card" {...props} path={`/event/${path}`} />
     </div>
   );
 }
-
-Card.defaultProps = {
-  highlight: false,
-  tickets: '',
-  free: false,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClick: () => { },
-};
 
 export default Card;

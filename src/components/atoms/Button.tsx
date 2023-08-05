@@ -44,7 +44,8 @@ function Link({
     <LinkRouter
       to={href}
       target={target}
-      className={`link ${className} ${free ? 'free' : ''} ${!tickets ? '' : 'no-tickets'}`}
+      className={`link ${className} ${free ? 'free' : ''} ${!tickets ? 'no-tickets' : ''}`}
+      onClick={(evt) => (!pill && !tickets) && evt.preventDefault()}
     >
       {/* eslint-disable-next-line no-use-before-define */}
       <Button pill={pill} highlight={highlight} disabled={disabled}>
@@ -67,25 +68,5 @@ function Button({
     </button>
   );
 }
-
-const commonProps = {
-  pill: false,
-  highlight: false,
-  disabled: false,
-};
-
-Button.defaultProps = {
-  ...commonProps,
-};
-
-Link.defaultProps = {
-  ...commonProps,
-  free: false,
-  href: '',
-  target: '',
-  className: '',
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClick: () => { },
-};
 
 export default Link;

@@ -16,7 +16,7 @@ export interface IEventProps {
   event_date: string;
   categories: Array<WPTermObject>;
   cover: string;
-  tickets?: string;
+  tickets: string;
   free?: boolean;
   content: string;
   description: string;
@@ -75,11 +75,10 @@ function ButtonContent({ tickets, highlight, free }: ContentProps) {
     <Button
       href={tickets}
       target="_blank"
-      onClick={(evt) => evt.stopPropagation()}
-      className={!tickets ? 'no-tickets' : ''}
       highlight={highlight}
       disabled={!tickets}
       free={free}
+      tickets={tickets}
     >
       {BtnTxtReducer({ free, tickets })}
     </Button>
@@ -172,14 +171,5 @@ function Content(props: ContentProps) {
     </div>
   );
 }
-
-Content.defaultProps = {
-  mode: 'Card',
-  highlight: false,
-  tickets: '',
-  free: false,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClick: () => { },
-};
 
 export default Content;
