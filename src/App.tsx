@@ -18,18 +18,27 @@ const router = createBrowserRouter(createRoutesFromElements(
     errorElement={<Error />}
   >
     <Route
-      index
       loader={HomeLoader}
       element={<Home />}
       errorElement={<Error />}
-    />
+    >
+      <Route index />
+
+      <Route path="page/:page" />
+    </Route>
 
     <Route path="category">
       <Route
         path=":entry"
         loader={CategoryLoader}
         element={<Category />}
-      />
+      >
+        <Route path="page">
+          <Route
+            path=":page"
+          />
+        </Route>
+      </Route>
     </Route>
 
     <Route path="event">

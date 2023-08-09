@@ -13,7 +13,9 @@ import About from '../components/molecules/About';
 import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import { ENDPOINT, PER_PAGE } from '../services/enums';
 
-export async function CategoryLoader({ params: { entry } }: LoaderFunctionArgs) {
+export async function CategoryLoader({ params: { entry, page } }: LoaderFunctionArgs) {
+  console.log(page);
+
   const isSlugANumber = Number.isInteger(Number(entry));
 
   if (!entry || isSlugANumber) {

@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import './Pagination.pcss';
+import { useParams, useLocation, useSearchParams } from 'react-router-dom';
 import Button from './Button';
 import {
   PER_PAGE,
 } from '../../services/enums';
+import './Pagination.pcss';
 
 type PaginationProps = {
   totalItems: number;
-  page: number;
   perPage?: number;
   onSelectPage?: (page: number) => void;
   onNext: () => void;
@@ -17,61 +17,46 @@ type PaginationProps = {
 function Pagination(props: PaginationProps) {
   const {
     totalItems = PER_PAGE,
-    page = 1,
     perPage = PER_PAGE,
     onNext,
     onPrevious,
     onSelectPage,
   } = props;
 
+  const { page: pageParam } = useParams();
+
+  const page = Number(pageParam) || 1;
+
   const pagination = [...Array(Math.ceil(totalItems / perPage))];
-
-  const previousPageAction = (evt: Event) => {
-    evt.preventDefault();
-
-    onPrevious?.();
-  };
-
-  const nextPageAction = (evt: Event) => {
-    evt.preventDefault();
-
-    onNext?.();
-  };
-
-  const selectPageAction = (
-    evt: Event,
-    selected: number,
-  ) => {
-    evt.preventDefault();
-
-    onSelectPage?.(selected);
-  };
 
   return (
     <div className="pagination">
       {page > 1 ? (
-        <Button className="btn-page" onClick={(evt) => previousPageAction(evt)}>
+        <Button href={`/page/${page - 1}`} className="btn-page">
           {'<'}
         </Button>
       ) : null}
 
       {pagination.map((_, index) => {
-        const label = index + 1;
-        const active = label === page;
+        const pos = index + 1;
+        const active = page === pos;
 
         return (
           <Button
+            href={`/page/${pos}`}
             className={`btn-page ${active ? 'active' : ''}`}
             key={index}
-            onClick={(evt) => selectPageAction(evt, label)}
           >
-            {label}
+            {pos}
           </Button>
         );
       })}
 
       {page < pagination.length ? (
-        <Button className="btn-page" onClick={(evt) => nextPageAction(evt)}>
+        <Button
+          href={`/page/${page + 1}`}
+          className="btn-page"
+        >
           {'>'}
         </Button>
       ) : null}

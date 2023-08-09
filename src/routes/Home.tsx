@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { useRef, Suspense } from 'react';
 import {
-  Await, defer, useLoaderData,
+  Await, defer, useLoaderData, useLocation, useParams,
 } from 'react-router-dom';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
@@ -15,16 +15,13 @@ import Pagination from '../components/atoms/Pagination';
 import usePagination from '../hooks/usePagination';
 import About from '../components/molecules/About';
 import GracefulLoad from '../components/hocs/GracefulLoadCards';
+import { ENDPOINT, PER_PAGE } from '../services/enums';
 
-import {
-  ENDPOINT, PER_PAGE, ERROR,
-} from '../services/enums';
-
-export async function HomeLoader() {
+export async function HomeLoader({ params: { page } }: { params: { page: string } }) {
   const result = Requests.getEvents(ENDPOINT.MAIN, {
     after: Date.todayDate(),
     per_page: PER_PAGE,
-    page: 1,
+    page: Number(page) || 1,
   });
 
   return defer({
@@ -33,21 +30,15 @@ export async function HomeLoader() {
 }
 
 function Home() {
+  const { page } = useParams();
+
+  // console.log('useParams', page);
+
   const homeLoader = useLoaderData() as AxiosResponse;
 
   // const {
   //   /* activePage, */ setActive, goPrevious, goNext,
   // } = usePagination();
-
-  /**
-   * PAGINATION LOGIC
-  */
-  // useEffect(() => {
-  //   setQueryString((state) => ({
-  //     ...state,
-  //     page: activePage,
-  //   }));
-  // }, [activePage]);
 
   /**
    * UI LOGIC
@@ -70,43 +61,23 @@ function Home() {
         </Title>
         <GracefulLoad loaderData={homeLoader.result}>
           {({ loaderData }) => (
-            <CardGrid>
-              {loaderData.posts?.map((event: CardProps) => (
-                <Card
-                  key={event.id}
-                  {...event}
-                  path={event.id}
-                />
-              ))}
-            </CardGrid>
+            <>
+              <CardGrid>
+                {loaderData.posts?.map((event: CardProps) => (
+                  <Card
+                    key={event.id}
+                    {...event}
+                    path={event.id}
+                  />
+                ))}
+              </CardGrid>
+              <Pagination
+                totalItems={loaderData.total_posts}
+                perPage={PER_PAGE}
+              />
+            </>
           )}
         </GracefulLoad>
-        {/*
-
-        {/* <Pagination
-              totalItems={events.totalEvents}
-              page={1}
-              perPage={PER_PAGE}
-              onSelectPage={(page: number) => {
-                setActive(page);
-
-                scrollPageUp();
-              }}
-              onPrevious={() => {
-              goPrevious();
-
-                scrollPageUp();
-              }}
-              onNext={() => {
-                goNext();
-
-                scrollPageUp();
-              }}
-            />
-              </>
-            ) : null}
-            */}
-
       </div>
 
       <About />

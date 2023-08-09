@@ -39,13 +39,25 @@ function Link({
   free,
   children,
   tickets,
+  onClick,
 }: LinkProps): JSX.Element {
+  function handleClick(evt) {
+    // if (!pill && !tickets) {
+    //   return evt.preventDefault();
+    // }
+    // if (!href) {
+    //   return evt.preventDefault();
+    // }
+
+    onClick();
+  }
+
   return (
     <LinkRouter
       to={href}
       target={target}
       className={`link ${className} ${free ? 'free' : ''} ${!tickets ? 'no-tickets' : ''}`}
-      onClick={(evt) => (!pill && !tickets) && evt.preventDefault()}
+      replace
     >
       {/* eslint-disable-next-line no-use-before-define */}
       <Button pill={pill} highlight={highlight} disabled={disabled}>
