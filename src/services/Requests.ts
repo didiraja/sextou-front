@@ -4,8 +4,8 @@ import { HOST, ENDPOINT } from './enums';
 export interface IApiParams {
   before?: string;
   after?: string;
-  page?: number;
-  per_page?: number;
+  page?: number | string;
+  per_page?: number | string;
 }
 
 export type IRequestReturn = Promise<AxiosResponse | undefined>;

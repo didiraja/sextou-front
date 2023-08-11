@@ -14,18 +14,16 @@ import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import { ENDPOINT, PER_PAGE } from '../services/enums';
 
 export async function CategoryLoader({ params: { entry, page } }: LoaderFunctionArgs) {
-  console.log(page);
+  // const isSlugANumber = Number.isInteger(Number(entry));
 
-  const isSlugANumber = Number.isInteger(Number(entry));
-
-  if (!entry || isSlugANumber) {
-    return redirect('/');
-  }
+  // if (!entry || isSlugANumber) {
+  //   return redirect('/');
+  // }
 
   const result = Requests.getEvents((ENDPOINT.CATEGORY + entry), {
     after: Date.todayDate(),
     per_page: PER_PAGE,
-    page: 1,
+    page: page || 1,
   });
 
   return defer({

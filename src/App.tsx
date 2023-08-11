@@ -1,9 +1,4 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootTemplate from './routes/RootTemplate';
 import Home, { HomeLoader } from './routes/Home';
 import Category, { CategoryLoader } from './routes/Category';
@@ -11,51 +6,46 @@ import SingleEvent, { SingleEventLoader } from './routes/Single';
 import NotFound from './routes/NotFound';
 import Error from './routes/Error';
 
-const router = createBrowserRouter(createRoutesFromElements(
-  <Route
-    path="/"
-    element={<RootTemplate />}
-    errorElement={<Error />}
-  >
-    <Route
-      loader={HomeLoader}
-      element={<Home />}
-      errorElement={<Error />}
-    >
-      <Route index />
-
-      <Route path="page/:page" />
-    </Route>
-
-    <Route path="category">
-      <Route
-        path=":entry"
-        loader={CategoryLoader}
-        element={<Category />}
-      >
-        <Route path="page">
-          <Route
-            path=":page"
-          />
-        </Route>
-      </Route>
-    </Route>
-
-    <Route path="event">
-      <Route
-        path=":id"
-        element={<SingleEvent />}
-        loader={SingleEventLoader}
-      />
-    </Route>
-
-    <Route
-      path="*"
-      element={<NotFound />}
-    />
-
-  </Route>,
-));
+const router = createBrowserRouter([{
+  path: '/',
+  Component: RootTemplate,
+  children: [
+    {
+      index: true,
+      loader: HomeLoader,
+      Component: Home,
+    },
+    {
+      path: 'page/:page',
+      loader: HomeLoader,
+      Component: Home,
+    },
+    {
+      path: 'category/:entry',
+      loader: CategoryLoader,
+      Component: Category,
+      children: [{
+        path: 'page/:page',
+        loader: CategoryLoader,
+        Component: Category,
+      }],
+    },
+    {
+      path: 'event/:id',
+      loader: SingleEventLoader,
+      Component: SingleEvent,
+      children: [{
+        path: 'page/:page',
+        loader: SingleEventLoader,
+        Component: SingleEvent,
+      }],
+    },
+    {
+      path: '*',
+      Component: NotFound,
+    },
+  ],
+}]);
 
 function App() {
   return (

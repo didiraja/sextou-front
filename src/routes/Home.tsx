@@ -1,13 +1,12 @@
 import { AxiosResponse } from 'axios';
-import { useRef, Suspense } from 'react';
+import { useRef } from 'react';
 import {
-  Await, defer, useLoaderData, useLocation, useParams,
+  defer, LoaderFunctionArgs, useLoaderData, useLocation, useParams,
 } from 'react-router-dom';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
 import CardGrid from '../components/templates/Card.Grid';
 import Card, { CardProps, reducerProps } from '../components/molecules/Card';
-// import LoadingCard from '../components/molecules/Card.Loading';
 import ErrorCard from '../components/molecules/Card.Error';
 import CardLoading from '../components/molecules/Card.Loading';
 import Title from '../components/atoms/Title';
@@ -17,11 +16,11 @@ import About from '../components/molecules/About';
 import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import { ENDPOINT, PER_PAGE } from '../services/enums';
 
-export async function HomeLoader({ params: { page } }: { params: { page: string } }) {
+export async function HomeLoader({ params: { page } }: LoaderFunctionArgs) {
   const result = Requests.getEvents(ENDPOINT.MAIN, {
     after: Date.todayDate(),
     per_page: PER_PAGE,
-    page: Number(page) || 1,
+    page: page || 1,
   });
 
   return defer({
@@ -30,10 +29,6 @@ export async function HomeLoader({ params: { page } }: { params: { page: string 
 }
 
 function Home() {
-  const { page } = useParams();
-
-  // console.log('useParams', page);
-
   const homeLoader = useLoaderData() as AxiosResponse;
 
   // const {
