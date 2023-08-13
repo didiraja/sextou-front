@@ -1,26 +1,25 @@
+
 .button-shadow {
   box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
 }
 
-.link {
-  @apply rounded-md;
+.button {
+  @apply w-full rounded-md p-3 xl:p-3 font-semibold uppercase tracking-widest flex justify-center items-center;
+  background-color: var(--purple);
 
-  .button {
-    @apply w-full rounded-md block p-3 xl:p-3 font-bold uppercase tracking-widest flex justify-center items-center;
-    background-color: var(--purple);
+  &:not(.no-tickets) {
+    @apply button-shadow;
+  }
 
-    &:not(.no-tickets) {
-      @apply button-shadow;
-    }
+  &.highlight {
+    @apply bg-amber-500;
+  }
 
-    &.highlight {
-      @apply bg-amber-500;
-    }
-
-    &.disabled {
-      background-color: var(--dark-pink);
-      @apply cursor-default;
-    }
+  &.disabled {
+    @apply cursor-default;
+    /* background-color: transparent;
+    border: 2px solid var(--dark-pink-2); */
+    background-color: var(--dark-pink-2);
   }
 
   &.free {
@@ -46,6 +45,7 @@
     }
   }
 
+}
   .pill {
     @apply rounded-md px-2 py-1 uppercase text-xs;
     box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
@@ -62,4 +62,3 @@
       @apply hover:bg-amber-900/20 text-amber-500;
     }
   }
-}

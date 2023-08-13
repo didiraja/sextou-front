@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { useParams, useLocation, useSearchParams } from 'react-router-dom';
+import classNames from 'classnames';
 import Button from './Button';
 import {
   PER_PAGE,
@@ -32,7 +33,7 @@ function Pagination(props: PaginationProps) {
   return (
     <div className="pagination">
       {page > 1 ? (
-        <Button href={`/page/${page - 1}`} className="btn-page">
+        <Button href={`/page/${page - 1}`}>
           {'<'}
         </Button>
       ) : null}
@@ -42,9 +43,11 @@ function Pagination(props: PaginationProps) {
         const active = page === pos;
 
         return (
+          // href={`/page/${pos}`}
           <Button
-            href={`/page/${pos}`}
-            className={`btn-page ${active ? 'active' : ''}`}
+            className={classNames({
+              active,
+            })}
             key={index}
           >
             {pos}
@@ -55,7 +58,6 @@ function Pagination(props: PaginationProps) {
       {page < pagination.length ? (
         <Button
           href={`/page/${page + 1}`}
-          className="btn-page"
         >
           {'>'}
         </Button>

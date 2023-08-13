@@ -18,12 +18,12 @@
   --material-shadow-strong-1: rgba(0, 0, 0, 0.5) 0px 1px 3px;
   --material-shadow-strong-2: rgba(0, 0, 0, 0.7) 0px 1px 2px;
 
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Rubik Variable', Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
   /* background-color: rgb(55, 2, 65); */
 
@@ -62,7 +62,6 @@ html {
 
 .title {
   color: white;
-  font-family: 'Rubik Variable', sans-serif;
 }
 
 .max-two-lines {
