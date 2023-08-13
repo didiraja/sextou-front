@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import Button from './Button';
 import Date from '../../services/Date';
 import { TEXT, MODE } from '../../services/enums';
@@ -100,7 +101,15 @@ function Header(props: ContentProps) {
 
           <DateBlock {...props} />
 
-          {title ? <div className={`title ${mode === MODE.CARD ? 'max-two-lines' : ''}`}>{title}</div> : null}
+          {title ? (
+            <div className={classNames({
+              title: true,
+              'max-two-lines': mode === MODE.CARD,
+            })}
+            >
+              {title}
+            </div>
+          ) : null}
         </>
       </ClickableOn>
 
@@ -162,7 +171,12 @@ function Content(props: ContentProps) {
   } = props;
 
   return (
-    <div className={`content ${mode === MODE.CARD ? 'card-mode' : 'single-mode'}`}>
+    <div className={classNames({
+      content: true,
+      'card-mode': mode === MODE.CARD,
+      'single-mode': mode !== MODE.CARD,
+    })}
+    >
       <Header {...props} />
 
       <Body {...props} />

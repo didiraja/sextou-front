@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { ButtonProps } from './Button';
 import './Title.pcss';
 
@@ -7,7 +8,12 @@ type TitleProps = ButtonProps & {
 
 function Title({ className, children, highlight }: TitleProps) {
   return (
-    <h1 className={`title section-title ${className} ${highlight ? 'highlight' : ''}`}>
+    <h1 className={classNames([{
+      title: true,
+      'section-title': true,
+      highlight,
+    }, className])}
+    >
       {children}
     </h1>
   );
