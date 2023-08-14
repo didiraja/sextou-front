@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { useParams, useLocation, useSearchParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import classNames from 'classnames';
 import Button from './Button';
 import {
@@ -10,18 +10,12 @@ import './Pagination.pcss';
 type PaginationProps = {
   totalItems: number;
   perPage?: number;
-  onSelectPage?: (page: number) => void;
-  onNext: () => void;
-  onPrevious: () => void;
 };
 
 function Pagination(props: PaginationProps) {
   const {
     totalItems = PER_PAGE,
     perPage = PER_PAGE,
-    onNext,
-    onPrevious,
-    onSelectPage,
   } = props;
 
   const { page: pageParam } = useParams();
@@ -33,9 +27,9 @@ function Pagination(props: PaginationProps) {
   return (
     <div className="pagination">
       {page > 1 ? (
-        <Button href={`/page/${page - 1}`}>
-          {'<'}
-        </Button>
+        <Link to={`/page/${page - 1}`}>
+          <Button>{'<'}</Button>
+        </Link>
       ) : null}
 
       {pagination.map((_, index) => {
@@ -43,24 +37,18 @@ function Pagination(props: PaginationProps) {
         const active = page === pos;
 
         return (
-          // href={`/page/${pos}`}
-          <Button
-            className={classNames({
-              active,
-            })}
-            key={index}
-          >
-            {pos}
-          </Button>
+          <Link to={`/page/${pos}`} key={index}>
+            <Button className={classNames({ active })}>
+              {pos}
+            </Button>
+          </Link>
         );
       })}
 
       {page < pagination.length ? (
-        <Button
-          href={`/page/${page + 1}`}
-        >
-          {'>'}
-        </Button>
+        <Link to={`/page/${page + 1}`}>
+          <Button>{'>'}</Button>
+        </Link>
       ) : null}
     </div>
   );
@@ -68,7 +56,6 @@ function Pagination(props: PaginationProps) {
 
 Pagination.defaultProps = {
   perPage: PER_PAGE,
-  onSelectPage: () => { },
 };
 
 export default Pagination;

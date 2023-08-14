@@ -71,18 +71,21 @@ function ClickableOn(props: ContentProps) {
   return children || null;
 }
 
-function ButtonContent({ tickets, highlight, free }: ContentProps) {
-  return (
-    <Button
-      href={tickets}
-      target="_blank"
-      highlight={highlight}
-      disabled={!tickets}
-      free={free}
-      tickets={tickets}
-    >
+function ButtonContent({ tickets, free }: ContentProps) {
+  const content = (
+    <Button disabled={!tickets}>
       {BtnTxtReducer({ free, tickets })}
     </Button>
+  );
+
+  if (!tickets) {
+    return content;
+  }
+
+  return (
+    <Link target="_blank" to={tickets}>
+      {content}
+    </Link>
   );
 }
 
@@ -116,14 +119,13 @@ function Header(props: ContentProps) {
       <div className="subheader">
         <div data-testid="categories" className="categories-wrapper">
           {categories?.map((item: WPTermObject) => (
-            <Button
-              pill
-              href={`/category/${item.slug}`}
+            <Link
               key={item.term_id}
               target="_self"
+              to={`/category/${item.slug}`}
             >
-              {item.name}
-            </Button>
+              <Button pill>{item.name}</Button>
+            </Link>
           )) ?? null}
         </div>
 

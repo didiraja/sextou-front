@@ -1,7 +1,6 @@
+import { Link } from 'react-router-dom';
 import ErrorCard from '../components/molecules/Card.Error';
-import {
-  ERROR,
-} from '../services/enums';
+import { ERROR } from '../services/enums';
 import Title from '../components/atoms/Title';
 
 function Error() {
@@ -15,14 +14,14 @@ function Error() {
         <p className="font-normal">
           Que tal,
           {' '}
-          <a
+          <Link
             className="font-bold underline hover:no-underline"
-            href="/"
+            to="/"
             target="_self"
             rel="noopener noreferrer"
           >
             voltar para a Home?
-          </a>
+          </Link>
         </p>
       </ErrorCard>
 
