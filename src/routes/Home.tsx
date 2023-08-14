@@ -1,8 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { useRef } from 'react';
-import {
-  defer, LoaderFunctionArgs, Outlet, useLoaderData, useLocation, useParams,
-} from 'react-router-dom';
+import { defer, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
 import CardGrid from '../components/templates/Card.Grid';
@@ -43,6 +40,10 @@ function Home() {
         <GracefulLoad loaderData={homeLoader.result}>
           {({ loaderData }) => (
             <>
+              <Pagination
+                totalItems={loaderData.total_posts}
+                perPage={PER_PAGE}
+              />
               <CardGrid>
                 {loaderData.posts?.map((event: CardProps) => (
                   <Card
@@ -53,10 +54,6 @@ function Home() {
                   />
                 ))}
               </CardGrid>
-              <Pagination
-                totalItems={loaderData.total_posts}
-                perPage={PER_PAGE}
-              />
             </>
           )}
         </GracefulLoad>
@@ -64,7 +61,7 @@ function Home() {
 
       <About />
 
-      <Outlet />
+      {/* <Outlet /> */}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import {
-  defer, Outlet, LoaderFunctionArgs, useLoaderData,
+  defer, LoaderFunctionArgs, useLoaderData,
 } from 'react-router-dom';
 import zuStore from '../store';
 import Requests from '../services/Requests';
@@ -40,6 +40,11 @@ function Category() {
         {({ loaderData }) => (
           <>
             <Title>{`Melhores shows e festas em ${loaderData.name}`}</Title>
+
+            <Pagination
+              totalItems={loaderData.total_posts}
+              perPage={PER_PAGE}
+            />
 
             <CardGrid>
               {loaderData.posts?.map((event: CardProps) => (

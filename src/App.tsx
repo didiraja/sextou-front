@@ -23,6 +23,11 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: 'event/:id',
+        loader: SingleEventLoader,
+        Component: SingleEvent,
+      },
+      {
         path: 'category',
         loader: CategoryLoader,
         Component: Category,
@@ -31,29 +36,31 @@ const router = createBrowserRouter([
             path: ':entry',
             loader: CategoryLoader,
             Component: Category,
-            children: [{
-              path: 'page/:page',
-              loader: CategoryLoader,
-              Component: Category,
-            },
-            {
-              path: 'event/:id',
-              loader: SingleEventLoader,
-              Component: SingleEvent,
-            }],
           },
+          // {
+          //   path: '/',
+          //   loader: CategoryLoader,
+          //   Component: Category,
+          //   children: [
+          //     {
+          //       path: ':entry',
+          //       loader: CategoryLoader,
+          //       Component: Category,
+          //       children: [{
+          //         path: 'page/:page',
+          //         loader: CategoryLoader,
+          //         Component: Category,
+          //       }],
+          //     },
+          //   ],
+          // },
         ],
       },
       {
-        path: 'event/:id',
-        loader: SingleEventLoader,
-        Component: SingleEvent,
+        path: '*',
+        Component: NotFound,
       },
     ],
-  },
-  {
-    path: '*',
-    Component: NotFound,
   },
 ]);
 
