@@ -40,10 +40,6 @@ function Home() {
         <GracefulLoad loaderData={homeLoader.result}>
           {({ loaderData }) => (
             <>
-              <Pagination
-                totalItems={loaderData.total_posts}
-                perPage={PER_PAGE}
-              />
               <CardGrid>
                 {loaderData.posts?.map((event: CardProps) => (
                   <Card
@@ -54,6 +50,11 @@ function Home() {
                   />
                 ))}
               </CardGrid>
+
+              <Pagination
+                totalItems={loaderData.total_posts}
+                perPage={PER_PAGE}
+              />
             </>
           )}
         </GracefulLoad>

@@ -63,7 +63,7 @@ function ClickableOn(props: ContentProps) {
 
   if (isCard && path) {
     return (
-      <Link to={path} reloadDocument>
+      <Link to={path}>
         {children}
       </Link>
     );
@@ -72,9 +72,11 @@ function ClickableOn(props: ContentProps) {
   return children || null;
 }
 
-function ButtonContent({ tickets, free }: ContentProps) {
+function ButtonContent(props: ContentProps) {
+  const { tickets, free } = props;
+
   const content = (
-    <Button disabled={!tickets}>
+    <Button disabled={!tickets} {...props}>
       {BtnTxtReducer({ free, tickets })}
     </Button>
   );

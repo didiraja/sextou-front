@@ -5,21 +5,21 @@ import './Button.pcss';
 export type ButtonProps = ChildrenOnly & {
   className?: string;
   pill?: boolean;
-  highlight?: boolean;
   disabled?: boolean;
+  free?: boolean;
 };
 
 function Button({
-  className, pill, highlight, children, disabled,
+  className, pill, children, disabled, free,
 }: ButtonProps) {
   return (
     <button
       data-testid="button-component"
+      disabled={disabled}
       className={classNames([{
         button: !pill,
         pill,
-        disabled,
-        highlight,
+        free,
       }, className])}
     >
       {children}

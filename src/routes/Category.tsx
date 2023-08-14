@@ -17,7 +17,7 @@ import useTitle from '../hooks/useTitle';
 export async function CategoryLoader({ params: { entry, page } }: LoaderFunctionArgs) {
   const result = await Requests.getEvents((ENDPOINT.CATEGORY + entry), {
     after: Date.todayDate(),
-    per_page: 4,
+    per_page: PER_PAGE,
     page: page || 1,
   });
 
@@ -41,11 +41,6 @@ function Category() {
           <>
             <Title>{`Melhores shows e festas em ${loaderData.name}`}</Title>
 
-            <Pagination
-              totalItems={loaderData.total_posts}
-              perPage={4}
-            />
-
             <CardGrid>
               {loaderData.posts?.map((event: CardProps) => (
                 <Card
@@ -56,6 +51,11 @@ function Category() {
                 />
               ))}
             </CardGrid>
+
+            <Pagination
+              totalItems={loaderData.total_posts}
+              perPage={PER_PAGE}
+            />
           </>
         )}
       </GracefulLoad>
