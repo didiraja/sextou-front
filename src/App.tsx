@@ -28,32 +28,15 @@ const router = createBrowserRouter([
         Component: SingleEvent,
       },
       {
-        path: 'category',
+        path: 'category/:entry',
         loader: CategoryLoader,
         Component: Category,
         children: [
           {
-            path: ':entry',
+            path: 'page/:page',
             loader: CategoryLoader,
             Component: Category,
           },
-          // {
-          //   path: '/',
-          //   loader: CategoryLoader,
-          //   Component: Category,
-          //   children: [
-          //     {
-          //       path: ':entry',
-          //       loader: CategoryLoader,
-          //       Component: Category,
-          //       children: [{
-          //         path: 'page/:page',
-          //         loader: CategoryLoader,
-          //         Component: Category,
-          //       }],
-          //     },
-          //   ],
-          // },
         ],
       },
       {

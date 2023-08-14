@@ -17,7 +17,7 @@ import useTitle from '../hooks/useTitle';
 export async function CategoryLoader({ params: { entry, page } }: LoaderFunctionArgs) {
   const result = await Requests.getEvents((ENDPOINT.CATEGORY + entry), {
     after: Date.todayDate(),
-    per_page: PER_PAGE,
+    per_page: 4,
     page: page || 1,
   });
 
@@ -43,7 +43,7 @@ function Category() {
 
             <Pagination
               totalItems={loaderData.total_posts}
-              perPage={PER_PAGE}
+              perPage={4}
             />
 
             <CardGrid>

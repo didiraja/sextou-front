@@ -63,7 +63,7 @@ function ClickableOn(props: ContentProps) {
 
   if (isCard && path) {
     return (
-      <Link to={path}>
+      <Link to={path} reloadDocument>
         {children}
       </Link>
     );
