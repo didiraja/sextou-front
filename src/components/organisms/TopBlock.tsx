@@ -6,7 +6,7 @@ import './TopBlock.pcss';
 function TopBlock() {
   return (
     <section id="top" className="grid grid-cols-1">
-      <Link to="/">
+      <Link to="/" reloadDocument>
         <img className="sextou-logo" src={Sextou} alt="Sextou!" />
       </Link>
 

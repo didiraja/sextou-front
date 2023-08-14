@@ -27,7 +27,7 @@ function Pagination(props: PaginationProps) {
   return (
     <div className="pagination">
       {page > 1 ? (
-        <Link to={`/page/${page - 1}`}>
+        <Link to={`page/${page - 1}`} reloadDocument>
           <Button>{'<'}</Button>
         </Link>
       ) : null}
@@ -37,7 +37,7 @@ function Pagination(props: PaginationProps) {
         const active = page === pos;
 
         return (
-          <Link to={`/page/${pos}`} key={index}>
+          <Link to={`page/${pos}`} key={index} reloadDocument>
             <Button className={classNames({ active })}>
               {pos}
             </Button>
@@ -46,7 +46,7 @@ function Pagination(props: PaginationProps) {
       })}
 
       {page < pagination.length ? (
-        <Link to={`/page/${page + 1}`}>
+        <Link to={`page/${page + 1}`} reloadDocument>
           <Button>{'>'}</Button>
         </Link>
       ) : null}

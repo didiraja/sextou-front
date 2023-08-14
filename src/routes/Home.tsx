@@ -1,8 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { useRef } from 'react';
-import {
-  defer, LoaderFunctionArgs, useLoaderData, useLocation, useParams,
-} from 'react-router-dom';
+import { defer, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
 import CardGrid from '../components/templates/Card.Grid';
@@ -15,6 +12,7 @@ import usePagination from '../hooks/usePagination';
 import About from '../components/molecules/About';
 import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import { ENDPOINT, PER_PAGE } from '../services/enums';
+import zuStore from '../store';
 
 export async function HomeLoader({ params: { page } }: LoaderFunctionArgs) {
   const result = Requests.getEvents(ENDPOINT.MAIN, {
@@ -30,30 +28,15 @@ export async function HomeLoader({ params: { page } }: LoaderFunctionArgs) {
 
 function Home() {
   const homeLoader = useLoaderData() as AxiosResponse;
-
-  // const {
-  //   /* activePage, */ setActive, goPrevious, goNext,
-  // } = usePagination();
-
-  /**
-   * UI LOGIC
-  */
-  const scollToRef = useRef<HTMLDivElement | null>(null);
-
-  // const scrollPageUp = () => {
-  //   if (!scollToRef.current) return;
-
-  //   scollToRef.current.scrollIntoView({
-  //     behavior: 'smooth',
-  //   });
-  // };
+  const { setGoBack } = zuStore();
 
   return (
     <>
-      <div className="home--wrapper" ref={scollToRef}>
+      <div className="home--wrapper">
         <Title>
           Principais shows e festas no Rio de Janeiro
         </Title>
+
         <GracefulLoad loaderData={homeLoader.result}>
           {({ loaderData }) => (
             <>
@@ -63,9 +46,11 @@ function Home() {
                     key={event.id}
                     {...event}
                     path={event.id}
+                    onClick={() => setGoBack('/')}
                   />
                 ))}
               </CardGrid>
+
               <Pagination
                 totalItems={loaderData.total_posts}
                 perPage={PER_PAGE}
@@ -76,6 +61,8 @@ function Home() {
       </div>
 
       <About />
+
+      {/* <Outlet /> */}
     </>
   );
 }
