@@ -28,6 +28,7 @@ export type ContentProps = IEventProps & {
   mode?: 'Card' | 'Single';
   children?: ReactElement;
   path?: string;
+  onClick?: () => void;
 };
 
 function DateBlock({ event_date: eventDate }: ContentProps) {
@@ -170,14 +171,17 @@ function Footer(props: ContentProps) {
 function Content(props: ContentProps) {
   const {
     mode,
+    onClick,
   } = props;
 
   return (
-    <div className={classNames({
-      content: true,
-      'card-mode': mode === MODE.CARD,
-      'single-mode': mode !== MODE.CARD,
-    })}
+    <div
+      className={classNames({
+        content: true,
+        'card-mode': mode === MODE.CARD,
+        'single-mode': mode !== MODE.CARD,
+      })}
+      onClick={onClick}
     >
       <Header {...props} />
 

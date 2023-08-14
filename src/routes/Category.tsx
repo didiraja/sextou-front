@@ -28,47 +28,14 @@ export async function CategoryLoader({ params: { entry, page } }: LoaderFunction
 
 function Category() {
   const categoryLoader = useLoaderData();
+  const { setGoBack } = zuStore();
 
   const { data: { name } } = categoryLoader.result;
 
   useTitle(`${name} - Sextou!`);
 
-  const goBack = (path: string) => zuStore((store: any) => store.setGoBack(path));
-
-  const backValue = zuStore((store: any) => store.modal.goBack);
-
-  console.log(backValue);
-
-  // const {
-  //   activePage, setActive, goPrevious, goNext,
-  // } = usePagination();
-
-  /**
-   * PAGINATION LOGIC
-  */
-  // useEffect(() => {
-  //   setQueryString((state) => ({
-  //     ...state,
-  //     page: activePage,
-  //   }));
-  // }, [activePage]);
-
-  /**
-   * UI LOGIC
-  */
-  // const scollToRef = useRef<HTMLDivElement | null>(null);
-
-  // const scrollPageUp = () => {
-  //   if (!scollToRef.current) return;
-
-  //   scollToRef.current.scrollIntoView({
-  //     behavior: 'smooth',
-  //   });
-  // };
-
   return (
     <div className="category--wrapper">
-
       <GracefulLoad loaderData={categoryLoader.result}>
         {({ loaderData }) => (
           <>
@@ -80,18 +47,13 @@ function Category() {
                   key={event.id}
                   {...event}
                   path={event.id}
-                  onClick={() => {
-                    goBack('/category/');
-
-                    console.log(backValue);
-                  }}
+                  onClick={() => setGoBack(`category/${loaderData.slug}`)}
                 />
               ))}
             </CardGrid>
           </>
         )}
       </GracefulLoad>
-
     </div>
   );
 }

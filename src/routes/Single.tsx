@@ -1,8 +1,8 @@
 import {
   defer, LoaderFunctionArgs, redirect, useLoaderData, useLocation, useNavigate,
 } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
 import { AxiosResponse } from 'axios';
+import zuStore from '../store';
 import Requests from '../services/Requests';
 import useTitle from '../hooks/useTitle';
 import Content, { IEventProps } from '../components/atoms/Content';
@@ -25,25 +25,22 @@ export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) 
 
 function SingleEvent() {
   const singleLoader = useLoaderData() as AxiosResponse<IEventProps>;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { goBack } = zuStore();
 
   const { data: { slug, title } } = singleLoader.result;
+  const updatedURL = `${removeNumberAfterLastSlash(location.pathname)}${slug}`;
 
   useTitle(`${title} - Sextou!`);
 
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const updatedURL = `${removeNumberAfterLastSlash(location.pathname)}${slug}`;
-
   window.history.replaceState(null, '', updatedURL);
-
-  const history = createBrowserHistory();
 
   function handleBackdrop(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const isBackdrop: boolean = evt.target === evt.currentTarget;
 
     if (isBackdrop) {
-      return;
+      return navigate(`../${goBack}`);
     }
 
     return null;
