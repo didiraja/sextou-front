@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { useRef } from 'react';
 import {
-  defer, LoaderFunctionArgs, useLoaderData, useLocation, useParams,
+  defer, LoaderFunctionArgs, Outlet, useLoaderData, useLocation, useParams,
 } from 'react-router-dom';
 import Requests from '../services/Requests';
 import Date from '../services/Date';
@@ -54,6 +54,7 @@ function Home() {
         <Title>
           Principais shows e festas no Rio de Janeiro
         </Title>
+
         <GracefulLoad loaderData={homeLoader.result}>
           {({ loaderData }) => (
             <>
@@ -76,6 +77,8 @@ function Home() {
       </div>
 
       <About />
+
+      <Outlet />
     </>
   );
 }

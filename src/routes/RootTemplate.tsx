@@ -9,7 +9,7 @@ import ScrollToTop from '../components/atoms/ScrollToTop';
 function Template() {
   return (
     <>
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       <Header />
       <PageContainer>
         <TopBlock />

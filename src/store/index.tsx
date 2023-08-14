@@ -1,18 +1,21 @@
-import { create } from 'zustand';
-import { CardProps } from '../components/molecules/Card';
+import { create, StoreApi, UseBoundStore } from 'zustand';
+// import { CardProps } from '../components/molecules/Card';
 
-type Store = {
-  showModal: boolean;
-  content: CardProps | Record<string, never>;
-  toggleModal: () => void;
-  openModal: () => void;
-};
+// type Store = {
+//   showModal: boolean;
+//   content: CardProps | Record<string, never>;
+//   toggleModal: () => void;
+//   openModal: () => void;
+// };
 
 const zuStore = create((set) => ({
-  showModal: false,
-  content: {},
-  toggleModal: () => set((state: Store) => ({ showModal: !state.showModal })),
-  openModal: (content: CardProps) => set(() => ({ showModal: true, content })),
+  modal: {
+    goBack: undefined,
+  },
+  setGoBack: (path: string) => set((state: UseBoundStore<StoreApi<unknown>>) => ({
+    ...state,
+    modal: { ...state.modal, goBack: path },
+  })),
 }));
 
 export default zuStore;

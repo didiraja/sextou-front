@@ -1,6 +1,7 @@
 import {
-  defer, LoaderFunctionArgs, redirect, useLoaderData, useLocation,
+  defer, LoaderFunctionArgs, redirect, useLoaderData, useLocation, useNavigate,
 } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import { AxiosResponse } from 'axios';
 import Requests from '../services/Requests';
 import useTitle from '../hooks/useTitle';
@@ -30,19 +31,36 @@ function SingleEvent() {
   useTitle(`${title} - Sextou!`);
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const updatedURL = `${removeNumberAfterLastSlash(location.pathname)}${slug}`;
 
   window.history.replaceState(null, '', updatedURL);
 
+  const history = createBrowserHistory();
+
+  function handleBackdrop(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const isBackdrop: boolean = evt.target === evt.currentTarget;
+
+    if (isBackdrop) {
+      return;
+    }
+
+    return null;
+  }
+
   return (
-    <GracefulLoad loaderData={singleLoader.result}>
-      {({ loaderData }) => (
-        <div className="single--wrapper card-surface">
-          <Content {...loaderData} mode="Single" />
-        </div>
-      )}
-    </GracefulLoad>
+    <div className="backdrop" onClick={handleBackdrop}>
+      <div className="single--wrapper">
+        <GracefulLoad loaderData={singleLoader.result}>
+          {({ loaderData }) => (
+            <div className="single--event">
+              <Content {...loaderData} mode="Single" />
+            </div>
+          )}
+        </GracefulLoad>
+      </div>
+    </div>
   );
 }
 
