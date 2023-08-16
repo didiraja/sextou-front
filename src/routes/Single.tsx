@@ -9,6 +9,7 @@ import Content, { IEventProps } from '../components/atoms/Content';
 import { ENDPOINT } from '../services/enums';
 import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import { removeNumberAfterLastSlash } from '../services/utils';
+import Close from '../assets/icon/close.svg';
 import './Single.pcss';
 
 export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) {
@@ -52,6 +53,9 @@ function SingleEvent() {
         <GracefulLoad loaderData={singleLoader.result}>
           {({ loaderData }) => (
             <div className="single--event">
+              <div className="nav-wrapper" onClick={toggleModal}>
+                <img src={Close} alt="Fechar Modal" />
+              </div>
               <Content {...loaderData} mode="Single" />
             </div>
           )}
