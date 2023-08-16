@@ -6,7 +6,7 @@ import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import CardGrid from '../components/templates/Card.Grid';
 import About from '../components/molecules/About';
 import Card from '../components/molecules/Card';
-import { IEventProps, ILoaderMount } from '../components/atoms/Content';
+import { IEventProps } from '../components/atoms/Content';
 import Title from '../components/atoms/Title';
 import Pagination from '../components/atoms/Pagination';
 import zuStore from '../store';

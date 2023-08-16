@@ -133,6 +133,7 @@ function Header(props: ContentProps) {
               key={item.term_id}
               target="_self"
               to={`/category/${item.slug}`}
+              reloadDocument
             >
               <Button pill>{item.name}</Button>
             </Link>

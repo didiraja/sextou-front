@@ -3,7 +3,7 @@ import {
 } from 'react-router-dom';
 import Requests from '../services/Requests';
 import useTitle from '../hooks/useTitle';
-import Content, { IEventProps } from '../components/atoms/Content';
+import Content from '../components/atoms/Content';
 import { ENDPOINT } from '../services/enums';
 import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import { removeNumberAfterLastSlash } from '../services/utils';
