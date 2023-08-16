@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import { ReactElement } from 'react';
+import { ComponentType, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import Button from './Button';
@@ -21,7 +21,6 @@ export interface IEventProps {
   free?: boolean;
   content: string;
   description: string;
-  // onClick?: (props: IEventProps) => void;
 }
 
 export type ContentProps = IEventProps & {
@@ -30,6 +29,14 @@ export type ContentProps = IEventProps & {
   path?: string;
   onClick?: () => void;
 };
+
+export interface ILoaderMount {
+  loaderData: {
+    posts: IEventProps[];
+    total_posts: number;
+  };
+  children: ComponentType<any>;
+}
 
 function DateBlock({ event_date: eventDate }: ContentProps) {
   return (

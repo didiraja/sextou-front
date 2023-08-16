@@ -1,16 +1,16 @@
 import {
   defer, LoaderFunctionArgs, redirect, useLoaderData, useLocation, useNavigate,
 } from 'react-router-dom';
-import { AxiosResponse } from 'axios';
-import zuStore from '../store';
 import Requests from '../services/Requests';
 import useTitle from '../hooks/useTitle';
 import Content, { IEventProps } from '../components/atoms/Content';
 import { ENDPOINT } from '../services/enums';
 import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import { removeNumberAfterLastSlash } from '../services/utils';
+import zuStore from '../store';
 import Close from '../assets/icon/close.svg';
 import './Single.pcss';
+import { ILoaderResponse } from './Home';
 
 export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) {
   if (!id) {
@@ -25,23 +25,29 @@ export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) 
 }
 
 function SingleEvent() {
-  const singleLoader = useLoaderData() as AxiosResponse<IEventProps>;
+  const singleLoader = useLoaderData() as ILoaderResponse;
   const location = useLocation();
   const navigate = useNavigate();
   const { goBack } = zuStore();
 
   const { data: { slug, title } } = singleLoader.result;
+
   const updatedURL = `${removeNumberAfterLastSlash(location.pathname)}${slug}`;
+  window.history.replaceState(null, '', updatedURL);
 
   useTitle(`${title} - Sextou!`);
 
-  window.history.replaceState(null, '', updatedURL);
+  const backToMainPath = () => navigate(`../${goBack}`);
+
+  function handleClose() {
+    backToMainPath();
+  }
 
   function handleBackdrop(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const isBackdrop: boolean = evt.target === evt.currentTarget;
 
     if (isBackdrop) {
-      return navigate(`../${goBack}`);
+      return backToMainPath();
     }
 
     return null;
@@ -53,7 +59,7 @@ function SingleEvent() {
         <GracefulLoad loaderData={singleLoader.result}>
           {({ loaderData }) => (
             <div className="single--event">
-              <div className="nav-wrapper" onClick={toggleModal}>
+              <div className="nav-wrapper" onClick={handleClose}>
                 <img src={Close} alt="Fechar Modal" />
               </div>
               <Content {...loaderData} mode="Single" />

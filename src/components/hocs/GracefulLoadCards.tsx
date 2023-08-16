@@ -1,5 +1,4 @@
-import { AxiosResponse } from 'axios';
-import { Suspense } from 'react';
+import { ComponentType, Suspense } from 'react';
 import { Await } from 'react-router-dom';
 import CardLoading from '../molecules/Card.Loading';
 import CardGrid from '../templates/Card.Grid';
@@ -16,9 +15,9 @@ function LoadingFlow() {
   );
 }
 
-interface IGracefulLoadProps {
-  loaderData: AxiosResponse;
-  children: any;
+export interface IGracefulLoadProps {
+  loaderData: Record<string, unknown>;
+  children: ComponentType<any>;
 }
 
 function GracefulLoad(props: IGracefulLoadProps) {

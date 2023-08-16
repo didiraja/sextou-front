@@ -2,7 +2,7 @@ import Content, { IEventProps } from '../atoms/Content';
 import './Card.pcss';
 
 export type CardProps = IEventProps & {
-  path: string;
+  path: string | number;
   onClick?: () => void;
 };
 

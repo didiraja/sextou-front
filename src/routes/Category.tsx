@@ -1,18 +1,18 @@
 import {
   defer, LoaderFunctionArgs, useLoaderData,
 } from 'react-router-dom';
-import zuStore from '../store';
-import Requests from '../services/Requests';
 import Date from '../services/Date';
+import { ENDPOINT, PER_PAGE } from '../services/enums';
+import Requests from '../services/Requests';
+import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import CardGrid from '../components/templates/Card.Grid';
-import Card, { CardProps } from '../components/molecules/Card';
+import Card from '../components/molecules/Card';
+import { IEventProps } from '../components/atoms/Content';
 import Title from '../components/atoms/Title';
 import Pagination from '../components/atoms/Pagination';
-import usePagination from '../hooks/usePagination';
-import About from '../components/molecules/About';
-import GracefulLoad from '../components/hocs/GracefulLoadCards';
-import { ENDPOINT, PER_PAGE } from '../services/enums';
 import useTitle from '../hooks/useTitle';
+import zuStore from '../store';
+import { ILoaderResponse } from './Home';
 
 export async function CategoryLoader({ params: { entry, page } }: LoaderFunctionArgs) {
   const result = await Requests.getEvents((ENDPOINT.CATEGORY + entry), {
@@ -27,7 +27,7 @@ export async function CategoryLoader({ params: { entry, page } }: LoaderFunction
 }
 
 function Category() {
-  const categoryLoader = useLoaderData();
+  const categoryLoader = useLoaderData() as ILoaderResponse;
   const { setGoBack } = zuStore();
 
   const { data: { name } } = categoryLoader.result;
@@ -42,7 +42,7 @@ function Category() {
             <Title>{`Melhores shows e festas em ${loaderData.name}`}</Title>
 
             <CardGrid>
-              {loaderData.posts?.map((event: CardProps) => (
+              {loaderData.posts?.map((event: IEventProps) => (
                 <Card
                   key={event.id}
                   {...event}

@@ -6,12 +6,11 @@ type TitleProps = ButtonProps & {
   className?: string
 }
 
-function Title({ className, children, highlight }: TitleProps) {
+function Title({ className, children }: TitleProps) {
   return (
     <h1 className={classNames([{
       title: true,
       'section-title': true,
-      highlight,
     }, className])}
     >
       {children}

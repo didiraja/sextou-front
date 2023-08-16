@@ -1,18 +1,19 @@
-import { AxiosResponse } from 'axios';
 import { defer, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
-import Requests from '../services/Requests';
+import { ENDPOINT, PER_PAGE } from '../services/enums';
 import Date from '../services/Date';
+import Requests from '../services/Requests';
+import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import CardGrid from '../components/templates/Card.Grid';
-import Card, { CardProps, reducerProps } from '../components/molecules/Card';
-import ErrorCard from '../components/molecules/Card.Error';
-import CardLoading from '../components/molecules/Card.Loading';
+import About from '../components/molecules/About';
+import Card from '../components/molecules/Card';
+import { IEventProps, ILoaderMount } from '../components/atoms/Content';
 import Title from '../components/atoms/Title';
 import Pagination from '../components/atoms/Pagination';
-import usePagination from '../hooks/usePagination';
-import About from '../components/molecules/About';
-import GracefulLoad from '../components/hocs/GracefulLoadCards';
-import { ENDPOINT, PER_PAGE } from '../services/enums';
 import zuStore from '../store';
+
+export interface ILoaderResponse {
+  result: Record<any, any>;
+}
 
 export async function HomeLoader({ params: { page } }: LoaderFunctionArgs) {
   const result = Requests.getEvents(ENDPOINT.MAIN, {
@@ -27,7 +28,7 @@ export async function HomeLoader({ params: { page } }: LoaderFunctionArgs) {
 }
 
 function Home() {
-  const homeLoader = useLoaderData() as AxiosResponse;
+  const homeLoader = useLoaderData() as ILoaderResponse;
   const { setGoBack } = zuStore();
 
   return (
@@ -41,7 +42,7 @@ function Home() {
           {({ loaderData }) => (
             <>
               <CardGrid>
-                {loaderData.posts?.map((event: CardProps) => (
+                {loaderData.posts?.map((event: IEventProps) => (
                   <Card
                     key={event.id}
                     {...event}
@@ -61,8 +62,6 @@ function Home() {
       </div>
 
       <About />
-
-      {/* <Outlet /> */}
     </>
   );
 }
