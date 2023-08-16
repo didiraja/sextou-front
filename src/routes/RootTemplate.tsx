@@ -1,29 +1,21 @@
-import { RouterProvider } from 'react-router-dom';
-import zuStore from '../store';
-import router from '.';
-
+import { Outlet } from 'react-router-dom';
 import PageContainer from '../components/templates/PageContainer';
 import MainContainer from '../components/templates/MainContainer';
 import TopBlock from '../components/organisms/TopBlock';
 import Footer from '../components/organisms/Footer';
-import Modal from '../components/molecules/Modal';
 import Header from '../components/organisms/Header';
+import ScrollToTop from '../components/atoms/ScrollToTop';
 
 function Template() {
-  const showModal = zuStore((store: any) => store.showModal);
-
   return (
     <>
+      {/* <ScrollToTop /> */}
       <Header />
       <PageContainer>
         <TopBlock />
-
-        {showModal ? <Modal /> : null}
-
         <MainContainer>
-          <RouterProvider router={router} />
+          <Outlet />
         </MainContainer>
-
         <Footer />
       </PageContainer>
     </>

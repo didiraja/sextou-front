@@ -6,13 +6,6 @@ export type GenericObject = {
   [key: string]: any;
 };
 
-// type SextouAPI = GenericObject & {
-//   data: {
-//     total_posts: number;
-//     posts: CardProps[];
-//   };
-// };
-
 export type WPTermObject = {
   term_id: number;
   name: string;
@@ -24,4 +17,11 @@ export type WPTermObject = {
   parent?: number;
   count?: number;
   filter?: string;
+};
+
+export type reducerProps = {
+  evt?: React.MouseEvent<HTMLDivElement, MouseEvent> & {
+    target: { className: string };
+  };
+  action: any;
 };

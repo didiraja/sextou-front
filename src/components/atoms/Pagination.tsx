@@ -1,88 +1,61 @@
-import "./Pagination.pcss";
-import Button from "./Button";
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { useParams, Link } from 'react-router-dom';
+import classNames from 'classnames';
+import Button from './Button';
+import {
+  PER_PAGE,
+} from '../../services/enums';
+import './Pagination.pcss';
 
 type PaginationProps = {
   totalItems: number;
-  page: number;
   perPage?: number;
-  onSelectPage?: (page: number) => void;
-  onNext: () => void;
-  onPrevious: () => void;
 };
 
 function Pagination(props: PaginationProps) {
   const {
-    totalItems = 13,
-    page = 1,
-    perPage = 12,
-    onNext,
-    onPrevious,
-    onSelectPage,
+    totalItems = PER_PAGE,
+    perPage = PER_PAGE,
   } = props;
 
+  const { page: pageParam } = useParams();
+
+  const page = Number(pageParam) || 1;
+
   const pagination = [...Array(Math.ceil(totalItems / perPage))];
-
-  const previousPageAction = (evt: Event) => {
-    evt.preventDefault();
-
-    onPrevious?.();
-  };
-
-  const nextPageAction = (evt: Event) => {
-    evt.preventDefault();
-
-    onNext?.();
-  };
-
-  const selectPageAction = (
-    evt: Event,
-    pageData: { active: boolean; label: number }
-  ) => {
-    evt.preventDefault();
-
-    if (!pageData.active) {
-      return onSelectPage?.(pageData.label);
-    }
-
-    return undefined;
-  };
 
   return (
     <div className="pagination">
       {page > 1 ? (
-        <Button className="btn-page" onClick={(evt) => previousPageAction(evt)}>
-          {"<"}
-        </Button>
+        <Link to={`page/${page - 1}`} reloadDocument>
+          <Button>{'<'}</Button>
+        </Link>
       ) : null}
-      {pagination.map((_, index) => {
-        const label = index + 1;
-        const active = label === page;
-        // const limit = page + 4;
 
-        // if (index <= limit)
+      {pagination.map((_, index) => {
+        const pos = index + 1;
+        const active = page === pos;
+
         return (
-          <Button
-            className={`btn-page ${active ? "active" : ""}`}
-            key={index}
-            onClick={(evt) => selectPageAction(evt, { active, label })}
-          >
-            {label}
-          </Button>
+          <Link to={`page/${pos}`} key={index} reloadDocument>
+            <Button className={classNames({ active })}>
+              {pos}
+            </Button>
+          </Link>
         );
       })}
+
       {page < pagination.length ? (
-        <Button className="btn-page" onClick={(evt) => nextPageAction(evt)}>
-          {">"}
-        </Button>
+        <Link to={`page/${page + 1}`} reloadDocument>
+          <Button>{'>'}</Button>
+        </Link>
       ) : null}
     </div>
   );
 }
 
 Pagination.defaultProps = {
-  perPage: 12,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onSelectPage: () => {},
+  perPage: PER_PAGE,
 };
 
 export default Pagination;

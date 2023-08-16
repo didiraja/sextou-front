@@ -1,65 +1,36 @@
+
 .button-shadow {
   box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
 }
 
-.link {
-  @apply rounded-md;
-
-  .button {
-    @apply w-full rounded-md block p-3 xl:p-3 font-bold uppercase tracking-widest flex justify-center items-center;
-    background-color: var(--purple);
-
-    &:not(.no-tickets) {
-      @apply button-shadow;
-    }
-
-    &.highlight {
-      @apply bg-amber-500;
-    }
-
-    &.disabled {
-      background-color: var(--dark-pink);
-      @apply cursor-default;
-    }
-  }
+.button {
+  @apply w-full rounded-md p-3 xl:p-3 font-semibold uppercase tracking-widest
+  /* flex justify-center items-center */;
+  background-color: var(--purple);
 
   &.free {
-    .button {
-      background-color: var(--green);
-    }
+    background-color: var(--green);
   }
 
-  &.no-tickets {
-    .button {
-      background-color: transparent;
-      border: 2px solid var(--purple);
+  &:disabled {
+    @apply opacity-70 shadow-none;
+    background-color: var(--dark-pink-2);
+  }
+}
 
-      &.disabled {
-        background-color: transparent;
-      }
-    }
+.pill {
+  @apply rounded-md px-2 py-1 uppercase text-xs;
+  box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
+  background-color: var(--dark-pink);
+  color: var(--pink-2);
 
-    &.free {
-      .button {
-        border: 2px solid var(--green);
-      }
-    }
+  &:hover {
+    background-color: rgba(55, 2, 65, 0.3);
+    color: rgba(255, 0, 204, 0.8);
+    box-shadow: none;
   }
 
-  .pill {
-    @apply rounded-md px-2 py-1 mx-1 uppercase text-xs;
-    box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
-    background-color: var(--dark-pink);
-    color: var(--pink-2);
-
-    &:hover {
-      background-color: rgba(55, 2, 65, 0.3);
-      color: rgba(255, 0, 204, 0.8);
-      box-shadow: none;
-    }
-
-    &.highlight {
-      @apply hover:bg-amber-900/20 text-amber-500;
-    }
+  &.highlight {
+    @apply hover:bg-amber-900/20 text-amber-500;
   }
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Sextou from '../../assets/sextou.png';
 
 import './TopBlock.pcss';
@@ -5,9 +6,9 @@ import './TopBlock.pcss';
 function TopBlock() {
   return (
     <section id="top" className="grid grid-cols-1">
-      <a href="/">
+      <Link to="/" reloadDocument>
         <img className="sextou-logo" src={Sextou} alt="Sextou!" />
-      </a>
+      </Link>
 
       {/* <SearchBlock /> */}
     </section>

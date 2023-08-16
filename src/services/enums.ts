@@ -1,6 +1,5 @@
 export const DOMAIN = {
-  DEV: 'sextou.quartemo.com.br',
-  // DEV: "sextou.local",
+  DEV: 'sextou.local',
   PROD: 'sextou.quartemo.com.br',
 };
 
@@ -9,10 +8,19 @@ export const HOST = import.meta.env.DEV
   : `//${DOMAIN.PROD}`;
 
 export const ENDPOINT = {
-  MAIN: '/wp-api/sextou/v1',
+  PATH: '/wp-api/sextou/v1',
+  MAIN: 'events',
   CATEGORY: 'category/',
-  SINGLE: 'event/',
+  SINGLE: 'event',
 };
+
+export const PATH = {
+  MAIN: 'MAIN',
+  CATEGORY: 'CATEGORY',
+  SINGLE: 'SINGLE',
+};
+
+export const PER_PAGE = 12;
 
 export const TEXT = {
   BUY_TICKETS: 'Comprar Ingresso',
@@ -23,4 +31,9 @@ export const TEXT = {
 
 export const ERROR = {
   LOADING: 'Infelizmente, nada na pista',
+};
+
+export const MODE = {
+  CARD: 'Card',
+  SINGLE: 'Single',
 };

@@ -1,3 +1,4 @@
+import IconInsta from '../icons/insta';
 import './Header.pcss';
 
 function Header() {
@@ -6,19 +7,15 @@ function Header() {
       <div className="header-menu">
         <ul className="header-menu--common">
           <li>
-            <a className="menu-item" href="/">
-              Home
+            <IconInsta />
+            <a
+              className="menu-link"
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.instagram.com/sextou.rio/"
+            >
+              Siga-nos no Instagram! Agenda semanal de eventos.
             </a>
-          </li>
-          <li className="hiddeable">
-            {/* <a className="menu-item" href="#"> */}
-            Blog
-            {/* </a> */}
-          </li>
-          <li className="hiddeable">
-            {/* <a className="menu-item" href="#"> */}
-            Troca de Ingressos
-            {/* </a> */}
           </li>
         </ul>
       </div>
