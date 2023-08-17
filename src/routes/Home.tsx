@@ -1,131 +1,64 @@
-import { useEffect, useState, useRef } from 'react';
-import zuStore from '../store';
-import Requests from '../services/Requests';
+import { defer, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import { ENDPOINT, PER_PAGE } from '../services/enums';
 import Date from '../services/Date';
+import Requests from '../services/Requests';
+import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import CardGrid from '../components/templates/Card.Grid';
-import Card, { CardProps } from '../components/molecules/Card';
-import LoadingCard from '../components/molecules/Card.Loading';
-import ErrorCard from '../components/molecules/Card.Error';
+import About from '../components/molecules/About';
+import Card from '../components/molecules/Card';
+import { IEventProps } from '../components/atoms/Content';
 import Title from '../components/atoms/Title';
 import Pagination from '../components/atoms/Pagination';
-import usePagination from '../hooks/usePagination';
-import About from '../components/molecules/About';
-import { ERROR } from '../services/enums';
+import zuStore from '../store';
 
-function Home() {
-  const openModal = zuStore((store: any) => store.openModal);
+export interface ILoaderResponse {
+  result: Record<any, any>;
+}
 
-  const scollToRef = useRef<HTMLDivElement | null>(null);
-
-  // DATA STATE
-  const [queryString, setQueryString] = useState({
+export async function HomeLoader({ params: { page } }: LoaderFunctionArgs) {
+  const result = Requests.getEvents(ENDPOINT.MAIN, {
     after: Date.todayDate(),
-    per_page: 12,
+    per_page: PER_PAGE,
+    page: page || 1,
   });
 
-  // LOADING AND PAGINATION
-  const {
-    activePage, setActive, goPrevious, goNext,
-  } = usePagination();
+  return defer({
+    result,
+  });
+}
 
-  // const [highlights, setHighlight] = useState([]);
-  const [events, setEvents] = useState([]);
-  const [totalEvents, setTotalEvents] = useState(0);
-  const [errorMsg, setErrorMsg] = useState('');
-
-  useEffect(() => {
-    const getEvents = async () => {
-      try {
-        const result = await Requests.getEvents('events', queryString);
-
-        if (!result) {
-          return;
-        }
-
-        const resultIsEmpty = result.data.posts.length === 0;
-
-        if (resultIsEmpty) {
-          setErrorMsg(() => ERROR.LOADING);
-        }
-
-        setEvents(() => result.data.posts);
-        setTotalEvents(() => result.data.total_posts);
-      } catch (error: any) {
-        // console.log(error);
-        // eslint-disable-next-line no-console
-        console.log(`${error.code} - ${error.message}`);
-
-        if (error.code === 'ERR_NETWORK') setErrorMsg(() => ERROR.LOADING);
-      }
-    };
-
-    getEvents();
-  }, [queryString]);
-  // end
-
-  useEffect(() => {
-    setQueryString((state) => ({
-      ...state,
-      page: activePage,
-    }));
-  }, [activePage]);
-
-  const scrollPageUp = () => {
-    if (!scollToRef.current) return;
-
-    scollToRef.current.scrollIntoView({
-      behavior: 'smooth',
-    });
-  };
+function Home() {
+  const homeLoader = useLoaderData() as ILoaderResponse;
+  const { setGoBack } = zuStore();
 
   return (
     <>
-      <div className="main-events my-24" ref={scollToRef}>
-        <Title>principais shows e festas no rio de janeiro</Title>
+      <div className="home--wrapper">
+        <Title>
+          Principais shows e festas no Rio de Janeiro
+        </Title>
 
-        <CardGrid>
-          {errorMsg ? (
-            <ErrorCard>
-              <p className="text-2xl">{errorMsg}</p>
-            </ErrorCard>
-          ) : null}
+        <GracefulLoad loaderData={homeLoader.result}>
+          {({ loaderData }) => (
+            <>
+              <CardGrid>
+                {loaderData.posts?.map((event: IEventProps) => (
+                  <Card
+                    key={event.id}
+                    {...event}
+                    path={event.id}
+                    onClick={() => setGoBack('/')}
+                  />
+                ))}
+              </CardGrid>
 
-          {events?.length
-            ? events.map((event: CardProps) => (
-              <Card
-                key={event.id}
-                {...event}
-                onClick={(evt) => openModal(evt)}
+              <Pagination
+                totalItems={loaderData.total_posts}
+                perPage={PER_PAGE}
               />
-            ))
-            : !errorMsg && (
-              <>
-                <LoadingCard />
-                <LoadingCard />
-              </>
-            )}
-        </CardGrid>
-
-        <Pagination
-          totalItems={totalEvents}
-          page={activePage}
-          // REFACTOR SCROLL AFTER CLICK
-          onSelectPage={(page: number) => {
-            setActive(page);
-
-            scrollPageUp();
-          }}
-          onPrevious={() => {
-            goPrevious();
-
-            scrollPageUp();
-          }}
-          onNext={() => {
-            goNext();
-
-            scrollPageUp();
-          }}
-        />
+            </>
+          )}
+        </GracefulLoad>
       </div>
 
       <About />

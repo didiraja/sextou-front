@@ -4,22 +4,22 @@
 .header-menu {
   @apply ml-auto;
   &--common {
-    @apply text-white text-xl;
+    /* @apply text-white text-xl; */
     li {
+      @apply flex justify-center items-center;
+
       &.hiddeable {
         @apply opacity-50 hidden lg:inline-block;
       }
 
-      & ~ li {
-        @apply ml-[1rem];
+      svg {
+        @apply mr-2 w-[24px];
       }
-    }
-    .menu-item {
-      @apply underline hover:no-underline underline-offset-1 cursor-pointer flex justify-center items-center w-2/5 mx-auto;
 
-      & svg {
-        @apply mr-2;
+      .menu-link {
+        @apply underline hover:no-underline underline-offset-1 text-sm md:text-lg;
       }
     }
+    
   }
 }

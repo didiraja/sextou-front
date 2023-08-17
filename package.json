@@ -1,13 +1,13 @@
 {
   "name": "sextou-front",
   "private": true,
-  "version": "1.0.1",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "DEV=true vite",
     "dev-prod": "vite",
-    "build": "npm run test && PROD=true vite build",
-    "check-build": "npm run types && npm run test && npm run build",
+    "build": "PROD=true vite build",
+    "check-deploy": "npm run types && npm run test && npm run build",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "preview": "vite preview",
     "types": "tsc --p tsconfig.json",
@@ -17,20 +17,22 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@fontsource-variable/rubik": "^5.0.8",
+    "@nabla/vite-plugin-eslint": "^1.5.0",
+    "@storybook/react": "^6.5.16",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@vitejs/plugin-react": "^3.0.0",
     "axios": "^1.2.2",
+    "classnames": "^2.3.2",
     "date-fns": "^2.29.3",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.7.0",
-    "zustand": "^4.3.2",
+    "react-router-dom": "^6.14.2",
     "vite": "^4.0.0",
     "vitest": "^0.26.2",
-    "@nabla/vite-plugin-eslint": "^1.5.0",
-    "@vitejs/plugin-react": "^3.0.0",
-    "@storybook/react": "^6.5.16"
+    "zustand": "^4.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

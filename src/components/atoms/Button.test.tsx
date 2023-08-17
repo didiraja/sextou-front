@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { render, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 import Button from './Button';

@@ -1,57 +1,44 @@
+/* eslint-disable react/no-danger */
+import { ComponentType, ReactElement } from 'react';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import Button from './Button';
 import Date from '../../services/Date';
-import { TEXT } from '../../services/enums';
+import { TEXT, MODE } from '../../services/enums';
+import { textHasImgTag } from '../../services/utils';
 import { WPTermObject } from '../../types';
 import './Content.pcss';
 
 export interface IEventProps {
+  slug: string;
   highlight?: boolean;
   id: number;
   title: string;
   event_date: string;
   categories: Array<WPTermObject>;
   cover: string;
-  tickets?: string;
+  tickets: string;
   free?: boolean;
   content: string;
   description: string;
-  onClick?: (props: IEventProps) => void;
 }
 
 export type ContentProps = IEventProps & {
-  component?: 'Modal' | 'Card';
+  mode?: 'Card' | 'Single';
+  children?: ReactElement;
+  path?: string;
+  onClick?: () => void;
 };
 
-// export type reducerProps = {
-//   evt?: React.MouseEvent<HTMLDivElement, MouseEvent> & {
-//     target: { className: string };
-//   };
-//   action: any;
-// };
+export interface ILoaderMount {
+  loaderData: {
+    posts: IEventProps[];
+    total_posts: number;
+  };
+  children: ComponentType<any>;
+}
 
-// function goTo(url: string) {
-//   return () => {
-//     window.location.href = url;
-//   };
-// }
-
-// function handleClickReducer({ evt, action }: reducerProps) {
-//   console.log(evt, action);
-
-//   if (evt) {
-//     const classNamesArr = evt?.target.className.split(" ");
-
-//     const isClickFromPill = classNamesArr?.includes("pill");
-
-//     if (isClickFromPill) evt.stopPropagation();
-//   }
-
-//   if (!action) return;
-
-//   action?.();
-// }
-
-function DateBlock({ eventDate }: { eventDate: string }) {
+function DateBlock({ event_date: eventDate }: ContentProps) {
   return (
     <div data-testid="date" className="date">
       {Date.readableDate(eventDate)}
@@ -59,7 +46,7 @@ function DateBlock({ eventDate }: { eventDate: string }) {
   );
 }
 
-function BtnTxtReducer({ free, tickets }: ContentProps) {
+export function BtnTxtReducer({ free, tickets }: Partial<ContentProps>) {
   if (free && tickets) {
     return TEXT.FREE_TICKETS;
   }
@@ -75,83 +62,144 @@ function BtnTxtReducer({ free, tickets }: ContentProps) {
   return TEXT.NO_TICKETS;
 }
 
+function ClickableOn(props: ContentProps) {
+  const { mode, children, path } = props;
+
+  const isCard = mode === MODE.CARD;
+  // const isSingle = mode === MODE.SINGLE;
+
+  if (isCard && path) {
+    return (
+      <Link to={path}>
+        {children}
+      </Link>
+    );
+  }
+
+  return children || null;
+}
+
+function ButtonContent(props: ContentProps) {
+  const { tickets, free } = props;
+
+  const content = (
+    <Button disabled={!tickets} {...props}>
+      {BtnTxtReducer({ free, tickets })}
+    </Button>
+  );
+
+  if (!tickets) {
+    return content;
+  }
+
+  return (
+    <Link target="_blank" to={tickets}>
+      {content}
+    </Link>
+  );
+}
+
+function Header(props: ContentProps) {
+  const {
+    mode, cover, title, categories,
+  } = props;
+
+  return (
+    <>
+      <ClickableOn {...props}>
+        <>
+          {mode === MODE.CARD ? (
+            <img className="cover-surface cover" src={cover} alt={title} />
+          ) : null}
+
+          <DateBlock {...props} />
+
+          {title ? (
+            <div className={classNames({
+              title: true,
+              'max-two-lines': mode === MODE.CARD,
+            })}
+            >
+              {title}
+            </div>
+          ) : null}
+        </>
+      </ClickableOn>
+
+      <div className="subheader">
+        <div data-testid="categories" className="categories-wrapper">
+          {categories?.map((item: WPTermObject) => (
+            <Link
+              key={item.term_id}
+              target="_self"
+              to={`/category/${item.slug}`}
+              reloadDocument
+            >
+              <Button pill>{item.name}</Button>
+            </Link>
+          )) ?? null}
+        </div>
+
+        {mode === MODE.SINGLE ? <ButtonContent {...props} /> : null}
+
+      </div>
+
+    </>
+  );
+}
+
+function Body({
+  mode, cover, title, description,
+}: ContentProps) {
+  return (
+    <>
+      {(mode === MODE.SINGLE && !textHasImgTag(description)) ? (
+        <img className="cover-surface cover" src={cover} alt={title} />
+      ) : null}
+
+      {mode === MODE.SINGLE ? (
+        <p
+          className="description"
+          style={{ whiteSpace: 'pre-wrap' }}
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+      ) : null}
+    </>
+  );
+}
+
+function Footer(props: ContentProps) {
+  const { mode } = props;
+
+  if (mode === MODE.CARD) {
+    return <ButtonContent {...props} />;
+  }
+
+  return null;
+}
+
 function Content(props: ContentProps) {
   const {
-    component,
-    highlight,
-    cover,
-    event_date: eventDate,
-    tickets,
-    title,
-    categories,
-    free,
+    mode,
     onClick,
   } = props;
 
   return (
-    <div className="content">
-      <span
-        data-testid="span"
-        className="clickable"
-        onClick={() => onClick?.(props)}
-      >
-        {component === 'Card' ? (
-          <img className="cover" src={cover} alt={title} />
-        ) : null}
+    <div
+      className={classNames({
+        content: true,
+        'card-mode': mode === MODE.CARD,
+        'single-mode': mode !== MODE.CARD,
+      })}
+      onClick={onClick}
+    >
+      <Header {...props} />
 
-        {component === 'Card' && eventDate ? (
-          <DateBlock eventDate={eventDate} />
-        ) : null}
+      <Body {...props} />
 
-        {title ? <div className="title">{title}</div> : null}
-
-        <div
-          className={`meta ${
-            component === 'Card' ? 'card-theme' : 'modal-theme'
-          }`}
-        >
-          {component === 'Modal' && eventDate ? (
-            <DateBlock eventDate={eventDate} />
-          ) : null}
-
-          <div data-testid="categories" className="categories-wrapper">
-            {categories?.map((item: WPTermObject, index: number) => (
-              <Button
-                pill
-                href={`/category/${item.slug}`}
-                key={index}
-                target="_self"
-                onClick={(evt) => evt.stopPropagation()}
-              >
-                {item.name}
-              </Button>
-            )) ?? null}
-          </div>
-
-          <Button
-            href={tickets}
-            target="_blank"
-            onClick={(evt) => evt.stopPropagation()}
-            className={!tickets ? 'no-tickets' : ''}
-            highlight={highlight}
-            disabled={!tickets}
-            free={free}
-          >
-            {BtnTxtReducer(props)}
-          </Button>
-        </div>
-      </span>
+      <Footer {...props} />
     </div>
   );
 }
-
-Content.defaultProps = {
-  component: '',
-  highlight: false,
-  tickets: '',
-  free: false,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClick: () => {},
-};
 
 export default Content;

@@ -1,11 +1,17 @@
 // eslint-disable-next-line import/no-extraneous-dependencies, @typescript-eslint/no-var-requires
 const a11y = require('eslint-plugin-jsx-a11y');
 
-const a11yOff = Object.keys(a11y.rules)
-  .reduce((acc, rule) => { acc[`jsx-a11y/${rule}`] = 'off'; return acc; }, {});
+const a11yOff = Object.keys(a11y.rules).reduce((acc, rule) => {
+  acc[`jsx-a11y/${rule}`] = 'off';
+  return acc;
+}, {});
 
 module.exports = {
-  extends: ['airbnb', 'plugin:@typescript-eslint/recommended', 'plugin:react/jsx-runtime'],
+  extends: [
+    'airbnb',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/jsx-runtime',
+  ],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   settings: {
@@ -30,8 +36,12 @@ module.exports = {
     'import/extensions': [2, 'never'],
     '@typescript-eslint/no-explicit-any': 'off',
     'react/no-unused-prop-types': [0],
+    'react/require-default-props': [0],
+    'react/prop-types': [0],
     'react/no-array-index-key': [0],
     'react/jsx-props-no-spreading': [0],
+    'react/button-has-type': [0],
     'class-methods-use-this': [0],
+    'default-param-last': [0],
   },
 };

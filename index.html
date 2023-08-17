@@ -7,12 +7,14 @@
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDX7SEVRPM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+  <script type="module">
+    if (import.meta.env.PROD) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
 
-    gtag('config', 'G-SDX7SEVRPM');
+      gtag('config', 'G-SDX7SEVRPM');
+    }
   </script>
 
 
