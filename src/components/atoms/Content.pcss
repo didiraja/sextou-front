@@ -3,10 +3,6 @@
     @apply mb-3;
   }
 
-  .cover {
-    @apply w-full object-cover object-top mb-3;
-  }
-
   .categories-wrapper {
     @apply flex flex-wrap gap-2;
   }
@@ -26,7 +22,7 @@
 
   &.card-mode {
     .cover {
-      @apply h-60;
+      @apply h-60 w-full object-cover object-top;
     }
 
     .title {
@@ -56,6 +52,7 @@
     }
 
     .cover {
+      @apply max-w-full mx-auto mb-8;
     }
 
     .description {
