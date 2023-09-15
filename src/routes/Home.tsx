@@ -16,7 +16,7 @@ export interface ILoaderResponse {
 }
 
 export async function HomeLoader({ params: { page } }: LoaderFunctionArgs) {
-  const result = Requests.getEvents(ENDPOINT.MAIN, {
+  const result = await Requests.getEvents(ENDPOINT.MAIN, {
     after: Date.todayDate(),
     per_page: PER_PAGE,
     page: page || 1,
@@ -46,7 +46,7 @@ function Home() {
                   <Card
                     key={event.id}
                     {...event}
-                    path={event.id}
+                    path={event.slug}
                     onClick={() => setGoBack('/')}
                   />
                 ))}
