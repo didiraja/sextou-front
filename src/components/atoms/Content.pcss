@@ -1,3 +1,4 @@
+/** GENERAL */
 .content {
   .title {
     @apply mb-3;
@@ -20,9 +21,10 @@
     }
   }
 
+  /** CARD MODE */
   &.card-mode {
     .cover {
-      @apply h-60 w-full object-cover object-top;
+      @apply w-full h-60 object-cover object-top mb-2;
     }
 
     .title {
@@ -34,6 +36,7 @@
     }
   }
 
+  /** SINGLE MODE */
   &.single-mode {
     .date, .title {
       @apply text-center;
