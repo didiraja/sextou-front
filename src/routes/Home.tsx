@@ -20,15 +20,17 @@ export interface ILoaderResponse {
 }
 
 export async function HomeLoader({ params: { page } }: LoaderFunctionArgs) {
-  const result = await Requests.getEvents(ENDPOINT.MAIN, {
-    after: Date.todayDate(),
-    per_page: PER_PAGE,
-    page: page || 1,
-  });
+  // const result = await Requests.getEvents(ENDPOINT.MAIN, {
+  //   after: Date.todayDate(),
+  //   per_page: PER_PAGE,
+  //   page: page || 1,
+  // });
 
-  return defer({
-    result,
-  });
+  // return defer({
+  //   result,
+  // });
+
+  return null
 }
 
 function Home() {
@@ -39,7 +41,7 @@ function Home() {
 
   return (
     <>
-      {
+      {/* {
         showCarousel
           ? (
             <div className="carousel--wrapper">
@@ -53,9 +55,19 @@ function Home() {
             </div>
           )
           : null
-      }
+      } */}
       <div className="home--wrapper">
-        <Title>
+
+        <p className='section-title text-center border-l-0'>Estamos em Manutenção, Voltamos em breve.</p>
+
+        <p className="text-center">Enquanto isso, nos encontre no <a
+          className="underline hover:no-underline underline-offset-1 text-fuchsia-500"
+          target="_blank"
+          rel="noreferrer"
+          href="https://www.instagram.com/sextou.rio/"
+        >Instagram</a></p>
+
+        {/* <Title>
           Principais shows e festas no Rio de Janeiro
         </Title>
 
@@ -79,10 +91,10 @@ function Home() {
               />
             </>
           )}
-        </GracefulLoad>
+        </GracefulLoad> */}
       </div>
 
-      <About />
+      {/* <About /> */}
     </>
   );
 }
