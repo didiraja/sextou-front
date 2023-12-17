@@ -9,6 +9,7 @@ import GracefulLoad from '../components/hocs/GracefulLoadCards';
 import CardGrid from '../components/templates/Card.Grid';
 import About from '../components/molecules/About';
 import Card from '../components/molecules/Card';
+import Carousel from '../components/molecules/Carousel';
 import { IEventProps } from '../components/atoms/Content';
 import Title from '../components/atoms/Title';
 import Pagination from '../components/atoms/Pagination';
@@ -39,21 +40,8 @@ function Home() {
 
   return (
     <>
-      {
-        showCarousel
-          ? (
-            <div className="carousel--wrapper">
-              <Link to="/event/999-sextemos">
-                <img
-                  className="card-surface carousel--event"
-                  src="https://sextou.quartemo.com.br/wp-content/uploads/2023/08/8b62ea6f-5b23-40f0-9da3-a18986ab5805-768x406.png"
-                  alt="Sextemos!"
-                />
-              </Link>
-            </div>
-          )
-          : null
-      }
+      {showCarousel ? <Carousel /> : null}
+
       <div className="home--wrapper">
 
         <Title>
