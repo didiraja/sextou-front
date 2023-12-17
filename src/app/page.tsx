@@ -3,10 +3,10 @@
 import Head from 'next/head';
 import * as React from 'react';
 
-import ArrowLink from '@/components/links/ArrowLink';
-import ButtonLink from '@/components/links/ButtonLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
-import UnstyledLink from '@/components/links/UnstyledLink';
+import ArrowLink from '@/componentys/links/ArrowLink';
+import ButtonLink from '@/componentys/links/ButtonLink';
+import UnderlineLink from '@/componentys/links/UnderlineLink';
+import UnstyledLink from '@/componentys/links/UnstyledLink';
 
 /**
  * SVGR Support
@@ -27,7 +27,7 @@ export default function HomePage() {
       <Head>
         <title>Hi</title>
       </Head>
-      <section className='bg-white'>
+      <section className=''>
         <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
           <Logo className='w-16' />
           <h1 className='mt-4'>Next.js + Tailwind CSS + TypeScript Starter</h1>

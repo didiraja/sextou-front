@@ -11,16 +11,16 @@ import {
 } from 'lucide-react';
 import React from 'react';
 
-import Button from '@/components/buttons/Button';
-import IconButton from '@/components/buttons/IconButton';
-import TextButton from '@/components/buttons/TextButton';
-import ArrowLink from '@/components/links/ArrowLink';
-import ButtonLink from '@/components/links/ButtonLink';
-import PrimaryLink from '@/components/links/PrimaryLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
-import UnstyledLink from '@/components/links/UnstyledLink';
-import NextImage from '@/components/NextImage';
-import Skeleton from '@/components/Skeleton';
+import Button from '@/componentys/buttons/Button';
+import IconButton from '@/componentys/buttons/IconButton';
+import TextButton from '@/componentys/buttons/TextButton';
+import ArrowLink from '@/componentys/links/ArrowLink';
+import ButtonLink from '@/componentys/links/ButtonLink';
+import PrimaryLink from '@/componentys/links/PrimaryLink';
+import UnderlineLink from '@/componentys/links/UnderlineLink';
+import UnstyledLink from '@/componentys/links/UnstyledLink';
+import NextImage from '@/componentys/NextImage';
+import Skeleton from '@/componentys/Skeleton';
 
 type Color = (typeof colorList)[number];
 
