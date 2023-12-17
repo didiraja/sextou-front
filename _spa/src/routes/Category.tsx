@@ -1,6 +1,4 @@
-import {
-  defer, LoaderFunctionArgs, useLoaderData,
-} from 'react-router-dom';
+import { defer, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import Date from '../services/Date';
 import { ENDPOINT, PER_PAGE } from '../services/enums';
 import Requests from '../services/Requests';
@@ -14,8 +12,10 @@ import useTitle from '../hooks/useTitle';
 import zuStore from '../store';
 import { ILoaderResponse } from './Home';
 
-export async function CategoryLoader({ params: { entry, page } }: LoaderFunctionArgs) {
-  const result = await Requests.getEvents((ENDPOINT.CATEGORY + entry), {
+export async function CategoryLoader({
+  params: { entry, page },
+}: LoaderFunctionArgs) {
+  const result = await Requests.getEvents(ENDPOINT.CATEGORY + entry, {
     after: Date.todayDate(),
     per_page: PER_PAGE,
     page: page || 1,
@@ -30,12 +30,14 @@ function Category() {
   const categoryLoader = useLoaderData() as ILoaderResponse;
   const { setGoBack } = zuStore();
 
-  const { data: { name } } = categoryLoader.result;
+  const {
+    data: { name },
+  } = categoryLoader.result;
 
   useTitle(`${name} - Sextou!`);
 
   return (
-    <div className="category--wrapper">
+    <div className='category--wrapper'>
       <GracefulLoad loaderData={categoryLoader.result}>
         {({ loaderData }) => (
           <>

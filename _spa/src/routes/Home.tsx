@@ -40,11 +40,8 @@ function Home() {
     <>
       {showCarousel ? <Carousel /> : null}
 
-      <div className="home--wrapper">
-
-        <Title>
-          Principais shows e festas no Rio de Janeiro
-        </Title>
+      <div className='home--wrapper'>
+        <Title>Principais shows e festas no Rio de Janeiro</Title>
 
         <GracefulLoad loaderData={homeLoader.result}>
           {({ loaderData }) => (

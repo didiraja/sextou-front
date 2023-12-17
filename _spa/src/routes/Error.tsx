@@ -5,7 +5,7 @@ function Error() {
     <>
       <Title>Deu Ruim!</Title>
 
-      <p className="text-lg">
+      <p className='text-lg'>
         Deu ruim na plataforma. Marca um 10 e volta mais tarde.
       </p>
     </>

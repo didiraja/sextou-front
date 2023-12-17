@@ -1,5 +1,10 @@
 import {
-  defer, LoaderFunctionArgs, redirect, useLoaderData, useLocation, useNavigate,
+  defer,
+  LoaderFunctionArgs,
+  redirect,
+  useLoaderData,
+  useLocation,
+  useNavigate,
 } from 'react-router-dom';
 import Requests from '../services/Requests';
 import useTitle from '../hooks/useTitle';
@@ -12,7 +17,9 @@ import Close from '../assets/icon/close.svg';
 import './Single.pcss';
 import { ILoaderResponse } from './Home';
 
-export async function SingleEventLoader({ params: { id } }: LoaderFunctionArgs) {
+export async function SingleEventLoader({
+  params: { id },
+}: LoaderFunctionArgs) {
   if (!id) {
     return redirect('/');
   }
@@ -30,7 +37,9 @@ function SingleEvent() {
   const navigate = useNavigate();
   const { goBack } = zuStore();
 
-  const { data: { slug, title } } = singleLoader.result;
+  const {
+    data: { slug, title },
+  } = singleLoader.result;
 
   const updatedURL = `${removeNumberAfterLastSlash(location.pathname)}${slug}`;
   window.history.replaceState(null, '', updatedURL);
@@ -54,15 +63,15 @@ function SingleEvent() {
   }
 
   return (
-    <div className="backdrop" onClick={handleBackdrop}>
-      <div className="single--wrapper">
+    <div className='backdrop' onClick={handleBackdrop}>
+      <div className='single--wrapper'>
         <GracefulLoad loaderData={singleLoader.result}>
           {({ loaderData }) => (
-            <div className="single--event">
-              <div className="nav-wrapper" onClick={handleClose}>
-                <img src={Close} alt="Fechar Modal" />
+            <div className='single--event'>
+              <div className='nav-wrapper' onClick={handleClose}>
+                <img src={Close} alt='Fechar Modal' />
               </div>
-              <Content {...loaderData} mode="Single" />
+              <Content {...loaderData} mode='Single' />
             </div>
           )}
         </GracefulLoad>

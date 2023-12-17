@@ -28,7 +28,7 @@
   --material-shadow-strong-1: rgba(0, 0, 0, 0.5) 0px 1px 3px;
   --material-shadow-strong-2: rgba(0, 0, 0, 0.7) 0px 1px 2px;
 
-  font-family: "Rubik Variable", Arial, sans-serif;
+  font-family: 'Rubik Variable', Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -70,7 +70,7 @@ body {
 }
 
 .card-surface {
-  @apply bg-white/20 rounded-lg p-5 relative;
+  @apply relative rounded-lg bg-white/20 p-5;
   box-shadow: var(--material-shadow-strong-1), var(--material-shadow-strong-2);
 }
 

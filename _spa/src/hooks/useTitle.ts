@@ -2,7 +2,9 @@ import React from 'react';
 
 const useTitle = (title: string) => {
   const documentDefined = typeof document !== 'undefined';
-  const originalTitle = React.useRef(documentDefined ? document.title : 'Sextou! beta');
+  const originalTitle = React.useRef(
+    documentDefined ? document.title : 'Sextou! beta'
+  );
 
   React.useEffect(() => {
     if (!documentDefined) return;

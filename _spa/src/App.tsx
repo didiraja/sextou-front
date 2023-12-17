@@ -16,9 +16,9 @@ const router = createBrowserRouter([
       {
         path: '/',
         Component: isMaintenance ? Maintenance : Home,
-        ...({
+        ...{
           loader: HomeLoader,
-        }),
+        },
         children: [
           {
             path: 'page/:page',
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <RouterProvider router={router} />
     </div>
   );

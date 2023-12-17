@@ -8,23 +8,21 @@ function Error() {
     <>
       <Title>404 - Nada por Aqui</Title>
 
-      <ErrorCard className="mt-3">
-        <p className="text-2xl">{ERROR.LOADING}</p>
+      <ErrorCard className='mt-3'>
+        <p className='text-2xl'>{ERROR.LOADING}</p>
         <br />
-        <p className="font-normal">
-          Que tal,
-          {' '}
+        <p className='font-normal'>
+          Que tal,{' '}
           <Link
-            className="font-bold underline hover:no-underline"
-            to="/"
-            target="_self"
-            rel="noopener noreferrer"
+            className='font-bold underline hover:no-underline'
+            to='/'
+            target='_self'
+            rel='noopener noreferrer'
           >
             voltar para a Home?
           </Link>
         </p>
       </ErrorCard>
-
     </>
   );
 }
