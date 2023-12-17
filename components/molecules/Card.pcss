@@ -1,0 +1,22 @@
+.card {
+  @apply bg-white/20 rounded-lg p-5 relative;
+  box-shadow: var(--material-shadow-strong-1), var(--material-shadow-strong-2);
+  display: grid;
+
+  .content {
+
+    .date {
+      @apply text-sm text-white mb-1;
+    }
+
+    .meta {
+      @apply my-3;
+
+      /* &.card-mode {
+        > a.link {
+          @apply block mt-3;
+        }
+      } */
+    }
+  }
+}
