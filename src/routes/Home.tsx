@@ -1,6 +1,4 @@
-import {
-  defer, LoaderFunctionArgs, useLoaderData, Link,
-} from 'react-router-dom';
+import { defer, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import { isBefore, parseISO, startOfToday } from 'date-fns';
 import { ENDPOINT, PER_PAGE } from '../services/enums';
 import Date from '../services/Date';
