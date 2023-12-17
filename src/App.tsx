@@ -1,27 +1,40 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootTemplate from './routes/RootTemplate';
-import Home, { HomeLoader } from './routes/Home';
+// import Home, { HomeLoader } from './routes/Home';
 import Category, { CategoryLoader } from './routes/Category';
 import SingleEvent, { SingleEventLoader } from './routes/Single';
 import NotFound from './routes/NotFound';
+import Maintenance from './routes/Maintenance';
 
 const router = createBrowserRouter([
   {
     path: '/',
     Component: RootTemplate,
     children: [
+      // *** MAINTENANCE MODE ***
       {
         path: '/',
-        loader: HomeLoader,
-        Component: Home,
+        Component: Maintenance,
         children: [
           {
             path: 'page/:page',
-            loader: HomeLoader,
-            Component: Home,
+            Component: Maintenance,
           },
         ],
       },
+      // *** RELEASE MODE ***
+      // {
+      //   path: '/',
+      //   loader: HomeLoader,
+      //   Component: Home,
+      //   children: [
+      //     {
+      //       path: 'page/:page',
+      //       loader: HomeLoader,
+      //       Component: Home,
+      //     },
+      //   ],
+      // },
       {
         path: 'event/:id',
         loader: SingleEventLoader,
