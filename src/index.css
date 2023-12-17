@@ -50,7 +50,7 @@ body {
   height: 100%;
 }
 
-body {
+html {
   background: repeating-linear-gradient(
     50deg,
     var(--black) 0%,
@@ -58,6 +58,10 @@ body {
     var(--dark-purple) 100%
   );
   background-attachment: fixed;
+}
+
+body {
+  background-color: transparent;
 }
 
 .cover-surface {
