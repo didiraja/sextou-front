@@ -51,11 +51,14 @@ export default {
         flicker: 'flicker 3s linear infinite',
         shimmer: 'shimmer 1.3s linear infinite',
       },
+      skew: {
+        10: '10deg',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms'), daisyui],
   daisyui: {
     themes: ['synthwave'],
-    // prefix: "",
+    prefix: 'daisy-',
   },
 } satisfies Config;

@@ -1,6 +1,8 @@
 'use client';
 import * as React from 'react';
 
+import Title from '@/components/atoms/Title';
+
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -10,17 +12,39 @@ import * as React from 'react';
  */
 
 export default function HomePage() {
+  // const showCarousel = false;
+
   return (
-    <main>
-      <section className=''>
-        <div className='layout py-12 text-center'>
-          <h1 className='mt-4'>Next.js + Tailwind CSS + TypeScript Starter</h1>
-          <p className='mt-2 text-sm'>
-            A starter for Next.js, Tailwind CSS, and TypeScript with Absolute
-            Import, Seo, Link component, pre-configured with Husky{' '}
-          </p>
-        </div>
-      </section>
-    </main>
+    <>
+      {/* {showCarousel ? <Carousel /> : null} */}
+
+      <div className='home--wrapper'>
+        <Title>Principais shows e festas no Rio de Janeiro</Title>
+
+        {/* <GracefulLoad loaderData={homeLoader.result}>
+          {({ loaderData }) => (
+            <>
+              <CardGrid>
+                {loaderData.posts?.map((event: IEventProps) => (
+                  <Card
+                    key={event.id}
+                    {...event}
+                    path={event.slug}
+                    onClick={() => setGoBack('/')}
+                  />
+                ))}
+              </CardGrid>
+
+              <Pagination
+                totalItems={loaderData.total_posts}
+                perPage={PER_PAGE}
+              />
+            </>
+          )}
+        </GracefulLoad> */}
+      </div>
+
+      {/* <About /> */}
+    </>
   );
 }
