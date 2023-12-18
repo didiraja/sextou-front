@@ -3,6 +3,12 @@ import * as React from 'react';
 
 import '@/styles/globals.css';
 
+import Footer from '@/components/organisms/Footer';
+import Header from '@/components/organisms/Header';
+import TopBlock from '@/components/organisms/TopBlock';
+import MainContainer from '@/components/templates/MainContainer';
+import PageContainer from '@/components/templates/PageContainer';
+
 import { siteConfig } from '@/constant/config';
 
 export const metadata: Metadata = {
@@ -52,7 +58,14 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <Header />
+        <PageContainer>
+          <TopBlock />
+          <MainContainer>{children}</MainContainer>
+          <Footer />
+        </PageContainer>
+      </body>
     </html>
   );
 }

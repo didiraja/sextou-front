@@ -1,0 +1,15 @@
+footer {
+  @apply mx-auto w-full rounded-t-lg bg-black/70 p-4 text-center text-xs text-white md:w-2/3;
+}
+
+footer .layout a {
+  border-bottom: 1px solid white;
+}
+
+footer .layout a:hover {
+  border-bottom: none;
+}
+
+footer .spacing {
+  @apply mb-3;
+}
