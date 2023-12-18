@@ -1,0 +1,15 @@
+.card {
+  @apply relative rounded-lg bg-white/20 p-5;
+  box-shadow: var(--material-shadow-strong-1), var(--material-shadow-strong-2);
+  display: grid;
+
+  .content {
+    .date {
+      @apply mb-1 text-sm text-white;
+    }
+
+    .meta {
+      @apply my-3;
+    }
+  }
+}

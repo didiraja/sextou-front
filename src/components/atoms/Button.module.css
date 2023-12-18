@@ -6,15 +6,15 @@
   @apply /* */ flex w-full items-center justify-center rounded-md
   p-3 font-semibold uppercase tracking-widest xl:p-3;
   background-color: var(--purple);
+}
 
-  &.free {
-    background-color: var(--green);
-  }
+.button.free {
+  background-color: var(--green);
+}
 
-  &:disabled {
-    @apply opacity-70 shadow-none;
-    background-color: var(--dark-pink-2);
-  }
+.button:disabled {
+  @apply opacity-70 shadow-none;
+  background-color: var(--dark-pink-2);
 }
 
 .pill {
@@ -22,14 +22,14 @@
   box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
   background-color: var(--dark-pink);
   color: var(--pink-2);
+}
 
-  &:hover {
-    background-color: rgba(55, 2, 65, 0.3);
-    color: rgba(255, 0, 204, 0.8);
-    box-shadow: none;
-  }
+.pill:hover {
+  background-color: rgba(55, 2, 65, 0.3);
+  color: rgba(255, 0, 204, 0.8);
+  box-shadow: none;
+}
 
-  &.highlight {
-    @apply text-amber-500 hover:bg-amber-900/20;
-  }
+.pill.highlight {
+  @apply text-amber-500 hover:bg-amber-900/20;
 }

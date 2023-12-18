@@ -18,8 +18,35 @@ export default function HomePage() {
     <>
       {/* {showCarousel ? <Carousel /> : null} */}
 
-      <div className='home--wrapper'>
+      <div className='home-wrapper'>
         <Title>Principais shows e festas no Rio de Janeiro</Title>
+
+        {/* <Card
+          slug="string"
+          highlight={false}
+          id={52}
+          title="Lorem Ipsum"
+          event_date="18/12/2023"
+          categories={[{
+            term_id: 1234,
+            name: "Rock",
+            slug: "sdhusadhi",
+            term_group: 5,
+            term_taxonomy_id: 8,
+            taxonomy: "djsaodjasio",
+            description: "dsjfiosdafosd",
+            parent: 95,
+            count: 132,
+            filter: "poiqopdsdo"
+          }]}
+          cover="https://picsum.photos/800/600"
+          tickets="sahdiusahduiad"
+          free={false}
+          content="hdfisuhuoisdhusdiofs"
+          description="dsffoidsjfisjdpfiojsdiofjsdiofjoifjipoweipoap´sdp´fojksdpfiojdsifogsjgpsdo"
+          path='/abc/def'
+        // onClick={() => setGoBack('/')}
+        /> */}
 
         {/* <GracefulLoad loaderData={homeLoader.result}>
           {({ loaderData }) => (
