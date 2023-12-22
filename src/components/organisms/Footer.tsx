@@ -1,15 +1,15 @@
-import './Footer.css';
+import styles from './Footer.module.scss';
 
 function Footer() {
   return (
-    <footer>
-      <p className='legal'>
+    <footer className={styles['footer']}>
+      <p className={styles['legal']}>
         Sextou! não tem qualquer responsabilidade ou vínculo com os eventos e
         plataformas de vendas linkadas aqui, sendo estas, publicadas apenas para
         fins de divulgação.
       </p>
-      <div className='spacing' />
-      <p className='layout'>
+      <div className={styles['spacing']} />
+      <p className={styles['layout']}>
         Design e Código por{' '}
         <a
           href='https://www.linkedin.com/in/didiraja/'

@@ -1,16 +1,16 @@
-import './Header.css';
+import styles from './Header.module.scss';
 
 import IconInsta from '@/components/icons/Insta';
 
 function Header() {
   return (
-    <header className='header-wrapper'>
-      <div className='header-menu'>
-        <ul className='header-menu--common'>
+    <header className={styles['header-wrapper']}>
+      <div className={styles['header-menu']}>
+        <ul className={styles['header-menu--common']}>
           <li>
             <IconInsta />
             <a
-              className='menu-link'
+              className={styles['menu-link']}
               target='_blank'
               rel='noreferrer'
               href='https://www.instagram.com/sextou.rio/'

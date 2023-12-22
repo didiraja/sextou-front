@@ -1,14 +1,15 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import './TopBlock.css';
+import styles from './TopBlock.module.scss';
 
 function TopBlock() {
   return (
-    <section id='top' className='grid grid-cols-1'>
+    <section id='top' className={clsx('grid', 'grid-cols-1', styles['top'])}>
       <Link href='/'>
         <Image
-          className='sextou-logo'
+          className={styles['sextou-logo']}
           src='/sextou.png'
           alt='Sextou! - Logo'
           width={669}
