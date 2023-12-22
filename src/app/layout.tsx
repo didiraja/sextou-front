@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import * as React from 'react';
-
-import '@/styles/globals.css';
+import '@fontsource-variable/rubik';
 
 import Footer from '@/components/organisms/Footer';
 import Header from '@/components/organisms/Header';
@@ -10,6 +9,8 @@ import MainContainer from '@/components/templates/MainContainer';
 import PageContainer from '@/components/templates/PageContainer';
 
 import { siteConfig } from '@/constant/config';
+
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -58,6 +59,24 @@ export default function RootLayout({
 }) {
   return (
     <html>
+      <head>
+        {/* User Next/Script */}
+        {/* <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-SDX7SEVRPM"
+    ></script>
+    <script type="module">
+      if (import.meta.env.PROD) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-SDX7SEVRPM');
+      }
+    </script> */}
+      </head>
       <body>
         <Header />
         <PageContainer>

@@ -1,7 +1,7 @@
 /** GENERAL */
 .content {
   .title {
-    @apply mb-3;
+    @apply mb-3 font-bold;
   }
 
   .categories-wrapper {
@@ -28,7 +28,7 @@
     }
 
     .title {
-      @apply text-3xl font-semibold;
+      @apply text-3xl;
     }
 
     .categories-wrapper {
@@ -44,7 +44,7 @@
     }
 
     .title {
-      @apply text-5xl font-bold tracking-tight;
+      @apply text-5xl tracking-tight;
     }
 
     .subheader {
