@@ -44,7 +44,7 @@ export interface ILoaderMount {
 
 function DateBlock({ event_date: eventDate }: ContentProps) {
   return (
-    <div data-testid='date' className={styles.date}>
+    <div data-testid='date' className={styles['date']}>
       {Date.readableDate(eventDate)}
     </div>
   );
@@ -119,7 +119,7 @@ function Header(props: ContentProps) {
               />
             */
             <img
-              className={clsx(styles.cover_surface, styles.cover)}
+              className={clsx(styles['cover-surface'], styles['cover'])}
               src={cover}
               alt={title}
             />
@@ -129,7 +129,7 @@ function Header(props: ContentProps) {
 
           {title ? (
             <div
-              className={clsx(styles.title, {
+              className={clsx(styles['title'], {
                 'max-two-lines': mode === MODE.CARD,
               })}
             >
@@ -139,8 +139,8 @@ function Header(props: ContentProps) {
         </>
       </ClickableOn>
 
-      <div className='subheader'>
-        <div data-testid='categories' className={styles.categories_wrapper}>
+      <div className={styles['subheader']}>
+        <div data-testid='categories' className={styles['categories-wrapper']}>
           {categories?.map((item: WPTermObject) => (
             <Link
               key={item.term_id}
@@ -179,7 +179,7 @@ function Body({
           alt={title}
         /> */
         <img
-          className={clsx(styles.cover_surface, styles.cover)}
+          className={clsx(styles['cover-surface'], styles['cover'])}
           src={cover}
           alt={title}
         />
@@ -187,7 +187,7 @@ function Body({
 
       {mode === MODE.SINGLE ? (
         <p
-          className='description'
+          className={styles['description']}
           style={{ whiteSpace: 'pre-wrap' }}
           dangerouslySetInnerHTML={{ __html: description }}
         />
@@ -211,11 +211,10 @@ function Content(props: ContentProps) {
 
   return (
     <div
-      className={clsx({
-        content: true,
-        'card-mode': mode === MODE.CARD,
-        'single-mode': mode !== MODE.CARD,
-      })}
+      className={clsx(
+        styles['content'],
+        mode === MODE.CARD ? styles['card-mode'] : styles['single-mode']
+      )}
       onClick={onClick}
     >
       <Header {...props} />

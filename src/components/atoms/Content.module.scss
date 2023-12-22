@@ -4,7 +4,7 @@
     @apply mb-3;
   }
 
-  .categories_wrapper {
+  .categories-wrapper {
     @apply flex gap-2;
   }
 
@@ -22,22 +22,22 @@
   }
 
   /** CARD MODE */
-  &.card_mode {
+  &.card-mode {
     .cover {
-      @apply mb-2 h-60 w-full object-cover object-top;
+      @apply mb-2 h-60 w-full rounded-lg object-cover object-top;
     }
 
     .title {
       @apply text-3xl font-semibold;
     }
 
-    .categories_wrapper {
+    .categories-wrapper {
       @apply mb-3;
     }
   }
 
   /** SINGLE MODE */
-  &.single_mode {
+  &.single-mode {
     .date,
     .title {
       @apply text-center;
@@ -50,7 +50,7 @@
     .subheader {
       @apply mb-5;
 
-      .categories_wrapper {
+      .categories-wrapper {
         @apply mb-3 flex justify-center gap-2;
       }
     }
@@ -68,12 +68,12 @@
 
 @media (min-width: 1024px) {
   .content {
-    &.single_mode {
+    &.single-mode {
       .subheader {
         @apply flex items-center justify-center gap-5;
       }
 
-      .categories_wrapper {
+      .categories-wrapper {
         @apply mb-0;
       }
     }

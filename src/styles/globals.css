@@ -154,3 +154,26 @@
     background-size: 0 2px, 100% 2px;
   }
 }
+
+.cover-surface {
+  @apply rounded-lg;
+  box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
+}
+
+.card-surface {
+  @apply relative rounded-lg bg-white/20 p-5;
+  box-shadow: var(--material-shadow-strong-1), var(--material-shadow-strong-2);
+}
+
+.title {
+  color: white;
+}
+
+.max-two-lines {
+  /* hack to limit to 2 lines */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
