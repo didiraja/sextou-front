@@ -9,5 +9,10 @@
         }
       ]
     }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "feature/ssr": false
+    }
+  }
 }
