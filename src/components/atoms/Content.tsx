@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-danger */
 import clsx from 'clsx';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 import { ComponentType, ReactElement } from 'react';
 
@@ -100,17 +100,26 @@ function ButtonContent(props: ContentProps) {
 }
 
 function Header(props: ContentProps) {
-  const { mode, cover, title, categories, coverWidth, coverHeight } = props;
+  const { mode, cover, title, categories /* , coverWidth, coverHeight */ } =
+    props;
 
   return (
     <>
       <ClickableOn {...props}>
         <>
           {mode === MODE.CARD ? (
-            <Image
+            /**
+             * Next Image component
+              <Image
+                className={clsx(styles.cover_surface, styles.cover)}
+                width={coverWidth}
+                height={coverHeight}
+                src={cover}
+                alt={title}
+              />
+            */
+            <img
               className={clsx(styles.cover_surface, styles.cover)}
-              width={coverWidth}
-              height={coverHeight}
               src={cover}
               alt={title}
             />
@@ -160,10 +169,17 @@ function Body({
   return (
     <>
       {mode === MODE.SINGLE && !textHasImgTag(description) ? (
+        /**
+         * Next Image component
         <Image
           className={clsx(styles.cover_surface, styles.cover)}
           width={coverWidth}
           height={coverHeight}
+          src={cover}
+          alt={title}
+        /> */
+        <img
+          className={clsx(styles.cover_surface, styles.cover)}
           src={cover}
           alt={title}
         />

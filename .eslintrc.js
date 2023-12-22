@@ -47,8 +47,6 @@ module.exports = {
         groups: [
           // ext library & side effect imports
           ['^@?\\w', '^\\u0000'],
-          // {s}css files
-          ['^.+\\.s?css$'],
           // Lib and hooks
           ['^@/lib', '^@/hooks'],
           // static data
@@ -59,6 +57,8 @@ module.exports = {
           ['^@/store'],
           // Other imports
           ['^@/'],
+          // {s}css files
+          ['^.+\\.s?css$'],
           // relative paths up until 3 level
           [
             '^\\./?$',
@@ -77,6 +77,7 @@ module.exports = {
       },
     ],
     //#endregion  //*======== Import Sort ===========
+    '@next/next/no-img-element': [0],
   },
   globals: {
     React: true,
