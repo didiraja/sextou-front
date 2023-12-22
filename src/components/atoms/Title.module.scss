@@ -10,8 +10,8 @@
     xl:border-l-[15px]
     xl:pl-5 
     xl:font-semibold;
-}
 
-.section_title.highlight {
-  @apply border-amber-400;
+  &.highlight {
+    @apply border-amber-400;
+  }
 }

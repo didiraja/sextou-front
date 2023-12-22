@@ -6,15 +6,15 @@
   @apply /* */ flex w-full items-center justify-center rounded-md
   p-3 font-semibold uppercase tracking-widest xl:p-3;
   background-color: var(--purple);
-}
 
-.button.free {
-  background-color: var(--green);
-}
+  &.free {
+    background-color: var(--green);
+  }
 
-.button:disabled {
-  @apply opacity-70 shadow-none;
-  background-color: var(--dark-pink-2);
+  &:disabled {
+    @apply opacity-70 shadow-none;
+    background-color: var(--dark-pink-2);
+  }
 }
 
 .pill {
@@ -22,14 +22,14 @@
   box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
   background-color: var(--dark-pink);
   color: var(--pink-2);
-}
 
-.pill:hover {
-  background-color: rgba(55, 2, 65, 0.3);
-  color: rgba(255, 0, 204, 0.8);
-  box-shadow: none;
-}
+  &:hover {
+    background-color: rgba(55, 2, 65, 0.3);
+    color: rgba(255, 0, 204, 0.8);
+    box-shadow: none;
+  }
 
-.pill.highlight {
-  @apply text-amber-500 hover:bg-amber-900/20;
+  &.highlight {
+    @apply text-amber-500 hover:bg-amber-900/20;
+  }
 }

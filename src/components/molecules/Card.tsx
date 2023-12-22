@@ -1,4 +1,4 @@
-import styles from './Card.module.css';
+import styles from './Card.module.scss';
 
 import Content, { IEventProps } from '../atoms/Content';
 
@@ -18,7 +18,7 @@ function Card(props: CardProps) {
   const { path, onClick } = props;
 
   return (
-    <div className={styles.card} onClick={onClick}>
+    <div className={styles['card']} onClick={onClick}>
       <Content mode='Card' {...props} path={`/event/${path}`} />
     </div>
   );

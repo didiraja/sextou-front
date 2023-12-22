@@ -1,0 +1,15 @@
+.about-wrapper {
+  @apply text-justify text-base;
+
+  p {
+    @apply mb-8;
+  }
+
+  a {
+    @apply font-semibold underline hover:no-underline;
+  }
+
+  .capitular {
+    @apply text-2xl;
+  }
+}

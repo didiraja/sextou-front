@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
-import styles from './Button.module.css';
+import styles from './Button.module.scss';
 
 export type ButtonProps = {
   children: ReactNode;

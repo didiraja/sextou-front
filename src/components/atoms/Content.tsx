@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ComponentType, ReactElement } from 'react';
 
-import styles from './Content.module.css';
+import styles from './Content.module.scss';
 
 import Button from './Button';
 import Date from '../../services/Date';
@@ -23,7 +23,7 @@ export interface IEventProps {
   cover: string;
   tickets: string;
   free?: boolean;
-  content: string;
+  content?: string;
   description: string;
 }
 
@@ -100,7 +100,7 @@ function ButtonContent(props: ContentProps) {
 }
 
 function Header(props: ContentProps) {
-  const { mode, cover, title, categories } = props;
+  const { mode, cover, title, categories, coverWidth, coverHeight } = props;
 
   return (
     <>
@@ -109,6 +109,8 @@ function Header(props: ContentProps) {
           {mode === MODE.CARD ? (
             <Image
               className={clsx(styles.cover_surface, styles.cover)}
+              width={coverWidth}
+              height={coverHeight}
               src={cover}
               alt={title}
             />
@@ -147,12 +149,21 @@ function Header(props: ContentProps) {
   );
 }
 
-function Body({ mode, cover, title, description }: ContentProps) {
+function Body({
+  mode,
+  cover,
+  title,
+  description,
+  coverWidth,
+  coverHeight,
+}: ContentProps) {
   return (
     <>
       {mode === MODE.SINGLE && !textHasImgTag(description) ? (
         <Image
           className={clsx(styles.cover_surface, styles.cover)}
+          width={coverWidth}
+          height={coverHeight}
           src={cover}
           alt={title}
         />
