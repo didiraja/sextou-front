@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: `%s | ${siteConfig.title}`,
+    template: `%s | Sextou!`,
   },
   description: siteConfig.description,
   robots: { index: true, follow: true },
@@ -77,7 +77,7 @@ export default function RootLayout({
       }
     </script> */}
       </head>
-      <body>
+      <body suppressHydrationWarning={true}>
         <Header />
         <PageContainer>
           <TopBlock />
