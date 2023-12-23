@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IEventProps } from '@/components/atoms/Content';
+import { IEventProps } from '@/components/molecules/Content';
 import Title from '@/components/atoms/Title';
 import About from '@/components/molecules/About';
 import Card from '@/components/molecules/Card';

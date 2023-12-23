@@ -7,7 +7,7 @@ import { ComponentType, ReactElement } from 'react';
 
 import styles from './Content.module.scss';
 
-import Button from './Button';
+import Button from '../atoms/Button';
 import Date from '../../services/Date';
 import { MODE, TEXT } from '../../services/enums';
 import { textHasImgTag } from '../../services/utils';

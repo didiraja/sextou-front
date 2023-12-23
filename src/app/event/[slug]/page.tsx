@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Content from '@/components/atoms/Content';
+import Content from '@/components/molecules/Content';
 
 import CloseButton from '@/app/event/[slug]/components/CloseButton';
 

@@ -1,6 +1,6 @@
 import styles from './Card.module.scss';
 
-import Content, { IEventProps } from '../atoms/Content';
+import Content, { IEventProps } from './Content';
 
 export type CardProps = IEventProps & {
   path: string | number;
