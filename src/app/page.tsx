@@ -1,10 +1,12 @@
+import Link from 'next/link';
 import * as React from 'react';
 
-import { IEventProps } from '@/components/molecules/Content';
 import Title from '@/components/atoms/Title';
 import About from '@/components/molecules/About';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
+
+import { IEventProps } from '@/Content/types';
 
 export default function HomePage() {
   // const showCarousel = false;
@@ -14,12 +16,14 @@ export default function HomePage() {
       {/* {showCarousel ? <Carousel /> : null} */}
 
       <div className='home-wrapper'>
-        <Title>Principais shows e festas no Rio de Janeiro</Title>
+        <Title>Principais eventos no Rio de Janeiro</Title>
 
         <>
           <CardGrid>
             {mockArr.map((event: IEventProps) => (
-              <Card key={event.id} {...event} path={event.slug} />
+              <Link key={event.id} href={`/event/${event.slug}`}>
+                <Card {...event} />
+              </Link>
             ))}
           </CardGrid>
 

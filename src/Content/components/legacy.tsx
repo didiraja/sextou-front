@@ -3,36 +3,15 @@
 import clsx from 'clsx';
 // import Image from 'next/image';
 import Link from 'next/link';
-import { ComponentType, ReactElement } from 'react';
+import { ComponentType } from 'react';
 
 import styles from './Content.module.scss';
 
-import Button from '../atoms/Button';
+import Button from '../../components/atoms/Button';
 import Date from '../../services/Date';
 import { MODE, TEXT } from '../../services/enums';
 import { textHasImgTag } from '../../services/utils';
 import { WPTermObject } from '../../types';
-
-export interface IEventProps {
-  slug: string;
-  highlight?: boolean;
-  id: number;
-  title: string;
-  event_date: string;
-  categories: Array<WPTermObject>;
-  cover: string;
-  tickets: string;
-  free?: boolean;
-  content?: string;
-  description: string;
-}
-
-export type ContentProps = IEventProps & {
-  mode?: 'Card' | 'Single';
-  children?: ReactElement;
-  path?: string;
-  onClick?: () => void;
-};
 
 export interface ILoaderMount {
   loaderData: {
