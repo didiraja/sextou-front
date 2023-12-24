@@ -1,14 +1,13 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 
+import Button from '@/components/atoms/Button';
 import ButtonContent from '@/Content/components/C.Button';
 import DateBlock from '@/Content/components/C.Date';
 import Title from '@/Content/components/C.Title';
 import { ContentProps, WPTermObject } from '@/Content/types';
 
 import styles from './Content.module.scss';
-
-import Button from '../components/atoms/Button';
 
 // TODO: use Next/Image
 function Content(props: ContentProps) {

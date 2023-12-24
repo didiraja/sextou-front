@@ -47,20 +47,23 @@ module.exports = {
         groups: [
           // ext library & side effect imports
           ['^@?\\w', '^\\u0000'],
-          // Lib and hooks
-          ['^@/lib', '^@/hooks'],
-          // static data
-          ['^@/data'],
-          // components
-          ['^@/components', '^@/container'],
-          // zustand store
-          ['^@/store'],
-          // Other imports
-          ['^@/'],
-          // {s}css files
-          ['^.+\\.s?css$'],
-          // relative paths up until 3 level
           [
+            // Lib and hooks
+            '^@/lib',
+            '^@/hooks',
+            // static data
+            '^@/data',
+            // components
+            '^@/container',
+            // zustand store
+            '^@/store',
+          ],
+          [
+            // components
+            '^@/components',
+            // Other imports
+            '^@/',
+            // relative paths up until 3 level
             '^\\./?$',
             '^\\.(?!/?$)',
             '^\\.\\./?$',
@@ -70,9 +73,11 @@ module.exports = {
             '^\\.\\./\\.\\./\\.\\./?$',
             '^\\.\\./\\.\\./\\.\\.(?!/?$)',
           ],
-          ['^@/types'],
           // other that didnt fit in
           ['^'],
+          ['^@/types'],
+          // {s}css files
+          ['^.+\\.s?css$'],
         ],
       },
     ],
