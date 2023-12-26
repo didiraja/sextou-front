@@ -83,6 +83,7 @@ module.exports = {
     ],
     //#endregion  //*======== Import Sort ===========
     '@next/next/no-img-element': [0],
+    'import/no-anonymous-default-export': [0],
   },
   globals: {
     React: true,

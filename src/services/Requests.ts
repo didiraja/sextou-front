@@ -9,12 +9,12 @@ export interface IApiParams {
   per_page?: number | string;
 }
 
-export type IRequestReturn = Promise<AxiosResponse | undefined>;
+export type IRequestReturn = AxiosResponse | undefined;
 
 class Request {
   private url = `${HOST}${ENDPOINT.PATH}`;
 
-  async getEvents(basename = 'events', query: IApiParams = {}): IRequestReturn {
+  async getEvents(basename = 'events', query: IApiParams = {}) {
     const queryString: string = new URLSearchParams(
       query as Record<string, string>
     ).toString();
@@ -23,6 +23,7 @@ class Request {
 
     try {
       return axios.get(`${this.url}/${basename}/?${queryString}`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       // eslint-disable-next-line no-console
       console.log(`[getEvents Error] ${e.code} - ${e.message}`);
@@ -31,9 +32,10 @@ class Request {
     }
   }
 
-  async getSingleEvent(basename = 'event', slug: string): IRequestReturn {
+  async getSingleEvent(basename = 'event', slug: string) {
     try {
       return axios.get(`${this.url}/${basename}/${slug}`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       // eslint-disable-next-line no-console
       console.log(`[getEvents Error] ${e.code} - ${e.message}`);
