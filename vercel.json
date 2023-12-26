@@ -1,8 +1,6 @@
 {
   "headers": [],
   "git": {
-    "deploymentEnabled": {
-      "feature/ssr": false
-    }
+    "deploymentEnabled": {}
   }
 }
