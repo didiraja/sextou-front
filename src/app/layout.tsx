@@ -7,7 +7,6 @@ import Header from '@/components/organisms/Header';
 import TopBlock from '@/components/organisms/TopBlock';
 import MainContainer from '@/components/templates/MainContainer';
 import PageContainer from '@/components/templates/PageContainer';
-
 import { siteConfig } from '@/constant/config';
 
 import '@/styles/globals.css';

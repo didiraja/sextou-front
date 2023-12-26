@@ -1,6 +1,6 @@
-import styles from './About.module.scss';
-
 import Title from '../atoms/Title';
+
+import styles from './About.module.scss';
 
 function About() {
   return (

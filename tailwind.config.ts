@@ -1,4 +1,4 @@
-import daisyui from 'daisyui';
+// import daisyui from 'daisyui';
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
@@ -57,8 +57,8 @@ export default {
     },
   },
   plugins: [require('@tailwindcss/forms'), daisyui],
-  daisyui: {
-    themes: ['synthwave'],
-    prefix: 'daisy-',
-  },
+  // daisyui: {
+  //   themes: ['synthwave'],
+  //   prefix: 'daisy-',
+  // },
 } satisfies Config;

@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { HOST, ENDPOINT } from './enums';
+
+import { ENDPOINT, HOST } from './enums';
 
 export interface IApiParams {
   before?: string;

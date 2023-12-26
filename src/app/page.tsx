@@ -5,7 +5,6 @@ import Title from '@/components/atoms/Title';
 import About from '@/components/molecules/About';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
-
 import { IEventProps } from '@/Content/types';
 
 export default function HomePage() {

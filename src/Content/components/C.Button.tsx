@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import Button from '@/components/atoms/Button';
-
 import { ContentProps } from '@/Content/types';
 import { TEXT } from '@/services/enums';
 

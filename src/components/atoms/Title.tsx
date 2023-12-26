@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 
-import styles from './Title.module.scss';
-
 import { ButtonProps } from './Button';
+
+import styles from './Title.module.scss';
 
 type TitleProps = ButtonProps & {
   className?: string;

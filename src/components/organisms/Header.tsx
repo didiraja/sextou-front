@@ -1,6 +1,6 @@
-import styles from './Header.module.scss';
-
 import IconInsta from '@/components/icons/Insta';
+
+import styles from './Header.module.scss';
 
 function Header() {
   return (
