@@ -15,6 +15,20 @@ export default function HomePage() {
       {/* {showCarousel ? <Carousel /> : null} */}
 
       <div className='home-wrapper'>
+        <div className='mb-24'>
+          <Title>Eventos no Rio de Janeiro neste Fim de Semana</Title>
+
+          <>
+            <CardGrid>
+              {mockArr.slice(1, 5).map((event: IEventProps) => (
+                <Link key={event.id} href={`/event/${event.slug}`}>
+                  <Card {...event} />
+                </Link>
+              ))}
+            </CardGrid>
+          </>
+        </div>
+
         <Title>Principais eventos no Rio de Janeiro</Title>
 
         <>

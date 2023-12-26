@@ -12,7 +12,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
-  ignorePatterns: ['_spa/**/*'],
+  ignorePatterns: ['._spa/**/*'],
   rules: {
     'no-unused-vars': 'off',
     'no-console': 'warn',

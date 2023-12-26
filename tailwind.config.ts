@@ -56,7 +56,7 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms'), daisyui],
+  plugins: [require('@tailwindcss/forms') /* , daisyui */],
   // daisyui: {
   //   themes: ['synthwave'],
   //   prefix: 'daisy-',
