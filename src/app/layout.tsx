@@ -9,7 +9,7 @@ import MainContainer from '@/components/templates/MainContainer';
 import PageContainer from '@/components/templates/PageContainer';
 import { siteConfig } from '@/constant/config';
 
-import '@/styles/globals.css';
+import '@/styles/globals.scss';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
