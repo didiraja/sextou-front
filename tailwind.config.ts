@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['Inter', ...defaultTheme.fontFamily.sans],
+        primary: ['Rubik Variable', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: {
