@@ -1,8 +1,7 @@
 import * as React from 'react';
 
-import Content from '@/components/molecules/Content/Content';
-
 import CloseButton from '@/app/event/[slug]/components/CloseButton';
+import Content from '@/Content/Content.Single';
 
 import styles from '../event.module.scss';
 
@@ -92,7 +91,7 @@ export default function Event({ params }: { params: EventRouteParams }) {
             <div className={styles['nav-wrapper']}>
               <CloseButton />
             </div>
-            <Content mode='Single' {...mock} />
+            <Content {...mock} />
           </div>
         </div>
       </div>

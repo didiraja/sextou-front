@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import Button from '@/components/atoms/Button';
-
 import { WPTermObject } from '@/Content/types';
 
 import styles from '../Content.module.scss';

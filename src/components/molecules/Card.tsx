@@ -1,18 +1,15 @@
 import { IEventProps } from '@/Content/types';
+import Content from '../../Content/Content.Card';
 
 import styles from './Card.module.scss';
 
-import Content from '../../Content/Content.Card';
+// export type CardProps = IEventProps & {
+//   onClick?: () => void;
+// };
 
-export type CardProps = IEventProps & {
-  onClick?: () => void;
-};
-
-function Card(props: CardProps) {
-  const { onClick } = props;
-
+function Card(props: IEventProps) {
   return (
-    <div className={styles['card']} onClick={onClick}>
+    <div className={styles['card']}>
       <Content {...props} />
     </div>
   );
