@@ -1,5 +1,3 @@
-/* eslint-disable import/no-duplicates */
-// TODO: fix these imports without disable - (ts or eslint?)
 import { format, formatISO, parseISO, startOfToday } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
