@@ -1,25 +1,25 @@
 .header-wrapper {
-  @apply bg-white/5 p-3 drop-shadow-md backdrop-blur-sm;
+  @apply pt-3;
 
   .header-menu {
     @apply ml-auto;
   }
 
   .header-menu--common {
-    li {
-      @apply flex items-center justify-center;
+    @apply flex items-center justify-around;
+    // li {
 
-      &.hiddeable {
-        @apply hidden opacity-50 lg:inline-block;
-      }
+    //   &.hiddeable {
+    //     @apply hidden opacity-50 lg:inline-block;
+    //   }
 
-      svg {
-        @apply mr-2 w-[24px];
-      }
-
-      .menu-link {
-        @apply text-sm underline underline-offset-1 hover:no-underline md:text-lg;
-      }
+    svg {
+      @apply inline-block w-[24px];
     }
+
+    //   .menu-link {
+    //     @apply text-sm underline underline-offset-1 hover:no-underline md:text-lg;
+    //   }
+    // }
   }
 }
