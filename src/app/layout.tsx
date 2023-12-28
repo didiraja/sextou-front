@@ -76,7 +76,7 @@ export default function RootLayout({
       }
     </script> */}
       </head>
-      <body suppressHydrationWarning={true}>
+      <body>
         <Header />
         <PageContainer>
           <TopBlock />

@@ -6,33 +6,25 @@ import styles from './Header.module.scss';
 function Header() {
   return (
     <header className={styles['header-wrapper']}>
-      <div className={styles['header-menu']}>
-        <div className={styles['header-menu--common']}>
-          <Image
-            src='/sextou.png'
-            alt='Sextou! - Logo'
-            width={142}
-            height={50}
-          />
-          <div className='flex gap-3'>
-            <Link
-              className='btn-secondary block'
-              target='_blank'
-              rel='noreferrer'
-              href='https://www.instagram.com/sextou.rio'
-            >
-              <Image
-                width={24}
-                height={24}
-                src='/icon/insta.svg'
-                alt='Instagram - Logo'
-              />
-            </Link>
-            <Link className='btn-primary block' href='#'>
-              Recomendar evento
-            </Link>
-          </div>
-        </div>
+      <Image src='/sextou.png' alt='Sextou! - Logo' width={142} height={50} />
+      <div className={styles['menu']}>
+        <Link
+          target='_blank'
+          rel='noreferrer'
+          href='https://www.instagram.com/sextou.rio'
+        >
+          <button className='btn-secondary'>
+            <Image
+              width={24}
+              height={24}
+              src='/icon/insta.svg'
+              alt='Instagram - Logo'
+            />
+          </button>
+        </Link>
+        <Link href='#'>
+          <button className='btn-primary'>Recomendar evento</button>
+        </Link>
       </div>
     </header>
   );
