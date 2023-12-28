@@ -5,10 +5,24 @@ import Title from '@/components/atoms/Title';
 import About from '@/components/molecules/About';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
-import { IEventProps } from '@/Content/types';
-import { EVENTS_LIST } from '@/services/mock';
+import { EventsAPIResponse, IEventProps } from '@/Content/types';
 
-export default function HomePage() {
+async function getEvents() {
+  const res = await fetch(
+    'http://localhost/wp-json/sextou/v1/events/?after=2023-08-01',
+    { cache: 'no-cache' }
+  );
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+export default async function HomePage() {
+  const data: EventsAPIResponse = await getEvents();
+
   return (
     <>
       <div className='home-wrapper'>
@@ -16,7 +30,7 @@ export default function HomePage() {
           <Title>Neste Fim de Semana</Title>
 
           <CardGrid>
-            {EVENTS_LIST.slice(1, 5).map((event: IEventProps) => (
+            {data.posts.slice(1, 5).map((event: IEventProps) => (
               <Link key={event.id} href={`/event/${event.slug}`}>
                 <Card {...event} />
               </Link>
@@ -27,7 +41,7 @@ export default function HomePage() {
         <Title>Todos os Eventos</Title>
 
         <CardGrid>
-          {EVENTS_LIST.map((event: IEventProps) => (
+          {data.posts.map((event: IEventProps) => (
             <Link key={event.id} href={`/event/${event.slug}`}>
               <Card {...event} />
             </Link>

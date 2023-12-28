@@ -31,3 +31,8 @@ export type WPTermObject = {
   count?: number;
   filter?: string;
 };
+
+export interface EventsAPIResponse {
+  total_posts: number;
+  posts: IEventProps[];
+}

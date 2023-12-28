@@ -9,6 +9,7 @@ export type ButtonProps = {
   pill?: boolean;
   disabled?: boolean;
   free?: boolean;
+  onClick?: () => unknown;
 };
 
 function Button({ className, pill, children, disabled, free }: ButtonProps) {

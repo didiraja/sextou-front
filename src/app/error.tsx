@@ -1,7 +1,9 @@
 'use client'; // Error components must be Client Components
 
 import * as React from 'react';
-import { RiAlarmWarningFill } from 'react-icons/ri';
+
+import Button from '@/components/atoms/Button';
+import Title from '@/components/atoms/Title';
 
 export default function Error({
   error,
@@ -17,18 +19,15 @@ export default function Error({
 
   return (
     <main>
-      <section className='bg-white'>
-        <div className='layout flex min-h-screen flex-col items-center justify-center text-center text-black'>
-          <RiAlarmWarningFill
-            size={60}
-            className='drop-shadow-glow animate-flicker text-red-500'
-          />
-          <h1 className='mt-8 text-4xl md:text-6xl'>
-            Oops, something went wrong!
-          </h1>
-          <button onClick={reset} className='mt-4'>
-            Try again
-          </button>
+      <section>
+        <Title className='!border-l-0 text-center !font-normal'>
+          Erro no carregamento da página!
+        </Title>
+
+        <div className='font- mx-auto max-w-screen-md'>
+          <Button className='w-24 !bg-[var(--pink-900)]' onClick={reset}>
+            Tente novamente
+          </Button>
         </div>
       </section>
     </main>

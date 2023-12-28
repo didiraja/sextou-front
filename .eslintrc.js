@@ -15,7 +15,7 @@ module.exports = {
   ignorePatterns: ['._spa/**/*'],
   rules: {
     'no-unused-vars': 'off',
-    'no-console': 'warn',
+    'no-console': [0],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react/no-unescaped-entities': 'off',
 
