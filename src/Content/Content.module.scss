@@ -40,13 +40,17 @@
 
   /** SINGLE MODE */
   &.single-mode {
+    .subheader {
+      @apply mx-auto mb-3 w-[80%];
+    }
+
     .date,
     .title {
       @apply text-center;
     }
 
     .title {
-      @apply text-5xl tracking-tight;
+      @apply mb-2 text-5xl tracking-tight;
     }
 
     .categories-wrapper {
@@ -68,7 +72,7 @@
   .content {
     &.single-mode {
       .categories-wrapper {
-        @apply mb-0 flex items-center justify-center gap-5;
+        @apply mb-3;
       }
     }
   }
