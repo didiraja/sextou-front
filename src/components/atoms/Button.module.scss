@@ -12,15 +12,10 @@
 }
 
 .pill {
-  @apply rounded-md px-2 py-1 text-xs uppercase;
-  box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
-  background-color: var(--dark-pink);
-  color: var(--pink-2);
+  @apply rounded-xl bg-[#41027C] px-2 py-1 text-xs font-medium uppercase text-[#B692F6];
 
   &:hover {
     background-color: rgba(55, 2, 65, 0.3);
-    color: rgba(255, 0, 204, 0.8);
-    box-shadow: none;
   }
 
   &.highlight {

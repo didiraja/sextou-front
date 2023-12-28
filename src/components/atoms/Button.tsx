@@ -17,8 +17,9 @@ function Button({ className, pill, children, disabled, free }: ButtonProps) {
       data-testid='button-component'
       disabled={disabled}
       className={clsx(
-        pill ? styles.pill : styles.button,
-        styles.free,
+        !pill && styles['button'],
+        pill && styles['pill'],
+        free && styles['free'],
         className
       )}
     >
