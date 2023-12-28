@@ -23,7 +23,7 @@ function Header() {
           </button>
         </Link>
         <Link href='#'>
-          <button className='btn-primary'>Recomendar evento</button>
+          <button className='btn-primary'>Lorem Ipsum</button>
         </Link>
       </div>
     </header>

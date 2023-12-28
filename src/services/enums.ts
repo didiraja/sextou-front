@@ -24,9 +24,9 @@ export const PATH = {
 export const PER_PAGE = 12;
 
 export const TEXT = {
-  BUY_TICKETS: 'Comprar Ingresso',
+  BUY_TICKETS: 'Comprar ingresso',
   NO_TICKETS: 'Sem link ainda',
-  FREE_TICKETS: 'Pegar Ingresso',
+  FREE_TICKETS: 'Pegar ingresso',
   FREE_NO_TICKETS: 'Só brotar',
 };
 

@@ -1,19 +1,13 @@
-.button_shadow {
-  box-shadow: var(--material-shadow-md-1), var(--material-shadow-md-2);
-}
-
 .button {
-  @apply /* */ flex w-full items-center justify-center rounded-md
-  p-3 font-semibold uppercase tracking-widest xl:p-3;
-  background-color: var(--purple);
+  @apply flex w-full items-center justify-center rounded-md
+  bg-[var(--purple-50)] p-3 text-xl font-medium text-[var(--gray-800)] xl:p-3;
 
   &.free {
-    background-color: var(--green);
+    @apply border border-[var(--green)] bg-[var(--dark-green)];
   }
 
   &:disabled {
-    @apply opacity-70 shadow-none;
-    background-color: var(--dark-pink-2);
+    @apply border-none bg-[var(--purple-900)] opacity-70;
   }
 }
 

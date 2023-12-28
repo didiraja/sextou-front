@@ -9,15 +9,11 @@ import { IEventProps } from '@/Content/types';
 import { EVENTS_LIST } from '@/services/mock';
 
 export default function HomePage() {
-  // const showCarousel = false;
-
   return (
     <>
-      {/* {showCarousel ? <Carousel /> : null} */}
-
       <div className='home-wrapper'>
         <div className='mb-24'>
-          <Title>Eventos no Rio de Janeiro neste Fim de Semana</Title>
+          <Title>Neste Fim de Semana</Title>
 
           <CardGrid>
             {EVENTS_LIST.slice(1, 5).map((event: IEventProps) => (
@@ -28,7 +24,7 @@ export default function HomePage() {
           </CardGrid>
         </div>
 
-        <Title>Principais eventos no Rio de Janeiro</Title>
+        <Title>Todos os Eventos</Title>
 
         <CardGrid>
           {EVENTS_LIST.map((event: IEventProps) => (

@@ -4,7 +4,9 @@ function TopBlock() {
   return (
     <section id='top' className={styles['top']}>
       <p className={styles['lead-title']}>Sua Agenda Semanal</p>
-      <p className={styles['lead-sub']}>Lorem ipsum dolor ist amet.</p>
+      <p className={styles['lead-sub']}>
+        Os melhores Eventos do Rio de Janeiro estão aqui.
+      </p>
     </section>
   );
 }
