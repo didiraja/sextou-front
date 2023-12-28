@@ -1,7 +1,11 @@
 .top {
-  @apply my-24;
+  @apply my-24 grid grid-cols-1;
 }
 
-.sextou-logo {
-  @apply mx-auto px-3;
+.lead-title {
+  @apply -skew-x-10 mb-3 text-center text-7xl font-bold uppercase text-white;
+}
+
+.lead-sub {
+  @apply text-center text-xl text-[var(--gray-300)];
 }
