@@ -1,7 +1,11 @@
 /** GENERAL */
 .content {
   .title {
-    @apply mb-3 font-bold;
+    @apply mb-3;
+  }
+
+  .date {
+    @apply text-[var(--gray-50)];
   }
 
   .categories-wrapper {
