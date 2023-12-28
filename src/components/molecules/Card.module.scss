@@ -1,3 +1,7 @@
 .card {
-  @apply relative grid rounded-xl border border-[var(--purple-700)] bg-[var(--purple-800)] p-5;
+  @apply relative grid h-full rounded-xl border border-[var(--purple-700)] bg-[var(--purple-800)] p-5;
+
+  .wrapper {
+    @apply relative;
+  }
 }

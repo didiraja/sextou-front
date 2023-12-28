@@ -1,8 +1,6 @@
 /** GENERAL */
 .content {
-  .title {
-    @apply mb-3;
-  }
+  @apply flex flex-col justify-between;
 
   .date {
     @apply text-[var(--gray-50)];
@@ -27,16 +25,16 @@
 
   /** CARD MODE */
   &.card-mode {
+    .upper {
+      @apply mb-5;
+    }
+
     .cover {
       @apply mb-2 h-60 w-full rounded-lg object-cover object-top;
     }
 
     .title {
-      @apply text-3xl;
-    }
-
-    .categories-wrapper {
-      @apply mb-3;
+      @apply mb-1 text-3xl;
     }
   }
 
@@ -51,12 +49,8 @@
       @apply text-5xl tracking-tight;
     }
 
-    .subheader {
-      @apply mb-5;
-
-      .categories-wrapper {
-        @apply mb-3 flex justify-center gap-2;
-      }
+    .categories-wrapper {
+      @apply mb-8 flex justify-center gap-2;
     }
 
     .cover {
@@ -73,12 +67,8 @@
 @media (min-width: 1024px) {
   .content {
     &.single-mode {
-      .subheader {
-        @apply flex items-center justify-center gap-5;
-      }
-
       .categories-wrapper {
-        @apply mb-0;
+        @apply mb-0 flex items-center justify-center gap-5;
       }
     }
   }

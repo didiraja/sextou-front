@@ -7,18 +7,12 @@ import styles from '../Content.module.scss';
 
 const ContentCategories = ({ children }: { children: WPTermObject[] }) => {
   return (
-    <div className={styles['subheader']}>
-      <div data-testid='categories' className={styles['categories-wrapper']}>
-        {children.map((item: WPTermObject) => (
-          <Link
-            key={item.term_id}
-            target='_self'
-            href={`/category/${item.slug}`}
-          >
-            <Button pill>{item.name}</Button>
-          </Link>
-        )) ?? null}
-      </div>
+    <div data-testid='categories' className={styles['categories-wrapper']}>
+      {children.map((item: WPTermObject) => (
+        <Link key={item.term_id} target='_self' href={`/category/${item.slug}`}>
+          <Button pill>{item.name}</Button>
+        </Link>
+      )) ?? null}
     </div>
   );
 };

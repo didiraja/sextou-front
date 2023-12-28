@@ -15,13 +15,15 @@ function ContentCard(props: ContentProps) {
 
   return (
     <div className={clsx(styles['content'], styles['card-mode'])}>
-      <Cover src={cover} alt={title} />
+      <div className={styles['upper']}>
+        <Cover src={cover} alt={title} />
 
-      <DateBlock {...props} />
+        <DateBlock {...props} />
 
-      <Title className='max-two-lines'>{title}</Title>
+        <Title className='max-two-lines'>{title}</Title>
 
-      <Categories>{categories}</Categories>
+        <Categories>{categories}</Categories>
+      </div>
 
       <ButtonContent {...props} />
     </div>

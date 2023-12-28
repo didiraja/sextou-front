@@ -6,7 +6,9 @@ import styles from './Header.module.scss';
 function Header() {
   return (
     <header className={styles['header-wrapper']}>
-      <Image src='/sextou.png' alt='Sextou! - Logo' width={142} height={50} />
+      <Link href='/'>
+        <Image src='/sextou.png' alt='Sextou! - Logo' width={142} height={50} />
+      </Link>
       <div className={styles['menu']}>
         <Link
           target='_blank'
