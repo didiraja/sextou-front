@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import CloseButton from '@/app/event/[slug]/components/CloseButton';
 import Content from '@/Content/Content.Single';
-import { EVENT_SINGLE } from '@/services/mock';
 
 import styles from './event.module.scss';
 
@@ -25,18 +24,16 @@ export async function generateMetadata({
 }: {
   params: EventRouteParams;
 }) {
-  // const { slug } = params;
+  const { slug } = params;
 
-  // fetch data
-  // (*)
+  const data = await getSingleEvent(slug);
 
   return {
-    title: `${EVENT_SINGLE.title} em ${EVENT_SINGLE.categories[1].name} no Rio de Janeiro`,
-    description: EVENT_SINGLE.description,
-    // const previousImages = (await parent).openGraph?.images || []
-    // openGraph: {
-    //   images: ['/some-specific-page-image.jpg', ...previousImages],
-    // },
+    title: `${data.title} em ${data.categories[1].name} no Rio de Janeiro`,
+    description: data.description,
+    openGraph: {
+      images: [`http://localhost/wp-content/uploads/${data.cover.file}`],
+    },
   };
 }
 
