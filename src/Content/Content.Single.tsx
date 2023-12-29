@@ -27,7 +27,7 @@ function ContentSingle(props: ContentProps) {
         <ButtonContent {...props} />
       </div>
 
-      <Cover src={cover} alt={title} />
+      <Cover src={cover} />
 
       <Description description={description} />
     </div>
