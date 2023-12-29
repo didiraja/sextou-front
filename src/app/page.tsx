@@ -10,7 +10,7 @@ import { EventsAPIResponse, IEventProps } from '@/Content/types';
 async function getEvents() {
   const res = await fetch(
     // https://sextou.quartemo.com.br/wp-api/sextou/v1/events/?after=2023-08-05
-    'http://localhost/wp-json/sextou/v1/__events/?after=2023-08-01',
+    'http://localhost/wp-json/sextou/v1/events/?after=2023-08-01',
     { cache: 'no-cache' }
   );
 
