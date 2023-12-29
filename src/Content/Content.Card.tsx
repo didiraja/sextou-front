@@ -16,7 +16,7 @@ function ContentCard(props: ContentProps) {
   return (
     <div className={clsx(styles['content'], styles['card-mode'])}>
       <div className={styles['upper']}>
-        <Cover src={cover} alt={title} />
+        <Cover src={cover} />
 
         <DateBlock {...props} />
 

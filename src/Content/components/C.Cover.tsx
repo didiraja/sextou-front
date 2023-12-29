@@ -1,13 +1,18 @@
 import clsx from 'clsx';
+import Image from 'next/image';
+
+import { WPCoverObject } from '@/Content/types';
 
 import styles from '../Content.module.scss';
 
-const ContentCover = ({ src, alt }: { src: string; alt: string }) => {
+const ContentCover = ({ src }: { src: WPCoverObject }) => {
   return (
-    <img
+    <Image
       className={clsx(styles['cover-surface'], styles['cover'])}
-      src={src}
-      alt={alt}
+      width={src.width}
+      height={src.height}
+      src={`http://localhost/wp-content/uploads/${src.file}`}
+      alt={src.image_meta.caption}
     />
   );
 };

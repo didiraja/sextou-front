@@ -12,6 +12,10 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'sextou.quartemo.com.br',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
     ],
   },
 
