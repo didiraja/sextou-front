@@ -1,19 +1,8 @@
-export const DOMAIN = {
-  // DEV: 'sextou.local',
-  DEV: 'sextou.quartemo.com.br',
-  PROD: 'sextou.quartemo.com.br',
-};
+const IS_DEV = true;
 
-export const HOST = process.env.DEV
-  ? `https://${DOMAIN.DEV}`
-  : `//${DOMAIN.PROD}`;
-
-export const ENDPOINT = {
-  PATH: '/wp-api/sextou/v1',
-  MAIN: 'events',
-  CATEGORY: 'category/',
-  SINGLE: 'event',
-};
+export const HOST = IS_DEV
+  ? `http://localhost/wp-json`
+  : `https://sextou.quartemo.com.br/wp-api`;
 
 export const PATH = {
   MAIN: 'MAIN',
@@ -30,11 +19,6 @@ export const TEXT = {
   FREE_NO_TICKETS: 'Só brotar',
 };
 
-export const ERROR = {
-  LOADING: 'Infelizmente, nada na pista',
-};
-
-export const MODE = {
-  CARD: 'Card',
-  SINGLE: 'Single',
-};
+// export const ERROR = {
+//   LOADING: 'Infelizmente, nada na pista',
+// };

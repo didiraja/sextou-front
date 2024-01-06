@@ -2,6 +2,7 @@ import Title from '@/components/atoms/Title';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
 import { EventsAPIResponse, IEventProps } from '@/Content/types';
+import { HOST } from '@/services/enums';
 
 interface EventRouteParams {
   slug: string;
@@ -9,7 +10,7 @@ interface EventRouteParams {
 
 async function getCategoryEvents(slug: string) {
   const res = await fetch(
-    `http://localhost/wp-json/sextou/v1/category/${slug}/?after=2023-08-01`,
+    `${HOST}/sextou/v1/category/${slug}/?after=2023-08-01`,
     { cache: 'no-cache' }
   );
 

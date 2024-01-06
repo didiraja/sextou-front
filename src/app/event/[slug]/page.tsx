@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import CloseButton from '@/app/event/[slug]/components/CloseButton';
 import Content from '@/Content/Content.Single';
+import { HOST } from '@/services/enums';
 
 import styles from './event.module.scss';
 
@@ -10,7 +11,7 @@ interface EventRouteParams {
 }
 
 async function getSingleEvent(id: string) {
-  const res = await fetch(`http://localhost/wp-json/sextou/v1/event/${id}`);
+  const res = await fetch(`${HOST}/wp-json/sextou/v1/event/${id}`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -32,7 +33,7 @@ export async function generateMetadata({
     title: `${data.title} em ${data.categories[1].name} no Rio de Janeiro`,
     description: data.description,
     openGraph: {
-      images: [`http://localhost/wp-content/uploads/${data.cover.file}`],
+      images: [`${HOST}/wp-content/uploads/${data.cover.file}`],
     },
   };
 }

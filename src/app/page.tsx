@@ -5,13 +5,12 @@ import About from '@/components/molecules/About';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
 import { EventsAPIResponse, IEventProps } from '@/Content/types';
+import { HOST } from '@/services/enums';
 
 async function getEvents() {
-  const res = await fetch(
-    // https://sextou.quartemo.com.br/wp-api/sextou/v1/events/?after=2023-08-05
-    'http://localhost/wp-json/sextou/v1/events/?after=2023-08-01',
-    { cache: 'no-cache' }
-  );
+  const res = await fetch(`${HOST}/sextou/v1/events/?after=2023-08-01`, {
+    cache: 'no-cache',
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
