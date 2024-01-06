@@ -1,13 +1,23 @@
-import Link from 'next/link';
-
 import Title from '@/components/atoms/Title';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
-import { IEventProps } from '@/Content/types';
-import { EVENTS_LIST } from '@/services/mock';
+import { EventsAPIResponse, IEventProps } from '@/Content/types';
 
 interface EventRouteParams {
   slug: string;
+}
+
+async function getCategoryEvents(slug: string) {
+  const res = await fetch(
+    `http://localhost/wp-json/sextou/v1/category/${slug}/?after=2023-08-01`,
+    { cache: 'no-cache' }
+  );
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
 }
 
 export async function generateMetadata({
@@ -16,9 +26,6 @@ export async function generateMetadata({
   params: EventRouteParams;
 }) {
   const { slug } = params;
-
-  // fetch data
-  // (*)
 
   return {
     title: `Eventos em ${slug} no Rio de Janeiro`,
@@ -30,22 +37,24 @@ export async function generateMetadata({
   };
 }
 
-const Category = ({ params }: { params: EventRouteParams }) => {
+export default async function Category({
+  params,
+}: {
+  params: EventRouteParams;
+}) {
   const { slug } = params;
+
+  const data: EventsAPIResponse = await getCategoryEvents(slug);
 
   return (
     <>
       <Title>Eventos em {slug} no Rio de Janeiro</Title>
 
       <CardGrid>
-        {EVENTS_LIST.slice(1, 5).map((event: IEventProps) => (
-          <Link key={event.id} href={`/event/${event.slug}`}>
-            <Card {...event} />
-          </Link>
+        {data.posts.map((event: IEventProps) => (
+          <Card key={event.id} {...event} />
         ))}
       </CardGrid>
     </>
   );
-};
-
-export default Category;
+}
