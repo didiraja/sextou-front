@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import * as React from 'react';
 
 import Title from '@/components/atoms/Title';
@@ -32,9 +31,7 @@ export default async function HomePage() {
 
           <CardGrid>
             {data.posts.slice(1, 5).map((event: IEventProps) => (
-              <Link key={event.id} href={`/event/${event.slug}`}>
-                <Card {...event} />
-              </Link>
+              <Card key={event.id} {...event} />
             ))}
           </CardGrid>
         </div>
@@ -43,9 +40,7 @@ export default async function HomePage() {
 
         <CardGrid>
           {data.posts.map((event: IEventProps) => (
-            <Link key={event.id} href={`/event/${event.slug}`}>
-              <Card {...event} />
-            </Link>
+            <Card key={event.id} {...event} />
           ))}
         </CardGrid>
 
