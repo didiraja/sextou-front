@@ -10,9 +10,9 @@ type TitleProps = ButtonProps & {
 
 function Title({ className, children }: TitleProps) {
   return (
-    <h1 className={clsx({ title: true }, styles.section_title, className)}>
+    <p className={clsx({ title: true }, styles.section_title, className)}>
       {children}
-    </h1>
+    </p>
   );
 }
 
