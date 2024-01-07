@@ -8,7 +8,7 @@ import styles from '../Content.module.scss';
 const ContentCover = ({ src }: { src: WPCoverObject }) => {
   return (
     <Image
-      className={clsx(styles['cover-surface'], styles['cover'])}
+      className={clsx(styles['cover'])}
       width={src.width}
       height={src.height}
       src={`http://localhost/wp-content/uploads/${src.file}`}
