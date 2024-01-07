@@ -2,7 +2,7 @@
   "headers": [],
   "git": {
     "deploymentEnabled": {
-      "feature/ssr": false
+      "feature/ssr": true
     }
   }
 }

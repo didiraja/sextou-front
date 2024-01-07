@@ -1,4 +1,4 @@
-const IS_DEV = true;
+const IS_DEV = process.env.DEV;
 
 export const HOST = IS_DEV
   ? `http://localhost/wp-json`
