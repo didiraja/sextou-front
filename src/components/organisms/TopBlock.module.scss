@@ -1,9 +1,9 @@
 .top {
-  @apply my-24 grid grid-cols-1;
+  @apply my-24 grid grid-cols-1 overflow-x-hidden;
 }
 
 .lead-title {
-  @apply -skew-x-10 mb-3 text-center text-7xl font-bold uppercase text-white;
+  @apply -skew-x-10 mb-3 text-center text-6xl font-bold uppercase text-white;
 }
 
 .lead-sub {

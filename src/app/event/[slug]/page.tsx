@@ -10,8 +10,10 @@ interface EventRouteParams {
   slug: string;
 }
 
-async function getSingleEvent(id: string) {
-  const res = await fetch(`${HOST}/wp-json/sextou/v1/event/${id}`);
+async function getSingleEvent(slug: string) {
+  const query = `${HOST}/sextou/v1/event/${slug}`;
+
+  const res = await fetch(query);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
