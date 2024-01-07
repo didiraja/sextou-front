@@ -7,13 +7,13 @@ import About from '@/components/molecules/About';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
 import { EventsAPIResponse, IEventProps } from '@/Content/types';
-import { HOST } from '@/services/enums';
+import { API_URL } from '@/services/enums';
 
 import styles from './Home.module.scss';
 
 async function getEvents(page = 1) {
   const res = await fetch(
-    `${HOST}/sextou/v1/events/?page=${page}&after=2023-08-01&before=2023-08-31`,
+    `${API_URL}/sextou/v1/events/?page=${page}&after=2023-08-01&before=2023-08-31`,
     {
       cache: 'no-cache',
     }

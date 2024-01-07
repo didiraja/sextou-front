@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import CloseButton from '@/app/event/[slug]/components/CloseButton';
 import Content from '@/Content/Content.Single';
-import { HOST } from '@/services/enums';
+import { API_URL, HOST } from '@/services/enums';
 
 import styles from './event.module.scss';
 
@@ -11,7 +11,7 @@ interface EventRouteParams {
 }
 
 async function getSingleEvent(slug: string) {
-  const query = `${HOST}/sextou/v1/event/${slug}`;
+  const query = `${API_URL}/sextou/v1/event/${slug}`;
 
   const res = await fetch(query);
 

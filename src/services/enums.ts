@@ -2,16 +2,10 @@
 const IS_DEV = false;
 
 export const HOST = IS_DEV
-  ? `http://localhost/wp-json`
-  : `https://sextou.quartemo.com.br/wp-api`;
+  ? `http://localhost`
+  : `https://sextou.quartemo.com.br`;
 
-export const PATH = {
-  MAIN: 'MAIN',
-  CATEGORY: 'CATEGORY',
-  SINGLE: 'SINGLE',
-};
-
-export const PER_PAGE = 12;
+export const API_URL = IS_DEV ? `${HOST}/wp-json` : `${HOST}/wp-api`;
 
 export const TEXT = {
   BUY_TICKETS: 'Comprar ingresso',

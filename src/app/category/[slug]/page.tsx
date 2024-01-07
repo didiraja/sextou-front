@@ -3,14 +3,14 @@ import Title from '@/components/atoms/Title';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
 import { EventsAPIResponse, IEventProps } from '@/Content/types';
-import { HOST } from '@/services/enums';
+import { API_URL } from '@/services/enums';
 
 interface EventRouteParams {
   slug: string;
 }
 
 async function getCategoryEvents(slug: string, page = 1) {
-  const query = `${HOST}/sextou/v1/category/${slug}/?page=${page}&after=2023-08-01`;
+  const query = `${API_URL}/sextou/v1/category/${slug}/?page=${page}&after=2023-08-01`;
 
   const res = await fetch(query, { cache: 'no-cache' });
 
