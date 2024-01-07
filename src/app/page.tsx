@@ -8,7 +8,7 @@ import CardGrid from '@/components/templates/Card.Grid';
 import { EventsAPIResponse, IEventProps } from '@/Content/types';
 import { HOST } from '@/services/enums';
 
-async function getEvents(page: number) {
+async function getEvents(page = 1) {
   const res = await fetch(
     `${HOST}/sextou/v1/events/?page=${page}&after=2023-08-01&before=2023-08-31`,
     {
@@ -30,7 +30,7 @@ export default async function HomePage({
 }) {
   const { page: pageParam } = searchParams;
 
-  const page = Number(pageParam);
+  const page = Number(pageParam) || 1;
 
   const data: EventsAPIResponse = await getEvents(page);
 

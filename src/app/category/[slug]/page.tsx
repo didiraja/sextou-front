@@ -1,3 +1,4 @@
+import Pagination from '@/components/atoms/Pagination';
 import Title from '@/components/atoms/Title';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
@@ -8,11 +9,10 @@ interface EventRouteParams {
   slug: string;
 }
 
-async function getCategoryEvents(slug: string, page: number) {
-  const res = await fetch(
-    `${HOST}/sextou/v1/category/${slug}/?after=2023-08-01&page=${page}`,
-    { cache: 'no-cache' }
-  );
+async function getCategoryEvents(slug: string, page = 1) {
+  const query = `${HOST}/sextou/v1/category/${slug}/?page=${page}&after=2023-08-01`;
+
+  const res = await fetch(query, { cache: 'no-cache' });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -47,7 +47,7 @@ export default async function Category(request: {
     searchParams: { page: pageParam },
   } = request;
 
-  const page = Number(pageParam);
+  const page = Number(pageParam) || 1;
 
   const data: EventsAPIResponse = await getCategoryEvents(slug, page);
 
@@ -60,6 +60,8 @@ export default async function Category(request: {
           <Card key={event.id} {...event} />
         ))}
       </CardGrid>
+
+      <Pagination page={page} totalItems={data.total_posts} />
     </>
   );
 }

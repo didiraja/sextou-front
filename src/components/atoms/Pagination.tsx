@@ -28,6 +28,8 @@ function Pagination(props: PaginationProps) {
         const pos = index + 1;
         const active = page === pos;
 
+        console.log(page, pos, active);
+
         return (
           <Link href={`?page=${pos}`} key={index}>
             <Button
