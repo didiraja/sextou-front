@@ -8,9 +8,9 @@ interface EventRouteParams {
   slug: string;
 }
 
-async function getCategoryEvents(slug: string) {
+async function getCategoryEvents(slug: string, page: number) {
   const res = await fetch(
-    `${HOST}/sextou/v1/category/${slug}/?after=2023-08-01`,
+    `${HOST}/sextou/v1/category/${slug}/?after=2023-08-01&page=${page}`,
     { cache: 'no-cache' }
   );
 
@@ -38,14 +38,18 @@ export async function generateMetadata({
   };
 }
 
-export default async function Category({
-  params,
-}: {
-  params: EventRouteParams;
+export default async function Category(request: {
+  params: { slug: string };
+  searchParams: { page: string };
 }) {
-  const { slug } = params;
+  const {
+    params: { slug },
+    searchParams: { page: pageParam },
+  } = request;
 
-  const data: EventsAPIResponse = await getCategoryEvents(slug);
+  const page = Number(pageParam);
+
+  const data: EventsAPIResponse = await getCategoryEvents(slug, page);
 
   return (
     <>

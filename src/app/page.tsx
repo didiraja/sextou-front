@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import Pagination from '@/components/atoms/Pagination';
 import Title from '@/components/atoms/Title';
 import About from '@/components/molecules/About';
 import Card from '@/components/molecules/Card';
@@ -7,10 +8,13 @@ import CardGrid from '@/components/templates/Card.Grid';
 import { EventsAPIResponse, IEventProps } from '@/Content/types';
 import { HOST } from '@/services/enums';
 
-async function getEvents() {
-  const res = await fetch(`${HOST}/sextou/v1/events/?after=2023-08-01`, {
-    cache: 'no-cache',
-  });
+async function getEvents(page: number) {
+  const res = await fetch(
+    `${HOST}/sextou/v1/events/?page=${page}&after=2023-08-01&before=2023-08-31`,
+    {
+      cache: 'no-cache',
+    }
+  );
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -19,8 +23,16 @@ async function getEvents() {
   return res.json();
 }
 
-export default async function HomePage() {
-  const data: EventsAPIResponse = await getEvents();
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: { page: string };
+}) {
+  const { page: pageParam } = searchParams;
+
+  const page = Number(pageParam);
+
+  const data: EventsAPIResponse = await getEvents(page);
 
   return (
     <>
@@ -43,10 +55,7 @@ export default async function HomePage() {
           ))}
         </CardGrid>
 
-        {/* <Pagination
-            totalItems={loaderData.total_posts}
-            perPage={PER_PAGE}
-          /> */}
+        <Pagination page={page} totalItems={data.total_posts} />
       </div>
 
       <About />
