@@ -51,9 +51,11 @@ export default async function Category(request: {
 
   const data: EventsAPIResponse = await getCategoryEvents(slug, page);
 
+  const categoryTitle = slug.replace('-', ' ');
+
   return (
     <>
-      <Title>Eventos em {slug} no Rio de Janeiro</Title>
+      <Title>Eventos em {categoryTitle} no Rio de Janeiro</Title>
 
       <CardGrid>
         {data.posts.map((event: IEventProps) => (

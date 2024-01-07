@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import * as React from 'react';
 
 import Pagination from '@/components/atoms/Pagination';
@@ -7,6 +8,8 @@ import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
 import { EventsAPIResponse, IEventProps } from '@/Content/types';
 import { HOST } from '@/services/enums';
+
+import styles from './Home.module.scss';
 
 async function getEvents(page = 1) {
   const res = await fetch(
@@ -36,9 +39,11 @@ export default async function HomePage({
 
   return (
     <>
-      <div className='home-wrapper'>
-        <div className='mb-24'>
-          <Title>Neste Fim de Semana</Title>
+      <div className={clsx(styles['home-wrapper'], styles['bottom-spacing'])}>
+        <div
+          className={clsx(styles['weekend-wrapper'], styles['bottom-spacing'])}
+        >
+          <Title className={styles['weekend-title']}>Neste Fim de Semana</Title>
 
           <CardGrid>
             {data.posts.slice(1, 5).map((event: IEventProps) => (
