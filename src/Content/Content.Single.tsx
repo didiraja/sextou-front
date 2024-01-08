@@ -20,7 +20,7 @@ function ContentSingle(props: ContentProps) {
       <div className={clsx(styles['subheader'])}>
         <DateBlock {...props} />
 
-        <Title>{title}</Title>
+        <Title tag='h1'>{title}</Title>
 
         <Categories>{categories}</Categories>
 

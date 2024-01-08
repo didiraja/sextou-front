@@ -1,18 +1,23 @@
 import clsx from 'clsx';
-
-import { ButtonProps } from './Button';
+import { ReactNode } from 'react';
 
 import styles from './Title.module.scss';
 
-type TitleProps = ButtonProps & {
+type TitleProps = {
+  tag?: string;
   className?: string;
+  children: ReactNode;
 };
 
-function Title({ className, children }: TitleProps) {
+function Title({ tag, className, children }: TitleProps) {
+  const Tag = tag || 'h2';
+
   return (
-    <p className={clsx({ title: true }, styles.section_title, className)}>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    <Tag className={clsx({ title: true }, styles.section_title, className)}>
       {children}
-    </p>
+    </Tag>
   );
 }
 

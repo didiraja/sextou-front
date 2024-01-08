@@ -43,7 +43,9 @@ export default async function HomePage({
         <div
           className={clsx(styles['weekend-wrapper'], styles['bottom-spacing'])}
         >
-          <Title className={styles['weekend-title']}>Neste Fim de Semana</Title>
+          <Title tag='h2' className={styles['weekend-title']}>
+            Neste Fim de Semana
+          </Title>
 
           <CardGrid>
             {data.posts.slice(1, 5).map((event: IEventProps) => (

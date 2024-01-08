@@ -5,7 +5,7 @@ import styles from './About.module.scss';
 function About() {
   return (
     <div className={styles['about-wrapper']}>
-      <Title>Sobre</Title>
+      <Title tag='p'>Sobre</Title>
 
       <p>
         <strong className={styles['capitular']}>Sextou!</strong> é uma
