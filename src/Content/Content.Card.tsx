@@ -18,7 +18,7 @@ function ContentCard(props: ContentProps) {
     <div className={clsx(styles['content'], styles['card-mode'])}>
       <div className={styles['upper']}>
         <Link href={`/event/${slug}`}>
-          <Cover src={cover} />
+          <Cover src={cover} alt={title} />
 
           <DateBlock {...props} />
 

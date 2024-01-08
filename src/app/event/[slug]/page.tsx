@@ -37,6 +37,9 @@ export async function generateMetadata({
     openGraph: {
       images: [`${HOST}/wp-content/uploads/${data.cover.file}`],
     },
+    alternates: {
+      canonical: `https://sextou.rio/event/${slug}`,
+    },
   };
 }
 

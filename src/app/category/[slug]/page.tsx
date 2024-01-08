@@ -30,6 +30,9 @@ export async function generateMetadata({
 
   return {
     title: `Eventos em ${slug} no Rio de Janeiro`,
+    alternates: {
+      canonical: `https://sextou.rio/category/${slug}`,
+    },
     // description: EVENT_SINGLE.description,
     // const previousImages = (await parent).openGraph?.images || []
     // openGraph: {

@@ -18,7 +18,11 @@ export const metadata: Metadata = {
     template: `%s | Sextou!`,
   },
   description: siteConfig.description,
+  keywords: siteConfig.keywords,
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: 'https://sextou.rio',
+  },
   // !STARTERCONF this is the default favicon, you can generate your own from https://realfavicongenerator.net/
   // ! copy to /favicon folder
   icons: {
@@ -57,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html lang='pt'>
       <head>
         {/* User Next/Script */}
         {/* <script

@@ -6,14 +6,14 @@ import { HOST } from '@/services/enums';
 
 import styles from '../Content.module.scss';
 
-const ContentCover = ({ src }: { src: WPCoverObject }) => {
+const ContentCover = ({ src, alt }: { src: WPCoverObject; alt: string }) => {
   return (
     <Image
       className={clsx(styles['cover'])}
       width={src.width}
       height={src.height}
       src={`${HOST}/wp-content/uploads/${src.file}`}
-      alt={src.image_meta.caption}
+      alt={src.image_meta.caption || alt}
     />
   );
 };
