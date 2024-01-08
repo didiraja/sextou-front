@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { ContentProps } from '@/Content/types';
 import Date from '@/services/Date';
 
@@ -5,9 +7,9 @@ import styles from '../Content.module.scss';
 
 function ContentDate({ event_date: eventDate }: ContentProps) {
   return (
-    <div data-testid='date' className={styles['date']}>
+    <time className={clsx('dt-start', styles['date'])} dateTime={eventDate}>
       {Date.readableDate(eventDate)}
-    </div>
+    </time>
   );
 }
 

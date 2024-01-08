@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Link from 'next/link';
 
 import Button from '@/components/atoms/Button';
@@ -7,9 +8,14 @@ import styles from '../Content.module.scss';
 
 const ContentCategories = ({ children }: { children: WPTermObject[] }) => {
   return (
-    <div data-testid='categories' className={styles['categories-wrapper']}>
+    <div className={clsx(styles['categories-wrapper'])}>
       {children.map((item: WPTermObject) => (
-        <Link key={item.term_id} target='_self' href={`/category/${item.slug}`}>
+        <Link
+          key={item.term_id}
+          className='p-category'
+          target='_self'
+          href={`/category/${item.slug}`}
+        >
           <Button pill>{item.name}</Button>
         </Link>
       )) ?? null}

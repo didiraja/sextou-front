@@ -15,14 +15,14 @@ function ContentCard(props: ContentProps) {
   const { cover, title, categories, slug } = props;
 
   return (
-    <div className={clsx(styles['content'], styles['card-mode'])}>
+    <div className={clsx('h-event', styles['content'], styles['card-mode'])}>
       <div className={styles['upper']}>
         <Link href={`/event/${slug}`}>
           <Cover src={cover} alt={title} />
 
           <DateBlock {...props} />
 
-          <Title className='max-two-lines'>{title}</Title>
+          <Title className='p-name max-two-lines'>{title}</Title>
         </Link>
 
         <Categories>{categories}</Categories>

@@ -34,7 +34,7 @@ function ButtonContent(props: ContentProps) {
   }
 
   return (
-    <Link target='_blank' href={tickets}>
+    <Link className='u-url' target='_blank' href={tickets}>
       {content}
     </Link>
   );
