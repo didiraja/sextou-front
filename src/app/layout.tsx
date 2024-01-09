@@ -23,8 +23,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://sextou.rio',
   },
-  // !STARTERCONF this is the default favicon, you can generate your own from https://realfavicongenerator.net/
-  // ! copy to /favicon folder
   icons: {
     icon: '/favicon/favicon.png',
     shortcut: '/favicon/favicon-16x16.png',
@@ -36,23 +34,23 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: siteConfig.title,
-    images: [`${siteConfig.url}/images/og.jpg`],
+    images: ['/sextou.png'],
     type: 'website',
-    locale: 'en_US',
+    locale: 'pt_BR',
   },
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/images/og.jpg`],
-    // creator: '@th_clarence',
+    images: ['/sextou.png'],
+    creator: '@didiraja',
   },
-  // authors: [
-  //   {
-  //     name: 'Theodorus Clarence',
-  //     url: 'https://theodorusclarence.com',
-  //   },
-  // ],
+  authors: [
+    {
+      name: 'Dico Didiraja',
+      url: 'https://www.linkedin.com/in/didiraja/',
+    },
+  ],
 };
 
 export default function RootLayout({
