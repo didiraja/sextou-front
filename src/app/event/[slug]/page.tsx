@@ -57,8 +57,10 @@ export default async function Event({ params }: { params: EventRouteParams }) {
     startDate: data.event_date,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     location: {
+      '@type': 'Place',
       address: {
-        addressLocality: data.categories[1],
+        '@type': 'PostalAddress',
+        addressLocality: data.categories[1].name,
         addressRegion: 'RJ',
       },
     },
