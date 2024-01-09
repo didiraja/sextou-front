@@ -16,8 +16,83 @@ async function getEvents() {
   return res.json();
 }
 
+const categoriesList = [
+  'acustico',
+  'afrobeat',
+  'alto-da-boa-vista',
+  'bairro',
+  'baixada',
+  'barra-da-tijuca',
+  'botafogo',
+  'brega',
+  'campo-grande',
+  'centro',
+  'copacabana',
+  'cosme-velho',
+  'highlight',
+  'drill',
+  'drum-n-bass',
+  'duque-de-caxias',
+  'edm',
+  'emo',
+  'estilo',
+  'experimental',
+  'funk',
+  'gamboa',
+  'grime',
+  'grunge',
+  'hip-hop',
+  'house',
+  'humaita',
+  'hyperpop',
+  'indie',
+  'jazz',
+  'k-pop',
+  'lagoa',
+  'lapa',
+  'leste-fluminense',
+  'madureira',
+  'meier',
+  'metal',
+  'mpb',
+  'niteroi',
+  'nova-iguacu',
+  'padre-miguel',
+  'pagodao',
+  'penha',
+  'pop',
+  'pop-punk',
+  'praca-da-bandeira',
+  'praca-tiradentes',
+  'punk-hardcore',
+  'rb',
+  'ramos',
+  'realengo',
+  'reggae',
+  'regiao',
+  'rock',
+  'samba',
+  'santo-cristo',
+  'sao-goncalo',
+  'synthwave',
+  'tijuca',
+  'trap',
+  'zona-norte',
+  'zona-oeste',
+  'zona-sul',
+];
+
 export default async function sitemap() {
   const data: EventsAPIResponse = await getEvents();
+
+  const categories = categoriesList.map((cat) => {
+    return {
+      url: `https://sextou.rio/category/${cat.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    };
+  });
 
   const posts = data.posts?.map((post) => {
     return {
@@ -35,18 +110,7 @@ export default async function sitemap() {
       changeFrequency: 'daily',
       priority: 1,
     },
-    //   <url>
-    //   <loc>https://sextou.rio/category/zona-norte</loc>
-    //   <lastmod>2024-01-09</lastmod>
-    //   <changefreq>weekly</changefreq>
-    //   <priority>0.8</priority>
-    // </url>
-    // {
-    //   url: 'https://acme.com/about',
-    //   lastModified: new Date(),
-    //   changeFrequency: 'monthly',
-    //   priority: 0.8,
-    // },
+    ...categories,
     ...posts,
   ];
 }
