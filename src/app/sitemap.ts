@@ -35,6 +35,12 @@ export default async function sitemap() {
       changeFrequency: 'daily',
       priority: 1,
     },
+    //   <url>
+    //   <loc>https://sextou.rio/category/zona-norte</loc>
+    //   <lastmod>2024-01-09</lastmod>
+    //   <changefreq>weekly</changefreq>
+    //   <priority>0.8</priority>
+    // </url>
     // {
     //   url: 'https://acme.com/about',
     //   lastModified: new Date(),
