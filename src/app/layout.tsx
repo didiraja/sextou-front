@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import * as React from 'react';
 import '@fontsource-variable/rubik';
 
@@ -64,7 +65,7 @@ export default function RootLayout({
         {/* User Next/Script */}
         {/* <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=G-SDX7SEVRPM"
+      src=""
     ></script>
     <script type="module">
       if (import.meta.env.PROD) {
@@ -86,6 +87,24 @@ export default function RootLayout({
           <Footer />
         </PageContainer>
       </body>
+
+      <Script
+        src='https://www.googletagmanager.com/gtag/js?id=G-SDX7SEVRPM'
+        strategy='lazyOnload'
+      />
+      <Script id='google-analytics' strategy='lazyOnload'>
+        {`
+          if (window) {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+    
+            gtag('config', 'G-SDX7SEVRPM');
+          }
+        `}
+      </Script>
     </html>
   );
 }
