@@ -48,6 +48,29 @@ export default async function Event({ params }: { params: EventRouteParams }) {
 
   const data = await getSingleEvent(slug);
 
+  // import { Product, WithContext } from 'schema-dts'
+  // const jsonLd: WithContext<Product> = {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: data.title,
+    startDate: data.event_date,
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: {
+      address: {
+        addressLocality: data.categories[1],
+        addressRegion: 'RJ',
+      },
+    },
+    image: `${HOST}/wp-content/uploads/${data.cover.file}`,
+    description: data.description,
+    offers: {
+      '@type': 'Offer',
+      url: `https://sextou.rio/event/${slug}`,
+      priceCurrency: 'BRL',
+    },
+  };
+
   return (
     <>
       <div className={styles['backdrop']}>
@@ -60,6 +83,10 @@ export default async function Event({ params }: { params: EventRouteParams }) {
           </div>
         </div>
       </div>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </>
   );
 }
