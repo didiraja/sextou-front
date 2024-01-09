@@ -61,24 +61,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='pt'>
-      <head>
-        {/* User Next/Script */}
-        {/* <script
-      async
-      src=""
-    ></script>
-    <script type="module">
-      if (import.meta.env.PROD) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-SDX7SEVRPM');
-      }
-    </script> */}
-      </head>
+      <head></head>
       <body>
         <Header />
         <PageContainer>
