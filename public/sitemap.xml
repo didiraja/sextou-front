@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://sextou.rio/</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+  <!-- ********* -->
+  <url>
+    <loc>https://sextou.rio/category/zona-norte</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sextou.rio/category/zona-sul</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sextou.rio/category/centro</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sextou.rio/category/zona-oeste</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sextou.rio/category/baixada</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sextou.rio/category/lapa</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sextou.rio/category/botafogo</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sextou.rio/category/madureira</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sextou.rio/category/duque-de-caxias</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- ********* -->
+  <!-- <url>
+    <loc>https://sextou.rio/event/123-event-name</loc>
+    <lastmod>2024-01-09</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url> -->
+</urlset>
