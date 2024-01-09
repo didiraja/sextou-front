@@ -87,7 +87,7 @@ export default async function sitemap() {
 
   const categories = categoriesList.map((cat) => {
     return {
-      url: `https://sextou.rio/category/${cat.slug}`,
+      url: `https://sextou.rio/category/${cat}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
