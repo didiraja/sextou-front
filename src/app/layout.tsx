@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: siteConfig.title,
-    images: ['/sextou.png'],
+    images: ['/opengraph.jpg'],
     type: 'website',
     locale: 'pt_BR',
   },
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ['/sextou.png'],
+    images: ['/opengraph.jpg'],
     creator: '@didiraja',
   },
   authors: [
