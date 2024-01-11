@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Thing, WithContext } from 'schema-dts';
 
 import Content from '@/Content/Content.Single';
 import { API_URL, HOST } from '@/services/enums';
@@ -48,9 +49,7 @@ export default async function Event({ params }: { params: EventRouteParams }) {
 
   const data = await getSingleEvent(slug);
 
-  // import { Product, WithContext } from 'schema-dts'
-  // const jsonLd: WithContext<Product> = {
-  const jsonLd = {
+  const jsonLd: WithContext<Thing> = {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: data.title,
