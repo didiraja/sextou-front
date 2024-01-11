@@ -44,13 +44,12 @@
       @apply mx-auto mb-3 w-[80%];
     }
 
-    .date,
-    .title {
-      @apply text-center;
+    .date {
+      @apply block text-center;
     }
 
     .title {
-      @apply mb-2 text-5xl tracking-tight;
+      @apply mb-2 text-center text-5xl tracking-tight;
     }
 
     .categories-wrapper {
