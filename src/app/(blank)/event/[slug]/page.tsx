@@ -33,7 +33,7 @@ export async function generateMetadata({
 
   return {
     title: `${data.title} em ${data.categories[1].name} no Rio de Janeiro`,
-    description: data.description,
+    description: data.description.substring(0, 300),
     openGraph: {
       images: [`${HOST}/wp-content/uploads/${data.cover.file}`],
     },
