@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import CloseButton from '@/app/event/[slug]/components/CloseButton';
 import Content from '@/Content/Content.Single';
 import { API_URL, HOST } from '@/services/enums';
+import CloseButton from './components/CloseButton';
 
 import styles from './event.module.scss';
 

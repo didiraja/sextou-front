@@ -9,5 +9,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return () => document.body.classList.remove('overflow-y-hidden');
   }, []);
 
-  return children;
+  return <section className='custom'>{children}</section>;
 }

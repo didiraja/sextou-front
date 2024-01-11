@@ -3,11 +3,6 @@ import Script from 'next/script';
 import * as React from 'react';
 import '@fontsource-variable/rubik';
 
-import Footer from '@/components/organisms/Footer';
-import Header from '@/components/organisms/Header';
-import TopBlock from '@/components/organisms/TopBlock';
-import MainContainer from '@/components/templates/MainContainer';
-import PageContainer from '@/components/templates/PageContainer';
 import { siteConfig } from '@/constant/config';
 
 import '@/styles/globals.scss';
@@ -61,15 +56,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='pt'>
-      <head></head>
-      <body>
-        <Header />
-        <PageContainer>
-          <TopBlock />
-          <MainContainer>{children}</MainContainer>
-          <Footer />
-        </PageContainer>
-      </body>
+      <body>{children}</body>
 
       <Script
         src='https://www.googletagmanager.com/gtag/js?id=G-SDX7SEVRPM'
