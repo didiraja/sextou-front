@@ -12,20 +12,20 @@ import styles from './Content.module.scss';
 
 // TODO: use Next/Image
 function ContentCard(props: ContentProps) {
-  const { cover, title, categories, slug } = props;
+  const { cover, title } = props;
 
   return (
     <div className={clsx('h-event', styles['content'], styles['card-mode'])}>
       <div className={styles['upper']}>
-        <Link href={`/event/${slug}`}>
-          <Cover src={cover} alt={title} />
+        {/* <Link href={`/event/${slug}`}> */}
+        <Cover src={cover} alt={title} />
 
-          <DateBlock {...props} />
+        {/* <DateBlock {...props} /> */}
 
-          <Title className='p-name max-two-lines'>{title}</Title>
-        </Link>
+        <Title className='p-name max-two-lines'>{title}</Title>
+        {/* </Link> */}
 
-        <Categories>{categories}</Categories>
+        {/* <Categories>{categories}</Categories> */}
       </div>
 
       <ButtonContent {...props} />

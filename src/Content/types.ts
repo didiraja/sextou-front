@@ -1,16 +1,12 @@
 import { ReactElement } from 'react';
 
 export interface IEventProps {
-  slug: string;
-  highlight?: boolean;
-  id: number;
+  _id: string;
   title: string;
-  event_date: string;
-  categories: Array<WPTermObject>;
-  cover: WPCoverObject;
-  tickets: string;
-  free?: boolean;
-  content?: string;
+  date: string;
+  cover: string;
+  link: string;
+  highlight?: boolean;
   description: string;
 }
 
@@ -39,8 +35,7 @@ export type WPTermObject = {
 };
 
 export interface EventsAPIResponse {
-  total_posts: number;
-  posts: IEventProps[];
+  documents: IEventProps[];
 }
 
 export interface WPCoverObject {

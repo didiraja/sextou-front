@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
+import axios, { AxiosResponse } from 'axios';
 
 import Pagination from '@/components/atoms/Pagination';
 import Title from '@/components/atoms/Title';
@@ -12,18 +13,23 @@ import { API_URL } from '@/services/enums';
 import styles from './Home.module.scss';
 
 async function getEvents(page = 1) {
-  const res = await fetch(
-    `${API_URL}/sextou/v1/events/?page=${page}&after=2023-08-01&before=2023-08-31`,
+  const res = await axios.post<EventsAPIResponse>(
+    'https://sa-east-1.aws.data.mongodb-api.com/app/data-vjuqevb/endpoint/data/v1/action/find',
     {
-      cache: 'no-cache',
+      collection: 'raw_events',
+      database: 'eventim',
+      dataSource: 'Cluster0',
+    },
+    {
+      headers: {
+        'api-key':
+          'XtnOYSuUbmOvyVCZ9SG2mYl2An0hoAIjEmjtBjB0UozE4aSZ1HV4SgzAzuLVdtgk',
+        cache: 'no-cache',
+      },
     }
   );
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
+  return res;
 }
 
 export default async function HomePage({
@@ -35,12 +41,12 @@ export default async function HomePage({
 
   const page = Number(pageParam) || 1;
 
-  const data: EventsAPIResponse = await getEvents(page);
+  const data = await getEvents(page);
 
   return (
     <>
       <div className={clsx(styles['home-wrapper'], styles['bottom-spacing'])}>
-        <div
+        {/* <div
           className={clsx(styles['weekend-wrapper'], styles['bottom-spacing'])}
         >
           <Title tag='h2' className={styles['weekend-title']}>
@@ -48,21 +54,21 @@ export default async function HomePage({
           </Title>
 
           <CardGrid>
-            {data.posts.slice(1, 5).map((event: IEventProps) => (
+            {data.posts?.slice(1, 5).map((event: IEventProps) => (
               <Card key={event.id} {...event} />
             ))}
           </CardGrid>
-        </div>
+        </div> */}
 
         <Title>Todos os Eventos</Title>
 
         <CardGrid>
-          {data.posts.map((event: IEventProps) => (
-            <Card key={event.id} {...event} />
+          {data.data.documents?.map((event: IEventProps) => (
+            <Card key={event._id} {...event} />
           ))}
         </CardGrid>
 
-        <Pagination page={page} totalItems={data.total_posts} />
+        {/* <Pagination page={page} totalItems={data.total_posts} /> */}
       </div>
 
       <About />
