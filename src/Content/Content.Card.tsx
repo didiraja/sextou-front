@@ -1,8 +1,6 @@
 import clsx from 'clsx';
-import Link from 'next/link';
 
 import ButtonContent from '@/Content/components/C.Button';
-import Categories from '@/Content/components/C.Categories';
 import Cover from '@/Content/components/C.Cover';
 import DateBlock from '@/Content/components/C.Date';
 import Title from '@/Content/components/C.Title';
@@ -10,7 +8,6 @@ import { ContentProps } from '@/Content/types';
 
 import styles from './Content.module.scss';
 
-// TODO: use Next/Image
 function ContentCard(props: ContentProps) {
   const { cover, title, date } = props;
 
@@ -20,8 +17,7 @@ function ContentCard(props: ContentProps) {
         {/* <Link href={`/event/${slug}`}> */}
         <Cover src={cover} alt={title} />
 
-        {/* <DateBlock {...props} /> */}
-        {date}
+        <DateBlock {...props} />
 
         <Title className='p-name max-two-lines'>{title}</Title>
         {/* </Link> */}

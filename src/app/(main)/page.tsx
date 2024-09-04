@@ -1,14 +1,12 @@
+import axios from 'axios';
 import clsx from 'clsx';
 import * as React from 'react';
-import axios, { AxiosResponse } from 'axios';
 
-import Pagination from '@/components/atoms/Pagination';
 import Title from '@/components/atoms/Title';
 import About from '@/components/molecules/About';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
 import { EventsAPIResponse, IEventProps } from '@/Content/types';
-import { API_URL } from '@/services/enums';
 
 import styles from './Home.module.scss';
 
@@ -16,9 +14,13 @@ async function getEvents(page = 1) {
   const res = await axios.post<EventsAPIResponse>(
     'https://sa-east-1.aws.data.mongodb-api.com/app/data-vjuqevb/endpoint/data/v1/action/find',
     {
-      collection: 'raw_events',
-      database: 'eventim',
       dataSource: 'Cluster0',
+      database: 'eventim',
+      collection: 'raw_events',
+      limit: 12,
+      sort: {
+        _id: -1,
+      },
     },
     {
       headers: {
