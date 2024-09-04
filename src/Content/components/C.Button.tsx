@@ -4,8 +4,8 @@ import Button from '@/components/atoms/Button';
 import { ContentProps } from '@/Content/types';
 import { TEXT } from '@/services/enums';
 
-function BtnTxtReducer({ free, tickets }: Partial<ContentProps>) {
-  if (free && tickets) {
+function BtnTxtReducer({ free, link }: Partial<ContentProps>) {
+  if (free && link) {
     return TEXT.FREE_TICKETS;
   }
 
@@ -13,7 +13,7 @@ function BtnTxtReducer({ free, tickets }: Partial<ContentProps>) {
     return TEXT.FREE_NO_TICKETS;
   }
 
-  if (!free && tickets) {
+  if (!free && link) {
     return TEXT.BUY_TICKETS;
   }
 
@@ -21,20 +21,20 @@ function BtnTxtReducer({ free, tickets }: Partial<ContentProps>) {
 }
 
 function ButtonContent(props: ContentProps) {
-  const { tickets, free } = props;
+  const { link, free } = props;
 
   const content = (
-    <Button disabled={!tickets} {...props}>
-      {BtnTxtReducer({ free, tickets })}
+    <Button disabled={!link} {...props}>
+      {BtnTxtReducer({ free, link })}
     </Button>
   );
 
-  if (!tickets) {
+  if (!link) {
     return content;
   }
 
   return (
-    <Link className='u-url' target='_blank' href={tickets}>
+    <Link className='u-url' target='_blank' href={link}>
       {content}
     </Link>
   );

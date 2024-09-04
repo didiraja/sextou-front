@@ -12,7 +12,7 @@ import styles from './Content.module.scss';
 
 // TODO: use Next/Image
 function ContentCard(props: ContentProps) {
-  const { cover, title } = props;
+  const { cover, title, date } = props;
 
   return (
     <div className={clsx('h-event', styles['content'], styles['card-mode'])}>
@@ -21,6 +21,7 @@ function ContentCard(props: ContentProps) {
         <Cover src={cover} alt={title} />
 
         {/* <DateBlock {...props} /> */}
+        {date}
 
         <Title className='p-name max-two-lines'>{title}</Title>
         {/* </Link> */}

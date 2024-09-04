@@ -10,6 +10,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: '*.eventim.com.br',
+      },
+      {
+        protocol: 'https',
         hostname: 'sextou.quartemo.com.br',
       },
       {

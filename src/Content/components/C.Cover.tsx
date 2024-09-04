@@ -10,8 +10,8 @@ const ContentCover = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <Image
       className={clsx(styles['cover'])}
-      // width={src.width}
-      // height={src.height}
+      width='1240'
+      height='480'
       src={src}
       alt={alt}
     />
