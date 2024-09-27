@@ -7,32 +7,12 @@ import About from '@/components/molecules/About';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
 import { EventsAPIResponse, IEventProps } from '@/Content/types';
-import Date from '@/services/Date';
 
 import styles from './Home.module.scss';
 
 async function getEvents(page = 1) {
-  const res = await axios.post<EventsAPIResponse>(
-    'https://sa-east-1.aws.data.mongodb-api.com/app/data-vjuqevb/endpoint/data/v1/action/find',
-    {
-      dataSource: 'Cluster0',
-      database: 'eventim',
-      collection: 'raw_events',
-      limit: 12,
-      filter: {
-        date: {
-          $gte: { $date: Date.todayDate() },
-          $lte: { $date: Date.weekendEnd() },
-        },
-      },
-    },
-    {
-      headers: {
-        'api-key':
-          'XtnOYSuUbmOvyVCZ9SG2mYl2An0hoAIjEmjtBjB0UozE4aSZ1HV4SgzAzuLVdtgk',
-        cache: 'no-cache',
-      },
-    }
+  const res = await axios.get<EventsAPIResponse>(
+    'http://localhost:3000/api/events'
   );
 
   return res;
@@ -69,7 +49,7 @@ export default async function HomePage({
         <Title>Todos os Eventos</Title>
 
         <CardGrid>
-          {data.data.documents?.map((event: IEventProps) => (
+          {data.data.items?.map((event: IEventProps) => (
             <Card key={event._id} {...event} />
           ))}
         </CardGrid>

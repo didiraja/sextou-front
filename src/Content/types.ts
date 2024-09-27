@@ -35,7 +35,7 @@ export type WPTermObject = {
 };
 
 export interface EventsAPIResponse {
-  documents: IEventProps[];
+  items: IEventProps[];
 }
 
 export interface WPCoverObject {
