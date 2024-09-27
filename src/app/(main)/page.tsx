@@ -7,6 +7,7 @@ import About from '@/components/molecules/About';
 import Card from '@/components/molecules/Card';
 import CardGrid from '@/components/templates/Card.Grid';
 import { EventsAPIResponse, IEventProps } from '@/Content/types';
+import Date from '@/services/Date';
 
 import styles from './Home.module.scss';
 
@@ -18,8 +19,11 @@ async function getEvents(page = 1) {
       database: 'eventim',
       collection: 'raw_events',
       limit: 12,
-      sort: {
-        _id: -1,
+      filter: {
+        date: {
+          $gte: { $date: Date.todayDate() },
+          $lte: { $date: Date.weekendEnd() },
+        },
       },
     },
     {
