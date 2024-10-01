@@ -3,7 +3,6 @@
 import clsx from 'clsx';
 
 import ButtonContent from '@/Content/components/C.Button';
-import Categories from '@/Content/components/C.Categories';
 import Cover from '@/Content/components/C.Cover';
 import DateBlock from '@/Content/components/C.Date';
 import Description from '@/Content/components/C.Description';
@@ -13,7 +12,7 @@ import { ContentProps } from '@/Content/types';
 import styles from './Content.module.scss';
 
 function ContentSingle(props: ContentProps) {
-  const { cover, title, categories, description } = props;
+  const { cover, title, /* categories,  */ description } = props;
 
   return (
     <div className={clsx(styles['content'], styles['single-mode'])}>
@@ -22,7 +21,7 @@ function ContentSingle(props: ContentProps) {
 
         <Title tag='h1'>{title}</Title>
 
-        <Categories>{categories}</Categories>
+        {/* <Categories>{categories}</Categories> */}
 
         <ButtonContent {...props} />
       </div>

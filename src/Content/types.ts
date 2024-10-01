@@ -8,6 +8,7 @@ export interface IEventProps {
   link: string;
   highlight?: boolean;
   description: string;
+  free?: boolean;
 }
 
 export type ContentProps = IEventProps & {

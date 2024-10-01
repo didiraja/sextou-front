@@ -1,8 +1,5 @@
-import Pagination from '@/components/atoms/Pagination';
 import Title from '@/components/atoms/Title';
-import Card from '@/components/molecules/Card';
-import CardGrid from '@/components/templates/Card.Grid';
-import { EventsAPIResponse, IEventProps } from '@/Content/types';
+import { EventsAPIResponse } from '@/Content/types';
 import { API_URL } from '@/services/enums';
 
 interface EventRouteParams {
@@ -60,13 +57,13 @@ export default async function Category(request: {
     <>
       <Title>Eventos em {categoryTitle} no Rio de Janeiro</Title>
 
-      <CardGrid>
+      {/* <CardGrid>
         {data.posts.map((event: IEventProps) => (
           <Card key={event.id} {...event} />
         ))}
-      </CardGrid>
+      </CardGrid> */}
 
-      <Pagination page={page} totalItems={data.total_posts} />
+      {/* <Pagination page={page} totalItems={data.total_posts} /> */}
     </>
   );
 }

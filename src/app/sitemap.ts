@@ -1,4 +1,3 @@
-import { EventsAPIResponse } from '@/Content/types';
 import { API_URL } from '@/services/enums';
 
 async function getEvents() {
@@ -83,25 +82,25 @@ const categoriesList = [
 ];
 
 export default async function sitemap() {
-  const data: EventsAPIResponse = await getEvents();
+  // const data: EventsAPIResponse = await getEvents();
 
-  const categories = categoriesList.map((cat) => {
-    return {
-      url: `https://sextou.rio/category/${cat}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    };
-  });
+  // const categories = categoriesList.map((cat) => {
+  //   return {
+  //     url: `https://sextou.rio/category/${cat}`,
+  //     lastModified: new Date(),
+  //     changeFrequency: 'weekly',
+  //     priority: 0.8,
+  //   };
+  // });
 
-  const posts = data.posts?.map((post) => {
-    return {
-      url: `https://sextou.rio/event/${post.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'never',
-      priority: 0.5,
-    };
-  });
+  // const posts = data.posts?.map((post) => {
+  //   return {
+  //     url: `https://sextou.rio/event/${post.slug}`,
+  //     lastModified: new Date(),
+  //     changeFrequency: 'never',
+  //     priority: 0.5,
+  //   };
+  // });
 
   return [
     {
@@ -110,7 +109,7 @@ export default async function sitemap() {
       changeFrequency: 'daily',
       priority: 1,
     },
-    ...categories,
-    ...posts,
+    // ...categories,
+    // ...posts,
   ];
 }
