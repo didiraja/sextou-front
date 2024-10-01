@@ -1,8 +1,9 @@
-import { ChildrenOnly } from '../../types';
-import './PageContainer.pcss';
+import { ReactNode } from 'react';
 
-function PageContainer({ children }: ChildrenOnly) {
-  return <div className="page-wrapper">{children}</div>;
+import styles from './PageContainer.module.scss';
+
+function PageContainer({ children }: { children: ReactNode }) {
+  return <div className={styles['page-wrapper']}>{children}</div>;
 }
 
 export default PageContainer;

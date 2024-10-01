@@ -1,16 +1,12 @@
-import { Link } from 'react-router-dom';
-import Sextou from '../../assets/sextou.png';
-
-import './TopBlock.pcss';
+import styles from './TopBlock.module.scss';
 
 function TopBlock() {
   return (
-    <section id="top" className="grid grid-cols-1">
-      <Link to="/" reloadDocument>
-        <img className="sextou-logo" src={Sextou} alt="Sextou!" />
-      </Link>
-
-      {/* <SearchBlock /> */}
+    <section id='top' className={styles['top']}>
+      <p className={styles['lead-title']}>Sua Agenda Semanal</p>
+      <h1 className={styles['lead-sub']}>
+        Os melhores Eventos do Rio de Janeiro estão aqui.
+      </h1>
     </section>
   );
 }

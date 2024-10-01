@@ -1,23 +1,32 @@
-import IconInsta from '../icons/insta';
-import './Header.pcss';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import styles from './Header.module.scss';
 
 function Header() {
   return (
-    <header className="header-wrapper">
-      <div className="header-menu">
-        <ul className="header-menu--common">
-          <li>
-            <IconInsta />
-            <a
-              className="menu-link"
-              target="_blank"
-              rel="noreferrer"
-              href="https://www.instagram.com/sextou.rio/"
-            >
-              Siga-nos no Instagram! Agenda semanal de eventos.
-            </a>
-          </li>
-        </ul>
+    <header className={styles['header-wrapper']}>
+      <Link href='/'>
+        <Image src='/sextou.png' alt='Sextou! - Logo' width={142} height={50} />
+      </Link>
+      <div className={styles['menu']}>
+        <Link
+          target='_blank'
+          rel='noreferrer'
+          href='https://www.instagram.com/sextou.rio'
+        >
+          <button className='btn-secondary'>
+            <Image
+              width={24}
+              height={24}
+              src='/icon/insta.svg'
+              alt='Instagram - Logo'
+            />
+          </button>
+        </Link>
+        <Link href='#'>
+          <button className='btn-primary'>Lorem Ipsum</button>
+        </Link>
       </div>
     </header>
   );

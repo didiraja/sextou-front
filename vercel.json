@@ -1,3 +1,8 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "headers": [],
+  "git": {
+    "deploymentEnabled": {
+      "feature/ssr": true
+    }
+  }
 }

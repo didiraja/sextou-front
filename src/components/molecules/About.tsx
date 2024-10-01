@@ -1,32 +1,35 @@
 import Title from '../atoms/Title';
-import './About.pcss';
+
+import styles from './About.module.scss';
 
 function About() {
   return (
-    <div className="about-wrapper">
-      <Title>Sobre</Title>
+    <div className={styles['about-wrapper']}>
+      <Title tag='p'>Sobre</Title>
 
       <p>
-        <strong className="capitular">Sextou!</strong>
-        {' '}
-        é uma plataforma criada
-        para empoderar o usuário na escolha de seu entretenimento, encontrando
-        novas opções e filtrando a que melhor se encaixa em seu gosto e
-        localização.
+        <strong className={styles['capitular']}>Sextou!</strong> é a plataforma
+        definitiva para potencializar sua experiência de entretenimento no Rio
+        de Janeiro. Descubra novas opções, filtre eventos que combinem com seu
+        gosto e localização, tudo em um só lugar.
       </p>
 
       <p>
-        O motivo de criação da plataforma é facilitar a divulgação e encontro de
-        eventos que acontecem, principalmente fora do centro cultural do estado
-        do Rio de Janeiro. E, também, preencher o espaço deixado pela área de
-        Eventos do Facebook, após a migração de usuários para fora da
-        plataforma.
+        Criamos essa plataforma para simplificar a divulgação e descoberta de
+        eventos, especialmente fora do centro cultural do estado do Rio de
+        Janeiro. Preenchendo o vazio deixado pela migração de usuários da área
+        de Eventos do Facebook, nos tornamos a referência essencial.
       </p>
 
       <p>
-        Plataforma idealizada e criada por mim,
-        {' '}
-        <a href="https://linkedin.com/in/didiraja" target="_blank" rel="noreferrer">
+        Sinta-se empoderado ao explorar eventos exclusivos e diversificados.
+        Aproveite ao máximo o seu tempo de lazer com Sextou! - A Plataforma
+        idealizada e criada por mim,{' '}
+        <a
+          href='https://linkedin.com/in/didiraja'
+          target='_blank'
+          rel='noreferrer'
+        >
           Dico Didiraja
         </a>
         .

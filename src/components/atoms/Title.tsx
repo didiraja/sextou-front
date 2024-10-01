@@ -1,25 +1,24 @@
-import classNames from 'classnames';
-import { ButtonProps } from './Button';
-import './Title.pcss';
+import clsx from 'clsx';
+import { ReactNode } from 'react';
 
-type TitleProps = ButtonProps & {
-  className?: string
-}
+import styles from './Title.module.scss';
 
-function Title({ className, children }: TitleProps) {
+type TitleProps = {
+  tag?: string;
+  className?: string;
+  children: ReactNode;
+};
+
+function Title({ tag, className, children }: TitleProps) {
+  const Tag = tag || 'h2';
+
   return (
-    <h1 className={classNames([{
-      title: true,
-      'section-title': true,
-    }, className])}
-    >
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    <Tag className={clsx({ title: true }, styles.section_title, className)}>
       {children}
-    </h1>
+    </Tag>
   );
 }
-
-Title.defaultProps = {
-  className: '',
-};
 
 export default Title;

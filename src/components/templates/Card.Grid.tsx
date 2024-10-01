@@ -1,8 +1,9 @@
-import { ChildrenOnly } from '../../types';
-import './Card.Grid.pcss';
+import { ReactNode } from 'react';
 
-function CardGrid({ children }: ChildrenOnly): JSX.Element {
-  return <main className="card-grid">{children}</main>;
+import styles from './Card.Grid.module.scss';
+
+function CardGrid({ children }: { children: ReactNode }): JSX.Element {
+  return <main className={styles['card-grid']}>{children}</main>;
 }
 
 export default CardGrid;

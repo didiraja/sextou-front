@@ -1,0 +1,17 @@
+.section_title {
+  @apply /* */ /* */
+    -skew-x-10
+    mb-5 ml-3 border-l-[10px] border-[var(--pink)]
+    pl-3
+    text-4xl font-bold
+    uppercase tracking-tighter
+    text-white
+    xl:ml-8
+    xl:border-l-[15px]
+    xl:pl-5 
+    xl:font-semibold;
+
+  &.highlight {
+    @apply border-amber-400;
+  }
+}

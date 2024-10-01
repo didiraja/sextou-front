@@ -1,24 +1,12 @@
-import Content, { IEventProps } from '../atoms/Content';
-import './Card.pcss';
+import { IEventProps } from '@/Content/types';
+import Content from '../../Content/Content.Card';
 
-export type CardProps = IEventProps & {
-  path: string | number;
-  onClick?: () => void;
-};
+import styles from './Card.module.scss';
 
-export type reducerProps = {
-  evt?: React.MouseEvent<HTMLDivElement, MouseEvent> & {
-    target: { className: string };
-  };
-  action: any;
-};
-
-function Card(props: CardProps) {
-  const { path, onClick } = props;
-
+function Card(props: IEventProps) {
   return (
-    <div className="card" onClick={onClick}>
-      <Content mode="Card" {...props} path={`/event/${path}`} />
+    <div className={styles['card']}>
+      <Content {...props} />
     </div>
   );
 }

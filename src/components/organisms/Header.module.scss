@@ -1,0 +1,24 @@
+.header-wrapper {
+  @apply mt-3 flex items-center justify-around;
+
+  .menu {
+    @apply flex items-center gap-2;
+  }
+
+  // .header-menu--common {
+  // li {
+
+  //   &.hiddeable {
+  //     @apply hidden opacity-50 lg:inline-block;
+  //   }
+
+  // svg {
+  //   @apply inline-block w-[24px];
+  // }
+
+  //   .menu-link {
+  //     @apply text-sm underline underline-offset-1 hover:no-underline md:text-lg;
+  //   }
+  // }
+  // }
+}

@@ -1,0 +1,24 @@
+.button {
+  @apply flex w-full items-center justify-center rounded-md
+  bg-[var(--purple-50)] p-3 text-xl font-medium text-[var(--gray-800)] xl:p-3;
+
+  &.free {
+    @apply border border-[var(--green)] bg-[var(--dark-green)];
+  }
+
+  &:disabled {
+    @apply border-none bg-[var(--purple-900)] opacity-70;
+  }
+}
+
+.pill {
+  @apply rounded-xl bg-[#41027C] px-2 py-1 text-xs font-medium uppercase text-[#B692F6];
+
+  &:hover {
+    background-color: rgba(55, 2, 65, 0.3);
+  }
+
+  &.highlight {
+    @apply text-amber-500 hover:bg-amber-900/20;
+  }
+}

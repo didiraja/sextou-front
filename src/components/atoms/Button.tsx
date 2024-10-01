@@ -1,26 +1,28 @@
-import classNames from 'classnames';
-import { ChildrenOnly } from '../../types';
-import './Button.pcss';
+import clsx from 'clsx';
+import { ReactNode } from 'react';
 
-export type ButtonProps = ChildrenOnly & {
+import styles from './Button.module.scss';
+
+export type ButtonProps = {
+  children: ReactNode;
   className?: string;
   pill?: boolean;
   disabled?: boolean;
   free?: boolean;
+  onClick?: () => unknown;
 };
 
-function Button({
-  className, pill, children, disabled, free,
-}: ButtonProps) {
+function Button({ className, pill, children, disabled, free }: ButtonProps) {
   return (
     <button
-      data-testid="button-component"
+      data-testid='button-component'
       disabled={disabled}
-      className={classNames([{
-        button: !pill,
-        pill,
-        free,
-      }, className])}
+      className={clsx(
+        !pill && styles['button'],
+        pill && styles['pill'],
+        free && styles['free'],
+        className
+      )}
     >
       {children}
     </button>

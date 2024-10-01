@@ -1,40 +1,19 @@
-export const DOMAIN = {
-  // DEV: 'sextou.local',
-  DEV: 'sextou.quartemo.com.br',
-  PROD: 'sextou.quartemo.com.br',
-};
+// const IS_DEV = process.env.DEV;
+const IS_DEV = false;
 
-export const HOST = import.meta.env.DEV
-  ? `https://${DOMAIN.DEV}`
-  : `//${DOMAIN.PROD}`;
+export const HOST = IS_DEV
+  ? `http://localhost`
+  : `https://sextou.quartemo.com.br`;
 
-export const ENDPOINT = {
-  PATH: '/wp-api/sextou/v1',
-  MAIN: 'events',
-  CATEGORY: 'category/',
-  SINGLE: 'event',
-};
-
-export const PATH = {
-  MAIN: 'MAIN',
-  CATEGORY: 'CATEGORY',
-  SINGLE: 'SINGLE',
-};
-
-export const PER_PAGE = 12;
+export const API_URL = IS_DEV ? `${HOST}/wp-json` : `${HOST}/wp-api`;
 
 export const TEXT = {
-  BUY_TICKETS: 'Comprar Ingresso',
+  BUY_TICKETS: 'Comprar ingresso',
   NO_TICKETS: 'Sem link ainda',
-  FREE_TICKETS: 'Pegar Ingresso',
+  FREE_TICKETS: 'Pegar ingresso',
   FREE_NO_TICKETS: 'Só brotar',
 };
 
-export const ERROR = {
-  LOADING: 'Infelizmente, nada na pista',
-};
-
-export const MODE = {
-  CARD: 'Card',
-  SINGLE: 'Single',
-};
+// export const ERROR = {
+//   LOADING: 'Infelizmente, nada na pista',
+// };
