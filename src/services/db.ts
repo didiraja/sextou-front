@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 
-const uri =
-  'mongodb+srv://didiraja:FNJjftKLJrNwSP2t@cluster0.2srig4i.mongodb.net/eventim?retryWrites=true&w=majority&appName=Cluster0';
+const uri = process.env.NEXT_EVENTIM_DB;
+
 const options = {};
 
 let client;
