@@ -15,7 +15,14 @@ export async function GET(request: Request) {
     const collection = db.collection('raw_events'); // Replace with your collection name
 
     const items = await collection
-      .find({ date: { $gte: new Date(DateClass.todayDate()) } })
+      .find({
+        date: {
+          $gte: new Date(DateClass.todayDate()),
+        },
+        isPublic: {
+          $exists: false,
+        },
+      })
       .sort({ date: 1 })
       .limit(limit)
       .toArray();
