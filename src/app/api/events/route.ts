@@ -6,7 +6,7 @@ import clientPromise from '@/services/db';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const page = parseInt(searchParams.get('page') as string) || 1;
-  const limit = 12;
+  const limit = 20;
   const skip = (page - 1) * limit;
 
   try {
