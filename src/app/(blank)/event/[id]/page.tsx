@@ -1,26 +1,23 @@
+import axios from 'axios';
 import * as React from 'react';
 import { Thing, WithContext } from 'schema-dts';
 
 import Content from '@/Content/Content.Single';
-import { API_URL, HOST } from '@/services/enums';
+import { IEventProps } from '@/Content/types';
 import CloseButton from './components/CloseButton';
 
 import styles from './event.module.scss';
 
 interface EventRouteParams {
-  slug: string;
+  id: string;
 }
 
-async function getSingleEvent(slug: string) {
-  const query = `${API_URL}/sextou/v1/event/${slug}`;
+async function getSingleEvent(id: string) {
+  const res = await axios.get<IEventProps>(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/event/${id}`
+  );
 
-  const res = await fetch(query);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
+  return res;
 }
 
 export async function generateMetadata({
@@ -28,46 +25,47 @@ export async function generateMetadata({
 }: {
   params: EventRouteParams;
 }) {
-  const { slug } = params;
+  const { id } = params;
 
-  const data = await getSingleEvent(slug);
+  const { data } = await getSingleEvent(id);
 
   return {
-    title: `${data.title} em ${data.categories[1].name} no Rio de Janeiro`,
+    // title: `${data.title} em ${data.categories[1].name} no Rio de Janeiro`,
+    title: `${data.title} no Rio de Janeiro`,
     description: data.description.substring(0, 300),
     openGraph: {
-      images: [`${HOST}/wp-content/uploads/${data.cover.file}`],
+      images: [data.cover],
     },
     alternates: {
-      canonical: `https://sextou.rio/event/${slug}`,
+      canonical: `${process.env.NEXT_PUBLIC_API_URL}/event/${data._id}`,
     },
   };
 }
 
 export default async function Event({ params }: { params: EventRouteParams }) {
-  const { slug } = params;
+  const { id } = params;
 
-  const data = await getSingleEvent(slug);
+  const { data } = await getSingleEvent(id);
 
   const jsonLd: WithContext<Thing> = {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: data.title,
-    startDate: data.event_date,
+    startDate: data.date,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     location: {
       '@type': 'Place',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: data.categories[1].name,
+        // addressLocality: data.categories[1].name,
         addressRegion: 'RJ',
       },
     },
-    image: `${HOST}/wp-content/uploads/${data.cover.file}`,
+    image: data.cover,
     description: data.description,
     offers: {
       '@type': 'Offer',
-      url: `https://sextou.rio/event/${slug}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/event/${data._id}`,
       priceCurrency: 'BRL',
     },
   };
