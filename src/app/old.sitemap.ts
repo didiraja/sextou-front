@@ -1,18 +1,21 @@
-import { API_URL } from '@/services/enums';
+import { EventsAPIResponse } from '@/Content/types';
 
 async function getEvents() {
-  const res = await fetch(
-    `${API_URL}/sextou/v1/events/?page=1&after=2023-08-01&before=2023-08-31`,
-    {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/events`, {
       cache: 'no-cache',
-    }
-  );
+    });
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return [];
+    }
+
+    return res.json();
+  } catch (e) {
+    console.log(e);
+
     return [];
   }
-
-  return res.json();
 }
 
 const categoriesList = [
@@ -82,7 +85,7 @@ const categoriesList = [
 ];
 
 export default async function sitemap() {
-  // const data: EventsAPIResponse = await getEvents();
+  const data: EventsAPIResponse = await getEvents();
 
   // const categories = categoriesList.map((cat) => {
   //   return {
@@ -93,14 +96,14 @@ export default async function sitemap() {
   //   };
   // });
 
-  // const posts = data.posts?.map((post) => {
-  //   return {
-  //     url: `https://sextou.rio/event/${post.slug}`,
-  //     lastModified: new Date(),
-  //     changeFrequency: 'never',
-  //     priority: 0.5,
-  //   };
-  // });
+  const posts = data.items?.map((post) => {
+    return {
+      url: `https://sextou.rio/event/${post._id}`,
+      lastModified: new Date(),
+      changeFrequency: 'never',
+      priority: 0.5,
+    };
+  });
 
   return [
     {
