@@ -17,14 +17,12 @@ export async function GET(request: Request) {
 
   const xmlEvents = fetch.data.items
     .map(
-      (event) => `
-      <url>
+      (event) => `<url>
         <loc>${process.env.NEXT_PUBLIC_API_URL}/event/${event._id}</loc>
         <lastmod>${Date.todayDate()}</lastmod>
         <changefreq>never</changefreq>
         <priority>0.5</priority>
-      </url>
-    `
+      </url>`
     )
     .join('');
 
