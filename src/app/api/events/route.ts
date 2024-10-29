@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server';
 import DateClass from '@/services/Date';
 import clientPromise from '@/services/db';
 
+export const revalidate = 0;
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const page = parseInt(searchParams.get('page') as string) || 1;

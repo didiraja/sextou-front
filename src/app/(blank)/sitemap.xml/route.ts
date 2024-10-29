@@ -5,7 +5,11 @@ import Date from '@/services/Date';
 
 async function getEvents() {
   try {
-    return await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/events`);
+    return await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/events`, {
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    });
   } catch (e) {
     console.log(e);
     return [];

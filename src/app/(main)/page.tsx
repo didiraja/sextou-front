@@ -12,7 +12,12 @@ import styles from './Home.module.scss';
 
 async function getEvents(page = 1) {
   const res = await axios.get<EventsAPIResponse>(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/events`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/events`,
+    {
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    }
   );
 
   return res;
